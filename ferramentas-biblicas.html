@@ -2,17 +2,17 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#1e3a5f">
-    <title>Ferramentas Bíblicas · Curadoria Acadêmica</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Sentido Autêntico — Ferramentas Bíblicas</title>
+    
+    <!-- Favicon: Bíblia Aberta (SVG inline, identical to portal page) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 14C25 8 13 7 5 10v42c8-3 20-2 27 4 7-6 19-7 27-4V10c-8-3-20-2-27 4z' fill='%230f3731'/%3E%3Cpath d='M32 16c-6-5-16-6-23-3v36c7-2 17-1 23 4 6-5 16-6 23-4V13c-7-3-17-2-23 3z' fill='%23fbfaf7'/%3E%3Cpath d='M32 16v37' stroke='%23c5a059' stroke-width='2.5'/%3E%3Cpath d='M13 20c5-2 11-1 15 1M13 27c5-2 11-1 15 1M13 34c5-2 11-1 15 1M13 41c5-2 11-1 15 1' stroke='%23a3803b' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3Cpath d='M36 21c4-2 10-3 15-1M36 28c4-2 10-3 15-1M36 35c4-2 10-3 15-1M36 42c4-2 10-3 15-1' stroke='%23a3803b' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 
-    <!-- Favicon: Bíblia Aberta (SVG inline) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 14C25 8 13 7 5 10v42c8-3 20-2 27 4 7-6 19-7 27-4V10c-8-3-20-2-27 4z' fill='%231e3a5f'/%3E%3Cpath d='M32 16c-6-5-16-6-23-3v36c7-2 17-1 23 4 6-5 16-6 23-4V13c-7-3-17-2-23 3z' fill='%23f7f1e3'/%3E%3Cpath d='M32 16v37' stroke='%23b8860b' stroke-width='2.5'/%3E%3Cpath d='M13 20c5-2 11-1 15 1M13 27c5-2 11-1 15 1M13 34c5-2 11-1 15 1M13 41c5-2 11-1 15 1' stroke='%238a7a5c' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3Cpath d='M36 21c4-2 10-3 15-1M36 28c4-2 10-3 15-1M36 35c4-2 10-3 15-1M36 42c4-2 10-3 15-1' stroke='%238a7a5c' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
-
+    <!-- CSS/JS CDNs -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700;900&family=Noto+Serif+Hebrew:wght@400;700&family=Cardo:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700;900&family=Noto+Serif+Hebrew:wght@400;700&family=Cardo:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=SBL+Hebrew&family=SBL+Greek&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 
@@ -22,86 +22,160 @@
             theme: { extend: { fontFamily: {
                 serif: ['Lora', 'Merriweather', 'serif'],
                 sans: ['Inter', 'sans-serif'],
-                hebrew: ['"Noto Serif Hebrew"', 'serif'],
-                greek: ['Cardo', 'serif'],
+                hebrew: ['"SBL Hebrew"', '"Noto Serif Hebrew"', 'serif'],
+                greek: ['"SBL Greek"', 'Cardo', 'serif'],
                 manuscript: ['"Cormorant Garamond"', 'serif'],
+                display: ['Cinzel', 'Lora', 'serif']
             }}}
         }
     </script>
 
     <style>
         :root {
-            --bg: #faf7f1; --surface: #ffffff; --surface-2: #f3eee4;
-            --text: #2b2620; --text-muted: #75695a;
-            --primary: #1e3a5f; --primary-soft: #e8eef6;
-            --gold: #b8860b; --border: #e6ddcc;
-            --shadow: rgba(43, 38, 32, 0.08);
-            --hebraico: #1e40af; --aramaico: #b45309;
-            --grego: #047857; --geral: #6d28d9;
+            /* Aligned perfectly with O Sentido Autêntico light palette */
+            --bg: #fbfaf7; 
+            --surface: #ffffff; 
+            --surface-2: #f3efe6;
+            --text: #1a2530; 
+            --text-muted: #4a5568;
+            --primary: #0f3731; /* Portal Emerald/Teal primary */
+            --primary-soft: rgba(15, 55, 49, 0.08);
+            --gold: #c5a059; 
+            --gold-dark: #a3803b;
+            --border: #e2dcd0;
+            --shadow: rgba(26, 37, 48, 0.06);
+            --hebraico: #102a43; /* Deep navy */
+            --aramaico: #243e56; /* Accent navy */
+            --grego: #7b1d22; /* Crimson red */
+            --geral: #0f3731; /* Portal Teal */
             --subtitle-color: var(--text-muted);
         }
+        
+        /* Dark Theme Variables matching O Sentido Autêntico dark palette */
         .dark {
-            --bg: #12100d; --surface: #1c1916; --surface-2: #26221d;
-            --text: #ede6da; --text-muted: #a29685;
-            --primary: #d9b45b; --primary-soft: #2b2617;
-            --gold: #d9b45b; --border: #383229;
+            --bg: #0f141c; 
+            --surface: #1a2333; 
+            --surface-2: #171e29;
+            --text: #e2e8f0; 
+            --text-muted: #a0aec0;
+            --primary: #e2b765; /* Gold brand accent in dark mode */
+            --primary-soft: rgba(226, 183, 101, 0.12);
+            --gold: #e2b765; 
+            --gold-dark: #c59f51;
+            --border: #2d3748;
             --shadow: rgba(0, 0, 0, 0.4);
-            --hebraico: #7da2f0; --aramaico: #f0b265;
-            --grego: #65d6a8; --geral: #c3a1f5;
+            --hebraico: #7da2f0; 
+            --aramaico: #f0b265;
+            --grego: #65d6a8; 
+            --geral: #c3a1f5;
+            --subtitle-color: #e2b765;
         }
+        
+        /* Language Theme Variations (when active) */
         body.lang-hebrew {
-            --bg: #f2e8cf; --surface: #faf2db; --surface-2: #e6d4a8;
-            --text: #2d2012; --text-muted: #6e5632;
-            --primary: #8b4513; --primary-soft: #f5e9c7;
-            --gold: #b8860b; --border: #d4b770; --subtitle-color: #7a3f0e;
+            --bg: #faf2db; 
+            --surface: #ffffff; 
+            --surface-2: #ebd9a8;
+            --text: #2d2012; 
+            --text-muted: #7a3f0e;
+            --primary: #102a43; /* Hebrew dark blue theme */
+            --primary-soft: rgba(16, 42, 67, 0.1);
+            --gold: #c5a059; 
+            --border: #ebd9a8; 
+            --subtitle-color: #7a3f0e;
         }
         body.lang-hebrew.dark {
-            --bg: #1a140a; --surface: #261c0f; --surface-2: #3a2a18;
-            --text: #f5ecd4; --text-muted: #c9a968;
-            --primary: #e0a94a; --primary-soft: #3a2a18;
-            --gold: #f4c767; --border: #5c4426; --subtitle-color: #e0a94a;
+            --bg: #1a140a; 
+            --surface: #261c0f; 
+            --surface-2: #3a2a18;
+            --text: #f5ecd4; 
+            --text-muted: #c9a968;
+            --primary: #e0a94a; 
+            --primary-soft: #3a2a18;
+            --gold: #f4c767; 
+            --border: #5c4426; 
+            --subtitle-color: #e0a94a;
         }
         body.lang-greek {
-            --bg: #e2ede7; --surface: #f4faf7; --surface-2: #c6ddd2;
-            --text: #12312a; --text-muted: #3f6b5c;
-            --primary: #0d6e52; --primary-soft: #dceee6;
-            --gold: #047857; --border: #7fb39d; --subtitle-color: #047857;
+            --bg: #f4faf7; 
+            --surface: #ffffff; 
+            --surface-2: #c6ddd2;
+            --text: #12312a; 
+            --text-muted: #3f6b5c;
+            --primary: #7b1d22; /* Greek crimson theme */
+            --primary-soft: rgba(123, 29, 34, 0.1);
+            --gold: #c5a059; 
+            --border: #7fb39d; 
+            --subtitle-color: #7b1d22;
         }
         body.lang-greek.dark {
-            --bg: #0c1a16; --surface: #142822; --surface-2: #1f3a31;
-            --text: #e6f1ec; --text-muted: #8fc5ad;
-            --primary: #4dd1a0; --primary-soft: #1f3a31;
-            --gold: #65d6a8; --border: #3d5c50; --subtitle-color: #65d6a8;
+            --bg: #0c1a16; 
+            --surface: #142822; 
+            --surface-2: #1f3a31;
+            --text: #e6f1ec; 
+            --text-muted: #8fc5ad;
+            --primary: #4dd1a0; 
+            --primary-soft: #1f3a31;
+            --gold: #65d6a8; 
+            --border: #3d5c50; 
+            --subtitle-color: #65d6a8;
         }
 
         * { -webkit-tap-highlight-color: transparent; }
         html, body {
-            background: var(--bg); color: var(--text);
+            background: var(--bg); 
+            color: var(--text);
             font-family: 'Inter', sans-serif;
             overscroll-behavior-y: none;
             transition: background .5s ease, color .5s ease;
         }
-        .font-display { font-family: 'Lora', serif; }
-        .font-hebrew { font-family: 'Noto Serif Hebrew', serif; direction: rtl; }
-        .font-greek { font-family: 'Cardo', serif; }
+        .font-display { font-family: 'Cinzel', 'Lora', serif; }
+        .font-hebrew { font-family: 'SBL Hebrew', 'Noto Serif Hebrew', serif; direction: rtl; }
+        .font-greek { font-family: 'SBL Greek', 'Cardo', serif; }
 
         .card-surface {
-            background: var(--surface); border: 1px solid var(--border);
-            box-shadow: 0 1px 3px var(--shadow);
-            transition: background .4s ease, border-color .4s ease;
+            background: var(--surface); 
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 15px var(--shadow);
+            border-radius: 16px;
+            transition: background .4s ease, border-color .4s ease, transform .25s ease, box-shadow .25s ease;
+        }
+        .card-surface:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
         }
         .chip {
-            min-height: 40px; padding: 0 16px; border-radius: 999px;
-            border: 1px solid var(--border); background: var(--surface);
-            color: var(--text-muted); font-size: 13px; font-weight: 500;
-            white-space: nowrap; display: inline-flex; align-items: center;
-            gap: 6px; transition: all .18s ease; cursor: pointer;
+            min-height: 40px; 
+            padding: 0 16px; 
+            border-radius: 999px;
+            border: 1px solid var(--border); 
+            background: var(--surface);
+            color: var(--text-muted); 
+            font-size: 13px; 
+            font-weight: 600;
+            white-space: nowrap; 
+            display: inline-flex; 
+            align-items: center;
+            gap: 6px; 
+            transition: all .2s ease; 
+            cursor: pointer;
         }
-        .chip.active { background: var(--primary); color: #fff; border-color: var(--primary); }
-        .dark .chip.active { color: #1a1608; }
+        .chip:hover {
+            border-color: var(--gold);
+            color: var(--text);
+            background: var(--surface-2);
+        }
+        .chip.active { 
+            background: var(--primary); 
+            color: #ffffff !important; 
+            border-color: var(--primary); 
+            box-shadow: 0 4px 12px rgba(197, 160, 89, 0.25);
+        }
+        .dark .chip.active { color: #1a1608 !important; }
 
         .swipe-card {
-            touch-action: none; user-select: none;
+            touch-action: none; 
+            user-select: none;
             transition: transform .28s cubic-bezier(.2,.8,.3,1), opacity .28s;
             will-change: transform;
         }
@@ -111,6 +185,7 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes popIn { from { transform: scale(.96); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         @keyframes fadeScale { from { opacity:0; transform: scale(.98); } to { opacity:1; transform: scale(1); } }
+        
         .anim-slide-up { animation: slideUp .3s cubic-bezier(.2,.8,.3,1); }
         .anim-fade { animation: fadeIn .25s ease; }
         .anim-pop { animation: popIn .22s cubic-bezier(.2,.8,.3,1); }
@@ -120,30 +195,54 @@
         .scroll-x::-webkit-scrollbar { display: none; }
 
         .btn-primary {
-            background: var(--primary); color: #fff;
-            min-height: 48px; border-radius: 14px;
-            font-weight: 600; transition: transform .12s, filter .15s;
+            background: var(--primary); 
+            color: #ffffff;
+            min-height: 48px; 
+            border-radius: 14px;
+            font-weight: 700; 
+            transition: transform .12s, filter .15s, box-shadow .15s;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.2);
         }
         .btn-primary:active { transform: scale(.97); filter: brightness(1.1); }
+        .btn-primary:hover {
+            filter: brightness(1.05);
+            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.35);
+        }
         .dark .btn-primary { color: #1a1608; }
 
         .badge-nivel {
-            width: 34px; height: 34px; border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 14px; flex-shrink: 0;
+            width: 34px; 
+            height: 34px; 
+            border-radius: 10px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            font-weight: 700; 
+            font-size: 14px; 
+            flex-shrink: 0;
         }
-        .overlay { background: rgba(20, 16, 10, 0.55); backdrop-filter: blur(3px); }
+        .overlay { background: rgba(11, 15, 23, 0.72); backdrop-filter: blur(4px); }
 
-        input, select, textarea { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
-        input:focus, select:focus, textarea:focus { outline: 2px solid var(--primary); outline-offset: 1px; border-color: var(--primary); }
+        input, select, textarea { 
+            background: var(--surface); 
+            border: 1px solid var(--border); 
+            color: var(--text); 
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+        input:focus, select:focus, textarea:focus { 
+            outline: 2px solid var(--gold); 
+            outline-offset: 1px; 
+            border-color: var(--gold); 
+        }
         ::placeholder { color: var(--text-muted); opacity: .7; }
 
-        /* === v3.5: Subtítulo dinâmico — citações SEM itálico e grego em MINÚSCULAS === */
+        /* Subtítulo dinâmico */
         #dynaSubtitle { transition: color .5s ease, opacity .4s ease; min-height: 18px; }
         #dynaSubtitle.lang-highlight {
-            color: var(--subtitle-color);
-            font-style: normal;      /* remove o itálico das citações */
-            text-transform: none;    /* impede que o grego vire MAIÚSCULAS (anula o "uppercase" herdado) */
+            color: var(--gold-dark);
+            font-style: normal;
+            text-transform: none;
         }
         .hebrew-quote, .greek-quote { display: block; line-height: 1.3; margin-bottom: 2px; }
 
@@ -155,35 +254,56 @@
         .tour-spotlight-ring.active { opacity: 1; }
         .tour-target-active { position: relative; z-index: 203 !important; isolation: isolate; }
         .tour-tooltip { position: absolute; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 18px 20px; max-width: 300px; z-index: 204; box-shadow: 0 20px 50px rgba(0,0,0,0.35); animation: fadeScale .3s ease; pointer-events: auto; }
-        .tour-tooltip h4 { font-family: 'Lora', serif; font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 15px; }
+        .tour-tooltip h4 { font-family: 'Cinzel', serif; font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 15px; }
         .tour-tooltip p { font-size: 13px; line-height: 1.5; color: var(--text); margin-bottom: 14px; }
         .tour-step-pill { display: inline-block; background: var(--gold); color: #fff; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 999px; margin-bottom: 8px; letter-spacing: 0.05em; }
-        .tour-final { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 205; background: radial-gradient(ellipse at center, rgba(30,58,95,0.92), rgba(12,10,6,0.96)); padding: 24px; }
-        .tour-final-card { max-width: 420px; text-align: center; color: #f5ecd4; animation: fadeScale .5s ease; }
-        .tour-final-card .quote-mark { font-family: 'Lora', serif; font-size: 60px; color: var(--gold); line-height: 0.6; margin-bottom: 10px; }
-        .tour-final-card .quote-text { font-family: 'Lora', serif; font-style: italic; font-size: 17px; line-height: 1.55; color: #f5ecd4; margin-bottom: 14px; }
+        .tour-final { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 205; background: radial-gradient(ellipse at center, rgba(15,55,49,0.92), rgba(12,10,6,0.96)); padding: 24px; }
+        .tour-final-card { max-width: 420px; text-align: center; color: #fbfaf7; animation: fadeScale .5s ease; }
+        .tour-final-card .quote-mark { font-family: 'Cinzel', serif; font-size: 60px; color: var(--gold); line-height: 0.6; margin-bottom: 10px; }
+        .tour-final-card .quote-text { font-family: 'Lora', serif; font-style: italic; font-size: 17px; line-height: 1.55; color: #fbfaf7; margin-bottom: 14px; }
         .tour-final-card .quote-author { font-size: 12px; color: #d9b45b; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 24px; }
 
         /* Footer */
         .app-footer {
-            text-align: center; padding: 24px 16px 0px;
-            color: var(--text-muted); font-size: 11px;
-            letter-spacing: 0.02em; border-top: 1px solid var(--border);
-            margin-top: 1px; line-height: 1.8;
+            text-align: center; 
+            padding: 30px 16px;
+            color: var(--text-muted); 
+            font-size: 12px;
+            letter-spacing: 0.02em; 
+            border-top: 1px solid var(--border);
+            margin-top: 4rem; 
+            line-height: 1.8;
+            background: var(--surface-2);
         }
-        .app-footer .dot { display: inline-block; margin: 0 6px; opacity: 0.5; }
-        .app-footer a.about-link { color: var(--primary); text-decoration: none; font-weight: 600; border-bottom: 1px dashed var(--primary); padding-bottom: 15px; transition: opacity .2s; }
+        .app-footer .dot { display: inline-block; margin: 0 8px; opacity: 0.5; }
+        .app-footer a.about-link { 
+            color: var(--primary); 
+            text-decoration: none; 
+            font-weight: 700; 
+            border-bottom: 1px dashed var(--primary); 
+            padding-bottom: 2px; 
+            transition: opacity .2s; 
+        }
         .app-footer a.about-link:hover { opacity: .75; }
 
-        /* Sidebar direita + auto-hide */
+        /* Sidebar direita + auto-hide style match with O Sentido Autêntico sidebar style */
         .menu-fab {
-            position: fixed; bottom: 24px; right: 20px;
-            width: 58px; height: 58px; border-radius: 50%;
-            background: var(--primary); color: #fff; border: none;
-            display: flex; align-items: center; justify-content: center;
+            position: fixed; 
+            bottom: 24px; 
+            right: 20px;
+            width: 58px; 
+            height: 58px; 
+            border-radius: 50%;
+            background: var(--primary); 
+            color: #ffffff; 
+            border: none;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
             font-size: 20px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.25), 0 2px 6px rgba(0,0,0,0.15);
-            z-index: 90; cursor: pointer;
+            z-index: 9000; 
+            cursor: pointer;
             transition: transform .25s cubic-bezier(.2,.8,.3,1), box-shadow .25s;
         }
         .dark .menu-fab { color: #1a1608; }
@@ -194,981 +314,1653 @@
         .menu-fab.open .icon-open { opacity: 0; transform: rotate(90deg); }
         .menu-fab.open .icon-close { opacity: 1; transform: rotate(0); }
 
-        .menu-backdrop { position: fixed; inset: 0; background: rgba(12,10,6,0.4); backdrop-filter: blur(2px); z-index: 95; opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+        .menu-backdrop { position: fixed; inset: 0; background: rgba(11,15,23,0.4); backdrop-filter: blur(2px); z-index: 9500; opacity: 0; pointer-events: none; transition: opacity .3s ease; }
         .menu-backdrop.active { opacity: 1; pointer-events: auto; }
 
         .sidebar-right {
-            position: fixed; top: 0; right: 0; height: 100vh; height: 100dvh;
-            width: 280px; max-width: 85vw;
-            background: var(--surface); border-left: 1px solid var(--border);
+            position: fixed; 
+            top: 0; 
+            right: 0; 
+            height: 100vh; 
+            height: 100dvh;
+            width: 290px; 
+            max-width: 85vw;
+            background: var(--surface); 
+            border-left: 1px solid var(--border);
             box-shadow: -10px 0 40px rgba(0,0,0,0.15);
-            z-index: 100; transform: translateX(100%);
+            z-index: 10000; 
+            transform: translateX(100%);
             transition: transform .35s cubic-bezier(.2,.8,.3,1);
-            display: flex; flex-direction: column; overflow: hidden;
+            display: flex; 
+            flex-direction: column; 
+            overflow: hidden;
         }
         .sidebar-right.open { transform: translateX(0); }
-        .sidebar-header { padding: 20px 20px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-        .sidebar-title { font-family: 'Lora', serif; font-size: 14px; font-weight: 700; color: var(--primary); letter-spacing: 0.04em; text-transform: uppercase; }
-        .sidebar-close { width: 36px; height: 36px; border-radius: 10px; background: var(--surface-2); color: var(--text-muted); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+        .sidebar-header { padding: 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+        .sidebar-title { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; color: var(--primary); letter-spacing: 0.05em; text-transform: uppercase; }
+        .sidebar-close { width: 36px; height: 36px; border-radius: 10px; background: var(--surface-2); color: var(--text-muted); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: var(--transition); }
+        .sidebar-close:hover { background: var(--border); color: var(--text); }
         .sidebar-items { flex: 1; overflow-y: auto; padding: 12px 10px; scrollbar-width: thin; }
         .sidebar-item {
-            display: flex; align-items: center; gap: 14px;
-            padding: 14px 16px; border-radius: 12px;
-            color: var(--text); font-size: 14px; font-weight: 500;
-            cursor: pointer; transition: background .18s; min-height: 52px;
-            border: none; background: transparent; width: 100%; text-align: left; position: relative;
+            display: flex; 
+            align-items: center; 
+            gap: 14px;
+            padding: 12px 16px; 
+            border-radius: 10px;
+            color: var(--text-secondary); 
+            font-size: 14px; 
+            font-weight: 600;
+            cursor: pointer; 
+            transition: all .2s ease; 
+            min-height: 48px;
+            border: none; 
+            background: transparent; 
+            width: 100%; 
+            text-align: left; 
+            position: relative;
+            margin-bottom: 4px;
         }
-        .sidebar-item:hover { background: var(--surface-2); }
-        .sidebar-item .item-icon { width: 34px; height: 34px; border-radius: 10px; background: var(--surface-2); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--primary); flex-shrink: 0; }
-        .sidebar-item.active { background: var(--primary-soft); color: var(--primary); font-weight: 600; }
-        .sidebar-item.active .item-icon { background: var(--primary); color: #fff; }
-        .dark .sidebar-item.active .item-icon { color: #1a1608; }
+        .sidebar-item:hover { background: var(--surface-2); color: var(--text); }
+        .sidebar-item .item-icon { width: 34px; height: 34px; border-radius: 8px; background: var(--surface-2); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--primary); flex-shrink: 0; transition: var(--transition); }
+        .sidebar-item.active { background: var(--primary-soft); color: var(--primary); font-weight: 700; }
+        .sidebar-item.active .item-icon { background: var(--primary); color: #ffffff !important; }
+        .dark .sidebar-item.active .item-icon { color: #1a1608 !important; }
         .sidebar-item .item-label { flex: 1; }
         .sidebar-item .item-badge { font-size: 10px; padding: 2px 8px; border-radius: 999px; background: var(--gold); color: #fff; font-weight: 700; }
         .dark .sidebar-item .item-badge { color: #1a1608; }
         .sidebar-divider { height: 1px; background: var(--border); margin: 12px 16px; }
-        .autohide-bar { position: relative; margin-top: 8px; height: 2px; border-radius: 1px; background: var(--surface-2); overflow: hidden; }
+        
+        /* Auto-hide Countdown Bar styling */
+        .autohide-bar { position: relative; margin-top: 8px; height: 3px; border-radius: 2px; background: var(--surface-2); overflow: hidden; }
         .autohide-bar .fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--primary)); width: 100%; transform-origin: left; transform: scaleX(1); transition: transform 5s linear; }
         .autohide-bar.running .fill { transform: scaleX(0); }
-        .sidebar-footer { padding: 12px 20px 16px; border-top: 1px solid var(--border); font-size: 10px; color: var(--text-muted); text-align: center; letter-spacing: 0.04em; flex-shrink: 0; }
-        .sidebar-footer .autohide-hint { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 6px; }
+        .sidebar-footer { padding: 15px 20px; border-top: 1px solid var(--border); font-size: 10px; color: var(--text-muted); text-align: center; letter-spacing: 0.04em; flex-shrink: 0; background: var(--surface-2); }
+        .sidebar-footer .autohide-hint { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 6px; font-weight: 600; }
 
-        /* Manual / Sobre */
-        .about-modal { position: fixed; inset: 0; background: rgba(12,10,6,0.78); backdrop-filter: blur(6px); z-index: 300; display: none; align-items: center; justify-content: center; padding: 16px; overflow-y: auto; }
+        /* Manuscript (Sobre Modal) */
+        .about-modal { position: fixed; inset: 0; background: rgba(11,15,23,0.85); backdrop-filter: blur(6px); z-index: 99999; display: none; align-items: center; justify-content: center; padding: 16px; overflow-y: auto; }
         .about-modal.active { display: flex; }
         .manuscript {
-            max-width: 680px; width: 100%; max-height: 92vh; overflow-y: auto;
-            background: #f4e8c8;
-            background-image: radial-gradient(circle at 20% 30%, rgba(139,69,19,0.08) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(139,69,19,0.08) 0%, transparent 40%), linear-gradient(135deg, #f4e8c8 0%, #ebd9a8 50%, #f4e8c8 100%);
-            color: #3d2817; border-radius: 6px; padding: 40px 36px 36px;
-            font-family: 'Cormorant Garamond', serif; position: relative;
-            box-shadow: 0 25px 70px rgba(0,0,0,0.5), inset 0 0 120px rgba(139,69,19,0.08);
+            max-width: 680px; 
+            width: 100%; 
+            max-height: 90vh; 
+            overflow-y: auto;
+            background: #fbfaf7; /* Warm marfim paper look */
+            background-image: radial-gradient(circle at 20% 30%, rgba(197,160,89,0.06) 0%, transparent 40%), linear-gradient(135deg, #fbfaf7 0%, #f3efe6 100%);
+            color: #1a2530; 
+            border-radius: 12px; 
+            padding: 40px 36px 36px;
+            font-family: 'Lora', 'Cormorant Garamond', serif; 
+            position: relative;
+            border: 2px solid var(--gold);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.5), inset 0 0 120px rgba(197,160,89,0.08);
             animation: fadeScale .4s ease;
         }
-        .manuscript::before { content:""; position:absolute; inset:12px; border:1px solid rgba(139,69,19,0.35); border-radius:3px; pointer-events:none; }
-        .manuscript .close-btn { position:absolute; top:18px; right:20px; width:36px; height:36px; border-radius:50%; background:rgba(139,69,19,0.15); color:#3d2817; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2; border:none; font-size:14px; }
-        .manuscript .drop-cap { float:left; font-family:'Lora', serif; font-size:64px; line-height:0.9; color:#8b4513; margin:4px 8px 0 0; font-weight:700; }
-        .manuscript h2 { font-family:'Lora', serif; font-size:28px; color:#5c2e0e; text-align:center; margin-bottom:8px; }
-        .manuscript .ms-subtitle { text-align:center; font-style:italic; color:#7a3f0e; margin-bottom:28px; font-size:15px; }
-        .manuscript h3 { font-family:'Lora', serif; font-size:19px; color:#5c2e0e; margin:26px 0 10px; padding-bottom:4px; border-bottom:1px solid rgba(139,69,19,0.25); }
-        .manuscript p { font-size:17px; line-height:1.7; margin-bottom:12px; color:#3d2817; text-align:justify; }
+        .manuscript::before { content:""; position:absolute; inset:12px; border:1px solid rgba(197,160,89,0.3); border-radius:8px; pointer-events:none; }
+        .manuscript .close-btn { position:absolute; top:18px; right:20px; width:36px; height:36px; border-radius:50%; background:rgba(197,160,89,0.15); color:var(--gold-dark); display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2; border:none; font-size:14px; transition: var(--transition); }
+        .manuscript .close-btn:hover { background: var(--gold); color: white; }
+        .manuscript .drop-cap { float:left; font-family:'Cinzel', serif; font-size:64px; line-height:0.9; color:var(--gold-dark); margin:4px 8px 0 0; font-weight:700; }
+        .manuscript h2 { font-family:'Cinzel', serif; font-size:26px; color:var(--gold-dark); text-align:center; margin-bottom:8px; font-weight: 700; letter-spacing: 1px; }
+        .manuscript .ms-subtitle { text-align:center; font-style:italic; color:var(--text-muted); margin-bottom:28px; font-size:15px; }
+        .manuscript h3 { font-family:'Cinzel', serif; font-size:18px; color:var(--gold-dark); margin:26px 0 10px; padding-bottom:4px; border-bottom:1px solid rgba(197,160,89,0.25); font-weight: 700; }
+        .manuscript p { font-size:16px; line-height:1.7; margin-bottom:12px; color:#1a2530; text-align:justify; }
         .manuscript ul { list-style:none; padding:0; margin:8px 0 14px; }
-        .manuscript li { font-size:16px; line-height:1.6; color:#3d2817; padding:6px 0 6px 26px; position:relative; }
-        .manuscript li::before { content:"✦"; position:absolute; left:4px; color:#8b4513; font-size:12px; top:10px; }
-        .manuscript .ornament { text-align:center; color:#8b4513; font-size:18px; letter-spacing:0.5em; margin:18px 0; }
+        .manuscript li { font-size:15px; line-height:1.6; color:#1a2530; padding:6px 0 6px 26px; position:relative; }
+        .manuscript li::before { content:"✦"; position:absolute; left:4px; color:var(--gold-dark); font-size:12px; top:10px; }
+        .manuscript .ornament { text-align:center; color:var(--gold); font-size:18px; letter-spacing:0.5em; margin:18px 0; }
         .ms-table { width:100%; border-collapse:collapse; margin:14px 0 18px; }
-        .ms-table th { background:#5c2e0e; color:#f4e8c8; padding:10px 12px; text-align:left; font-size:14px; }
-        .ms-table td { padding:10px 12px; border-bottom:1px dashed rgba(139,69,19,0.3); font-size:15px; }
-        .ms-table a { color:#8b4513; text-decoration:none; border-bottom:1px dotted #8b4513; font-weight:600; }
-        .manuscript .contact-box { background:rgba(139,69,19,0.08); border:1px solid rgba(139,69,19,0.3); border-radius:4px; padding:16px; text-align:center; margin-top:24px; }
-        .manuscript .contact-box .label { font-size:12px; letter-spacing:0.2em; color:#7a3f0e; text-transform:uppercase; margin-bottom:6px; }
-        .manuscript .contact-box a { font-family:'Lora', serif; font-size:19px; color:#5c2e0e; font-weight:700; text-decoration:none; border-bottom:2px solid #8b4513; }
-        .manuscript .signature { text-align:right; font-style:italic; font-size:17px; color:#5c2e0e; margin-top:28px; padding-top:14px; border-top:1px solid rgba(139,69,19,0.25); }
+        .ms-table th { background:var(--primary); color:#ffffff; padding:10px 12px; text-align:left; font-size:13px; font-family: 'Cinzel', serif; font-weight: bold; }
+        .ms-table td { padding:10px 12px; border-bottom:1px dashed rgba(197,160,89,0.3); font-size:14px; color: var(--text); }
+        .ms-table a { color:var(--gold-dark); text-decoration:none; border-bottom:1px dotted var(--gold-dark); font-weight:700; }
+        .manuscript .contact-box { background:rgba(197,160,89,0.06); border:1px solid rgba(197,160,89,0.25); border-radius:8px; padding:16px; text-align:center; margin-top:24px; }
+        .manuscript .contact-box .label { font-size:11px; letter-spacing:0.2em; color:var(--gold-dark); text-transform:uppercase; margin-bottom:6px; font-weight: bold; }
+        .manuscript .contact-box a { font-family:'Cinzel', serif; font-size:18px; color:var(--primary); font-weight:700; text-decoration:none; border-bottom:2px solid var(--gold); }
+        .manuscript .signature { text-align:right; font-style:italic; font-size:16px; color:var(--primary); margin-top:28px; padding-top:14px; border-top:1px solid rgba(197,160,89,0.2); font-family: 'Lora', serif; }
 
-        .manual-sheet { position: fixed; inset: 0; background: var(--bg); z-index: 150; display: none; overflow-y: auto; }
+        .manual-sheet { position: fixed; inset: 0; background: var(--bg); z-index: 9500; display: none; overflow-y: auto; }
         .manual-sheet.active { display: block; }
         .manual-nav { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 10; padding: 12px 16px; overflow-x: auto; scrollbar-width: none; }
         .manual-section { padding: 20px 20px 32px; max-width: 720px; margin: 0 auto; }
-        .manual-section h2 { font-family:'Lora', serif; color: var(--primary); font-size: 20px; font-weight: 700; margin-bottom: 12px; }
-        .manual-section h3 { font-family:'Lora', serif; color: var(--primary); font-size: 15px; font-weight: 700; margin: 18px 0 8px; }
+        .manual-section h2 { font-family:'Cinzel', serif; color: var(--primary); font-size: 20px; font-weight: 700; margin-bottom: 12px; border-bottom: 2px solid var(--border); padding-bottom: 6px; }
+        .manual-section h3 { font-family:'Cinzel', serif; color: var(--primary); font-size: 15px; font-weight: 700; margin: 18px 0 8px; }
         .manual-section p, .manual-section li { font-size: 14px; line-height: 1.65; color: var(--text); margin-bottom: 10px; }
         .manual-section ul { padding-left: 20px; margin-bottom: 12px; }
         .manual-section li { list-style: disc; }
         .manual-callout { background: var(--surface-2); border-left: 3px solid var(--gold); padding: 12px 16px; border-radius: 8px; margin: 14px 0; font-size: 13px; }
         .manual-callout strong { color: var(--primary); }
         .manual-problem { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; }
-        .manual-problem .problem-title { font-weight: 600; color: var(--primary); margin-bottom: 4px; font-size: 13px; }
+        .manual-problem .problem-title { font-weight: 700; color: var(--primary); margin-bottom: 4px; font-size: 13px; }
         .manual-problem .problem-solution { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
     </style>
 </head>
-<body>
+<body class="portal-active">
 
-    <header class="sticky top-0 z-40 px-4 py-3 flex items-center justify-between" style="background:var(--bg); border-bottom:1px solid var(--border);">
-        <div class="flex items-center gap-3 min-w-0">
-            <button id="helpBtn" aria-label="Abrir manual" class="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--surface-2); color:var(--primary)">
-                <i class="fa-solid fa-circle-question"></i>
-            </button>
-            <div class="min-w-0">
-                <h1 class="font-display text-xl font-bold leading-tight truncate" style="color:var(--primary)">
-                    <i class="fa-solid fa-book-bible mr-1.5"></i>Ferramentas Bíblicas
-                </h1>
-                <div id="dynaSubtitle" class="text-[11px] tracking-wide uppercase mt-0.5" style="color:var(--text-muted)">Curadoria · Hermenêutica · Exegese</div>
-            </div>
-        </div>
-        <button id="themeToggle" aria-label="Alternar tema" class="w-12 h-12 rounded-full flex items-center justify-center text-lg flex-shrink-0" style="background:var(--surface-2); color:var(--primary)">
-            <i class="fa-solid fa-moon" id="themeIcon"></i>
+<header class="sticky top-0 z-40 px-4 py-3 flex items-center justify-between" style="background:var(--bg); border-bottom:1px solid var(--border);">
+    <div class="flex items-center gap-3 min-w-0">
+        <button id="helpBtn" onclick="openManual()" aria-label="Abrir manual" class="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 transition-all hover:scale-105" style="background:var(--surface-2); color:var(--primary)">
+            <i class="fa-solid fa-circle-question"></i>
         </button>
-    </header>
-
-    <main id="main" class="px-4 pb-5 pt-4 max-w-3xl mx-auto">
-
-        <section id="view-dashboard" class="view anim-fade">
-            <div id="statsGrid" class="grid grid-cols-3 gap-3 mb-5">
-                <div class="card-surface rounded-2xl p-3 text-center"><div class="font-display text-2xl font-bold" style="color:var(--primary)" id="statTotal">0</div><div class="text-[11px] mt-0.5" style="color:var(--text-muted)">Recursos</div></div>
-                <div class="card-surface rounded-2xl p-3 text-center"><div class="font-display text-2xl font-bold" style="color:var(--gold)" id="statFav">0</div><div class="text-[11px] mt-0.5" style="color:var(--text-muted)">Favoritos</div></div>
-                <div class="card-surface rounded-2xl p-3 text-center"><div class="font-display text-2xl font-bold" style="color:var(--primary)" id="statLang">0</div><div class="text-[11px] mt-0.5" style="color:var(--text-muted)">Idiomas</div></div>
-            </div>
-
-            <button id="mineBtn" onclick="goToMining()" class="btn-primary w-full flex items-center justify-center gap-2 mb-5 text-[15px]">
-                <i class="fa-solid fa-gem"></i> Minerar Recursos
-            </button>
-
-            <div id="searchBox" class="relative mb-3">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-sm" style="color:var(--text-muted)"></i>
-                <input id="searchInput" type="text" placeholder="Buscar título, descrição ou URL…" class="w-full h-12 pl-11 pr-4 rounded-2xl text-[14px]">
-            </div>
-
-            <div class="text-[10px] uppercase tracking-wider mb-1 font-semibold" style="color:var(--text-muted)">Língua</div>
-            <div class="scroll-x flex gap-2 mb-3" id="langChips"></div>
-            <div class="text-[10px] uppercase tracking-wider mb-1 font-semibold" style="color:var(--text-muted)">Tipo</div>
-            <div class="scroll-x flex gap-2 mb-3" id="typeChips"></div>
-            <div class="text-[10px] uppercase tracking-wider mb-1 font-semibold" style="color:var(--text-muted)">Subcategoria</div>
-            <div class="scroll-x flex gap-2 mb-3" id="subChips"></div>
-            <div class="text-[10px] uppercase tracking-wider mb-1 font-semibold" style="color:var(--text-muted)">Nível</div>
-            <div class="scroll-x flex gap-2 mb-5" id="levelChips"></div>
-
-            <div id="cardList" class="space-y-3"></div>
-            <div id="emptyDash" class="hidden text-center py-14">
-                <i class="fa-solid fa-box-archive text-4xl mb-3" style="color:var(--text-muted)"></i>
-                <p class="font-display font-semibold">Nenhum recurso encontrado</p>
-                <p class="text-sm mt-1" style="color:var(--text-muted)">Ajuste os filtros ou minere novos recursos.</p>
-            </div>
-        </section>
-
-        <section id="view-mining" class="view hidden anim-fade">
-            <div id="miningSetup" class="hidden">
-                <h2 class="font-display text-2xl font-bold mb-1" style="color:var(--primary)">Parâmetros da Mineração</h2>
-                <p class="text-sm mb-6" style="color:var(--text-muted)">Ajuste a língua e a subcategoria e toque em <b>Iniciar Mineração</b>. Tudo acontece nesta mesma tela.</p>
-                <div class="card-surface rounded-2xl p-4 mb-4">
-                    <div class="text-xs font-semibold uppercase tracking-wider mb-3" style="color:var(--text-muted)">Língua-alvo</div>
-                    <div class="flex flex-wrap gap-2" id="miningLangChips"></div>
-                </div>
-                <div class="card-surface rounded-2xl p-4 mb-6">
-                    <div class="text-xs font-semibold uppercase tracking-wider mb-3" style="color:var(--text-muted)">Subcategoria</div>
-                    <div class="flex flex-wrap gap-2" id="miningSubChips"></div>
-                </div>
-                <button onclick="startMining()" class="btn-primary w-full flex items-center justify-center gap-2 text-[15px]">
-                    <i class="fa-solid fa-magnifying-glass-arrow-right"></i> Iniciar Mineração
-                </button>
-            </div>
-
-            <div id="miningResults" class="hidden">
-                <div class="flex items-center justify-between mb-2 gap-2">
-                    <div class="min-w-0">
-                        <span class="text-xs uppercase tracking-wider" style="color:var(--text-muted)">Garimpando</span>
-                        <div class="font-display font-bold text-lg truncate" id="miningContext">—</div>
-                    </div>
-                    <div class="flex items-center gap-2 flex-shrink-0">
-                        <button onclick="showMiningSetup()" class="chip" style="min-height:44px" aria-label="Ajustar parâmetros">
-                            <i class="fa-solid fa-sliders"></i> Parâmetros
-                        </button>
-                        <span class="text-sm font-semibold px-3 py-1 rounded-full" style="background:var(--primary-soft); color:var(--primary)" id="miningCounter">0/0</span>
-                    </div>
-                </div>
-                <div class="relative h-[420px] mt-3" id="cardStack"></div>
-                <div class="fixed bottom-6 left-0 right-0 px-4 z-30 max-w-3xl mx-auto">
-                    <div class="grid grid-cols-2 gap-3">
-                        <button onclick="rejectCurrent()" class="h-14 rounded-2xl font-semibold flex items-center justify-center gap-2 card-surface" style="color:#dc2626"><i class="fa-solid fa-xmark"></i> Rejeitar</button>
-                        <button onclick="saveMiningDirect()" class="h-14 rounded-2xl font-semibold flex items-center justify-center gap-2 btn-primary"><i class="fa-solid fa-bookmark"></i> Guardar</button>
-                    </div>
-                    <p class="text-[11px] text-center mt-2" style="color:var(--text-muted)">Toque no card para editar antes de guardar.</p>
-                </div>
-            </div>
-
-            <div id="miningDone" class="hidden text-center py-20">
-                <i class="fa-solid fa-circle-check text-5xl mb-4" style="color:var(--primary)"></i>
-                <h3 class="font-display text-xl font-bold mb-1">Mineração concluída</h3>
-                <p class="text-sm mb-6" style="color:var(--text-muted)" id="miningSummary"></p>
-                <button onclick="resetMining()" class="btn-primary px-6"><i class="fa-solid fa-rotate-right mr-2"></i>Nova Mineração</button>
-            </div>
-        </section>
-
-        <section id="view-favorites" class="view hidden anim-fade">
-            <h2 class="font-display text-2xl font-bold mb-1" style="color:var(--gold)"><i class="fa-solid fa-star mr-2"></i>Destaques de Pesquisa</h2>
-            <p class="text-sm mb-5" style="color:var(--text-muted)">Recursos marcados como essenciais para sua investigação.</p>
-            <div id="favList" class="space-y-3"></div>
-            <div id="emptyFav" class="hidden text-center py-14">
-                <i class="fa-regular fa-star text-4xl mb-3" style="color:var(--text-muted)"></i>
-                <p class="font-display font-semibold">Sem favoritos ainda</p>
-            </div>
-        </section>
-
-        <section id="view-reports" class="view hidden anim-fade">
-            <h2 class="font-display text-2xl font-bold mb-1" style="color:var(--primary)"><i class="fa-solid fa-chart-column mr-2"></i>Relatórios</h2>
-            <p class="text-sm mb-5" style="color:var(--text-muted)">Síntese quantitativa do seu acervo e exportação acadêmica.</p>
-            <div class="card-surface rounded-2xl p-4 mb-4"><div class="text-xs font-semibold uppercase tracking-wider mb-3" style="color:var(--text-muted)">Distribuição por Língua</div><div id="langBars" class="space-y-3"></div></div>
-            <div class="card-surface rounded-2xl p-4 mb-6"><div class="text-xs font-semibold uppercase tracking-wider mb-3" style="color:var(--text-muted)">Distribuição por Nível</div><div id="levelBars" class="space-y-3"></div></div>
-            <button onclick="exportPDF()" class="btn-primary w-full flex items-center justify-center gap-2 text-[15px]"><i class="fa-solid fa-file-pdf"></i> Exportar Catálogo Acadêmico (PDF)</button>
-            <p class="text-[11px] text-center mt-2" style="color:var(--text-muted)">Documento A4 agrupado por Língua e Nível.</p>
-        </section>
-    </main>
-
-    <footer class="app-footer">
-        <a href="#" onclick="openAbout(event)" class="about-link"><i class="fa-solid fa-feather-pointed mr-1"></i>Sobre</a>
-        <span class="dot">·</span>
-        <span id="footerTimestamp"></span>
-        <span class="dot">·</span>
-	<span style="opacity:.85;">by rogerelizar@gmail.com</span>
-    </footer>
-
-    <div id="menuBackdrop" class="menu-backdrop" onclick="closeSidebar()"></div>
-
-    <aside id="sidebarRight" class="sidebar-right" aria-label="Menu de navegação">
-        <div class="sidebar-header">
-            <div class="sidebar-title">Navegação</div>
-            <button class="sidebar-close" onclick="closeSidebar()" aria-label="Fechar menu"><i class="fa-solid fa-xmark"></i></button>
+        <div class="min-w-0">
+            <h1 class="font-display text-xl font-bold leading-tight truncate" style="color:var(--primary)">
+                <i class="fa-solid fa-book-bible mr-1.5"></i>Ferramentas Bíblicas
+            </h1>
+            <div id="dynaSubtitle" class="text-[11px] tracking-wide uppercase mt-0.5 font-semibold" style="color:var(--text-muted)">Curadoria · Hermenêutica · Exegese</div>
         </div>
-        <div class="sidebar-items">
-            <button class="sidebar-item active" data-view="dashboard" onclick="sidebarNav('dashboard')"><span class="item-icon"><i class="fa-solid fa-table-cells-large"></i></span><span class="item-label">Início</span></button>
-            <button class="sidebar-item" data-view="mining" onclick="sidebarNav('mining')"><span class="item-icon"><i class="fa-solid fa-gem"></i></span><span class="item-label">Mineração</span></button>
-            <button class="sidebar-item" data-view="favorites" onclick="sidebarNav('favorites')"><span class="item-icon"><i class="fa-solid fa-star"></i></span><span class="item-label">Favoritos</span><span class="item-badge" id="sidebarFavBadge" style="display:none;">0</span></button>
-            <button class="sidebar-item" data-view="reports" onclick="sidebarNav('reports')"><span class="item-icon"><i class="fa-solid fa-chart-column"></i></span><span class="item-label">Relatórios</span></button>
-            <div class="sidebar-divider"></div>
-            <button class="sidebar-item" onclick="sidebarAction('manual')"><span class="item-icon"><i class="fa-solid fa-circle-question"></i></span><span class="item-label">Manual de Uso</span></button>
-            <button class="sidebar-item" onclick="sidebarAction('about')"><span class="item-icon"><i class="fa-solid fa-feather-pointed"></i></span><span class="item-label">Sobre o Projeto</span></button>
-            <button class="sidebar-item" onclick="sidebarAction('theme')"><span class="item-icon" id="sidebarThemeIcon"><i class="fa-solid fa-moon"></i></span><span class="item-label" id="sidebarThemeLabel">Modo Escuro</span></button>
-        </div>
-        <div class="sidebar-footer">
-            <div>Curadoria acadêmica</div>
-            <div class="autohide-hint"><i class="fa-solid fa-clock" style="opacity:.6;"></i><span>Fecha em <b id="autohideCounter">5</b>s</span></div>
-            <div class="autohide-bar" id="autohideBar"><div class="fill"></div></div>
-        </div>
-    </aside>
-
-    <button id="menuFab" class="menu-fab" aria-label="Abrir menu de navegação" onclick="toggleSidebar()">
-        <span class="icon-open"><i class="fa-solid fa-bars"></i></span>
-        <span class="icon-close"><i class="fa-solid fa-xmark"></i></span>
+    </div>
+    <button id="themeToggle" onclick="toggleTheme()" aria-label="Alternar tema" class="w-12 h-12 rounded-full flex items-center justify-center text-lg flex-shrink-0 transition-all hover:scale-105" style="background:var(--surface-2); color:var(--primary)">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
     </button>
+</header>
 
-    <div id="overlay" class="overlay fixed inset-0 z-50 hidden" onclick="closeAllSheets()"></div>
+<main id="main" class="px-4 pb-5 pt-4 max-w-3xl mx-auto">
 
-    <div id="editSheet" class="fixed inset-x-0 bottom-0 z-[60] hidden max-w-2xl mx-auto">
-        <div class="anim-slide-up rounded-t-3xl p-5 pb-8 max-h-[88vh] overflow-y-auto" style="background:var(--surface); border-top:1px solid var(--border)">
-            <div class="w-10 h-1 rounded-full mx-auto mb-4" style="background:var(--border)"></div>
-            <h3 class="font-display text-xl font-bold mb-4" id="editTitle" style="color:var(--primary)">Editar Recurso</h3>
-            <div class="grid grid-cols-2 gap-3 mb-3">
-                <div><label class="text-[11px] font-semibold uppercase" style="color:var(--text-muted)">Língua</label><select id="f_lingua" class="w-full h-12 px-3 rounded-xl text-sm mt-1"></select></div>
-                <div><label class="text-[11px] font-semibold uppercase" style="color:var(--text-muted)">Nível</label><select id="f_nivel" class="w-full h-12 px-3 rounded-xl text-sm mt-1"></select></div>
+    <!-- VIEW 1: DASHBOARD -->
+    <section id="view-dashboard" class="view anim-fade">
+        <div id="statsGrid" class="grid grid-cols-3 gap-3 mb-5">
+            <div class="card-surface p-3 text-center">
+                <div class="font-display text-2xl font-bold" style="color:var(--primary)" id="statTotal">0</div>
+                <div class="text-[11px] font-semibold mt-0.5" style="color:var(--text-muted)">Recursos</div>
             </div>
-            <div class="grid grid-cols-2 gap-3 mb-3">
-                <div><label class="text-[11px] font-semibold uppercase" style="color:var(--text-muted)">Tipo</label><select id="f_tipo" class="w-full h-12 px-3 rounded-xl text-sm mt-1"></select></div>
-                <div><label class="text-[11px] font-semibold uppercase" style="color:var(--text-muted)">Subcategoria</label><select id="f_sub" class="w-full h-12 px-3 rounded-xl text-sm mt-1"></select></div>
+            <div class="card-surface p-3 text-center">
+                <div class="font-display text-2xl font-bold" style="color:var(--gold)" id="statFav">0</div>
+                <div class="text-[11px] font-semibold mt-0.5" style="color:var(--text-muted)">Favoritos</div>
             </div>
-            <div class="mb-3"><label class="text-[11px] font-semibold uppercase" style="color:var(--text-muted)">Título</label><input id="f_titulo" type="text" class="w-full h-12 px-3 rounded-xl text-sm mt-1" placeholder="Nome do recurso"></div>
-            <div class="mb-3"><label class="text-[11px] font-semibold uppercase" style="color:var(--text-muted)">URL</label><input id="f_url" type="url" class="w-full h-12 px-3 rounded-xl text-sm mt-1" placeholder="https://…"></div>
-            <div class="mb-4"><label class="text-[11px] font-semibold uppercase" style="color:var(--text-muted)">Descrição exegética</label><textarea id="f_desc" rows="3" class="w-full px-3 py-2 rounded-xl text-sm mt-1" placeholder="Aplicação para exegese, hermenêutica ou crítica textual…"></textarea></div>
-            <label class="flex items-center gap-3 mb-5 cursor-pointer">
-                <input type="checkbox" id="f_fav" class="w-6 h-6 accent-[#b8860b]">
-                <span class="text-sm font-medium">Marcar como favorito <i class="fa-solid fa-star ml-1" style="color:var(--gold)"></i></span>
-            </label>
-            <div class="grid grid-cols-3 gap-2" id="editActionsFull">
-                <button onclick="editActionDelete()" class="min-h-[48px] rounded-2xl font-semibold card-surface text-sm" style="color:#dc2626"><i class="fa-solid fa-trash mr-1"></i>Excluir</button>
-                <button onclick="closeAllSheets()" class="min-h-[48px] rounded-2xl font-semibold card-surface text-sm">Cancelar</button>
-                <button onclick="editActionSave()" class="min-h-[48px] rounded-2xl font-semibold btn-primary text-sm"><i class="fa-solid fa-check mr-1"></i>Salvar</button>
-            </div>
-            <div class="grid grid-cols-2 gap-3 hidden" id="editActionsMining">
-                <button onclick="editActionReject()" class="min-h-[48px] rounded-2xl font-semibold card-surface" style="color:#dc2626"><i class="fa-solid fa-xmark mr-1"></i>Rejeitar</button>
-                <button onclick="editActionSave()" class="min-h-[48px] rounded-2xl font-semibold btn-primary"><i class="fa-solid fa-check mr-1"></i>Guardar</button>
+            <div class="card-surface p-3 text-center">
+                <div class="font-display text-2xl font-bold" style="color:var(--primary)" id="statLang">0</div>
+                <div class="text-[11px] font-semibold mt-0.5" style="color:var(--text-muted)">Idiomas</div>
             </div>
         </div>
-    </div>
 
-    <div id="fichaSheet" class="fixed inset-x-0 bottom-0 z-[60] hidden max-w-2xl mx-auto">
-        <div class="anim-slide-up rounded-t-3xl p-5 pb-8 max-h-[80vh] overflow-y-auto" style="background:var(--surface); border-top:1px solid var(--border)">
-            <div class="w-10 h-1 rounded-full mx-auto mb-4" style="background:var(--border)"></div>
-            <div class="text-[10px] uppercase tracking-[0.2em] mb-2" style="color:var(--text-muted)">Ficha Catalográfica</div>
-            <div id="fichaContent" class="font-serif text-[13px] leading-relaxed"></div>
-            <button onclick="copyFicha()" class="btn-primary w-full mt-5"><i class="fa-solid fa-copy mr-2"></i>Copiar Ficha</button>
-        </div>
-    </div>
+        <button id="mineBtn" onclick="goToMining()" class="btn-primary w-full flex items-center justify-center gap-2 mb-5 text-[15px]">
+            <i class="fa-solid fa-gem"></i> Minerar Recursos (Tinder-Style)
+        </button>
 
-    <div id="toast" class="fixed top-20 left-1/2 -translate-x-1/2 z-[70] hidden px-5 py-3 rounded-2xl text-sm font-medium shadow-lg anim-pop" style="background:var(--primary); color:#fff;"></div>
+        <div id="searchBox" class="relative mb-3">
+            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-sm" style="color:var(--text-muted)"></i>
+            <input id="searchInput" oninput="filterResources()" type="text" placeholder="Buscar título, descrição ou URL…" class="w-full h-12 pl-11 pr-4 text-[14px]">
+        </div>
 
-    <div id="manualSheet" class="manual-sheet">
-        <div class="manual-nav scroll-x flex gap-2">
-            <button class="chip" onclick="scrollToSection('m-intro')">Introdução</button>
-            <button class="chip" onclick="scrollToSection('m-nav')">Navegação</button>
-            <button class="chip" onclick="scrollToSection('m-mining')">Mineração</button>
-            <button class="chip" onclick="scrollToSection('m-dashboard')">Dashboard</button>
-            <button class="chip" onclick="scrollToSection('m-fav')">Favoritos</button>
-            <button class="chip" onclick="scrollToSection('m-reports')">Relatórios</button>
-            <button class="chip" onclick="scrollToSection('m-problems')">Problemas</button>
-        </div>
-        <div style="padding: 12px 16px; display:flex; justify-content:flex-end; max-width:720px; margin:0 auto;">
-            <button onclick="closeManual()" class="chip" style="background:var(--primary); color:#fff; border-color:var(--primary)"><i class="fa-solid fa-xmark"></i> Fechar</button>
-        </div>
-        <div class="manual-section" id="m-intro">
-            <h2><i class="fa-solid fa-book-open mr-2"></i>Manual de Uso</h2>
-            <p>Bem-vindo ao <strong>Ferramentas Bíblicas</strong>, um sistema pessoal de curadoria acadêmica para pesquisadores e estudantes das línguas originais das Escrituras.</p>
-            <div class="manual-callout"><strong>Propósito:</strong> catalogar, organizar e consultar recursos voltados à hermenêutica, exegese e crítica textual.</div>
-        </div>
-        <div class="manual-section" id="m-nav">
-            <h2><i class="fa-solid fa-compass mr-2"></i>Navegação</h2>
-            <p>Toque no botão circular no canto inferior direito para abrir a navegação lateral. O menu <strong>fecha automaticamente após 5 segundos</strong> de inatividade.</p>
-        </div>
-        <div class="manual-section" id="m-mining">
-            <h2><i class="fa-solid fa-gem mr-2"></i>Mineração</h2>
-            <p>Ao tocar em <strong>Mineração</strong>, a busca inicia <strong>imediatamente na mesma tela</strong>, com os últimos parâmetros usados. Deslize os cards para guardar/rejeitar.</p>
-            <p>Para mudar língua ou subcategoria, toque em <strong>Parâmetros</strong> no topo da tela de resultados. Ao final, <strong>Nova Mineração</strong> também abre os parâmetros.</p>
-        </div>
-        <div class="manual-section" id="m-dashboard">
-            <h2><i class="fa-solid fa-table-cells-large mr-2"></i>Dashboard e Filtros</h2>
-            <p>Filtre por língua, tipo, subcategoria e nível. Tipos incluem <strong>Diagrama/Infográfico</strong>, <strong>Artigo Acadêmico</strong>, <strong>Trabalho-Modelo</strong> e <strong>Ferramenta de Parsing</strong>.</p>
-        </div>
-        <div class="manual-section" id="m-fav"><h2><i class="fa-solid fa-star mr-2"></i>Favoritos</h2><p>Recursos marcados com estrela para acesso rápido.</p></div>
-        <div class="manual-section" id="m-reports"><h2><i class="fa-solid fa-chart-column mr-2"></i>Relatórios</h2><p>Barras de distribuição e exportação A4 em PDF.</p></div>
-        <div class="manual-section" id="m-problems">
-            <h2><i class="fa-solid fa-triangle-exclamation mr-2"></i>Solução de Problemas</h2>
-            <div class="manual-problem"><div class="problem-title">Menu fecha sozinho</div><div class="problem-solution">Passe o dedo sobre a sidebar para reiniciar o contador de 5 segundos.</div></div>
-            <div class="manual-problem"><div class="problem-title">Dados sumiram ao trocar de navegador</div><div class="problem-solution">O localStorage é específico por navegador. Exporte o PDF como backup.</div></div>
-            <div class="manual-problem"><div class="problem-title">Swipe não funciona</div><div class="problem-solution">Deslize horizontalmente por mais de 90 pixels. Toque simples abre o formulário.</div></div>
-        </div>
-        <div style="text-align:center; padding:20px; color:var(--text-muted); font-size:11px; border-top:1px solid var(--border); margin-top:20px;">
-            <button onclick="closeManual()" class="btn-primary" style="min-height:44px; padding:0 24px;"><i class="fa-solid fa-check mr-1"></i> Entendido</button>
-        </div>
-    </div>
+        <div class="text-[10px] uppercase tracking-wider mb-1.5 font-bold" style="color:var(--text-muted)">Língua</div>
+        <div class="scroll-x flex gap-2 mb-4" id="langChips"></div>
+        <div class="text-[10px] uppercase tracking-wider mb-1.5 font-bold" style="color:var(--text-muted)">Tipo</div>
+        <div class="scroll-x flex gap-2 mb-4" id="typeChips"></div>
+        <div class="text-[10px] uppercase tracking-wider mb-1.5 font-bold" style="color:var(--text-muted)">Subcategoria</div>
+        <div class="scroll-x flex gap-2 mb-4" id="subChips"></div>
+        <div class="text-[10px] uppercase tracking-wider mb-1.5 font-bold" style="color:var(--text-muted)">Nível</div>
+        <div class="scroll-x flex gap-2 mb-6" id="levelChips"></div>
 
-    <div id="aboutModal" class="about-modal" onclick="if(event.target===this) closeAbout()">
-        <div class="manuscript">
-            <button class="close-btn" onclick="closeAbout()"><i class="fa-solid fa-xmark"></i></button>
-            <h2>Sobre o Ferramentas Bíblicas</h2>
-            <p class="ms-subtitle">— Um mini cofre digital para o estudo das línguas sagradas —</p>
-            <div class="ornament">❦ ✦ </div>
-            <h3>Propósito e Intenções</h3>
-            <p><span class="drop-cap">E</span>ste aplicativo nasceu de uma convicção antiga: o texto bíblico, em suas línguas originais, tem uma intensidade de brilho que nenhuma tradução consegue refletir completamente. O <em>Ferramentas Bíblicas</em> é uma ferramenta de curadoria pessoal — um lugar silencioso onde o estudante organiza os recursos de sua caminhada pelo Hebraico, Aramaico e Grego Koiné.</p>
-            <h3>Por que estudar nas línguas originais?</h3>
-            <ul>
-                <li><strong>Fidelidade exegética:</strong> a semântica original preserva matizes teológicos.</li>
-                <li><strong>Independência interpretativa:</strong> dialogar diretamente com o texto.</li>
-                <li><strong>Sensibilidade literária:</strong> paralelismos e quiasmos tornam-se perceptíveis.</li>
-                <li><strong>Humildade hermenêutica:</strong> reconhecer a vastidão do que se ignora.</li>
-                <li><strong>Reverência:</strong> ouvir a voz do texto onde foi inspirada.</li>
-            </ul>
-            <h3>Requisitos</h3>
-            <p>Espera-se noções básicas de gramática, familiaridade com léxicos (BDB, HALOT, BDAG), fundamentos de hermenêutica e disciplina diária.</p>
-            <h3>Instituições recomendadas</h3>
-            <table class="ms-table">
-                <thead><tr><th>Instituição</th><th>Estado</th></tr></thead>
-                <tbody>
-                    <tr><td><a href="https://faculdadebatistalogos.edu.br/" target="_blank">Faculdade Batista Logos</a></td><td>SP</td></tr>
-                    <tr><td><a href="https://isbc.com.br/" target="_blank">ISBC — Instituto Bíblico</a></td><td>SP</td></tr>
-                    <tr><td><a href="https://sbrscuritiba.com/" target="_blank">SBRS — Seminário Batista do Sul</a></td><td>PR</td></tr>
-                    <tr><td><a href="http://aibreb.org.br/instituicoes_seminarios.html" target="_blank">AIBREB — Diretório de Seminários</a></td><td>Nacional</td></tr>
-                </tbody>
-            </table>
-            <div class="contact-box">
-                <div class="label">Fale comigo</div>
-                <a href="mailto:rogerelizar@gmail.com"><i class="fa-solid fa-envelope" style="margin-right:6px;"></i>rogerelizar@gmail.com</a>
+        <div id="cardList" class="space-y-3"></div>
+        
+        <div id="emptyDash" class="hidden text-center py-14">
+            <i class="fa-solid fa-box-archive text-4xl mb-3" style="color:var(--text-muted)"></i>
+            <p class="font-display font-semibold text-lg">Nenhum recurso encontrado</p>
+            <p class="text-sm mt-1" style="color:var(--text-muted)">Ajuste os filtros ou minere novos recursos.</p>
+        </div>
+    </section>
+
+    <!-- VIEW 2: MINING -->
+    <section id="view-mining" class="view hidden anim-fade">
+        <div id="miningSetup" class="hidden">
+            <h2 class="font-display text-2xl font-bold mb-1" style="color:var(--primary)">Parâmetros da Mineração</h2>
+            <p class="text-sm mb-6" style="color:var(--text-muted)">Ajuste os filtros iniciais e clique em <b>Iniciar Mineração</b>. Deslize para salvar ou rejeitar recursos!</p>
+            
+            <div class="card-surface p-4 mb-4">
+                <div class="text-xs font-bold uppercase tracking-wider mb-3" style="color:var(--text-muted)">Língua-alvo</div>
+                <div class="flex flex-wrap gap-2" id="miningLangChips"></div>
             </div>
-            <div class="signature">Rogério Ramão Lopes<br><span style="font-size:.85em; opacity:.8;">Curador · Agosto de 2026</span></div>
+            <div class="card-surface p-4 mb-6">
+                <div class="text-xs font-bold uppercase tracking-wider mb-3" style="color:var(--text-muted)">Subcategoria</div>
+                <div class="flex flex-wrap gap-2" id="miningSubChips"></div>
+            </div>
+            
+            <button onclick="startMining()" class="btn-primary w-full flex items-center justify-center gap-2 text-[15px]">
+                <i class="fa-solid fa-magnifying-glass-arrow-right"></i> Iniciar Mineração
+            </button>
         </div>
-    </div>
 
-    <div id="tourOverlay" class="tour-overlay">
-        <div id="tourSpotlightMask" class="tour-spotlight-mask"></div>
-        <div id="tourSpotlightRing" class="tour-spotlight-ring"></div>
-        <div id="tourTooltip" class="tour-tooltip"></div>
-    </div>
-    <div id="tourFinal" class="tour-final" style="display:none;"></div>
-
-<script>
-/* ============================================================
-   FERRAMENTAS BÍBLICAS v3.5
-   Subtítulo: citações sem itálico + grego em minúsculas
-   ============================================================ */
-
-const STORAGE_KEY = 'ferramentasBiblicas_db';
-const THEME_KEY   = 'ferramentasBiblicas_theme';
-const TOUR_KEY    = 'ferramentasBiblicas_tour_done';
-
-const LINGUAS  = ['Hebraico', 'Aramaico', 'Grego', 'Geral/Linguística'];
-const TIPOS    = ['Site', 'Léxico Online', 'Repositório Acadêmico', 'PDF/Monografia', 'Vídeo-Aula', 'Podcast', 'Software/App', 'Diagrama/Infográfico', 'Artigo Acadêmico', 'Trabalho-Modelo', 'Ferramenta de Parsing'];
-const SUBCATS  = ['Morfologia', 'Sintaxe', 'Crítica Textual', 'Lexicografia', 'Hermenêutica', 'Contexto Histórico-Cultural'];
-const NIVEIS   = { 1:'Fundação', 2:'Básico', 3:'Intermediário', 4:'Avançado', 5:'Fluência' };
-
-const LANG_COLOR = { 'Hebraico':'var(--hebraico)', 'Aramaico':'var(--aramaico)', 'Grego':'var(--grego)', 'Geral/Linguística':'var(--geral)' };
-const LANG_ICON  = { 'Hebraico':'fa-scroll', 'Aramaico':'fa-book', 'Grego':'fa-landmark', 'Geral/Linguística':'fa-language' };
-const TIPO_ICON  = { 'Site':'fa-globe', 'Léxico Online':'fa-spell-check', 'Repositório Acadêmico':'fa-warehouse', 'PDF/Monografia':'fa-file-pdf', 'Vídeo-Aula':'fa-circle-play', 'Podcast':'fa-podcast', 'Software/App':'fa-mobile-screen', 'Diagrama/Infográfico':'fa-diagram-project', 'Artigo Acadêmico':'fa-file-lines', 'Trabalho-Modelo':'fa-graduation-cap', 'Ferramenta de Parsing':'fa-magnifying-glass-chart' };
-
-const MINING_POOL = [
- {lingua:'Hebraico', tipo:'Site', subcategoria:'Hermenêutica', nivel:2, titulo:'Sefaria', descricao:'Biblioteca digital do Judaísmo com texto massorético, traduções e comentários rabínicos.', url:'https://www.sefaria.org'},
- {lingua:'Hebraico', tipo:'Léxico Online', subcategoria:'Lexicografia', nivel:3, titulo:'BDB Lexicon', descricao:'Léxico clássico organizado por raízes com discussão semântica.', url:'https://www.blueletterbible.org/lexicon/bdb'},
- {lingua:'Hebraico', tipo:'Repositório Acadêmico', subcategoria:'Sintaxe', nivel:4, titulo:'ETCBC / SHEBANQ', descricao:'Base de dados sintaticamente anotada do Texto Massorético.', url:'https://shebanq.ancient-bible.org'},
- {lingua:'Hebraico', tipo:'Vídeo-Aula', subcategoria:'Morfologia', nivel:1, titulo:'Aleph with Beth', descricao:'Curso comunicativo em vídeo para introdução ao alefato.', url:'https://www.youtube.com/@alephwithbeth'},
- {lingua:'Hebraico', tipo:'Site', subcategoria:'Sintaxe', nivel:1, titulo:'Bible Hub Interlinear', descricao:'Texto interlinear hebraico-inglês com links a Strong e BDB.', url:'https://biblehub.com/interlinear'},
- {lingua:'Hebraico', tipo:'Artigo Acadêmico', subcategoria:'Contexto Histórico-Cultural', nivel:4, titulo:'Jewish Encyclopedia', descricao:'Obra clássica de contexto religioso e cultural do judaísmo.', url:'https://www.jewishencyclopedia.com'},
- {lingua:'Aramaico', tipo:'Léxico Online', subcategoria:'Lexicografia', nivel:3, titulo:'CAL — Comprehensive Aramaic Lexicon', descricao:'Léxico digital cobrindo todos os dialetos aramaicos.', url:'https://cal.huc.edu'},
- {lingua:'Aramaico', tipo:'PDF/Monografia', subcategoria:'Morfologia', nivel:3, titulo:'Grammar of Biblical Aramaic — Rosenthal', descricao:'Gramática normativa padrão do aramaico bíblico.', url:'https://www.harrassowitz-verlag.de'},
- {lingua:'Grego', tipo:'Léxico Online', subcategoria:'Lexicografia', nivel:3, titulo:'BDAG Lexicon', descricao:'Léxico grego-inglês padrão acadêmico.', url:'https://www.stepbible.org'},
- {lingua:'Grego', tipo:'Repositório Acadêmico', subcategoria:'Sintaxe', nivel:3, titulo:'Perseus Digital Library', descricao:'Corpus digital de textos gregos com análise morfológica.', url:'https://www.perseus.tufts.edu'},
- {lingua:'Grego', tipo:'Repositório Acadêmico', subcategoria:'Crítica Textual', nivel:5, titulo:'CSNTM', descricao:'Acervo digital de manuscritos gregos do NT em alta resolução.', url:'https://www.csntm.org'},
- {lingua:'Grego', tipo:'Vídeo-Aula', subcategoria:'Morfologia', nivel:1, titulo:'Basics of Biblical Greek — Mounce', descricao:'Videoaulas introdutórias à morfologia do grego koiné.', url:'https://www.billmounce.com'},
- {lingua:'Grego', tipo:'Ferramenta de Parsing', subcategoria:'Sintaxe', nivel:4, titulo:'OpenText.org — Análise do NT Grego', descricao:'Análise discursiva do NT grego em nível de cláusula e sentença.', url:'https://opentext.org'},
- {lingua:'Geral/Linguística', tipo:'PDF/Monografia', subcategoria:'Sintaxe', nivel:4, titulo:'Discourse Grammar — Levinsohn', descricao:'Abordagem linguística do texto bíblico com foco em tópico e foco.', url:'https://www.sil.org'},
- {lingua:'Geral/Linguística', tipo:'Diagrama/Infográfico', subcategoria:'Hermenêutica', nivel:1, titulo:'BibleProject — Pôsteres e Infográficos (PT)', descricao:'Pôsteres e infográficos visuais (PDF/imagem) da estrutura literária dos livros.', url:'https://bibleproject.com/portuguese/'},
- {lingua:'Geral/Linguística', tipo:'Diagrama/Infográfico', subcategoria:'Sintaxe', nivel:3, titulo:'Bible Arc — Diagramação de Frases', descricao:'Diagramação de sentenças com estrutura sintática hierárquica em imagem/PDF.', url:'https://www.biblearc.com'},
- {lingua:'Geral/Linguística', tipo:'Diagrama/Infográfico', subcategoria:'Contexto Histórico-Cultural', nivel:2, titulo:'BibleHub — Charts e Diagramas', descricao:'Charts, diagramas e tabelas cronológicas do mundo bíblico em imagem.', url:'https://biblehub.com/charts/'},
- {lingua:'Geral/Linguística', tipo:'Artigo Acadêmico', subcategoria:'Hermenêutica', nivel:4, titulo:'SciELO — Periódicos de Teologia', descricao:'Revistas brasileiras de teologia e ciências bíblicas de acesso aberto.', url:'https://www.scielo.br'},
- {lingua:'Geral/Linguística', tipo:'Artigo Acadêmico', subcategoria:'Hermenêutica', nivel:4, titulo:'Google Scholar — Busca Acadêmica', descricao:'Buscador amplo de artigos acadêmicos de exegese.', url:'https://scholar.google.com'},
- {lingua:'Geral/Linguística', tipo:'Artigo Acadêmico', subcategoria:'Contexto Histórico-Cultural', nivel:3, titulo:'Bible Odyssey', descricao:'Artigos de contexto histórico, cultural, econômico e religioso do mundo bíblico.', url:'https://www.bibleodyssey.org'},
- {lingua:'Geral/Linguística', tipo:'Artigo Acadêmico', subcategoria:'Contexto Histórico-Cultural', nivel:3, titulo:'World History Encyclopedia', descricao:'Artigos sobre o contexto econômico e cultural do Antigo Oriente.', url:'https://www.worldhistory.org'},
- {lingua:'Geral/Linguística', tipo:'Trabalho-Modelo', subcategoria:'Hermenêutica', nivel:4, titulo:'BDTD — Teses e Dissertações', descricao:'Teses e dissertações brasileiras como modelo de metodologia acadêmica.', url:'http://bdtd.ibict.br'},
- {lingua:'Geral/Linguística', tipo:'Trabalho-Modelo', subcategoria:'Hermenêutica', nivel:4, titulo:'Catálogo de Teses CAPES', descricao:'Catálogo de teses da pós-graduação brasileira em teologia.', url:'https://catalogodeteses.capes.gov.br'},
- {lingua:'Geral/Linguística', tipo:'Trabalho-Modelo', subcategoria:'Hermenêutica', nivel:3, titulo:'Academia.edu — Exegese', descricao:'Pesquisadores compartilham trabalhos completos de exegese.', url:'https://www.academia.edu'},
- {lingua:'Geral/Linguística', tipo:'Ferramenta de Parsing', subcategoria:'Morfologia', nivel:3, titulo:'Scripture4All', descricao:'Interlinear com análise morfológica de hebraico e grego.', url:'https://www.scripture4all.org'},
- {lingua:'Geral/Linguística', tipo:'Ferramenta de Parsing', subcategoria:'Morfologia', nivel:3, titulo:'e-Sword', descricao:'Software gratuito com módulos de parsing de hebraico e grego.', url:'https://e-sword.net'},
- {lingua:'Grego', tipo:'Ferramenta de Parsing', subcategoria:'Crítica Textual', nivel:4, titulo:'NET Bible — Notas dos Tradutores', descricao:'Milhares de notas detalhando decisões de análise gramatical e textual.', url:'https://netbible.org'}
-];
-
-/* ---------- ESTADO ---------- */
-let db = [];
-let filters = { lingua:'Todas', tipo:'Todos', sub:'Todas', nivel:'Todos', busca:'' };
-let mining = { lang:'Todas', sub:'Todas', queue:[], idx:0, saved:0, rejected:0 };
-let miningPaused = false;
-let currentMiningItem = null;
-let editingId = null;
-
-/* ---------- UTILS ---------- */
-const uid = () => 'r_' + Date.now().toString(36) + Math.random().toString(36).slice(2,7);
-const today = () => new Date().toISOString().slice(0,10);
-const fmtDate = iso => { const [y,m,d]=iso.split('-'); return `${d}/${m}/${y}`; };
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const $ = id => document.getElementById(id);
-
-function toast(msg){
-    const t = $('toast'); t.innerHTML = msg; t.classList.remove('hidden');
-    clearTimeout(t._tm); t._tm = setTimeout(()=>t.classList.add('hidden'), 2200);
-}
-
-/* ---------- PERSISTÊNCIA ---------- */
-function loadDB(){ try { db = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch(e){ db = []; } }
-function saveDB(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(db)); refreshAll(); }
-
-/* ---------- NAVEGAÇÃO ---------- */
-function switchView(name){
-    document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));
-    $('view-'+name).classList.remove('hidden');
-    document.querySelectorAll('.sidebar-item[data-view]').forEach(b=> b.classList.toggle('active', b.dataset.view===name));
-    if(name==='favorites') renderFavorites();
-    if(name==='reports') renderReports();
-    if(name==='mining') maybeAutoStartMining();
-    window.scrollTo({top:0});
-}
-function goToMining(){ switchView('mining'); closeSidebar(); }
-function sidebarNav(view){ switchView(view); closeSidebar(); }
-function sidebarAction(action){
-    closeSidebar();
-    setTimeout(()=>{
-        if(action==='manual') openManual();
-        else if(action==='about') openAbout();
-        else if(action==='theme') applyTheme(document.documentElement.classList.contains('dark') ? 'light' : 'dark');
-    }, 200);
-}
-
-/* ---------- TEMA ---------- */
-function applyTheme(mode){
-    document.documentElement.classList.toggle('dark', mode==='dark');
-    const icon = mode==='dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-    $('themeIcon').className = icon;
-    const sb = $('sidebarThemeIcon'); if(sb) sb.innerHTML = `<i class="${icon}"></i>`;
-    const lb = $('sidebarThemeLabel'); if(lb) lb.textContent = mode==='dark' ? 'Modo Claro' : 'Modo Escuro';
-    localStorage.setItem(THEME_KEY, mode);
-}
-$('themeToggle').addEventListener('click', ()=> applyTheme(document.documentElement.classList.contains('dark') ? 'light' : 'dark'));
-
-/* ---------- SUBTÍTULO DINÂMICO (v3.5) ---------- */
-const SHEMA_HEBREW = 'שְׁמַע יִשְׂרָאֵל יְהוָה אֱלֹהֵינוּ יְהוָה אֶחָד';
-const SHEMA_REF = 'דברים ו:ד';
-const HEBREWS_GREEK = 'ὃς ὢν ἀπαύγασμα τῆς δόξης καὶ χαρακτὴρ τῆς ὑποστάσεως αὐτο';
-const HEBREWS_REF = 'Πρὸς Ἑβραίους 1:3';
-const DEFAULT_SUBTITLE = 'Curadoria · Hermenêutica · Exegese';
-
-function updateDynamicSubtitle(){
-    const el = $('dynaSubtitle');
-    const lang = filters.lingua;
-    document.body.classList.remove('lang-hebrew', 'lang-greek');
-    if(lang === 'Hebraico' || lang === 'Aramaico'){
-        document.body.classList.add('lang-hebrew'); el.classList.add('lang-highlight');
-        el.innerHTML = `<span class="hebrew-quote font-hebrew" style="font-size:19px;">${SHEMA_HEBREW}</span><span style="font-size:16px; letter-spacing:0.05em; opacity:0.85;">${SHEMA_REF}</span>`;
-    } else if(lang === 'Grego'){
-        document.body.classList.add('lang-greek'); el.classList.add('lang-highlight');
-        el.innerHTML = `<span class="greek-quote font-greek" style="font-size:16px;">${HEBREWS_GREEK}</span><span style="font-size:12px; letter-spacing:0.05em; opacity:0.85;">${HEBREWS_REF}</span>`;
-    } else { el.classList.remove('lang-highlight'); el.textContent = DEFAULT_SUBTITLE; }
-}
-
-/* ---------- FILTROS ---------- */
-function buildFilterChips(){
-    $('langChips').innerHTML = ['Todas', ...LINGUAS].map(l =>
-        `<button class="chip ${filters.lingua===l?'active':''}" onclick="setFilter('lingua','${l}')">${l!=='Todas' ? `<i class="fa-solid ${LANG_ICON[l]}"></i>` : ''} ${l}</button>`).join('');
-    $('typeChips').innerHTML = ['Todos', ...TIPOS].map(t =>
-        `<button class="chip ${filters.tipo===t?'active':''}" onclick="setFilter('tipo','${t}')">${t!=='Todos' ? `<i class="fa-solid ${TIPO_ICON[t]}"></i>` : ''} ${t}</button>`).join('');
-    $('subChips').innerHTML = ['Todas', ...SUBCATS].map(s =>
-        `<button class="chip ${filters.sub===s?'active':''}" onclick="setFilter('sub','${s}')">${s}</button>`).join('');
-    $('levelChips').innerHTML = ['Todos','1','2','3','4','5'].map(n =>
-        `<button class="chip ${String(filters.nivel)===n?'active':''}" onclick="setFilter('nivel','${n}')">${n==='Todos' ? 'Todos os níveis' : 'Nível '+n}</button>`).join('');
-}
-function setFilter(key,val){
-    if(key==='lingua') filters.lingua = (val==='Todas') ? 'Todas' : val;
-    else if(key==='tipo') filters.tipo = (val==='Todos') ? 'Todos' : val;
-    else if(key==='sub') filters.sub = (val==='Todas') ? 'Todas' : val;
-    else if(key==='nivel') filters.nivel = (val==='Todos') ? 'Todos' : val;
-    buildFilterChips(); updateDynamicSubtitle(); renderDashboard();
-}
-$('searchInput').addEventListener('input', e=>{ filters.busca = e.target.value.toLowerCase(); renderDashboard(); });
-
-/* ---------- CARDS ---------- */
-function cardHTML(r){
-    const lc = LANG_COLOR[r.lingua];
-    return `<article class="card-surface rounded-2xl p-4 anim-pop" data-id="${r.id}">
-        <div class="flex items-start gap-3">
-            <div class="badge-nivel" style="background:${lc}22; color:${lc}">${r.nivel}</div>
-            <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 flex-wrap mb-1">
-                    <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full" style="background:${lc}1e; color:${lc}"><i class="fa-solid ${LANG_ICON[r.lingua]} mr-1"></i>${r.lingua}</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded-full" style="background:var(--surface-2); color:var(--text-muted)"><i class="fa-solid ${TIPO_ICON[r.tipo]||'fa-tag'} mr-1"></i>${r.tipo}</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded-full" style="background:var(--surface-2); color:var(--text-muted)">${r.subcategoria}</span>
-                    ${r.favorito ? '<i class="fa-solid fa-star text-xs" style="color:var(--gold)"></i>' : ''}
+        <div id="miningResults" class="hidden">
+            <div class="flex items-center justify-between mb-2 gap-2">
+                <div class="min-w-0">
+                    <span class="text-xs uppercase tracking-wider font-bold" style="color:var(--text-muted)">Garimpando</span>
+                    <div class="font-display font-bold text-lg truncate" id="miningContext">—</div>
                 </div>
-                <h3 class="font-display font-bold text-[15px] leading-snug">${esc(r.titulo)}</h3>
-                <p class="text-[12px] mt-1 line-clamp-2" style="color:var(--text-muted)">${esc(r.descricao)}</p>
-                <div class="flex items-center gap-3 mt-2 text-[10px]" style="color:var(--text-muted)"><span><i class="fa-regular fa-clock mr-1"></i>${fmtDate(r.dataAtualizacao)}</span></div>
+                <div class="flex items-center gap-2 flex-shrink-0">
+                    <button onclick="showMiningSetup()" class="chip" style="min-height:44px" aria-label="Ajustar parâmetros">
+                        <i class="fa-solid fa-sliders"></i> Parâmetros
+                    </button>
+                    <span class="text-sm font-semibold px-3 py-1 rounded-full" style="background:var(--primary-soft); color:var(--primary)" id="miningCounter">0/0</span>
+                </div>
+            </div>
+            <div class="relative h-[420px] mt-3" id="cardStack"></div>
+            
+            <div class="fixed bottom-6 left-0 right-0 px-4 z-30 max-w-3xl mx-auto">
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="rejectCurrent()" class="h-14 rounded-2xl font-bold flex items-center justify-center gap-2 card-surface hover:border-red-500 hover:text-red-500 transition-all" style="color:#dc2626">
+                        <i class="fa-solid fa-xmark"></i> Rejeitar
+                    </button>
+                    <button onclick="saveMiningDirect()" class="h-14 rounded-2xl font-bold flex items-center justify-center gap-2 btn-primary transition-all">
+                        <i class="fa-solid fa-bookmark"></i> Guardar
+                    </button>
+                </div>
+                <p class="text-[11px] text-center mt-2 font-semibold" style="color:var(--text-muted)">Toque no card para editar os metadados antes de guardar.</p>
             </div>
         </div>
-        <div class="grid grid-cols-5 gap-1.5 mt-3 pt-3" style="border-top:1px solid var(--border)">
-            <button onclick="openLink('${r.id}')" class="min-h-[48px] rounded-xl text-[11px] font-medium flex flex-col items-center justify-center gap-1" style="background:var(--surface-2); color:var(--primary)"><i class="fa-solid fa-arrow-up-right-from-square"></i>Acessar</button>
-            <button onclick="openEditById('${r.id}')" class="min-h-[48px] rounded-xl text-[11px] font-medium flex flex-col items-center justify-center gap-1" style="background:var(--surface-2); color:var(--text)"><i class="fa-solid fa-pen"></i>Editar</button>
-            <button onclick="toggleFav('${r.id}')" class="min-h-[48px] rounded-xl text-[11px] font-medium flex flex-col items-center justify-center gap-1" style="background:var(--surface-2); color:${r.favorito?'var(--gold)':'var(--text-muted)'}"><i class="fa-${r.favorito?'solid':'regular'} fa-star"></i>${r.favorito?'Favorito':'Favoritar'}</button>
-            <button onclick="openFicha('${r.id}')" class="min-h-[48px] rounded-xl text-[11px] font-medium flex flex-col items-center justify-center gap-1" style="background:var(--surface-2); color:var(--text)"><i class="fa-solid fa-file-export"></i>Ficha</button>
-            <button onclick="deleteResource('${r.id}')" class="min-h-[48px] rounded-xl text-[11px] font-medium flex flex-col items-center justify-center gap-1" style="background:#fee2e2; color:#dc2626"><i class="fa-solid fa-trash"></i>Excluir</button>
+
+        <div id="miningDone" class="hidden text-center py-20">
+            <i class="fa-solid fa-circle-check text-5xl mb-4" style="color:var(--primary)"></i>
+            <h3 class="font-display text-xl font-bold mb-1">Mineração Concluída!</h3>
+            <p class="text-sm mb-6" style="color:var(--text-muted)" id="miningSummary">Você avaliou todos os recursos dessa rodada.</p>
+            <button onclick="resetMining()" class="btn-primary px-6"><i class="fa-solid fa-rotate-right mr-2"></i>Nova Mineração</button>
         </div>
-    </article>`;
-}
+    </section>
 
-function renderDashboard(){
-    const list = db.filter(r=>{
-        if(filters.lingua!=='Todas' && r.lingua!==filters.lingua) return false;
-        if(filters.tipo!=='Todos' && r.tipo!==filters.tipo) return false;
-        if(filters.sub!=='Todas' && r.subcategoria!==filters.sub) return false;
-        if(filters.nivel!=='Todos' && String(r.nivel)!==filters.nivel) return false;
-        if(filters.busca){
-            const hay = (r.titulo+' '+r.descricao+' '+r.url).toLowerCase();
-            if(!hay.includes(filters.busca)) return false;
-        }
-        return true;
-    }).sort((a,b)=> b.dataAtualizacao.localeCompare(a.dataAtualizacao));
-    $('cardList').innerHTML = list.map(cardHTML).join('');
-    $('emptyDash').classList.toggle('hidden', list.length>0);
-    updateStats();
-}
-
-function renderFavorites(){
-    const favs = db.filter(r=>r.favorito).sort((a,b)=> b.dataAtualizacao.localeCompare(a.dataAtualizacao));
-    $('favList').innerHTML = favs.map(cardHTML).join('');
-    $('emptyFav').classList.toggle('hidden', favs.length>0);
-}
-
-function updateStats(){
-    $('statTotal').textContent = db.length;
-    const favCount = db.filter(r=>r.favorito).length;
-    $('statFav').textContent = favCount;
-    $('statLang').textContent = new Set(db.map(r=>r.lingua)).size;
-    const badge = $('sidebarFavBadge');
-    if(badge){ if(favCount>0){ badge.textContent=favCount; badge.style.display='inline-block'; } else badge.style.display='none'; }
-}
-
-function barRow(label, count, total, color){
-    const pct = total ? Math.round(count/total*100) : 0;
-    return `<div><div class="flex justify-between text-[12px] mb-1"><span style="color:var(--text)">${label}</span><span style="color:var(--text-muted)">${count} · ${pct}%</span></div><div class="h-2 rounded-full" style="background:var(--surface-2)"><div class="h-2 rounded-full" style="width:${pct}%; background:${color}"></div></div></div>`;
-}
-function renderReports(){
-    const total = db.length;
-    $('langBars').innerHTML = LINGUAS.map(l => barRow(l, db.filter(r=>r.lingua===l).length, total, LANG_COLOR[l])).join('');
-    $('levelBars').innerHTML = [1,2,3,4,5].map(n => barRow(`Nível ${n} · ${NIVEIS[n]}`, db.filter(r=>r.nivel===n).length, total, 'var(--primary)')).join('');
-}
-
-/* ---------- AÇÕES ---------- */
-function openLink(id){ const r = db.find(x=>x.id===id); if(r && r.url) window.open(r.url, '_blank'); }
-function toggleFav(id){
-    const r = db.find(x=>x.id===id);
-    if(r){ r.favorito = !r.favorito; saveDB(); toast(r.favorito?'<i class="fa-solid fa-star mr-1"></i>Adicionado aos favoritos':'Removido dos favoritos'); }
-}
-function deleteResource(id){
-    const r = db.find(x=>x.id===id); if(!r) return;
-    if(confirm(`Remover "${r.titulo}" do seu acervo?`)){ db = db.filter(x => x.id !== id); saveDB(); toast('<i class="fa-solid fa-trash mr-1"></i>Recurso removido.'); }
-}
-
-/* ---------- FORMULÁRIO ---------- */
-function fillSelects(){
-    $('f_lingua').innerHTML = LINGUAS.map(l=>`<option>${l}</option>`).join('');
-    $('f_tipo').innerHTML   = TIPOS.map(t=>`<option>${t}</option>`).join('');
-    $('f_sub').innerHTML    = SUBCATS.map(s=>`<option>${s}</option>`).join('');
-    $('f_nivel').innerHTML  = Object.entries(NIVEIS).map(([k,v])=>`<option value="${k}">${k} · ${v}</option>`).join('');
-}
-function openSheet(el){ $('overlay').classList.remove('hidden'); el.classList.remove('hidden'); }
-function closeAllSheets(){
-    $('overlay').classList.add('hidden');
-    ['editSheet','fichaSheet'].forEach(id=>$(id).classList.add('hidden'));
-    editingId = null; currentMiningItem = null;
-}
-function openEditById(id){
-    const r = db.find(x=>x.id===id); if(!r) return;
-    editingId = id; currentMiningItem = null;
-    $('editTitle').textContent = 'Editar Recurso';
-    $('editActionsFull').classList.remove('hidden'); $('editActionsMining').classList.add('hidden');
-    $('f_lingua').value=r.lingua; $('f_tipo').value=r.tipo; $('f_sub').value=r.subcategoria;
-    $('f_nivel').value=r.nivel; $('f_titulo').value=r.titulo; $('f_url').value=r.url;
-    $('f_desc').value=r.descricao; $('f_fav').checked=r.favorito;
-    openSheet($('editSheet'));
-}
-function openMiningEdit(){
-    if(!currentMiningItem) return;
-    editingId = null;
-    $('editTitle').textContent = 'Revisar antes de Guardar';
-    $('editActionsFull').classList.add('hidden'); $('editActionsMining').classList.remove('hidden');
-    const r = currentMiningItem;
-    $('f_lingua').value=r.lingua; $('f_tipo').value=r.tipo; $('f_sub').value=r.subcategoria;
-    $('f_nivel').value=r.nivel; $('f_titulo').value=r.titulo; $('f_url').value=r.url;
-    $('f_desc').value=r.descricao; $('f_fav').checked=false;
-    openSheet($('editSheet'));
-}
-function readForm(){
-    return { lingua: $('f_lingua').value, tipo: $('f_tipo').value, subcategoria: $('f_sub').value,
-        nivel: parseInt($('f_nivel').value,10), titulo: $('f_titulo').value.trim(),
-        url: $('f_url').value.trim(), descricao: $('f_desc').value.trim(),
-        favorito: $('f_fav').checked, dataAtualizacao: today() };
-}
-function editActionSave(){
-    const data = readForm();
-    if(!data.titulo){ toast('<i class="fa-solid fa-triangle-exclamation mr-1"></i>Informe um título.'); return; }
-    if(editingId){
-        const i = db.findIndex(x=>x.id===editingId);
-        if(i>-1) db[i] = { ...db[i], ...data };
-        toast('<i class="fa-solid fa-check mr-1"></i>Recurso atualizado.');
-        closeAllSheets(); saveDB();
-    } else {
-        db.push({ id: uid(), ...data });
-        mining.saved++;
-        toast('<i class="fa-solid fa-bookmark mr-1"></i>Guardado no acervo.');
-        closeAllSheets(); saveDB(); advanceMining();
-    }
-}
-function editActionReject(){ mining.rejected++; closeAllSheets(); advanceMining(); }
-function editActionDelete(){
-    if(!editingId) return;
-    const r = db.find(x=>x.id===editingId); if(!r) return;
-    if(confirm(`Remover "${r.titulo}" permanentemente?`)){ db = db.filter(x => x.id !== editingId); toast('<i class="fa-solid fa-trash mr-1"></i>Recurso removido.'); closeAllSheets(); saveDB(); }
-}
-
-/* ---------- FICHA ---------- */
-let lastFichaText = '';
-function openFicha(id){
-    const r = db.find(x=>x.id===id); if(!r) return;
-    lastFichaText = `${r.titulo.toUpperCase()}\nLíngua: ${r.lingua} | Tipo: ${r.tipo} | Subcategoria: ${r.subcategoria} | Nível ${r.nivel} (${NIVEIS[r.nivel]})\nURL: ${r.url}\nAtualizado em: ${fmtDate(r.dataAtualizacao)}${r.favorito?' | FAVORITO':''}\nRESUMO: ${r.descricao}`;
-    $('fichaContent').innerHTML = `<div class="font-bold text-[16px] mb-2" style="color:var(--primary)">${esc(r.titulo)}</div>
-        <div class="grid grid-cols-2 gap-y-1 mb-3">
-            <span style="color:var(--text-muted)">Língua:</span><span>${r.lingua}</span>
-            <span style="color:var(--text-muted)">Tipo:</span><span>${r.tipo}</span>
-            <span style="color:var(--text-muted)">Subcategoria:</span><span>${r.subcategoria}</span>
-            <span style="color:var(--text-muted)">Nível:</span><span>${r.nivel} · ${NIVEIS[r.nivel]}</span>
-            <span style="color:var(--text-muted)">Atualizado:</span><span>${fmtDate(r.dataAtualizacao)}</span>
+    <!-- VIEW 3: FAVORITES -->
+    <section id="view-favorites" class="view hidden anim-fade">
+        <h2 class="font-display text-2xl font-bold mb-1" style="color:var(--gold-dark)"><i class="fa-solid fa-star mr-2"></i>Destaques de Pesquisa</h2>
+        <p class="text-sm mb-5" style="color:var(--text-muted)">Recursos marcados como essenciais para sua investigação e exegese.</p>
+        <div id="favList" class="space-y-3"></div>
+        
+        <div id="emptyFav" class="hidden text-center py-14">
+            <i class="fa-regular fa-star text-4xl mb-3" style="color:var(--text-muted)"></i>
+            <p class="font-display font-semibold text-lg">Sem favoritos marcados</p>
+            <p class="text-sm mt-1" style="color:var(--text-muted)">Toque na estrela dos recursos do início para fixá-los aqui.</p>
         </div>
-        <div class="text-[12px] mb-1" style="color:var(--text-muted)">URL</div>
-        <div class="text-[12px] break-all mb-3" style="color:var(--primary)">${esc(r.url)}</div>
-        <div class="text-[12px] mb-1" style="color:var(--text-muted)">Resumo analítico</div>
-        <p>${esc(r.descricao)}</p>`;
-    openSheet($('fichaSheet'));
-}
-function copyFicha(){ navigator.clipboard.writeText(lastFichaText).then(()=>toast('<i class="fa-solid fa-copy mr-1"></i>Ficha copiada.')); }
+    </section>
 
-/* ---------- MINERAÇÃO (início imediato) ---------- */
-function buildMiningChips(){
-    $('miningLangChips').innerHTML = ['Todas', ...LINGUAS].map(l => `<button class="chip ${mining.lang===l?'active':''}" onclick="setMiningLang('${l}')">${l}</button>`).join('');
-    $('miningSubChips').innerHTML = ['Todas', ...SUBCATS].map(s => `<button class="chip ${mining.sub===s?'active':''}" onclick="setMiningSub('${s}')">${s}</button>`).join('');
-}
-function setMiningLang(v){ mining.lang=v; buildMiningChips(); }
-function setMiningSub(v){ mining.sub=v; buildMiningChips(); }
+    <!-- VIEW 4: REPORTS -->
+    <section id="view-reports" class="view hidden anim-fade">
+        <h2 class="font-display text-2xl font-bold mb-1" style="color:var(--primary)"><i class="fa-solid fa-chart-column mr-2"></i>Relatórios e Métricas</h2>
+        <p class="text-sm mb-5" style="color:var(--text-muted)">Síntese quantitativa do seu acervo e exportação acadêmica.</p>
+        
+        <div class="card-surface rounded-2xl p-5 mb-4">
+            <div class="text-xs font-bold uppercase tracking-wider mb-4" style="color:var(--text-muted)">Distribuição por Língua</div>
+            <div id="langBars" class="space-y-4"></div>
+        </div>
+        
+        <div class="card-surface rounded-2xl p-5 mb-6">
+            <div class="text-xs font-bold uppercase tracking-wider mb-4" style="color:var(--text-muted)">Distribuição por Nível</div>
+            <div id="levelBars" class="space-y-4"></div>
+        </div>
+        
+        <button onclick="exportPDF()" class="btn-primary w-full flex items-center justify-center gap-2 text-[15px]">
+            <i class="fa-solid fa-file-pdf"></i> Exportar Catálogo Acadêmico (PDF)
+        </button>
+        <p class="text-[11px] text-center mt-2.5 font-semibold" style="color:var(--text-muted)">Gera um documento A4 agrupado por Língua e Nível exegético.</p>
+    </section>
+</main>
 
-function showMiningSetup(){
-    miningPaused = true;
-    $('miningResults').classList.add('hidden');
-    $('miningDone').classList.add('hidden');
-    $('miningSetup').classList.remove('hidden');
-    window.scrollTo({top:0});
-}
+<footer class="app-footer">
+    <a href="javascript:void(0);" onclick="openAbout(event)" class="about-link"><i class="fa-solid fa-feather-pointed mr-1"></i>Sobre o Projeto</a>
+    <span class="dot">·</span>
+    <span id="footerTimestamp">Setembro de 2026</span>
+    <span class="dot">·</span>
+    <span style="opacity:.85; font-weight: 600;">by rogerelizar@gmail.com</span>
+</footer>
 
-function maybeAutoStartMining(){
-    if(miningPaused){
-        $('miningResults').classList.add('hidden');
-        $('miningDone').classList.add('hidden');
-        $('miningSetup').classList.remove('hidden');
-        return;
-    }
-    const active = mining.queue.length > 0 && mining.idx < mining.queue.length;
-    if(active){
-        $('miningSetup').classList.add('hidden');
-        $('miningDone').classList.add('hidden');
-        $('miningResults').classList.remove('hidden');
-    } else {
-        startMining();
-    }
-}
+<!-- BACKDROP & SIDEBAR -->
+<div id="menuBackdrop" class="menu-backdrop" onclick="closeSidebar()"></div>
 
-function startMining(){
-    miningPaused = false;
-    let pool = MINING_POOL.filter(p => (mining.lang==='Todas' || p.lingua===mining.lang) && (mining.sub==='Todas' || p.subcategoria===mining.sub));
-    const owned = new Set(db.map(r=>r.url));
-    pool = pool.filter(p=>!owned.has(p.url)).sort(()=>Math.random()-0.5);
-    mining.queue = pool; mining.idx=0; mining.saved=0; mining.rejected=0;
-    $('miningContext').textContent = `${mining.lang} · ${mining.sub}`;
-    $('miningSetup').classList.add('hidden');
-    $('miningDone').classList.add('hidden');
-    $('miningResults').classList.remove('hidden');
-    if(pool.length===0){ finishMining(); return; }
-    renderStack();
-}
-
-function renderStack(){
-    const stack = $('cardStack'); stack.innerHTML = '';
-    $('miningCounter').textContent = `${mining.idx}/${mining.queue.length}`;
-    const remaining = mining.queue.length - mining.idx;
-    for(let i=Math.min(2, remaining-1); i>=0; i--){
-        const item = mining.queue[mining.idx + i]; if(!item) continue;
-        const el = document.createElement('div');
-        el.className = 'swipe-card absolute inset-0 card-surface rounded-3xl p-5 flex flex-col';
-        el.style.transform = `translateY(${i*12}px) scale(${1 - i*0.04})`;
-        el.style.zIndex = 10 - i;
-        if(i>0) el.style.opacity = 0.7;
-        el.innerHTML = miningCardInner(item);
-        if(i===0) attachSwipe(el, item);
-        stack.appendChild(el);
-    }
-}
-
-function miningCardInner(r){
-    const lc = LANG_COLOR[r.lingua];
-    return `<div class="flex items-center justify-between mb-3">
-        <span class="text-[11px] font-semibold px-2.5 py-1 rounded-full" style="background:${lc}1e; color:${lc}"><i class="fa-solid ${LANG_ICON[r.lingua]} mr-1"></i>${r.lingua} · Nível ${r.nivel}</span>
-        <span class="text-[11px]" style="color:var(--text-muted)"><i class="fa-solid ${TIPO_ICON[r.tipo]||'fa-tag'} mr-1"></i>${r.tipo}</span>
+<aside id="sidebarRight" class="sidebar-right" onmouseenter="clearSidebarTimeout()" onmouseleave="startSidebarTimeout()" aria-label="Menu de navegação">
+    <div class="sidebar-header">
+        <div class="sidebar-title">Navegação</div>
+        <button class="sidebar-close" onclick="closeSidebar()" aria-label="Fechar menu"><i class="fa-solid fa-xmark"></i></button>
     </div>
-    <h3 class="font-display text-2xl font-bold leading-tight mb-2">${esc(r.titulo)}</h3>
-    <span class="text-[11px] font-semibold uppercase tracking-wider" style="color:var(--gold)">${r.subcategoria}</span>
-    <p class="text-[14px] leading-relaxed mt-3 flex-1" style="color:var(--text-muted)">${esc(r.descricao)}</p>
-    <div class="text-[12px] mt-3 pt-3 flex items-center gap-2" style="border-top:1px solid var(--border); color:var(--primary)"><i class="fa-solid fa-link"></i><span class="truncate">${esc(r.url)}</span></div>
-    <div class="flex justify-between text-[11px] mt-3" style="color:var(--text-muted)"><span><i class="fa-solid fa-arrow-left mr-1"></i>Rejeitar</span><span>Guardar<i class="fa-solid fa-arrow-right ml-1"></i></span></div>`;
-}
+    <div class="sidebar-items">
+        <button class="sidebar-item active" data-view="dashboard" onclick="sidebarNav('dashboard')">
+            <span class="item-icon"><i class="fa-solid fa-table-cells-large"></i></span>
+            <span class="item-label">Início</span>
+        </button>
+        <button class="sidebar-item" data-view="mining" onclick="sidebarNav('mining')">
+            <span class="item-icon"><i class="fa-solid fa-gem"></i></span>
+            <span class="item-label">Mineração</span>
+        </button>
+        <button class="sidebar-item" data-view="favorites" onclick="sidebarNav('favorites')">
+            <span class="item-icon"><i class="fa-solid fa-star"></i></span>
+            <span class="item-label">Favoritos</span>
+            <span class="item-badge" id="sidebarFavBadge" style="display:none;">0</span>
+        </button>
+        <button class="sidebar-item" data-view="reports" onclick="sidebarNav('reports')">
+            <span class="item-icon"><i class="fa-solid fa-chart-column"></i></span>
+            <span class="item-label">Relatórios</span>
+        </button>
+        <div class="sidebar-divider"></div>
+        <button class="sidebar-item" onclick="sidebarAction('manual')">
+            <span class="item-icon"><i class="fa-solid fa-circle-question"></i></span>
+            <span class="item-label">Manual de Uso</span>
+        </button>
+        <button class="sidebar-item" onclick="sidebarAction('about')">
+            <span class="item-icon"><i class="fa-solid fa-feather-pointed"></i></span>
+            <span class="item-label">Sobre o Projeto</span>
+        </button>
+        <button class="sidebar-item" onclick="toggleTheme()">
+            <span class="item-icon" id="sidebarThemeIcon"><i class="fa-solid fa-moon"></i></span>
+            <span class="item-label" id="sidebarThemeLabel">Modo Escuro</span>
+        </button>
+    </div>
+    <div class="sidebar-footer">
+        <div>Curadoria Acadêmica</div>
+        <div class="autohide-hint"><i class="fa-solid fa-clock" style="opacity:.6;"></i><span>Fecha em <b id="autohideCounter">5</b>s</span></div>
+        <div class="autohide-bar" id="autohideBar"><div class="fill"></div></div>
+    </div>
+</aside>
 
-function attachSwipe(el, item){
-    let startX=0, startY=0, dx=0, dragging=false, axis=null;
-    el.addEventListener('pointerdown', e=>{ dragging=true; axis=null; startX=e.clientX; startY=e.clientY; dx=0; el.classList.add('dragging'); el.setPointerCapture(e.pointerId); });
-    el.addEventListener('pointermove', e=>{
-        if(!dragging) return;
-        const mx = e.clientX-startX, my = e.clientY-startY;
-        if(axis===null && (Math.abs(mx)>10 || Math.abs(my)>10)) axis = Math.abs(mx)>Math.abs(my) ? 'x' : 'y';
-        if(axis==='x'){ dx = mx; el.style.transform = `translateX(${dx}px) rotate(${dx*0.04}deg)`; el.style.opacity = String(Math.max(0.35, 1 - Math.abs(dx)/400)); }
-    });
-    const end = ()=>{
-        if(!dragging) return;
-        dragging=false; el.classList.remove('dragging');
-        const threshold = 90;
-        if(axis==='x' && dx > threshold){ el.style.transform = `translateX(120%) rotate(18deg)`; el.style.opacity='0'; setTimeout(()=>{ saveMiningItem(item); renderStack(); }, 220); }
-        else if(axis==='x' && dx < -threshold){ el.style.transform = `translateX(-120%) rotate(-18deg)`; el.style.opacity='0'; setTimeout(()=>{ mining.rejected++; advanceMining(); }, 240); }
-        else if(axis!=='x' && Math.abs(dx)<8){ currentMiningItem=item; openMiningEdit(); }
-        else { el.style.transform=''; el.style.opacity=''; }
-        dx=0; axis=null;
+<button id="menuFab" class="menu-fab animate-pulse" aria-label="Abrir menu de navegação" onclick="toggleSidebar()">
+    <span class="icon-open"><i class="fa-solid fa-bars"></i></span>
+    <span class="icon-close"><i class="fa-solid fa-xmark"></i></span>
+</button>
+
+<div id="overlay" class="overlay fixed inset-0 z-50 hidden" onclick="closeAllSheets()"></div>
+
+<!-- SHEET 1: EDIT MODAL -->
+<div id="editSheet" class="fixed inset-x-0 bottom-0 z-[60] hidden max-w-2xl mx-auto">
+    <div class="anim-slide-up rounded-t-3xl p-5 pb-8 max-h-[88vh] overflow-y-auto" style="background:var(--surface); border-top:1px solid var(--border)">
+        <div class="w-10 h-1 rounded-full mx-auto mb-4" style="background:var(--border)"></div>
+        <h3 class="font-display text-xl font-bold mb-4" id="editTitle" style="color:var(--primary)">Editar Metadados</h3>
+        
+        <div class="grid grid-cols-2 gap-3 mb-3">
+            <div>
+                <label class="text-[11px] font-bold uppercase" style="color:var(--text-muted)">Língua</label>
+                <select id="f_lingua" class="w-full h-12 px-3 rounded-xl text-sm mt-1">
+                    <option value="Hebraico/Aramaico">Hebraico/Aramaico</option>
+                    <option value="Grego Koiné">Grego Koiné</option>
+                    <option value="Geral">Geral</option>
+                </select>
+            </div>
+            <div>
+                <label class="text-[11px] font-bold uppercase" style="color:var(--text-muted)">Nível</label>
+                <select id="f_nivel" class="w-full h-12 px-3 rounded-xl text-sm mt-1">
+                    <option value="Iniciante">Iniciante</option>
+                    <option value="Intermediário">Intermediário</option>
+                    <option value="Avançado">Avançado</option>
+                    <option value="Acadêmico">Acadêmico</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-3 mb-3">
+            <div>
+                <label class="text-[11px] font-bold uppercase" style="color:var(--text-muted)">Tipo</label>
+                <select id="f_tipo" class="w-full h-12 px-3 rounded-xl text-sm mt-1">
+                    <option value="Ferramenta de Parsing">Ferramenta de Parsing</option>
+                    <option value="Diagrama/Infográfico">Diagrama/Infográfico</option>
+                    <option value="Artigo Acadêmico">Artigo Acadêmico</option>
+                    <option value="Trabalho-Modelo">Trabalho-Modelo</option>
+                    <option value="Software">Software</option>
+                    <option value="Outros">Outros</option>
+                </select>
+            </div>
+            <div>
+                <label class="text-[11px] font-bold uppercase" style="color:var(--text-muted)">Subcategoria</label>
+                <select id="f_sub" class="w-full h-12 px-3 rounded-xl text-sm mt-1">
+                    <option value="Léxico/Dicionário">Léxico/Dicionário</option>
+                    <option value="Gramática">Gramática</option>
+                    <option value="Leitura/Texto">Leitura/Texto</option>
+                    <option value="Vídeo-aula">Vídeo-aula</option>
+                    <option value="Memorização">Memorização</option>
+                    <option value="Software">Software</option>
+                    <option value="Outros">Outros</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            <label class="text-[11px] font-bold uppercase" style="color:var(--text-muted)">Título</label>
+            <input id="f_titulo" type="text" class="w-full h-12 px-3 rounded-xl text-sm mt-1" placeholder="Nome do recurso">
+        </div>
+        
+        <div class="mb-3">
+            <label class="text-[11px] font-bold uppercase" style="color:var(--text-muted)">URL</label>
+            <input id="f_url" type="url" class="w-full h-12 px-3 rounded-xl text-sm mt-1" placeholder="https://…">
+        </div>
+        
+        <div class="mb-4">
+            <label class="text-[11px] font-bold uppercase" style="color:var(--text-muted)">Descrição exegética</label>
+            <textarea id="f_desc" rows="3" class="w-full px-3 py-2 rounded-xl text-sm mt-1" placeholder="Aplicação prática para exegese, hermenêutica ou crítica textual…"></textarea>
+        </div>
+        
+        <label class="flex items-center gap-3 mb-5 cursor-pointer">
+            <input type="checkbox" id="f_fav" class="w-6 h-6 accent-[#c5a059]">
+            <span class="text-sm font-semibold">Marcar como favorito <i class="fa-solid fa-star ml-1" style="color:var(--gold)"></i></span>
+        </label>
+        
+        <div class="grid grid-cols-3 gap-2" id="editActionsFull">
+            <button onclick="editActionDelete()" class="min-h-[48px] rounded-2xl font-bold card-surface text-sm transition-all hover:border-red-500 hover:text-red-500" style="color:#dc2626"><i class="fa-solid fa-trash mr-1"></i>Excluir</button>
+            <button onclick="closeAllSheets()" class="min-h-[48px] rounded-2xl font-bold card-surface text-sm transition-all hover:bg-var(--surface-2)">Cancelar</button>
+            <button onclick="editActionSave()" class="min-h-[48px] rounded-2xl font-bold btn-primary text-sm transition-all"><i class="fa-solid fa-check mr-1"></i>Salvar</button>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-3 hidden" id="editActionsMining">
+            <button onclick="editActionReject()" class="min-h-[48px] rounded-2xl font-bold card-surface transition-all hover:border-red-500 hover:text-red-500" style="color:#dc2626"><i class="fa-solid fa-xmark mr-1"></i>Rejeitar</button>
+            <button onclick="editActionSave()" class="min-h-[48px] rounded-2xl font-bold btn-primary transition-all"><i class="fa-solid fa-check mr-1"></i>Guardar</button>
+        </div>
+    </div>
+</div>
+
+<!-- SHEET 2: SPEC SHEET -->
+<div id="fichaSheet" class="fixed inset-x-0 bottom-0 z-[60] hidden max-w-2xl mx-auto">
+    <div class="anim-slide-up rounded-t-3xl p-5 pb-8 max-h-[80vh] overflow-y-auto" style="background:var(--surface); border-top:1px solid var(--border)">
+        <div class="w-10 h-1 rounded-full mx-auto mb-4" style="background:var(--border)"></div>
+        <div class="text-[10px] uppercase font-bold tracking-[0.2em] mb-2" style="color:var(--text-muted)">Ficha Catalográfica e Metadados</div>
+        <div id="fichaContent" class="font-serif text-[14px] leading-relaxed p-4 rounded-xl border border-dashed border-gold background:rgba(197,160,89,0.03)"></div>
+        <button onclick="copyFicha()" class="btn-primary w-full mt-5"><i class="fa-solid fa-copy mr-2"></i>Copiar Ficha</button>
+    </div>
+</div>
+
+<!-- SHEET 3: MANUAL DE USO -->
+<div id="manualSheet" class="manual-sheet">
+    <div class="manual-nav scroll-x flex gap-2">
+        <button class="chip active" onclick="scrollToSection('m-intro')">Introdução</button>
+        <button class="chip" onclick="scrollToSection('m-nav')">Navegação</button>
+        <button class="chip" onclick="scrollToSection('m-mining')">Mineração</button>
+        <button class="chip" onclick="scrollToSection('m-dashboard')">Filtros</button>
+        <button class="chip" onclick="scrollToSection('m-fav')">Favoritos</button>
+        <button class="chip" onclick="scrollToSection('m-reports')">Relatórios</button>
+        <button class="chip" onclick="scrollToSection('m-problems')">Problemas</button>
+    </div>
+    <div style="padding: 12px 16px; display:flex; justify-content:flex-end; max-width:720px; margin:0 auto;">
+        <button onclick="closeManual()" class="chip" style="background:var(--primary); color:#fff; border-color:var(--primary)"><i class="fa-solid fa-xmark mr-1"></i>Fechar</button>
+    </div>
+    
+    <div class="manual-section" id="m-intro">
+        <h2><i class="fa-solid fa-book-open mr-2"></i>Manual de Uso</h2>
+        <p>Bem-vindo ao <strong>Ferramentas Bíblicas</strong>, um sistema pessoal de curadoria acadêmica para pesquisadores e estudantes das línguas originais das Escrituras.</p>
+        <div class="manual-callout"><strong>Propósito:</strong> catalogar, organizar e consultar recursos voltados à hermenêutica, exegese e crítica textual.</div>
+    </div>
+    <div class="manual-section" id="m-nav">
+        <h2><i class="fa-solid fa-compass mr-2"></i>Navegação Lateral</h2>
+        <p>Toque no botão circular no canto inferior direito para abrir a navegação lateral. O menu <strong>fecha automaticamente após 5 segundos</strong> de inatividade se você não estiver interagindo com ele.</p>
+    </div>
+    <div class="manual-section" id="m-mining">
+        <h2><i class="fa-solid fa-gem mr-2"></i>Mineração Tinder-Style</h2>
+        <p>Ao tocar em <strong>Mineração</strong>, você entra em um modo gamificado para avaliar recursos pendentes. Deslize os cards para guardar ou rejeitar, ou clique nos botões inferiores de ação rápida.</p>
+    </div>
+    <div class="manual-section" id="m-dashboard">
+        <h2><i class="fa-solid fa-table-cells-large mr-2"></i>Dashboard e Filtros</h2>
+        <p>Filtre por língua, tipo, subcategoria e nível. Os tipos incluem <strong>Diagrama/Infográfico</strong>, <strong>Artigo Acadêmico</strong>, <strong>Trabalho-Modelo</strong> e <strong>Ferramentas de Parsing</strong>.</p>
+    </div>
+    <div class="manual-section" id="m-fav">
+        <h2><i class="fa-solid fa-star mr-2"></i>Favoritos</h2>
+        <p>Recursos marcados com estrela para acesso rápido na aba correspondente.</p>
+    </div>
+    <div class="manual-section" id="m-reports">
+        <h2><i class="fa-solid fa-chart-column mr-2"></i>Relatórios</h2>
+        <p>Gere gráficos de progresso e faça a exportação A4 em PDF do seu catálogo acadêmico completo.</p>
+    </div>
+    <div class="manual-section" id="m-problems">
+        <h2><i class="fa-solid fa-triangle-exclamation mr-2"></i>Solução de Problemas</h2>
+        <div class="manual-problem">
+            <div class="problem-title">Menu fecha sozinho</div>
+            <div class="problem-solution">Passe o cursor sobre a sidebar para reiniciar o contador de 5 segundos.</div>
+        </div>
+        <div class="manual-problem">
+            <div class="problem-title">Dados sumiram ao trocar de navegador</div>
+            <div class="problem-solution">O localStorage é específico por navegador e dispositivo. Exporte o catálogo em PDF como backup de segurança.</div>
+        </div>
+    </div>
+    
+    <div style="text-align:center; padding:20px; color:var(--text-muted); font-size:11px; border-top:1px solid var(--border); margin-top:20px;">
+        <button onclick="closeManual()" class="btn-primary" style="min-height:44px; padding:0 24px;"><i class="fa-solid fa-check mr-1"></i> Entendido</button>
+    </div>
+</div>
+
+<!-- ABOUT MODAL (MANUSCRIPT OVERLAY) -->
+<div id="aboutModal" class="about-modal" onclick="if(event.target===this) closeAbout()">
+    <div class="manuscript">
+        <button class="close-btn" onclick="closeAbout()"><i class="fa-solid fa-xmark"></i></button>
+        <h2>O Sentido Autêntico</h2>
+        <p class="ms-subtitle">— Tecnologia e profundidade histórica para conectar você ao sopro original de Deus —</p>
+        <div class="ornament">❦ ✦ </div>
+        
+        <h3>Propósito e Intenções</h3>
+        <p><span class="drop-cap">E</span>ste catálogo de ferramentas nasceu sob a curadoria teológica de <strong>Rogério Ramão Lopes</strong>. Ele serve como um mini cofre digital onde o estudante e pesquisador de Hebraico, Aramaico e Grego Koiné cataloga as suas ferramentas preferidas de exegese, hermenêutica, linguística e crítica textual, gerando conexões diretas entre a tecnologia e o sopro divino original.</p>
+        
+        <h3>Por que estudar nas línguas originais?</h3>
+        <ul>
+            <li><strong>Fidelidade exegética:</strong> a semântica e a sintaxe original revelam matizes teológicas ocultas nas traduções.</li>
+            <li><strong>Autonomia hermenêutica:</strong> dialogar diretamente com o texto inspirado, livre de vieses e jargões.</li>
+            <li><strong>Sensibilidade literária:</strong> compreender paralelismos, quiasmos e rimas textuais na escrita clássica.</li>
+            <li><strong>Reverência e Temor:</strong> ouvir a Palavra de Deus exatamente da forma e com o impacto com que foi soprada.</li>
+        </ul>
+        
+        <h3>Instituições recomendadas no Brasil</h3>
+        <p>O estudo individual e o suporte de Inteligência Artificial com o Notebook Gemini são recursos extraordinários, mas não substituem a mentoria face a face de uma comunidade acadêmica formal. Recomendamos:</p>
+        
+        <table class="ms-table">
+            <thead>
+                <tr>
+                    <th>Instituição</th>
+                    <th>Estado / Meio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><a href="https://faculdadebatistalogos.edu.br/" target="_blank">Faculdade Batista Logos</a></td><td>Sumaré / SP</td></tr>
+                <tr><td><a href="https://isbc.com.br/" target="_blank">ISBC — Instituto Bíblico</a></td><td>São Paulo / SP</td></tr>
+                <tr><td><a href="https://sbrscuritiba.com/" target="_blank">SBRS — Seminário Batista do Sul</a></td><td>Curitiba / PR</td></tr>
+                <tr><td><a href="http://aibreb.org.br/instituicoes_seminarios.html" target="_blank">AIBREB — Diretório de Seminários</a></td><td>Âmbito Nacional</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="contact-box">
+            <div class="label">Dúvidas e Curadoria</div>
+            <a href="mailto:rogerelizar@gmail.com"><i class="fa-solid fa-envelope" style="margin-right:6px;"></i>rogerelizar@gmail.com</a>
+        </div>
+        
+        <div class="signature">Rogério Ramão Lopes<br><span style="font-size:.85em; opacity:.8;">Curador do Projeto · Setembro de 2026</span></div>
+    </div>
+</div>
+
+<!-- MODAL INSTITUIÇÕES RECOMENDADAS (EM PAPER MANUSCRIPT) -->
+<div id="institutions-modal-overlay" class="about-modal" onclick="if(event.target===this) closeInstitutionsModal()">
+    <div class="manuscript">
+        <!-- Close Button -->
+        <button class="close-btn" onclick="closeInstitutionsModal()"><i class="fa-solid fa-xmark"></i></button>
+        
+        <h2>Instituições Recomendadas</h2>
+        <p class="ms-subtitle">— Formação Teológica e Rigor Acadêmico de Excelência —</p>
+        <div class="ornament">❦ ✦ </div>
+        
+        <p>O estudo das línguas bíblicas originais exige perseverança e, frequentemente, o acompanhamento de mestres capacitados. Recomendamos as seguintes instituições brasileiras de excelência acadêmica:</p>
+        
+        <table class="ms-table">
+            <thead>
+                <tr>
+                    <th>Instituição</th>
+                    <th>Estado / Meio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><a href="https://faculdadebatistalogos.edu.br/" target="_blank">Faculdade Batista Logos</a></td><td>Sumaré / SP</td></tr>
+                <tr><td><a href="https://isbc.com.br/" target="_blank">ISBC — Instituto Bíblico</a></td><td>São Paulo / SP</td></tr>
+                <tr><td><a href="https://sbrscuritiba.com/" target="_blank">SBRS — Seminário Batista do Sul</a></td><td>Curitiba / PR</td></tr>
+                <tr><td><a href="http://aibreb.org.br/instituicoes_seminarios.html" target="_blank">AIBREB — Diretório de Seminários</a></td><td>Âmbito Nacional</td></tr>
+            </tbody>
+        </table>
+        
+        <div style="text-align: center; margin-top: 1.5rem;">
+            <button onclick="closeInstitutionsModal()" class="btn-primary px-6">Entendido</button>
+        </div>
+    </div>
+</div>
+
+<div id="tourOverlay" class="tour-overlay">
+    <div id="tourSpotlightMask" class="tour-spotlight-mask"></div>
+    <div id="tourSpotlightRing" class="tour-spotlight-ring"></div>
+    <div id="tourTooltip" class="tour-tooltip"></div>
+</div>
+<div id="tourFinal" class="tour-final" style="display:none;"></div>
+
+<div id="toast" class="fixed top-24 left-1/2 -translate-x-1/2 z-[99999] hidden px-5 py-3 rounded-2xl text-sm font-bold shadow-lg anim-pop" style="background:var(--primary); color:#fff; border: 1px solid var(--gold);"></div>
+<script>
+    // ==========================================
+    // INITIAL CURATED DATABASE (Passage 52 & 64)
+    // ==========================================
+    let resources = [
+        {
+            id: 1,
+            titulo: "Duolingo Hebraico",
+            lingua: "Hebraico/Aramaico",
+            nivel: "Iniciante",
+            tipo: "Software",
+            subcategoria: "Memorização",
+            url: "https://www.duolingo.com/",
+            descricao: "Excelente porta de entrada para se familiarizar com as consoantes, sons, e vocabulários iniciais de base em hebraico.",
+            favorito: false
+        },
+        {
+            id: 2,
+            titulo: "Aleph with Beth",
+            lingua: "Hebraico/Aramaico",
+            nivel: "Iniciante",
+            tipo: "Trabalho-Modelo",
+            subcategoria: "Vídeo-aula",
+            url: "https://www.youtube.com/@alephwithbeth",
+            descricao: "Canal no YouTube com metodologia comunicativa e imersiva 100% em Hebraico Bíblico. Ideal para o Nível 1.",
+            favorito: true
+        },
+        {
+            id: 3,
+            titulo: "Sefaria.org",
+            lingua: "Hebraico/Aramaico",
+            nivel: "Intermediário",
+            tipo: "Software",
+            subcategoria: "Leitura/Texto",
+            url: "https://www.sefaria.org/",
+            descricao: "Biblioteca digital gigantesca contendo a Bíblia Hebraica interlinear, comentários clássicos, e traduções de Sages antigos.",
+            favorito: true
+        },
+        {
+            id: 4,
+            titulo: "Bible Hub Interlinear",
+            lingua: "Geral",
+            nivel: "Iniciante",
+            tipo: "Ferramenta de Parsing",
+            subcategoria: "Léxico/Dicionário",
+            url: "https://biblehub.com/interlinear",
+            descricao: "Acesso rápido palavra-por-palavra à morfologia, transliteração e códigos Strong para Hebraico e Grego.",
+            favorito: false
+        },
+        {
+            id: 5,
+            titulo: "Blue Letter Bible",
+            lingua: "Geral",
+            nivel: "Intermediário",
+            tipo: "Ferramenta de Parsing",
+            subcategoria: "Léxico/Dicionário",
+            url: "https://www.blueletterbible.org/",
+            descricao: "Excelente banco de dados de concordância, dicionário clássico BDB e Gesenius indexado às palavras bíblicas.",
+            favorito: false
+        },
+        {
+            id: 6,
+            titulo: "Anki Flashcards",
+            lingua: "Geral",
+            nivel: "Iniciante",
+            tipo: "Software",
+            subcategoria: "Memorização",
+            url: "https://apps.ankiweb.net/",
+            descricao: "Software de repetição espaçada (SRS). A ferramenta mais indicada para fixar paradigmas nominais e vocabulários.",
+            favorito: true
+        },
+        {
+            id: 7,
+            titulo: "STEP Bible",
+            lingua: "Geral",
+            nivel: "Intermediário",
+            tipo: "Software",
+            subcategoria: "Software",
+            url: "https://www.stepbible.org/",
+            descricao: "Software desenvolvido pela Tyndale House em Cambridge. Gratuito, offline e com anotações de morfologia de altíssimo nível.",
+            favorito: true
+        },
+        {
+            id: 8,
+            titulo: "ETCBC Database (SHEBANQ)",
+            lingua: "Hebraico/Aramaico",
+            nivel: "Avançado",
+            tipo: "Software",
+            subcategoria: "Software",
+            url: "https://etcbc.org/",
+            descricao: "Banco de dados sintático linguístico extremamente avançado para investigações estruturais profundas do Antigo Testamento.",
+            favorito: false
+        },
+        {
+            id: 9,
+            titulo: "Logos Bible Study Mobile",
+            lingua: "Geral",
+            nivel: "Avançado",
+            tipo: "Software",
+            subcategoria: "Software",
+            url: "https://www.logos.com/",
+            descricao: "Software exegético líder global com vasta biblioteca interligada de léxicos (HALOT/BDAG), morfologias e comentários acadêmicos.",
+            favorito: false
+        },
+        {
+            id: 10,
+            titulo: "Ginoskos App",
+            lingua: "Geral",
+            nivel: "Iniciante",
+            tipo: "Software",
+            subcategoria: "Memorização",
+            url: "https://play.google.com/store/apps/details?id=com.ginoskos.biblicallanguages",
+            descricao: "Excelente aplicativo para smartphone (4.7 estrelas) focado em cursos gramaticais de Grego, Hebraico, Aramaico e Latim por repetição espaçada.",
+            favorito: false
+        }
+    ];
+
+    // Candidate pool for swipe-mining
+    let miningPool = [
+        {
+            titulo: "Sofia App (Sem Anúncios)",
+            lingua: "Geral",
+            nivel: "Intermediário",
+            tipo: "Software",
+            subcategoria: "Léxico/Dicionário",
+            url: "https://play.google.com/store/apps",
+            descricao: "O melhor app para smartphone livre de propagandas. Integra códigos Strong, GK, domínios semânticos Louw-Nida e morfologia detalhada.",
+        },
+        {
+            titulo: "CAL (Comprehensive Aramaic Lexicon)",
+            lingua: "Hebraico/Aramaico",
+            nivel: "Acadêmico",
+            tipo: "Ferramenta de Parsing",
+            subcategoria: "Léxico/Dicionário",
+            url: "https://cal.huc.edu/",
+            descricao: "O maior dicionário online de referência para o estudo do Aramaico Bíblico e pós-bíblico (Targums/Siríaco)."
+        },
+        {
+            titulo: "Global Bible Tools (GBT)",
+            lingua: "Geral",
+            nivel: "Iniciante",
+            tipo: "Software",
+            subcategoria: "Leitura/Texto",
+            url: "https://globalbibletools.com/",
+            descricao: "Desenvolvido em parceria com o Aleph with Beth. Traz o texto bíblico interlinear associado a áudios sincronizados locais sem anúncios."
+        }
+    ];
+
+    let currentMiningIndex = 0;
+
+    // Filter status
+    let activeFilters = {
+        lingua: "",
+        tipo: "",
+        subcategoria: "",
+        nivel: ""
     };
-    el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end);
-}
 
-function rejectCurrent(){ mining.rejected++; advanceMining(); }
-function saveMiningDirect(){ const item = mining.queue[mining.idx]; if(!item) return; saveMiningItem(item); renderStack(); }
-function saveMiningItem(item){
-    const exists = db.find(r => r.url === item.url);
-    if(exists){ toast('<i class="fa-solid fa-circle-info mr-1"></i>Recurso já existe.'); mining.rejected++; }
-    else {
-        db.push({ id: uid(), lingua: item.lingua, tipo: item.tipo, subcategoria: item.subcategoria, nivel: item.nivel, titulo: item.titulo, descricao: item.descricao, url: item.url, favorito: false, dataAtualizacao: today() });
-        mining.saved++; toast('<i class="fa-solid fa-bookmark mr-1"></i>Guardado.'); saveDB();
+    // ==========================================
+    // SIDEBAR AUTO-COLLAPSE (5s Inactivity)
+    // ==========================================
+    let sidebarTimeout;
+    const sidebarDelay = 5000;
+
+    function startSidebarTimeout() {
+        const sidebar = document.getElementById('sidebarRight');
+        if (!sidebar || !sidebar.classList.contains('open')) return;
+        
+        clearTimeout(sidebarTimeout);
+        let count = 5;
+        document.getElementById('autohideCounter').innerText = count;
+        
+        const bar = document.getElementById('autohideBar');
+        bar.classList.remove('running');
+        void bar.offsetWidth; // Trigger reflow
+        bar.classList.add('running');
+
+        sidebarTimeout = setInterval(() => {
+            count--;
+            document.getElementById('autohideCounter').innerText = count;
+            if (count <= 0) {
+                closeSidebar();
+            }
+        }, 1000);
     }
-    advanceMining();
-}
-function advanceMining(){
-    mining.idx++;
-    if(mining.idx >= mining.queue.length){ finishMining(); }
-    else { currentMiningItem = mining.queue[mining.idx]; renderStack(); }
-}
-function finishMining(){
-    $('miningResults').classList.add('hidden'); $('miningDone').classList.remove('hidden');
-    $('miningSummary').textContent = `${mining.saved} guardado(s) · ${mining.rejected} rejeitado(s).`;
-    saveDB();
-}
-function resetMining(){ showMiningSetup(); }
 
-/* ---------- PDF ---------- */
-function exportPDF(){
-    if(db.length===0){ toast('Nenhum recurso para exportar.'); return; }
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({ unit:'mm', format:'a4' });
-    const W = doc.internal.pageSize.getWidth();
-    doc.setFillColor(30,58,95); doc.rect(0,0,W,26,'F');
-    doc.setTextColor(255,255,255); doc.setFont('times','bold'); doc.setFontSize(18);
-    doc.text('Catálogo Acadêmico — Ferramentas Bíblicas', 14, 12);
-    doc.setFont('helvetica','normal'); doc.setFontSize(9);
-    doc.text('Curadoria de recursos em Hebraico, Aramaico e Grego Koiné', 14, 18);
-    doc.text('Gerado em ' + new Date().toLocaleDateString('pt-BR') + ' · Total: ' + db.length + ' registros', 14, 23);
-    let y = 34;
-    LINGUAS.forEach(lingua=>{
-        const byLang = db.filter(r=>r.lingua===lingua); if(byLang.length===0) return;
-        if(y > 260){ doc.addPage(); y = 20; }
-        doc.setFont('times','bold'); doc.setFontSize(13); doc.setTextColor(30,58,95);
-        doc.text(lingua, 14, y); y+=2;
-        doc.setDrawColor(184,134,11); doc.setLineWidth(0.6); doc.line(14, y, W-14, y); y+=4;
-        [1,2,3,4,5].forEach(niv=>{
-            const rows = byLang.filter(r=>r.nivel===niv); if(rows.length===0) return;
-            if(y > 260){ doc.addPage(); y = 20; }
-            doc.autoTable({
-                startY: y,
-                head: [[`Nível ${niv} — ${NIVEIS[niv]}`, 'Tipo', 'Subcategoria', 'Atualização', 'Fav']],
-                body: rows.map(r=>[r.titulo + '\n' + (r.url||''), r.tipo, r.subcategoria, fmtDate(r.dataAtualizacao), r.favorito?'★':'—']),
-                theme:'grid',
-                styles:{ fontSize:8, cellPadding:2, textColor:[43,38,32] },
-                headStyles:{ fillColor:[232,238,246], textColor:[30,58,95], fontStyle:'bold' },
-                columnStyles:{ 0:{ cellWidth:70 }, 4:{ cellWidth:12, halign:'center' } },
-                margin:{ left:14, right:14 }
-            });
-            y = doc.lastAutoTable.finalY + 6;
+    function clearSidebarTimeout() {
+        clearTimeout(sidebarTimeout);
+        document.getElementById('autohideBar').classList.remove('running');
+        document.getElementById('autohideCounter').innerText = "5";
+    }
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebarRight');
+        const backdrop = document.getElementById('menuBackdrop');
+        const fab = document.getElementById('menuFab');
+
+        if (sidebar.classList.contains('open')) {
+            closeSidebar();
+        } else {
+            sidebar.classList.add('open');
+            backdrop.classList.add('active');
+            fab.classList.add('open');
+            startSidebarTimeout();
+        }
+    }
+
+    function closeSidebar() {
+        const sidebar = document.getElementById('sidebarRight');
+        const backdrop = document.getElementById('menuBackdrop');
+        const fab = document.getElementById('menuFab');
+        if (sidebar) sidebar.classList.remove('open');
+        if (backdrop) backdrop.classList.remove('active');
+        if (fab) fab.classList.remove('open');
+        clearTimeout(sidebarTimeout);
+    }
+
+    // ==========================================
+    // VIEW CONTROLLER
+    // ==========================================
+    function sidebarNav(viewId) {
+        document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+        document.getElementById(`view-${viewId}`).classList.remove('hidden');
+
+        document.querySelectorAll('.sidebar-item').forEach(btn => btn.classList.remove('active'));
+        const activeBtn = document.querySelector(`.sidebar-item[data-view="${viewId}"]`);
+        if (activeBtn) activeBtn.classList.add('active');
+
+        closeSidebar();
+        
+        if (viewId === 'favorites') renderFavorites();
+        if (viewId === 'reports') renderReports();
+    }
+
+    function sidebarAction(action) {
+        closeSidebar();
+        if (action === 'manual') {
+            document.getElementById('manualSheet').classList.add('active');
+        } else if (action === 'about') {
+            document.getElementById('aboutModal').classList.add('active');
+        }
+    }
+
+    // ==========================================
+    // THEME TOGGLE (Syncs with o-sentido-autentico)
+    // ==========================================
+    function toggleTheme() {
+        const html = document.documentElement;
+        const icon = document.getElementById('themeIcon');
+        const label = document.getElementById('sidebarThemeLabel');
+        const sidebarIcon = document.getElementById('sidebarThemeIcon');
+
+        if (html.classList.contains('dark')) {
+            html.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+            if (icon) icon.className = 'fa-solid fa-moon';
+            if (sidebarIcon) sidebarIcon.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            if (label) label.innerText = 'Modo Escuro';
+        } else {
+            html.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+            if (icon) icon.className = 'fa-solid fa-sun';
+            if (sidebarIcon) sidebarIcon.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            if (label) label.innerText = 'Modo Claro';
+        }
+    }
+
+    // ==========================================
+    // NOTIFICATION TOAST
+    // ==========================================
+    function showToast(text) {
+        const toast = document.getElementById('toast');
+        toast.innerText = text;
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 2500);
+    }
+
+    // ==========================================
+    // RESOURCES CONTROLLER & FILTERS
+    // ==========================================
+    function updateDashboardStats() {
+        document.getElementById('statTotal').innerText = resources.length;
+        const favs = resources.filter(r => r.favorito).length;
+        document.getElementById('statFav').innerText = favs;
+        document.getElementById('sidebarFavBadge').innerText = favs;
+        document.getElementById('sidebarFavBadge').style.display = favs > 0 ? 'inline-block' : 'none';
+
+        const langs = [...new Set(resources.map(r => r.lingua))].length;
+        document.getElementById('statLang').innerText = langs;
+    }
+
+    // Dynamic coloring based on active portal language matching o-sentido-autentico
+    function updateLanguageBodyTheme(langValue) {
+        const body = document.body;
+        body.classList.remove('lang-hebrew', 'lang-greek');
+        if (langValue === "Hebraico/Aramaico") {
+            body.classList.add('lang-hebrew');
+        } else if (langValue === "Grego Koiné") {
+            body.classList.add('lang-greek');
+        }
+    }
+
+    function renderFilterChips() {
+        const langs = ["Hebraico/Aramaico", "Grego Koiné", "Geral"];
+        const types = ["Ferramenta de Parsing", "Diagrama/Infográfico", "Artigo Acadêmico", "Trabalho-Modelo", "Software", "Outros"];
+        const subs = ["Léxico/Dicionário", "Gramática", "Leitura/Texto", "Vídeo-aula", "Memorização", "Software", "Outros"];
+        const levels = ["Iniciante", "Intermediário", "Avançado", "Acadêmico"];
+
+        renderChipsGroup('langChips', langs, 'lingua');
+        renderChipsGroup('typeChips', types, 'tipo');
+        renderChipsGroup('subChips', subs, 'subcategoria');
+        renderChipsGroup('levelChips', levels, 'nivel');
+    }
+
+    function renderChipsGroup(containerId, items, filterKey) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = "";
+        
+        // Add "Todos" chip
+        const allChip = document.createElement('button');
+        allChip.className = `chip ${activeFilters[filterKey] === "" ? 'active' : ''}`;
+        allChip.innerText = "Todos";
+        allChip.onclick = () => {
+            activeFilters[filterKey] = "";
+            if (filterKey === 'lingua') {
+                updateLanguageBodyTheme("");
+            }
+            renderFilterChips();
+            filterResources();
+        };
+        container.appendChild(allChip);
+
+        items.forEach(item => {
+            const chip = document.createElement('button');
+            chip.className = `chip ${activeFilters[filterKey] === item ? 'active' : ''}`;
+            chip.innerText = item;
+            chip.onclick = () => {
+                activeFilters[filterKey] = item;
+                if (filterKey === 'lingua') {
+                    updateLanguageBodyTheme(item);
+                }
+                renderFilterChips();
+                filterResources();
+            };
+            container.appendChild(chip);
         });
-        y += 6;
+    }
+
+    function filterResources() {
+        const query = document.getElementById('searchInput').value.toLowerCase().trim();
+        const filtered = resources.filter(res => {
+            const matchesQuery = !query || 
+                res.titulo.toLowerCase().includes(query) || 
+                res.descricao.toLowerCase().includes(query) || 
+                res.url.toLowerCase().includes(query);
+            
+            const matchesLang = !activeFilters.lingua || res.lingua === activeFilters.lingua;
+            const matchesType = !activeFilters.tipo || res.tipo === activeFilters.tipo;
+            const matchesSub = !activeFilters.subcategoria || res.subcategoria === activeFilters.subcategoria;
+            const matchesLevel = !activeFilters.nivel || res.nivel === activeFilters.nivel;
+
+            return matchesQuery && matchesLang && matchesType && matchesSub && matchesLevel;
+        });
+
+        const list = document.getElementById('cardList');
+        const empty = document.getElementById('emptyDash');
+        list.innerHTML = "";
+
+        if (filtered.length === 0) {
+            empty.classList.remove('hidden');
+        } else {
+            empty.classList.add('hidden');
+            filtered.forEach(res => {
+                const card = document.createElement('div');
+                card.className = "card-surface p-4 flex flex-col md:flex-row md:items-center justify-between gap-4";
+                
+                // Color bar depending on language theme matching o-sentido-autentico
+                let borderTheme = "border-l-4 border-l-[#0f3731]";
+                if (res.lingua === "Hebraico/Aramaico") borderTheme = "border-l-4 border-l-[#102a43]";
+                if (res.lingua === "Grego Koiné") borderTheme = "border-l-4 border-l-[#7b1d22]";
+                card.className += ` ${borderTheme}`;
+
+                card.innerHTML = `
+                    <div class="flex-1 min-w-0" onclick="showFicha(${res.id})">
+                        <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:var(--primary-soft); color:var(--primary)">${res.tipo}</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:rgba(197,160,89,0.12); color:var(--gold-dark)">${res.nivel}</span>
+                        </div>
+                        <h4 class="font-display font-bold text-lg text-primary hover:text-gold transition-all cursor-pointer">${res.titulo}</h4>
+                        <p class="text-xs text-muted leading-relaxed line-clamp-2 mt-1">${res.descricao}</p>
+                        <a href="${res.url}" target="_blank" class="text-[11px] font-semibold text-gold-dark hover:underline mt-2 inline-flex items-center gap-1">
+                            <i class="fa-solid fa-link"></i> ${res.url}
+                        </a>
+                    </div>
+                    <div class="flex items-center gap-2 justify-end">
+                        <button onclick="toggleFavorite(${res.id})" class="w-10 h-10 rounded-full flex items-center justify-center text-lg transition-all active:scale-95" style="background:var(--surface-2); color:${res.favorito ? 'var(--gold)' : 'var(--text-muted)'}">
+                            <i class="fa-${res.favorito ? 'solid' : 'regular'} fa-star"></i>
+                        </button>
+                        <button onclick="openEditSheet(${res.id})" class="w-10 h-10 rounded-full flex items-center justify-center text-lg transition-all active:scale-95" style="background:var(--surface-2); color:var(--text-muted)">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+        }
+    }
+
+    function toggleFavorite(id) {
+        const res = resources.find(r => r.id === id);
+        if (res) {
+            res.favorito = !res.favorito;
+            showToast(res.favorito ? "Adicionado aos Favoritos!" : "Removido dos Favoritos.");
+            updateDashboardStats();
+            filterResources();
+        }
+    }
+
+    // ==========================================
+    // LIGHTBOX / SPEC SHEET (FICHA CATALOGRÁFICA)
+    // ==========================================
+    function showFicha(id) {
+        const res = resources.find(r => r.id === id);
+        if (!res) return;
+
+        const content = document.getElementById('fichaContent');
+        content.innerHTML = `
+            <div class="text-center ornament mb-2">❦ ✦ ❦</div>
+            <p class="text-center font-bold text-lg mb-4" style="color:var(--gold-dark)">FICHA DE PESQUISA ACADÊMICA</p>
+            <div class="space-y-2 border-t border-b border-dashed border-gold py-4 my-2">
+                <p><strong>Recurso:</strong> ${res.titulo}</p>
+                <p><strong>Língua/Foco:</strong> ${res.lingua}</p>
+                <p><strong>Nível Teológico:</strong> ${res.nivel}</p>
+                <p><strong>Tipo de Recurso:</strong> ${res.tipo}</p>
+                <p><strong>Subcategoria:</strong> ${res.subcategoria}</p>
+                <p><strong>Endereço Digital:</strong> <a href="${res.url}" target="_blank" class="text-gold-dark underline font-bold">${res.url}</a></p>
+                <p class="mt-3 text-justify leading-relaxed"><strong>Descrição Exegética:</strong> ${res.descricao}</p>
+            </div>
+            <p class="text-xs text-center text-muted italic mt-4">Curadoria estruturada sob a supervisão teológica de Rogério Ramão Lopes</p>
+        `;
+
+        document.getElementById('overlay').classList.remove('hidden');
+        document.getElementById('fichaSheet').classList.remove('hidden');
+    }
+
+    function copyFicha() {
+        const text = document.getElementById('fichaContent').innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            showToast("Ficha copiada para a área de transferência!");
+            closeAllSheets();
+        }).catch(() => {
+            showToast("Erro ao copiar. Selecione e copie manualmente.");
+        });
+    }
+
+    // ==========================
+    // ACCESSIBILITY LOGIC (V18)
+    // ==========================
+    let currentFontSizePct = 100;
+    function adjustFontSize(action) {
+        const content = document.getElementById('main');
+        if (!content) return;
+        
+        if (action === 'increase') {
+            currentFontSizePct = Math.min(currentFontSizePct + 10, 140);
+        } else if (action === 'decrease') {
+            currentFontSizePct = Math.max(currentFontSizePct - 10, 80);
+        } else {
+            currentFontSizePct = 100;
+        }
+        content.style.fontSize = `${currentFontSizePct}%`;
+        showToast(`Tamanho do texto ajustado para ${currentFontSizePct}%`);
+    }
+    
+    function toggleDyslexiaFont(checked) {
+        const body = document.body;
+        if (checked) {
+            body.style.fontFamily = "'Cormorant Garamond', 'Cardo', serif";
+            body.style.letterSpacing = "0.08em";
+            body.style.lineHeight = "1.8";
+            showToast("Fonte amigável para dislexia ativada.");
+        } else {
+            body.style.fontFamily = "";
+            body.style.letterSpacing = "";
+            body.style.lineHeight = "";
+            showToast("Tipografia padrão restaurada.");
+        }
+    }
+    
+    function toggleHighContrast(checked) {
+        const body = document.body;
+        if (checked) {
+            body.style.filter = "contrast(1.4) saturate(1.1)";
+            showToast("Modo de Alto Contraste Ativado.");
+        } else {
+            body.style.filter = "";
+            showToast("Modo de Contraste Padrão.");
+        }
+    }
+    
+    // Text-to-Speech (Page Reader)
+    let synth = window.speechSynthesis;
+    let utterance = null;
+    let isReading = false;
+    
+    function toggleTTS() {
+        const textBtn = document.getElementById('tts-text');
+        const textIcon = document.getElementById('tts-icon');
+        
+        if (isReading) {
+            synth.cancel();
+            isReading = false;
+            if (textBtn) textBtn.innerText = "Ouvir Introdução";
+            if (textIcon) textIcon.className = "fa-solid fa-volume-high";
+            showToast("Leitor de voz pausado.");
+        } else {
+            const mainText = "Bem-vindo ao Ferramentas Bíblicas, um mini cofre digital pessoal para o estudo exegético e hermenêutico das línguas sagradas. Idealizado por Rogério Ramão Lopes.";
+            utterance = new SpeechSynthesisUtterance(mainText);
+            utterance.lang = 'pt-BR';
+            utterance.rate = 1.0;
+            utterance.onend = () => {
+                isReading = false;
+                if (textBtn) textBtn.innerText = "Ouvir Introdução";
+                if (textIcon) textIcon.className = "fa-solid fa-volume-high";
+            };
+            synth.speak(utterance);
+            isReading = true;
+            if (textBtn) textBtn.innerText = "Parar Leitor";
+            if (textIcon) textIcon.className = "fa-solid fa-circle-stop";
+            showToast("Iniciando leitura em voz alta...");
+        }
+    }
+    
+    window.adjustFontSize = adjustFontSize;
+    window.toggleDyslexiaFont = toggleDyslexiaFont;
+    window.toggleHighContrast = toggleHighContrast;
+    window.toggleTTS = toggleTTS;
+
+    // ==========================================
+    // SWIPE MINING CONTROL
+    // ==========================================
+    function goToMining() {
+        closeSidebar();
+        document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+        document.getElementById('view-mining').classList.remove('hidden');
+        document.getElementById('miningSetup').classList.remove('hidden');
+        document.getElementById('miningResults').classList.add('hidden');
+        document.getElementById('miningDone').classList.add('hidden');
+
+        renderMiningParameters();
+    }
+
+    function renderMiningParameters() {
+        const langs = ["Todas", "Hebraico/Aramaico", "Grego Koiné", "Geral"];
+        const subs = ["Todas", "Léxico/Dicionário", "Gramática", "Leitura/Texto", "Vídeo-aula", "Memorização", "Software"];
+
+        renderMiningChips('miningLangChips', langs, 'mining_lang');
+        renderMiningChips('miningSubChips', subs, 'mining_sub');
+    }
+
+    let miningFilters = { lang: "Todas", sub: "Todas" };
+
+    function renderMiningChips(containerId, items, key) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = "";
+        items.forEach(item => {
+            const chip = document.createElement('button');
+            const isActive = (key === 'mining_lang' && miningFilters.lang === item) || (key === 'mining_sub' && miningFilters.sub === item);
+            chip.className = `chip ${isActive ? 'active' : ''}`;
+            chip.innerText = item;
+            chip.onclick = () => {
+                if (key === 'mining_lang') miningFilters.lang = item;
+                if (key === 'mining_sub') miningFilters.sub = item;
+                renderMiningParameters();
+            };
+            container.appendChild(chip);
+        });
+    }
+
+    let filteredMiningPool = [];
+
+    function startMining() {
+        filteredMiningPool = miningPool.filter(res => {
+            const matchesLang = miningFilters.lang === "Todas" || res.lingua === miningFilters.lang;
+            const matchesSub = miningFilters.sub === "Todas" || res.subcategoria === miningFilters.sub;
+            return matchesLang && matchesSub;
+        });
+
+        if (filteredMiningPool.length === 0) {
+            document.getElementById('miningSetup').classList.add('hidden');
+            document.getElementById('miningDone').classList.remove('hidden');
+            document.getElementById('miningSummary').innerText = "Nenhum candidato extra encontrado para os filtros selecionados.";
+            return;
+        }
+
+        currentMiningIndex = 0;
+        document.getElementById('miningSetup').classList.add('hidden');
+        document.getElementById('miningResults').classList.remove('hidden');
+        
+        loadMiningCard();
+    }
+
+    function showMiningSetup() {
+        document.getElementById('miningSetup').classList.remove('hidden');
+        document.getElementById('miningResults').classList.add('hidden');
+        document.getElementById('miningDone').classList.add('hidden');
+    }
+
+    function loadMiningCard() {
+        const container = document.getElementById('cardStack');
+        container.innerHTML = "";
+
+        if (currentMiningIndex >= filteredMiningPool.length) {
+            document.getElementById('miningResults').classList.add('hidden');
+            document.getElementById('miningDone').classList.remove('hidden');
+            document.getElementById('miningSummary').innerText = `Excelente! Você adicionou novos recursos à sua base pessoal.`;
+            updateDashboardStats();
+            filterResources();
+            return;
+        }
+
+        document.getElementById('miningCounter').innerText = `${currentMiningIndex + 1}/${filteredMiningPool.length}`;
+        const cardData = filteredMiningPool[currentMiningIndex];
+        document.getElementById('miningContext').innerText = cardData.lingua;
+
+        const card = document.createElement('div');
+        card.className = "swipe-card card-surface p-6 absolute inset-x-0 top-0 h-[360px] flex flex-col justify-between cursor-grab active:cursor-grabbing";
+        
+        let borderTheme = "border-l-4 border-l-[#0f3731]";
+        if (cardData.lingua === "Hebraico/Aramaico") borderTheme = "border-l-4 border-l-[#102a43]";
+        if (cardData.lingua === "Grego Koiné") borderTheme = "border-l-4 border-l-[#7b1d22]";
+        card.className += ` ${borderTheme}`;
+
+        card.innerHTML = `
+            <div onclick="editCurrentMiningCard()">
+                <div class="flex items-center gap-2 mb-2 flex-wrap">
+                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:var(--primary-soft); color:var(--primary)">${cardData.tipo || 'Software'}</span>
+                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:rgba(197,160,89,0.12); color:var(--gold-dark)">${cardData.nivel || 'Iniciante'}</span>
+                </div>
+                <h4 class="font-display font-bold text-xl text-primary hover:text-gold transition-all mb-2">${cardData.titulo}</h4>
+                <p class="text-xs text-muted leading-relaxed line-clamp-5">${cardData.descricao}</p>
+                <span class="text-[10px] font-bold text-gold-dark underline mt-3 block truncate"><i class="fa-solid fa-link mr-1"></i>${cardData.url}</span>
+            </div>
+            <div class="text-[10px] text-center text-muted italic border-t border-dashed border-gold pt-3">
+                <i class="fa-solid fa-hand-pointer mr-1"></i> Toque para customizar ou deslize para os lados.
+            </div>
+        `;
+
+        setupSwipeGestures(card);
+        container.appendChild(card);
+    }
+
+    function setupSwipeGestures(element) {
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+
+        element.addEventListener('mousedown', start);
+        element.addEventListener('touchstart', start, { passive: true });
+
+        element.addEventListener('mousemove', move);
+        element.addEventListener('touchmove', move, { passive: true });
+
+        element.addEventListener('mouseup', end);
+        element.addEventListener('touchend', end);
+        element.addEventListener('mouseleave', end);
+
+        function start(e) {
+            startX = e.clientX || e.touches[0].clientX;
+            isDragging = true;
+            element.classList.add('dragging');
+        }
+
+        function move(e) {
+            if (!isDragging) return;
+            const x = e.clientX || e.touches[0].clientX;
+            currentX = x - startX;
+            
+            // Apply slight rotation for realistic swipe card feeling
+            const rotation = currentX * 0.05;
+            element.style.transform = `translateX(${currentX}px) rotate(${rotation}deg)`;
+            
+            // Fade slightly when swiped far
+            const opacity = Math.max(1 - Math.abs(currentX) / 400, 0.4);
+            element.style.opacity = opacity;
+        }
+
+        function end() {
+            if (!isDragging) return;
+            isDragging = false;
+            element.classList.remove('dragging');
+
+            if (currentX > 110) {
+                // Swipe Right -> Save/Accept
+                saveMiningDirect();
+            } else if (currentX < -110) {
+                // Swipe Left -> Reject
+                rejectCurrent();
+            } else {
+                // Reset card position
+                element.style.transform = "";
+                element.style.opacity = "1";
+            }
+            currentX = 0;
+        }
+    }
+
+    function saveMiningDirect() {
+        const card = filteredMiningPool[currentMiningIndex];
+        resources.push({
+            id: resources.length + 1,
+            titulo: card.titulo,
+            lingua: card.lingua,
+            nivel: card.nivel || "Iniciante",
+            tipo: card.tipo || "Software",
+            subcategoria: card.subcategoria,
+            url: card.url,
+            descricao: card.descricao,
+            favorito: false
+        });
+        showToast("Recurso Adicionado com Sucesso!");
+        currentMiningIndex++;
+        loadMiningCard();
+    }
+
+    // Triggered if disclaimer acknowledged checkbox changes
+    function toggleWelcomeButton(checked) {
+        const btn = document.getElementById('welcome-start-btn');
+        if (btn) {
+            if (checked) {
+                btn.style.opacity = "1";
+                btn.style.pointerEvents = "auto";
+                btn.removeAttribute('disabled');
+            } else {
+                btn.style.opacity = "0.5";
+                btn.style.pointerEvents = "none";
+                btn.setAttribute('disabled', 'true');
+            }
+        }
+    }
+    window.toggleWelcomeButton = toggleWelcomeButton;
+
+    function rejectCurrent() {
+        showToast("Recurso ignorado.");
+        currentMiningIndex++;
+        loadMiningCard();
+    }
+
+    function editCurrentMiningCard() {
+        const cardData = filteredMiningPool[currentMiningIndex];
+        
+        document.getElementById('f_titulo').value = cardData.titulo;
+        document.getElementById('f_lingua').value = cardData.lingua;
+        document.getElementById('f_nivel').value = cardData.nivel || "Iniciante";
+        document.getElementById('f_tipo').value = cardData.tipo || "Software";
+        document.getElementById('f_sub').value = cardData.subcategoria;
+        document.getElementById('f_url').value = cardData.url;
+        document.getElementById('f_desc').value = cardData.descricao;
+        document.getElementById('f_fav').checked = false;
+
+        document.getElementById('editTitle').innerText = "Customizar Recursos Garimpados";
+        document.getElementById('editActionsFull').classList.add('hidden');
+        document.getElementById('editActionsMining').classList.remove('hidden');
+
+        document.getElementById('overlay').classList.remove('hidden');
+        document.getElementById('editSheet').classList.remove('hidden');
+    }
+
+    function editActionReject() {
+        closeAllSheets();
+        rejectCurrent();
+    }
+
+    function resetMining() {
+        goToMining();
+    }
+
+    // ==========================================
+    // EDIT & ADD RESOURCE CONTROLLER
+    // ==========================================
+    let editingResourceId = null;
+
+    function openEditSheet(id) {
+        editingResourceId = id;
+        const res = resources.find(r => r.id === id);
+        if (!res) return;
+
+        document.getElementById('f_titulo').value = res.titulo;
+        document.getElementById('f_lingua').value = res.lingua;
+        document.getElementById('f_nivel').value = res.nivel;
+        document.getElementById('f_tipo').value = res.tipo;
+        document.getElementById('f_sub').value = res.subcategoria;
+        document.getElementById('f_url').value = res.url;
+        document.getElementById('f_desc').value = res.descricao;
+        document.getElementById('f_fav').checked = res.favorito;
+
+        document.getElementById('editTitle').innerText = "Editar Metadados";
+        document.getElementById('editActionsFull').classList.remove('hidden');
+        document.getElementById('editActionsMining').classList.add('hidden');
+
+        document.getElementById('overlay').classList.remove('hidden');
+        document.getElementById('editSheet').classList.remove('hidden');
+    }
+
+    function editActionSave() {
+        const titulo = document.getElementById('f_titulo').value.trim();
+        const url = document.getElementById('f_url').value.trim();
+        const desc = document.getElementById('f_desc').value.trim();
+
+        if (!titulo || !url) {
+            alert("Título e URL são obrigatórios!");
+            return;
+        }
+
+        const isMiningEdit = document.getElementById('editActionsMining').classList.contains('hidden') === false;
+
+        if (isMiningEdit) {
+            // Saving customized mining card
+            resources.push({
+                id: resources.length + 1,
+                titulo: titulo,
+                lingua: document.getElementById('f_lingua').value,
+                nivel: document.getElementById('f_nivel').value,
+                tipo: document.getElementById('f_tipo').value,
+                subcategoria: document.getElementById('f_sub').value,
+                url: url,
+                descricao: desc,
+                favorito: document.getElementById('f_fav').checked
+            });
+            showToast("Recurso Adicionado com Sucesso!");
+            closeAllSheets();
+            currentMiningIndex++;
+            loadMiningCard();
+        } else {
+            // Saving edited dashboard resource
+            const res = resources.find(r => r.id === editingResourceId);
+            if (res) {
+                res.titulo = titulo;
+                res.lingua = document.getElementById('f_lingua').value;
+                res.nivel = document.getElementById('f_nivel').value;
+                res.tipo = document.getElementById('f_tipo').value;
+                res.subcategoria = document.getElementById('f_sub').value;
+                res.url = url;
+                res.descricao = desc;
+                res.favorito = document.getElementById('f_fav').checked;
+
+                showToast("Dados salvos com sucesso!");
+                closeAllSheets();
+                updateDashboardStats();
+                filterResources();
+            }
+        }
+    }
+
+    function editActionDelete() {
+        if (confirm("Tem certeza que deseja excluir permanentemente este recurso da sua base?")) {
+            resources = resources.filter(r => r.id !== editingResourceId);
+            showToast("Recurso removido.");
+            closeAllSheets();
+            updateDashboardStats();
+            filterResources();
+        }
+    }
+
+    function closeAllSheets() {
+        document.getElementById('overlay').classList.add('hidden');
+        document.getElementById('editSheet').classList.add('hidden');
+        document.getElementById('fichaSheet').classList.add('hidden');
+        document.getElementById('aboutModal').classList.remove('active');
+        document.getElementById('institutions-modal-overlay').classList.remove('active');
+    }
+
+    // ==========================================
+    // FAVORITES VIEW RENDERER
+    // ==========================================
+    function renderFavorites() {
+        const favs = resources.filter(r => r.favorito);
+        const list = document.getElementById('favList');
+        const empty = document.getElementById('emptyFav');
+        list.innerHTML = "";
+
+        if (favs.length === 0) {
+            empty.classList.remove('hidden');
+        } else {
+            empty.classList.add('hidden');
+            favs.forEach(res => {
+                const card = document.createElement('div');
+                card.className = "card-surface p-4 flex flex-col md:flex-row md:items-center justify-between gap-4";
+                
+                let borderTheme = "border-l-4 border-l-[#0f3731]";
+                if (res.lingua === "Hebraico/Aramaico") borderTheme = "border-l-4 border-l-[#102a43]";
+                if (res.lingua === "Grego Koiné") borderTheme = "border-l-4 border-l-[#7b1d22]";
+                card.className += ` ${borderTheme}`;
+
+                card.innerHTML = `
+                    <div class="flex-1 min-w-0" onclick="showFicha(${res.id})">
+                        <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:var(--primary-soft); color:var(--primary)">${res.tipo}</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:rgba(197,160,89,0.12); color:var(--gold-dark)">${res.nivel}</span>
+                        </div>
+                        <h4 class="font-display font-bold text-lg text-primary hover:text-gold transition-all cursor-pointer">${res.titulo}</h4>
+                        <p class="text-xs text-muted leading-relaxed line-clamp-2 mt-1">${res.descricao}</p>
+                        <a href="${res.url}" target="_blank" class="text-[11px] font-semibold text-gold-dark hover:underline mt-2 inline-flex items-center gap-1">
+                            <i class="fa-solid fa-link"></i> ${res.url}
+                        </a>
+                    </div>
+                    <div class="flex items-center gap-2 justify-end">
+                        <button onclick="toggleFavorite(${res.id})" class="w-10 h-10 rounded-full flex items-center justify-center text-lg transition-all" style="background:var(--surface-2); color:var(--gold)">
+                            <i class="fa-solid fa-star"></i>
+                        </button>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+        }
+    }
+
+    // ==========================================
+    // REPORTS VIEW RENDERER (Metric Bars)
+    // ==========================================
+    function renderReports() {
+        const langCounts = { "Hebraico/Aramaico": 0, "Grego Koiné": 0, "Geral": 0 };
+        const levelCounts = { "Iniciante": 0, "Intermediário": 0, "Avançado": 0, "Acadêmico": 0 };
+
+        resources.forEach(r => {
+            if (langCounts[r.lingua] !== undefined) langCounts[r.lingua]++;
+            if (levelCounts[r.nivel] !== undefined) levelCounts[r.nivel]++;
+        });
+
+        renderBars('langBars', langCounts, resources.length, "primary");
+        renderBars('levelBars', levelCounts, resources.length, "gold");
+    }
+
+    function renderBars(containerId, data, total, theme) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = "";
+
+        Object.keys(data).forEach(key => {
+            const val = data[key];
+            const pct = total > 0 ? (val / total) * 100 : 0;
+            
+            const barWrapper = document.createElement('div');
+            barWrapper.innerHTML = `
+                <div class="flex items-center justify-between text-xs font-semibold mb-1">
+                    <span>${key}</span>
+                    <span>${val} recursos (${pct.toFixed(0)}%)</span>
+                </div>
+                <div class="w-full h-3 rounded-full bg-var(--surface-2) overflow-hidden" style="background:var(--surface-2)">
+                    <div class="h-full rounded-full transition-all duration-500" style="width:${pct}%; background:${theme === 'gold' ? 'var(--gold)' : 'var(--primary)'}"></div>
+                </div>
+            `;
+            container.appendChild(barWrapper);
+        });
+    }
+
+    // ==========================================
+    // EXPOTING CATALOG IN PDF (jspdf)
+    // ==========================================
+    function exportPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+
+        // Document styling matching premium theme
+        doc.setFillColor(251, 250, 247); // Cream background
+        doc.rect(0, 0, 210, 297, "F");
+
+        doc.setDrawColor(197, 160, 89); // Gold outer thin border
+        doc.setLineWidth(1);
+        doc.rect(5, 5, 200, 287);
+
+        // Header Title
+        doc.setFont("Lora", "normal");
+        doc.setFontSize(22);
+        doc.setTextColor(15, 55, 49); // Primary teal
+        doc.text("O Sentido Autêntico — Ferramentas Bíblicas", 15, 20);
+
+        doc.setFontSize(10);
+        doc.setTextColor(117, 105, 90); // Muted gold
+        doc.text("CURADORIA ACADÊMICA: Rogério Ramão Lopes — Setembro de 2026", 15, 25);
+        doc.line(15, 28, 195, 28);
+
+        // Prepare table data grouped by language and level
+        let tableRows = [];
+        resources.forEach(r => {
+            tableRows.push([r.titulo, r.lingua, r.nivel, r.tipo, r.url]);
+        });
+
+        doc.autoTable({
+            startY: 32,
+            head: [["Título", "Língua", "Nível", "Tipo", "Endereço Digital"]],
+            body: tableRows,
+            theme: "grid",
+            headStyles: {
+                fillColor: [15, 55, 49], // Deep Teal matching header
+                textColor: [255, 255, 255],
+                fontSize: 10,
+                fontStyle: "bold"
+            },
+            styles: {
+                fontSize: 9,
+                cellPadding: 3,
+                font: "Inter"
+            },
+            columnStyles: {
+                4: { cellWidth: 50 } // Wrap URL column cleanly
+            },
+            margin: { left: 15, right: 15 }
+        });
+
+        // Add final theological footer message
+        const finalY = doc.lastAutoTable.finalY + 15;
+        doc.setFontSize(9);
+        doc.setTextColor(15, 55, 49);
+        doc.text("Licenciado sob CC BY-NC-SA 4.0 — Todos os direitos de curadoria reservados a Rogério R. Lopes.", 15, finalY);
+
+        doc.save("o-sentido-autentico-ferramentas-biblicas.pdf");
+        showToast("Catálogo em PDF gerado e baixado com sucesso!");
+    }
+
+    // ==========================================
+    // MANUAL AND ABOUT CONTROL
+    // ==========================================
+    function openManual() {
+        document.getElementById('manualSheet').classList.add('active');
+    }
+
+    function closeManual() {
+        document.getElementById('manualSheet').classList.remove('active');
+    }
+
+    function openAbout(e) {
+        if (e) e.preventDefault();
+        document.getElementById('aboutModal').classList.add('active');
+    }
+
+    function closeAbout() {
+        document.getElementById('aboutModal').classList.remove('active');
+    }
+
+    function showInstitutionsModal() {
+        document.getElementById('institutions-modal-overlay').classList.add('active');
+    }
+
+    function closeInstitutionsModal() {
+        document.getElementById('institutions-modal-overlay').classList.remove('active');
+    }
+
+    function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ==========================================
+    // DISMISS MODAL CHECKS & BOOTSTRAP
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', () => {
+        // Dark theme check
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            const icon = document.getElementById('themeIcon');
+            const label = document.getElementById('sidebarThemeLabel');
+            const sidebarIcon = document.getElementById('sidebarThemeIcon');
+            if (icon) icon.className = 'fa-solid fa-sun';
+            if (sidebarIcon) sidebarIcon.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            if (label) label.innerText = 'Modo Claro';
+        }
+
+        updateDashboardStats();
+        renderFilterChips();
+        filterResources();
     });
-    doc.save('catalogo_ferramentas_biblicas.pdf');
-    toast('<i class="fa-solid fa-file-pdf mr-1"></i>PDF gerado.');
-}
-
-/* ---------- MANUAL / SOBRE ---------- */
-$('helpBtn').addEventListener('click', openManual);
-function openManual(){ $('manualSheet').classList.add('active'); document.body.style.overflow = 'hidden'; }
-function closeManual(){ $('manualSheet').classList.remove('active'); document.body.style.overflow = ''; }
-function scrollToSection(id){
-    const el = document.getElementById(id);
-    if(el){ const y = el.getBoundingClientRect().top + $('manualSheet').scrollTop - 70; $('manualSheet').scrollTo({ top: y, behavior: 'smooth' }); }
-}
-function openAbout(e){ if(e) e.preventDefault(); $('aboutModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
-function closeAbout(){ $('aboutModal').classList.remove('active'); document.body.style.overflow = ''; }
-
-/* ---------- FOOTER ---------- */
-function renderFooter(){
-    const now = new Date();
-    const dateStr = now.toLocaleDateString('pt-BR', { day:'2-digit', month:'long', year:'numeric' });
-    const timeStr = now.toLocaleTimeString('pt-BR', { hour:'2-digit', minute:'2-digit' });
-    $('footerTimestamp').textContent = `${dateStr} · ${timeStr}`;
-}
-
-/* ---------- SIDEBAR + AUTO-HIDE ---------- */
-const AUTOHIDE_MS = 5000;
-let sidebarOpen = false, autohideTimer = null, autohideCountdown = null, autohideSeconds = 5;
-
-function toggleSidebar(){ sidebarOpen ? closeSidebar() : openSidebar(); }
-function openSidebar(){
-    sidebarOpen = true;
-    $('sidebarRight').classList.add('open'); $('menuBackdrop').classList.add('active'); $('menuFab').classList.add('open');
-    startAutohide();
-}
-function closeSidebar(){
-    sidebarOpen = false;
-    $('sidebarRight').classList.remove('open'); $('menuBackdrop').classList.remove('active'); $('menuFab').classList.remove('open');
-    stopAutohide();
-}
-function startAutohide(){
-    stopAutohide();
-    autohideSeconds = 5; $('autohideCounter').textContent = autohideSeconds;
-    const bar = $('autohideBar');
-    bar.classList.remove('running'); void bar.offsetWidth; bar.classList.add('running');
-    autohideCountdown = setInterval(()=>{ autohideSeconds--; $('autohideCounter').textContent = Math.max(0, autohideSeconds); if(autohideSeconds<=0) clearInterval(autohideCountdown); }, 1000);
-    autohideTimer = setTimeout(()=>{ if(sidebarOpen) closeSidebar(); }, AUTOHIDE_MS);
-}
-function stopAutohide(){
-    if(autohideTimer){ clearTimeout(autohideTimer); autohideTimer = null; }
-    if(autohideCountdown){ clearInterval(autohideCountdown); autohideCountdown = null; }
-}
-function resetAutohide(){ if(sidebarOpen) startAutohide(); }
-const sidebarEl = $('sidebarRight');
-sidebarEl.addEventListener('mouseenter', resetAutohide);
-sidebarEl.addEventListener('touchstart', resetAutohide, { passive: true });
-sidebarEl.addEventListener('click', e=>{ if(e.target.closest('.sidebar-item')) return; resetAutohide(); });
-document.addEventListener('keydown', e=>{ if(e.key === 'Escape' && sidebarOpen) closeSidebar(); });
-
-/* ---------- TOUR ---------- */
-const TOUR_STEPS = [
-    { target: () => document.querySelector('header'), title: 'Bem-vindo ao Ferramentas Bíblicas', text: 'Sua biblioteca pessoal para curadoria de recursos em Hebraico, Aramaico e Grego Koiné.', pos: 'bottom' },
-    { target: () => $('statsGrid'), title: 'Métricas do seu acervo', text: 'Acompanhe em tempo real recursos, favoritos e diversidade de idiomas.', pos: 'bottom' },
-    { target: () => $('mineBtn'), title: 'Mineração imediata', text: 'Ao tocar aqui, a busca começa na mesma tela, sem janelas intermediárias.', pos: 'bottom' },
-    { target: () => $('searchBox'), title: 'Busca e filtros', text: 'Pesquise e refine por língua, tipo, subcategoria e nível acadêmico.', pos: 'bottom' },
-    { target: () => $('menuFab'), title: 'Menu lateral', text: 'Toque aqui para abrir a navegação. Ela fecha sozinha após 5 segundos sem uso.', pos: 'top' },
-    { target: () => $('helpBtn'), title: 'Manual completo', text: 'Abra o manual de uso e solução de problemas a qualquer momento.', pos: 'bottom' }
-];
-let tourCurrent = 0, tourTargetEl = null;
-function startTour(){ tourCurrent = 0; $('tourOverlay').classList.add('active'); showTourStep(); }
-function positionTourUI(){
-    if(!tourTargetEl) return;
-    const rect = tourTargetEl.getBoundingClientRect();
-    const pad = 8;
-    const mask = $('tourSpotlightMask');
-    const top = rect.top - pad, left = rect.left - pad;
-    mask.style.clipPath = `polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, ${left}px ${top}px, ${left}px ${top + rect.height + pad*2}px, ${left + rect.width + pad*2}px ${top + rect.height + pad*2}px, ${left + rect.width + pad*2}px ${top}px, ${left}px ${top}px)`;
-    const ring = $('tourSpotlightRing');
-    ring.classList.add('active');
-    ring.style.top = top + 'px'; ring.style.left = left + 'px';
-    ring.style.width = (rect.width + pad*2) + 'px'; ring.style.height = (rect.height + pad*2) + 'px';
-    const tooltip = $('tourTooltip');
-    const ttWidth = Math.min(300, window.innerWidth - 32);
-    tooltip.style.width = ttWidth + 'px';
-    const step = TOUR_STEPS[tourCurrent];
-    let top2, left2;
-    if(step.pos === 'bottom'){ top2 = rect.bottom + pad + 14; if(top2 + 180 > window.innerHeight) top2 = rect.top - pad - 14 - 160; }
-    else { top2 = rect.top - pad - 14 - 140; if(top2 < 10) top2 = rect.bottom + pad + 14; }
-    left2 = Math.max(16, rect.left + rect.width/2 - ttWidth/2);
-    if(left2 + ttWidth > window.innerWidth - 16) left2 = window.innerWidth - ttWidth - 16;
-    tooltip.style.top = top2 + 'px'; tooltip.style.left = left2 + 'px'; tooltip.style.bottom = 'auto';
-}
-function showTourStep(){
-    if(tourCurrent >= TOUR_STEPS.length){ endTour(); return; }
-    const step = TOUR_STEPS[tourCurrent];
-    if(tourTargetEl) tourTargetEl.classList.remove('tour-target-active');
-    tourTargetEl = step.target();
-    if(!tourTargetEl){ tourCurrent++; showTourStep(); return; }
-    tourTargetEl.classList.add('tour-target-active');
-    const tooltip = $('tourTooltip');
-    tooltip.innerHTML = `<span class="tour-step-pill">PASSO ${tourCurrent+1} DE ${TOUR_STEPS.length}</span><h4>${step.title}</h4><p>${step.text}</p>
-        <div style="display:flex; gap:8px; justify-content:flex-end;">
-            <button onclick="endTour()" style="padding:8px 14px; border-radius:10px; font-size:12px; background:var(--surface-2); color:var(--text-muted); border:none;">Pular</button>
-            <button onclick="nextTourStep()" style="padding:8px 16px; border-radius:10px; font-size:12px; background:var(--primary); color:#fff; font-weight:600; border:none;">${tourCurrent === TOUR_STEPS.length - 1 ? 'Concluir' : 'Próximo'} →</button>
-        </div>`;
-    positionTourUI();
-}
-function nextTourStep(){ tourCurrent++; showTourStep(); }
-function endTour(){
-    if(tourTargetEl) tourTargetEl.classList.remove('tour-target-active');
-    $('tourOverlay').classList.remove('active'); $('tourSpotlightRing').classList.remove('active');
-    $('tourFinal').style.display = 'flex';
-    $('tourFinal').innerHTML = `<div class="tour-final-card">
-        <div class="quote-mark">"</div>
-        <div class="quote-text">Estudar as Escrituras em suas línguas originais é ouvir a voz do texto onde ela foi primeiramente inspirada — sem filtros, sem intermediários.</div>
-        <div class="quote-author">— Projeto Ferramentas Bíblicas</div>
-        <div style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
-            <button onclick="finishTour(); setTimeout(openManual, 300)" style="padding:12px 20px; border-radius:12px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25); color:#f5ecd4; font-size:13px;"><i class="fa-solid fa-book-open mr-2"></i>Abrir Manual</button>
-            <button onclick="finishTour()" style="padding:14px 24px; border-radius:12px; background:var(--gold); color:#1a1608; font-size:14px; font-weight:700; min-height:48px; border:none;"><i class="fa-solid fa-book-bible mr-2"></i>Começar minha jornada</button>
-        </div></div>`;
-}
-function finishTour(){ $('tourFinal').style.display = 'none'; localStorage.setItem(TOUR_KEY, '1'); }
-window.addEventListener('resize', ()=>{ if($('tourOverlay').classList.contains('active')) positionTourUI(); });
-
-/* ---------- INIT ---------- */
-function refreshAll(){ renderDashboard(); renderFavorites(); renderReports(); updateStats(); }
-function init(){
-    applyTheme(localStorage.getItem(THEME_KEY) || 'light');
-    loadDB(); fillSelects(); buildFilterChips(); buildMiningChips();
-    updateDynamicSubtitle(); refreshAll(); renderFooter();
-    if(!localStorage.getItem(TOUR_KEY)){ setTimeout(startTour, 600); }
-}
-init();
 </script>
 </body>
 </html>
