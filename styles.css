@@ -2610,3 +2610,106 @@ input:focus, select:focus, textarea:focus, button:focus, a:focus {
         line-height: 1.65 !important;
     }
 }
+
+/* ==========================================================================
+   V21 ACCESSIBILITY, READABILITY & DARK MODE TEXT COLOR OVERRIDES
+   ========================================================================== */
+
+/* Maintain correct portal select options visibility on mobile */
+.lang-selector-group .lang-btn span {
+    display: inline !important;
+}
+
+/* Ensure active menu items on mobile and desktop have high contrast in Dark Mode */
+[data-theme="dark"] .portal-active .nav-item.active a {
+    background-color: rgba(49, 151, 149, 0.25) !important;
+    color: #81e6d9 !important;
+    border-left: 4px solid #81e6d9 !important;
+}
+[data-theme="dark"] .hebrew-active .nav-item.active a {
+    background-color: rgba(99, 179, 237, 0.2) !important;
+    color: #90cdf4 !important;
+    border-left: 4px solid #90cdf4 !important;
+}
+[data-theme="dark"] .greek-active .nav-item.active a {
+    background-color: rgba(252, 129, 129, 0.2) !important;
+    color: #feb2b2 !important;
+    border-left: 4px solid #feb2b2 !important;
+}
+
+/* Redefine main brand colors in dark mode for readable contrast */
+[data-theme="dark"] {
+    --portal-primary: #319795 !important;
+    --hebrew-primary: #63b3ed !important;
+    --greek-primary: #fc8181 !important;
+}
+
+/* Level card metadata white text contrast */
+.level__head .level__meta {
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+.level__head .level__title {
+    color: #ffffff !important;
+}
+
+/* Prevent dark mode background color from washing out light-parchment manuscript text colors */
+.manuscript, 
+.manuscript *, 
+[data-theme="dark"] .manuscript, 
+[data-theme="dark"] .manuscript * {
+    color: #3d2817 !important;
+}
+.manuscript h2, 
+[data-theme="dark"] .manuscript h2 {
+    color: #5c2e0e !important;
+}
+.manuscript .ms-subtitle, 
+[data-theme="dark"] .manuscript .ms-subtitle {
+    color: #7a3f0e !important;
+}
+.manuscript h3, 
+[data-theme="dark"] .manuscript h3 {
+    color: #5c2e0e !important;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.3) !important;
+}
+.manuscript .ms-table th, 
+[data-theme="dark"] .manuscript .ms-table th {
+    background-color: #5c2e0e !important;
+    color: #f4e8c8 !important;
+}
+.manuscript .ms-table td, 
+[data-theme="dark"] .manuscript .ms-table td {
+    color: #3d2817 !important;
+    border-bottom: 1px dashed rgba(139, 69, 19, 0.25) !important;
+}
+.manuscript .ms-table a, 
+[data-theme="dark"] .manuscript .ms-table a {
+    color: #8b4513 !important;
+    border-bottom: 1px dotted #8b4513 !important;
+}
+.manuscript .contact-box, 
+[data-theme="dark"] .manuscript .contact-box {
+    background-color: rgba(139, 69, 19, 0.08) !important;
+    border: 1px solid rgba(139, 69, 19, 0.3) !important;
+}
+.manuscript .contact-box a, 
+[data-theme="dark"] .manuscript .contact-box a {
+    color: #5c2e0e !important;
+}
+.manuscript .signature, 
+[data-theme="dark"] .manuscript .signature {
+    color: #5c2e0e !important;
+    border-top: 1px solid rgba(139, 69, 19, 0.25) !important;
+}
+
+/* Advanced responsive adjustments for full mobile view */
+@media (max-width: 768px) {
+    .content {
+        padding: 1rem 0.5rem !important; /* Maximizes card width on mobile screen */
+    }
+    .section-card {
+        padding: 1.25rem 1rem !important; /* Increases readability space inside cards */
+        margin-bottom: 1.25rem !important;
+        border-radius: 10px !important;
+    }
+}

@@ -162,6 +162,9 @@
                 activeMenu.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
                 item.classList.add('active');
             }
+            
+            // Auto collapse sidebar on menu click for a fluid user journey!
+            document.body.classList.add('sidebar-collapsed');
         });
     });
 
@@ -1208,3 +1211,23 @@ function toggleTTS() {
     window.speechSynthesis.speak(activeUtterance);
 }
 window.toggleTTS = toggleTTS;
+
+// ==========================================
+// INSTITUTIONS RECOMMENDED MODAL (V18/V21)
+// ==========================================
+function showInstitutionsModal() {
+    const overlay = document.getElementById('institutions-modal-overlay');
+    if (overlay) {
+        overlay.classList.add('show');
+        overlay.style.display = 'flex';
+    }
+}
+function closeInstitutionsModal() {
+    const overlay = document.getElementById('institutions-modal-overlay');
+    if (overlay) {
+        overlay.classList.remove('show');
+        overlay.style.display = 'none';
+    }
+}
+window.showInstitutionsModal = showInstitutionsModal;
+window.closeInstitutionsModal = closeInstitutionsModal;
