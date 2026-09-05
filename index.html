@@ -44,18 +44,94 @@
                 </div>
             </div>
             
-            <!-- Right Side: Action and Encouragement -->
-            <div class="welcome-right">
-                <div class="welcome-encouragement">
-                    <p class="encouragement-title"><strong>Qual é o início mais coerente para o seu crescimento progressivo?</strong></p>
-                    <p class="encouragement-body">
-                        A chave para o sucesso é a <strong>consistência diária</strong>, não a intensidade esporádica. Comece dedicando apenas de 30 a 60 minutos diários, concentrando-se no <strong>Nível 1 - Fundação</strong> (seja no Hebraico ou no Grego). Estabeleça uma rotina firme de memorização do alfabeto e vocabulário no Anki, e use a metodologia de aceleração com o <strong>Notebook Gemini</strong> como seu parceiro e tutor exegético personalizado nesta esteira!
-                    </p>
+            <!-- Right Side: Action, Encouragement, Disclaimer and Institutions (V18) -->
+            <div class="welcome-right" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <!-- Unified Scroll Area to induce student to read until the end -->
+                <div id="welcome-scroll-container" style="max-height: 280px; overflow-y: auto; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; margin-bottom: 1rem; font-size: 0.85rem; text-align: left; scroll-behavior: smooth;">
+                    
+                    <!-- 1. Encouragement -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-family: 'Cinzel', serif; color: var(--gold-dark); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem;">Qual é o início mais coerente para o seu crescimento progressivo?</h4>
+                        <p style="color: var(--text-secondary); line-height: 1.5; margin: 0;">
+                            A chave para o sucesso é a <strong>consistência diária</strong>, não a intensidade esporádica. Comece dedicando apenas de 30 a 60 minutos diários, concentrando-se no <strong>Nível 1 - Fundação</strong> (seja no Hebraico ou no Grego). Estabeleça uma rotina firme de memorização do alfabeto e vocabulário no Anki, e use a metodologia de aceleração com o <strong>Notebook Gemini</strong> como seu parceiro e tutor exegético personalizado nesta esteira!
+                        </p>
+                    </div>
+                    
+                    <!-- 2. Disclaimer (Propósito e Isenção) -->
+                    <div style="margin-bottom: 1.5rem; border-top: 1px dashed var(--border-color); padding-top: 1rem;">
+                        <h4 style="font-family: 'Cinzel', serif; color: var(--gold-dark); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem;"><i class="fa-solid fa-triangle-exclamation"></i> Propósito e Isenção de Responsabilidade</h4>
+                        
+                        <p style="font-weight: 700; margin-bottom: 0.3rem; color: var(--text-primary);">Este material NÃO tem o propósito de:</p>
+                        <ul style="list-style-type: disc; margin-left: 1.25rem; margin-bottom: 0.8rem; color: var(--text-secondary); line-height: 1.4; display: flex; flex-direction: column; gap: 0.25rem;">
+                            <li>Formar hermeneutas ou exegetas profissionais</li>
+                            <li>Substituir formação acadêmica formal em teologia ou línguas bíblicas</li>
+                            <li>Fornecer certificação ou credenciamento acadêmico</li>
+                            <li>Estabelecer doutrinas ou interpretações teológicas definitivas</li>
+                            <li>Substituir o acompanhamento de professores qualificados ou mentores espirituais</li>
+                        </ul>
+                        
+                        <p style="font-weight: 700; margin-bottom: 0.3rem; color: var(--text-primary);">Este material TEM o propósito de:</p>
+                        <ul style="list-style-type: disc; margin-left: 1.25rem; margin-bottom: 0.8rem; color: var(--text-secondary); line-height: 1.4; display: flex; flex-direction: column; gap: 0.25rem;">
+                            <li>Oferecer um recurso imparcial e abrangente para o início do aprendizado</li>
+                            <li>Apresentar diferentes métodos e abordagens de forma organizada</li>
+                            <li>Auxiliar na escolha de recursos adequados ao perfil de cada aprendiz</li>
+                            <li>Facilitar o acesso a informações sobre o estudo dessas línguas</li>
+                            <li>Encorajar o estudo pessoal das Escrituras em seus idiomas originais</li>
+                        </ul>
+                        
+                        <p style="font-style: italic; color: var(--text-secondary); line-height: 1.5; margin: 0; background: rgba(197,160,89,0.05); padding: 0.5rem; border-radius: 4px; border-left: 3px solid var(--gold);">
+                            O estudo das línguas bíblicas é um complemento valioso à leitura das traduções, mas não substitui a orientação espiritual, o discipulado comunitário e a busca por sabedoria divina. Use estes recursos com humildade, respeito e discernimento.
+                        </p>
+                    </div>
+
+                    <!-- 3. Instituições Recomendadas -->
+                    <div style="border-top: 1px dashed var(--border-color); padding-top: 1rem;">
+                        <h4 style="font-family: 'Cinzel', serif; color: var(--gold-dark); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem;"><i class="fa-solid fa-building-columns"></i> Instituições Recomendadas</h4>
+                        <p style="color: var(--text-secondary); line-height: 1.4; margin-bottom: 0.5rem;">
+                            Para quem deseja cursar teologia acadêmica formal e aprofundar-se nas línguas originais no Brasil:
+                        </p>
+                        <table class="ms-table" style="width: 100%; border-collapse: collapse; font-size: 0.8rem; border: 1px solid var(--border-color); text-align: left;">
+                            <thead>
+                                <tr style="background: #5c2e0e; color: #f4e8c8;">
+                                    <th style="padding: 6px; font-weight: 700;">Instituição</th>
+                                    <th style="padding: 6px; font-weight: 700; text-align: center; width: 50px;">UF</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px dashed var(--border-color);">
+                                    <td style="padding: 6px;"><a href="https://faculdadebatistalogos.edu.br/" target="_blank" style="color: #8b4513; font-weight: 700; text-decoration: underline;">Faculdade Batista Logos</a></td>
+                                    <td style="padding: 6px; text-align: center;">SP</td>
+                                </tr>
+                                <tr style="border-bottom: 1px dashed var(--border-color);">
+                                    <td style="padding: 6px;"><a href="https://isbc.com.br/" target="_blank" style="color: #8b4513; font-weight: 700; text-decoration: underline;">ISBC — Instituto Bíblico</a></td>
+                                    <td style="padding: 6px; text-align: center;">SP</td>
+                                </tr>
+                                <tr style="border-bottom: 1px dashed var(--border-color);">
+                                    <td style="padding: 6px;"><a href="https://sbrscuritiba.com/" target="_blank" style="color: #8b4513; font-weight: 700; text-decoration: underline;">SBRS — Seminário Batista do Sul</a></td>
+                                    <td style="padding: 6px; text-align: center;">PR</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 6px;"><a href="http://aibreb.org.br/instituicoes_seminarios.html" target="_blank" style="color: #8b4513; font-weight: 700; text-decoration: underline;">AIBREB — Seminários</a></td>
+                                    <td style="padding: 6px; text-align: center;">Nacional</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="welcome-actions">
-                    <button class="welcome-btn" onclick="window.closeWelcomeModal()">Iniciar Minha Jornada</button>
-                    <div id="welcome-pwa-container" style="display: none; margin-top: 0.8rem; text-align: center; width: 100%;">
-                        <button id="welcome-pwa-btn" class="welcome-btn" style="background-color: transparent; border: 2px solid var(--gold); color: var(--gold-dark); box-shadow: none; font-size: 0.9rem; padding: 0.6rem 1.5rem; width: 100%;">
+
+                <!-- Acknowledgment Checkbox -->
+                <div style="background: rgba(197, 160, 89, 0.05); border: 1px solid var(--gold); border-radius: 6px; padding: 0.75rem; margin-bottom: 0.75rem;">
+                    <label style="display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.8rem; text-align: left; color: var(--text-primary); cursor: pointer; user-select: none;">
+                        <input type="checkbox" id="welcome-disclaimer-checkbox" style="margin-top: 0.15rem; cursor: pointer;" onchange="window.toggleWelcomeButton(this.checked)">
+                        <span>Compreendo e aceito o propósito, as isenções de responsabilidade e as diretrizes de estudo pessoal.</span>
+                    </label>
+                </div>
+
+                <!-- Action buttons -->
+                <div class="welcome-actions" style="margin-top: 0;">
+                    <button class="welcome-btn" id="welcome-start-btn" onclick="window.closeWelcomeModal()" style="opacity: 0.5; pointer-events: none; width: 100%; margin-top: 0;" disabled>Iniciar Minha Jornada</button>
+                    <div id="welcome-pwa-container" style="display: none; margin-top: 0.6rem; text-align: center; width: 100%;">
+                        <button id="welcome-pwa-btn" class="welcome-btn" style="background-color: transparent; border: 2px solid var(--gold); color: var(--gold-dark); box-shadow: none; font-size: 0.85rem; padding: 0.5rem 1.25rem; width: 100%;">
                             <i class="fa-solid fa-mobile-screen-button"></i> Instalar no Celular/PC
                         </button>
                     </div>
@@ -72,6 +148,52 @@
         }
     })();
 </script>
+
+<!-- INSTITUTIONS MODAL OVERLAY (V18) -->
+<div id="institutions-modal-overlay" class="welcome-overlay" style="display: none; z-index: 100001;">
+    <div class="welcome-modal" style="max-width: 700px; padding: 2.5rem; background-color: #f4e8c8; background-image: radial-gradient(circle at 20% 30%, rgba(139,69,19,0.08) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(139,69,19,0.08) 0%, transparent 40%), linear-gradient(135deg, #f4e8c8 0%, #ebd9a8 50%, #f4e8c8 100%); color: #3d2817; border: 2px solid #8b4513; border-radius: 8px; box-shadow: 0 25px 70px rgba(0,0,0,0.5), inset 0 0 120px rgba(139,69,19,0.08); font-family: 'Cormorant Garamond', 'Lora', serif; position: relative;">
+        <!-- Close Button -->
+        <button class="sidebar-close" onclick="window.closeInstitutionsModal()" style="position: absolute; top: 1.5rem; right: 1.5rem; background: rgba(139,69,19,0.15); border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #3d2817; font-size: 1.25rem;"><i class="fa-solid fa-xmark"></i></button>
+        
+        <h2 style="font-family: 'Lora', serif; font-size: 1.8rem; color: #5c2e0e; text-align: center; margin-bottom: 0.5rem; border: none; font-weight: 700;">Instituições Recomendadas</h2>
+        <p style="text-align: center; font-style: italic; color: #7a3f0e; font-size: 1rem; margin-bottom: 1.5rem;">— Formação de Excelência e Rigor Teológico no Brasil —</p>
+        
+        <div style="font-size: 1.05rem; line-height: 1.6; text-align: justify; margin-bottom: 1.5rem;">
+            O estudo individual e a mentoria assistida por inteligência artificial são complementos extraordinários, mas não substituem o valor de uma comunidade acadêmica formal e do discipulado face a face. Abaixo, recomendamos grandes instituições brasileiras comprometidas com a fidelidade bíblica e o ensino das línguas originais:
+        </div>
+        
+        <table class="ms-table" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 1.05rem; text-align: left; border: 1px solid rgba(139,69,19,0.3);">
+            <thead>
+                <tr style="background: #5c2e0e; color: #f4e8c8;">
+                    <th style="padding: 10px 12px; font-weight: 700;">Instituição</th>
+                    <th style="padding: 10px 12px; font-weight: 700; width: 80px; text-align: center;">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="border-bottom: 1px dashed rgba(139,69,19,0.3);">
+                    <td style="padding: 10px 12px;"><a href="https://faculdadebatistalogos.edu.br/" target="_blank" style="color: #8b4513; text-decoration: none; font-weight: bold; border-bottom: 1px dotted #8b4513;">Faculdade Batista Logos</a></td>
+                    <td style="padding: 10px 12px; text-align: center;">SP</td>
+                </tr>
+                <tr style="border-bottom: 1px dashed rgba(139,69,19,0.3);">
+                    <td style="padding: 10px 12px;"><a href="https://isbc.com.br/" target="_blank" style="color: #8b4513; text-decoration: none; font-weight: bold; border-bottom: 1px dotted #8b4513;">ISBC — Instituto Bíblico</a></td>
+                    <td style="padding: 10px 12px; text-align: center;">SP</td>
+                </tr>
+                <tr style="border-bottom: 1px dashed rgba(139,69,19,0.3);">
+                    <td style="padding: 10px 12px;"><a href="https://sbrscuritiba.com/" target="_blank" style="color: #8b4513; text-decoration: none; font-weight: bold; border-bottom: 1px dotted #8b4513;">SBRS — Seminário Batista do Sul</a></td>
+                    <td style="padding: 10px 12px; text-align: center;">PR</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 12px;"><a href="http://aibreb.org.br/instituicoes_seminarios.html" target="_blank" style="color: #8b4513; text-decoration: none; font-weight: bold; border-bottom: 1px dotted #8b4513;">AIBREB — Diretório de Seminários</a></td>
+                    <td style="padding: 10px 12px; text-align: center;">Nacional</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div style="text-align: center; margin-top: 1.5rem;">
+            <button class="welcome-btn" onclick="window.closeInstitutionsModal()" style="background-color: #8b4513; color: white; padding: 0.6rem 1.5rem; font-weight: 600; cursor: pointer; border-radius: 4px; box-shadow: 0 4px 15px rgba(139,69,19,0.2);">Entendido</button>
+        </div>
+    </div>
+</div>
 
 
 <div class="wrapper">
@@ -115,7 +237,8 @@
             <li class="nav-item"><a href="#port-infographic"><i class="fa-solid fa-image"></i> Mapa de Aceleração</a></li>
             <li class="nav-item"><a href="#port-downloads"><i class="fa-solid fa-circle-down"></i> Central de Downloads</a></li>
             
-            <li class="nav-item nav-external nav-coffee"><a href="#port-coffee"><i class="fa-solid fa-mug-hot" style="color: var(--gold);"></i> Me paga um cafezinho?</a></li>
+            <li class="nav-item nav-external"><a href="javascript:void(0);" onclick="window.showInstitutionsModal()"><i class="fa-solid fa-building-columns" style="color: var(--gold);"></i> Inst. Recomendadas</a></li>
+            <li class="nav-item nav-external nav-coffee"><a href="#port-coffee"><i class="fa-solid fa-mug-hot" style="color: var(--gold);"></i> Me paga um cafezino?</a></li>
         </ul>
 
         <!-- Menu Navigation - Hebrew -->
@@ -135,7 +258,8 @@
             <li class="nav-item"><a href="#heb-prompts"><i class="fa-solid fa-robot"></i> 13. Prompts de IA</a></li>
             <li class="nav-item"><a href="#heb-troubleshooting"><i class="fa-solid fa-triangle-exclamation"></i> 14. Solução de Dores</a></li>
             
-            <li class="nav-item nav-external nav-coffee"><a href="#port-coffee"><i class="fa-solid fa-mug-hot" style="color: var(--gold);"></i> Me paga um cafezinho?</a></li>
+            <li class="nav-item nav-external"><a href="javascript:void(0);" onclick="window.showInstitutionsModal()"><i class="fa-solid fa-building-columns" style="color: var(--gold);"></i> Inst. Recomendadas</a></li>
+            <li class="nav-item nav-external nav-coffee"><a href="#port-coffee"><i class="fa-solid fa-mug-hot" style="color: var(--gold);"></i> Me paga um cafezino?</a></li>
         </ul>
 
         <!-- Menu Navigation - Greek (Hidden by default) -->
@@ -155,8 +279,45 @@
             <li class="nav-item"><a href="#grk-prompts"><i class="fa-solid fa-robot"></i> 13. Prompts de IA</a></li>
             <li class="nav-item"><a href="#grk-troubleshooting"><i class="fa-solid fa-triangle-exclamation"></i> 14. Solução de Dores</a></li>
             
-            <li class="nav-item nav-external nav-coffee"><a href="#port-coffee"><i class="fa-solid fa-mug-hot" style="color: var(--gold);"></i> Me paga um cafezinho?</a></li>
+            <li class="nav-item nav-external"><a href="javascript:void(0);" onclick="window.showInstitutionsModal()"><i class="fa-solid fa-building-columns" style="color: var(--gold);"></i> Inst. Recomendadas</a></li>
+            <li class="nav-item nav-external nav-coffee"><a href="#port-coffee"><i class="fa-solid fa-mug-hot" style="color: var(--gold);"></i> Me paga um cafezino?</a></li>
         </ul>
+
+        <!-- Accessibility Panel (A11y - V18) -->
+        <div class="a11y-container" style="border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+            <span style="font-size: 0.75rem; font-weight: 700; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 0.4rem;">
+                <i class="fa-solid fa-universal-access"></i> Acessibilidade
+            </span>
+            <!-- Font Size Adjuster -->
+            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.825rem; font-weight: 600;">
+                <span>Tamanho do Texto</span>
+                <div style="display: flex; gap: 0.4rem;">
+                    <button onclick="window.adjustFontSize('decrease')" title="Diminuir texto" style="background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary); width: 28px; height: 28px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75rem;">A-</button>
+                    <button onclick="window.adjustFontSize('reset')" title="Tamanho padrão" style="background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary); width: 28px; height: 28px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75rem;"><i class="fa-solid fa-arrows-rotate"></i></button>
+                    <button onclick="window.adjustFontSize('increase')" title="Aumentar texto" style="background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary); width: 28px; height: 28px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75rem;">A+</button>
+                </div>
+            </div>
+            <!-- Dyslexia Font Toggle -->
+            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.825rem; font-weight: 600;">
+                <span>Fonte Dislexia</span>
+                <label class="theme-switch" style="position: relative; display: inline-block; width: 42px; height: 20px;">
+                    <input type="checkbox" id="dyslexia-toggle" onchange="window.toggleDyslexiaFont(this.checked)">
+                    <span class="slider" style="border-radius: 20px;"></span>
+                </label>
+            </div>
+            <!-- High Contrast Toggle -->
+            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.825rem; font-weight: 600;">
+                <span>Alto Contraste</span>
+                <label class="theme-switch" style="position: relative; display: inline-block; width: 42px; height: 20px;">
+                    <input type="checkbox" id="contrast-toggle" onchange="window.toggleHighContrast(this.checked)">
+                    <span class="slider" style="border-radius: 20px;"></span>
+                </label>
+            </div>
+            <!-- Text-to-Speech (Page Reader) -->
+            <button onclick="window.toggleTTS()" id="tts-btn" title="Ouvir Introdução" style="background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary); padding: 0.4rem 0.75rem; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; width: 100%; transition: var(--transition);">
+                <i id="tts-icon" class="fa-solid fa-volume-high" style="color: var(--gold-dark); font-size: 0.85rem;"></i> <span id="tts-text">Ouvir Introdução</span>
+            </button>
+        </div>
 
         <!-- Theme Switcher -->
         <div class="theme-toggle-container">
@@ -574,7 +735,7 @@
 
             <!-- ================= APOIO / CAFEZINHO (FLAT INTEGRATION V16) ================= -->
             <section class="section-card" id="port-coffee">
-                <h3 class="section-title"><i class="fa-solid fa-mug-hot"></i> Me paga um cafezinho? ☕</h3>
+                <h3 class="section-title"><i class="fa-solid fa-mug-hot"></i> Me paga um cafezino? ☕</h3>
                 <p>
                     Se este portal unificado, os infográficos de rotina e as metodologias de aceleração com IA têm sido úteis para a sua edificação e estudos das línguas originais, apoie a curadoria de <strong>Rogério Ramão Lopes</strong>!
                 </p>
