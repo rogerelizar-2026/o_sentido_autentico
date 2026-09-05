@@ -4,7 +4,7 @@
 ### Curadoria Acadêmica e Teológica por **Rogério Ramão Lopes** (`rogerelizar@gmail.com`)
 *Desenvolvido em Setembro de 2026*
 
-Este é o repositório oficial do **Portal de Estudos de Línguas Bíblicas (Hebraico, Aramaico e Grego Koiné)**, um ambiente web interativo, responsivo e offline-first projetado sob medida para seminaristas, pastores, líderes cristãos e autodidatas brasileiros. 
+Este é o repositório oficial do **Portal de Estudos de Línguas Bíblicas (Hebraico, Aramaico e Grego Koiné)  O Sentido Autêntico**, um ambiente web interativo, responsivo e offline-first projetado sob medida para seminaristas, pastores, líderes cristãos e autodidatas brasileiros. 
 
 O portal foi estruturado para ser uma **esteira de estudos progressiva de 5 níveis** (da Fundação à Fluência), combinando rigor acadêmico clássico com a inteligência artificial do **Notebook Gemini** para triplicar a velocidade de aprendizado e retenção dos textos bíblicos originais.
 
