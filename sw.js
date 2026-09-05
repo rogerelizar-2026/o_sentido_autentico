@@ -1,4 +1,4 @@
-const CACHE_NAME = 'o-sentido-autentico-cache-v4';
+const CACHE_NAME = 'o-sentido-autentico-cache-v5';
 const ASSETS = [
     'index.html',
     'styles.css',
