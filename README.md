@@ -1,4 +1,4 @@
-# O Sentido Autênticos v.1.0
+# O Sentido Autêntico v.1.0
 
 ### Tecnologia e profundidade histórica para conectar você ao sopro original de Deus.
 ### Curadoria Acadêmica e Teológica por **Rogério Ramão Lopes** (`rogerelizar@gmail.com`)
