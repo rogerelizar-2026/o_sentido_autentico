@@ -37,6 +37,12 @@
             padding: 0;
         }
 
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-primary);
@@ -61,6 +67,9 @@
         .wrapper {
             display: flex;
             min-height: 100vh;
+            overflow-x: hidden !important;
+            max-width: 100% !important;
+            width: 100% !important;
         }
 
         .sidebar {
@@ -448,6 +457,8 @@
             padding: 3rem;
             max-width: 1200px;
             margin: 0 auto;
+            overflow-x: hidden !important;
+            width: 100% !important;
         }
 
         /* Theological Header Banner */
@@ -543,7 +554,7 @@
         /* Methods Cards & Grid */
         .grid-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
             gap: 1.5rem;
             margin-top: 1.5rem;
         }
@@ -594,6 +605,15 @@
             border-radius: 10px;
             padding: 1.5rem;
             min-height: 350px;
+            position: relative !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow: hidden !important;
+        }
+        
+        .chart-box canvas {
+            max-width: 100% !important;
+            height: auto !important;
         }
 
         /* Infographic Layout Section */
@@ -659,7 +679,7 @@
         /* UI Timetable Blocks */
         .time-blocks {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
             gap: 1rem;
             margin-top: 1.5rem;
         }
@@ -943,7 +963,7 @@
 /* Download Grid and Cards Layout */
 .download-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
 }
@@ -1590,7 +1610,7 @@ body.sidebar-collapsed .sidebar-toggle-fab {
 /* Download Grid and Cards Layout */
 .download-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
 }
@@ -2467,4 +2487,126 @@ input:focus, select:focus, textarea:focus, button:focus, a:focus {
 }
 #welcome-scroll-container::-webkit-scrollbar-thumb:hover {
     background: var(--gold-dark);
+}
+
+
+/* ==========================================================================
+   V20 MOBILE RESPONSIVENESS & UI/UX REFINEMENTS (TABLES-TO-CARDS & BOOK WRAPPING)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Prevent table miniaturization or ugly scroll */
+    .table-responsive {
+        border: none !important;
+        overflow-x: visible !important;
+        background: transparent !important;
+    }
+    
+    .table-responsive table,
+    .table-responsive tbody,
+    .table-responsive tr,
+    .table-responsive td {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .table-responsive thead {
+        display: none !important; /* Hide standard headers */
+    }
+    
+    .table-responsive tr {
+        background: var(--card-bg) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 16px !important;
+        margin-bottom: 2rem !important;
+        padding: 1.5rem !important;
+        box-shadow: var(--shadow) !important;
+        transition: transform 0.2s ease;
+    }
+    
+    .table-responsive tr:hover {
+        transform: translateY(-2px);
+    }
+    
+    .table-responsive td {
+        border: none !important;
+        border-bottom: 1px dashed var(--border-color) !important;
+        padding: 0.8rem 0 !important;
+        text-align: left !important;
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+        color: var(--text-primary) !important;
+    }
+    
+    /* Prepend custom text descriptions to cells for better context on mobile */
+    .table-responsive td:before {
+        font-weight: 700;
+        color: var(--gold-dark);
+        display: block;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.25rem;
+    }
+    
+    /* Specific labels for portal books comparison table */
+    #portal-menu + .table-responsive td:nth-of-type(1):before { content: "Capa do Livro"; }
+    #portal-menu + .table-responsive td:nth-of-type(2):before { content: "Obra / Autor"; }
+    #portal-menu + .table-responsive td:nth-of-type(3):before { content: "Editora"; }
+    #portal-menu + .table-responsive td:nth-of-type(4):before { content: "Nível Indicado"; }
+    #portal-menu + .table-responsive td:nth-of-type(5):before { content: "Resumo Didático"; }
+
+    /* Specific labels for hebrew comparison table */
+    #hebrew-menu + .table-responsive td:nth-of-type(1):before { content: "Capa / Obra"; }
+    #hebrew-menu + .table-responsive td:nth-of-type(2):before { content: "Editora"; }
+    #hebrew-menu + .table-responsive td:nth-of-type(3):before { content: "Nível Indicado"; }
+    #hebrew-menu + .table-responsive td:nth-of-type(4):before { content: "Resumo Didático"; }
+    #hebrew-menu + .table-responsive td:nth-of-type(5):before { content: "Uso Prático"; }
+
+    /* Specific labels for greek comparison table */
+    #greek-menu + .table-responsive td:nth-of-type(1):before { content: "Capa / Obra"; }
+    #greek-menu + .table-responsive td:nth-of-type(2):before { content: "Editora"; }
+    #greek-menu + .table-responsive td:nth-of-type(3):before { content: "Nível Indicado"; }
+    #greek-menu + .table-responsive td:nth-of-type(4):before { content: "Resumo Didático"; }
+    #greek-menu + .table-responsive td:nth-of-type(5):before { content: "Uso Prático"; }
+
+    .table-responsive td:last-child {
+        border-bottom: none !important;
+    }
+    
+    /* Make the book covers large, centered, and gorgeous on mobile */
+    .book-with-cover {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 12px !important;
+        width: 100% !important;
+        padding: 0.5rem 0 !important;
+    }
+    
+    .book-cover, .book-cover-img {
+        width: 140px !important;  /* scaled up for mobile screens */
+        height: 200px !important;
+        object-fit: cover !important;
+        border-radius: 8px !important;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.15) !important;
+        margin: 0 auto 0.5rem auto !important;
+        display: block !important;
+    }
+    
+    /* Enhance font sizes and spacing for mobile reading comfort */
+    .section-card {
+        padding: 1.5rem !important;
+        border-radius: 12px !important;
+    }
+    
+    .section-title {
+        font-size: 1.35rem !important;
+        margin-bottom: 1.25rem !important;
+    }
+    
+    p, li {
+        font-size: 1rem !important; /* Ensure highly readable text sizes on mobile */
+        line-height: 1.65 !important;
+    }
 }
