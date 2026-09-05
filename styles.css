@@ -2379,3 +2379,92 @@ body.sidebar-collapsed .sidebar-toggle-fab {
         width: 100%;
     }
 }
+
+
+/* ==========================================================================
+   V18 ACCESSIBILITY (A11Y) AND MANUSCRIPT MODAL STYLES
+   ========================================================================== */
+
+/* Dyslexia Font styling with increased spacing and highly readable fallback */
+body.dyslexia-font, 
+body.dyslexia-font * {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+    letter-spacing: 0.08em !important;
+    word-spacing: 0.12em !important;
+    line-height: 1.8 !important;
+}
+
+/* High Contrast Override (Standard Theme Overrides) */
+body.high-contrast {
+    --bg-primary: #ffffff !important;
+    --bg-secondary: #f2f2f2 !important;
+    --card-bg: #ffffff !important;
+    --text-primary: #000000 !important;
+    --text-secondary: #000000 !important;
+    --gold: #000000 !important;
+    --gold-dark: #000000 !important;
+    --border-color: #000000 !important;
+    --shadow: none !important;
+}
+
+body.high-contrast[data-theme="dark"],
+body.high-contrast [data-theme="dark"],
+body.high-contrast.dark,
+[data-theme="dark"] body.high-contrast {
+    --bg-primary: #000000 !important;
+    --bg-secondary: #000000 !important;
+    --card-bg: #111111 !important;
+    --text-primary: #ffffff !important;
+    --text-secondary: #ffffff !important;
+    --gold: #ffff00 !important;
+    --gold-dark: #ffff00 !important;
+    --border-color: #ffffff !important;
+    --shadow: none !important;
+}
+
+/* Manuscript & Recommended Institutions styling (V18) */
+.ms-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 18px;
+    font-family: inherit;
+}
+.ms-table th {
+    background: #5c2e0e;
+    color: #f4e8c8;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 14px;
+}
+.ms-table td {
+    padding: 8px 10px;
+    border-bottom: 1px dashed rgba(139, 69, 19, 0.3);
+    font-size: 14px;
+}
+.ms-table a {
+    color: #8b4513;
+    text-decoration: none;
+    border-bottom: 1px dotted #8b4513;
+    font-weight: 600;
+}
+
+/* Smooth Focus Indicators for Keyboard Users */
+input:focus, select:focus, textarea:focus, button:focus, a:focus {
+    outline: 3px solid var(--gold) !important;
+    outline-offset: 2px !important;
+}
+
+/* Scrollbar customization for the scroll areas */
+#welcome-scroll-container::-webkit-scrollbar {
+    width: 6px;
+}
+#welcome-scroll-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+#welcome-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 4px;
+}
+#welcome-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-dark);
+}
