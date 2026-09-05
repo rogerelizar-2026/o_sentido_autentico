@@ -431,7 +431,44 @@
         .manual-problem { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; }
         .manual-problem .problem-title { font-weight: 700; color: var(--primary); margin-bottom: 4px; font-size: 13px; }
         .manual-problem .problem-solution { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
-    </style>
+    
+    /* V20 MOBILE OVERRIDES FOR FERRAMENTAS BIBLICAS */
+    @media (max-width: 768px) {
+        .ms-table, .ms-table tbody, .ms-table tr, .ms-table td {
+            display: block !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        .ms-table thead {
+            display: none !important;
+        }
+        .ms-table tr {
+            background: rgba(139,69,19,0.05) !important;
+            border: 1px solid rgba(139,69,19,0.2) !important;
+            border-radius: 8px !important;
+            margin-bottom: 1rem !important;
+            padding: 1rem !important;
+        }
+        .ms-table td {
+            border: none !important;
+            border-bottom: 1px dashed rgba(139,69,19,0.2) !important;
+            padding: 0.5rem 0 !important;
+        }
+        .ms-table td:last-child {
+            border-bottom: none !important;
+        }
+        .ms-table td:before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: #8b4513;
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            margin-bottom: 0.15rem;
+        }
+    }
+    
+</style>
 </head>
 <body class="portal-active">
 
