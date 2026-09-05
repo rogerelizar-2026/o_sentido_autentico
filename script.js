@@ -210,6 +210,29 @@
 
     // Chart.js Configuration for Hebrew and Greek
     window.addEventListener('DOMContentLoaded', () => {
+    // Apply saved A11y settings
+    if (localStorage.getItem('dyslexiaActive') === 'true') {
+        document.body.classList.add('dyslexia-font');
+        const dyslexiaToggle = document.getElementById('dyslexia-toggle');
+        if (dyslexiaToggle) dyslexiaToggle.checked = true;
+    }
+    if (localStorage.getItem('contrastActive') === 'true') {
+        document.body.classList.add('high-contrast');
+        const contrastToggle = document.getElementById('contrast-toggle');
+        if (contrastToggle) contrastToggle.checked = true;
+    }
+    if (localStorage.getItem('fontScale')) {
+        const savedScale = parseFloat(localStorage.getItem('fontScale'));
+        window.adjustFontSize('reset'); // set default reference scale
+        // apply saved scale
+        setTimeout(() => {
+            const elementsToScale = document.querySelectorAll('.content p, .content li, .content td, .content h3, .content h4, .content span');
+            elementsToScale.forEach(el => {
+                el.style.fontSize = `calc(1rem * ${savedScale})`;
+            });
+        }, 100);
+    }
+
         // --- HEBREW CHARTS ---
         
         // Chart 1: Complexidade vs Tempo (Scatter Plot)
@@ -915,6 +938,29 @@ window.toggleBiblicalMute = toggleBiblicalMute;
 
 // Check if welcome modal was already dismissed on load, and init player
 window.addEventListener('DOMContentLoaded', () => {
+    // Apply saved A11y settings
+    if (localStorage.getItem('dyslexiaActive') === 'true') {
+        document.body.classList.add('dyslexia-font');
+        const dyslexiaToggle = document.getElementById('dyslexia-toggle');
+        if (dyslexiaToggle) dyslexiaToggle.checked = true;
+    }
+    if (localStorage.getItem('contrastActive') === 'true') {
+        document.body.classList.add('high-contrast');
+        const contrastToggle = document.getElementById('contrast-toggle');
+        if (contrastToggle) contrastToggle.checked = true;
+    }
+    if (localStorage.getItem('fontScale')) {
+        const savedScale = parseFloat(localStorage.getItem('fontScale'));
+        window.adjustFontSize('reset'); // set default reference scale
+        // apply saved scale
+        setTimeout(() => {
+            const elementsToScale = document.querySelectorAll('.content p, .content li, .content td, .content h3, .content h4, .content span');
+            elementsToScale.forEach(el => {
+                el.style.fontSize = `calc(1rem * ${savedScale})`;
+            });
+        }, 100);
+    }
+
     const overlay = document.getElementById('welcome-modal-overlay');
     if (overlay) {
         if (localStorage.getItem('welcomeModalDismissed') === 'true') {
@@ -1042,3 +1088,123 @@ window.closeMediaPreviewModal = closeMediaPreviewModal;
             }
         });
     });
+
+
+// ==========================================
+// V18 ACCESSIBILITY (A11Y) & RECOMMENDED INSTITUTIONS MODAL LOGIC
+// ==========================================
+
+// Close button state on welcome modal
+function toggleWelcomeButton(checked) {
+    const btn = document.getElementById('welcome-start-btn');
+    if (btn) {
+        if (checked) {
+            btn.removeAttribute('disabled');
+            btn.style.opacity = '1.0';
+            btn.style.pointerEvents = 'auto';
+        } else {
+            btn.setAttribute('disabled', 'true');
+            btn.style.opacity = '0.5';
+            btn.style.pointerEvents = 'none';
+        }
+    }
+}
+window.toggleWelcomeButton = toggleWelcomeButton;
+
+// Recommended Institutions Modal
+function showInstitutionsModal() {
+    const modal = document.getElementById('institutions-modal-overlay');
+    if (modal) {
+        modal.classList.add('show');
+    }
+}
+function closeInstitutionsModal() {
+    const modal = document.getElementById('institutions-modal-overlay');
+    if (modal) {
+        modal.classList.remove('show');
+    }
+}
+window.showInstitutionsModal = showInstitutionsModal;
+window.closeInstitutionsModal = closeInstitutionsModal;
+
+// Font Size Adjuster
+let currentFontScale = 1.0;
+function adjustFontSize(action) {
+    if (action === 'increase') {
+        currentFontScale = Math.min(currentFontScale + 0.1, 1.4);
+    } else if (action === 'decrease') {
+        currentFontScale = Math.max(currentFontScale - 0.1, 0.8);
+    } else {
+        currentFontScale = 1.0;
+    }
+    
+    // Set text size dynamically on main elements
+    const elementsToScale = document.querySelectorAll('.content p, .content li, .content td, .content h3, .content h4, .content span');
+    elementsToScale.forEach(el => {
+        el.style.fontSize = `calc(1rem * ${currentFontScale})`;
+    });
+    
+    localStorage.setItem('fontScale', currentFontScale);
+}
+window.adjustFontSize = adjustFontSize;
+
+// Dyslexia Font Toggle
+function toggleDyslexiaFont(checked) {
+    if (checked) {
+        document.body.classList.add('dyslexia-font');
+        localStorage.setItem('dyslexiaActive', 'true');
+    } else {
+        document.body.classList.remove('dyslexia-font');
+        localStorage.removeItem('dyslexiaActive');
+    }
+}
+window.toggleDyslexiaFont = toggleDyslexiaFont;
+
+// High Contrast Toggle
+function toggleHighContrast(checked) {
+    if (checked) {
+        document.body.classList.add('high-contrast');
+        localStorage.setItem('contrastActive', 'true');
+    } else {
+        document.body.classList.remove('high-contrast');
+        localStorage.removeItem('contrastActive');
+    }
+}
+window.toggleHighContrast = toggleHighContrast;
+
+// TTS (Text-to-Speech Page Reader)
+let activeUtterance = null;
+function toggleTTS() {
+    const btnText = document.getElementById('tts-text');
+    const btnIcon = document.getElementById('tts-icon');
+    
+    if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        if (btnText) btnText.innerText = "Ouvir Introdução";
+        if (btnIcon) btnIcon.className = "fa-solid fa-volume-high";
+        return;
+    }
+    
+    // Read the portal intro text
+    const introEl = document.getElementById('port-intro');
+    if (!introEl) return;
+    
+    const text = introEl.innerText || introEl.textContent;
+    activeUtterance = new SpeechSynthesisUtterance(text);
+    activeUtterance.lang = 'pt-BR';
+    
+    activeUtterance.onend = () => {
+        if (btnText) btnText.innerText = "Ouvir Introdução";
+        if (btnIcon) btnIcon.className = "fa-solid fa-volume-high";
+    };
+    activeUtterance.onerror = () => {
+        if (btnText) btnText.innerText = "Ouvir Introdução";
+        if (btnIcon) btnIcon.className = "fa-solid fa-volume-high";
+    };
+    
+    if (btnText) btnText.innerText = "Parar Leitura";
+    if (btnIcon) btnIcon.className = "fa-solid fa-circle-stop";
+    
+    window.speechSynthesis.speak(activeUtterance);
+}
+window.toggleTTS = toggleTTS;
