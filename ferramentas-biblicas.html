@@ -517,6 +517,24 @@
             <input id="searchInput" oninput="filterResources()" type="text" placeholder="Buscar título, descrição ou URL…" class="w-full h-12 pl-11 pr-4 text-[14px]">
         </div>
 
+        <div class="grid grid-cols-2 gap-3 mb-4">
+            <div>
+                <div class="text-[10px] uppercase tracking-wider mb-1.5 font-bold" style="color:var(--text-muted)">Idioma do Livro</div>
+                <select id="bookLanguage" onchange="updateBookList()" class="w-full h-12 px-3 rounded-xl text-[14px]" style="background:var(--surface); border:1px solid var(--border); color:var(--text)">
+                    <option value="pt-BR">Português (BR)</option>
+                    <option value="pt-PT">Português (PT)</option>
+                    <option value="es">Espanhol (ES)</option>
+                    <option value="en">Inglês (US)</option>
+                </select>
+            </div>
+            <div>
+                <div class="text-[10px] uppercase tracking-wider mb-1.5 font-bold" style="color:var(--text-muted)">Livro Bíblico</div>
+                <select id="bookFilter" onchange="filterResources()" class="w-full h-12 px-3 rounded-xl text-[14px]" style="background:var(--surface); border:1px solid var(--border); color:var(--text)">
+                    <option value="">Todos os Livros</option>
+                </select>
+            </div>
+        </div>
+
         <div class="text-[10px] uppercase tracking-wider mb-1.5 font-bold" style="color:var(--text-muted)">Língua</div>
         <div class="scroll-x flex gap-2 mb-4" id="langChips"></div>
         <div class="text-[10px] uppercase tracking-wider mb-1.5 font-bold" style="color:var(--text-muted)">Tipo</div>
@@ -1229,6 +1247,67 @@
         }
     }
 
+    // Book list by language for biblical book search
+    const biblicalBooks = {
+        'pt-BR': [
+            'Gênesis', 'Êxodo', 'Levítico', 'Números', 'Deuteronômio', 'Josué', 'Juízes', 'Rute',
+            '1 Samuel', '2 Samuel', '1 Reis', '2 Reis', '1 Crônicas', '2 Crônicas', 'Esdras', 'Neemias', 'Ester',
+            'Jó', 'Salmos', 'Provérbios', 'Eclesiastes', 'Cânticos', 'Isaías', 'Jeremias', 'Lamentações', 'Ezequiel', 'Daniel',
+            'Oseias', 'Joel', 'Amós', 'Obadias', 'Jonas', 'Miqueias', 'Naum', 'Habacuque', 'Sofonias', 'Ageu', 'Zacarias', 'Malaquias',
+            'Mateus', 'Marcos', 'Lucas', 'João', 'Atos', 'Romanos', '1 Coríntios', '2 Coríntios', 'Gálatas', 'Efésios', 'Filipenses',
+            'Colossenses', '1 Tessalonicenses', '2 Tessalonicenses', '1 Timóteo', '2 Timóteo', 'Tito', 'Filemom', 'Hebreus', 'Tiago',
+            '1 Pedro', '2 Pedro', '1 João', '2 João', '3 João', 'Judas', 'Apocalipse'
+        ],
+        'pt-PT': [
+            'Génesis', 'Êxodo', 'Levítico', 'Números', 'Deuteronómio', 'Josué', 'Juízes', 'Rute',
+            '1 Samuel', '2 Samuel', '1 Reis', '2 Reis', '1 Crónicas', '2 Crónicas', 'Esdras', 'Neemias', 'Ester',
+            'Jó', 'Salmos', 'Provérbios', 'Eclesiastes', 'Cânticos', 'Isaías', 'Jeremias', 'Lamentações', 'Ezequiel', 'Daniel',
+            'Oseias', 'Joel', 'Amós', 'Obadias', 'Jonas', 'Miqueias', 'Naum', 'Habacuque', 'Sofonias', 'Ageu', 'Zacarias', 'Malaquias',
+            'Mateus', 'Marcos', 'Lucas', 'João', 'Atos', 'Romanos', '1 Coríntios', '2 Coríntios', 'Gálatas', 'Efésios', 'Filipenses',
+            'Colossenses', '1 Tessalonicenses', '2 Tessalonicenses', '1 Timóteo', '2 Timóteo', 'Tito', 'Filemom', 'Hebreus', 'Tiago',
+            '1 Pedro', '2 Pedro', '1 João', '2 João', '3 João', 'Judas', 'Apocalipse'
+        ],
+        'es': [
+            'Génesis', 'Éxodo', 'Levítico', 'Números', 'Deuteronomio', 'Josué', 'Jueces', 'Rut',
+            '1 Samuel', '2 Samuel', '1 Reyes', '2 Reyes', '1 Crónicas', '2 Crónicas', 'Esdras', 'Nehemías', 'Ester',
+            'Job', 'Salmos', 'Proverbios', 'Eclesiastés', 'Cantares', 'Isaías', 'Jeremías', 'Lamentaciones', 'Ezequiel', 'Daniel',
+            'Oseas', 'Joel', 'Amós', 'Abdías', 'Jonás', 'Miqueas', 'Nahúm', 'Habacuc', 'Sofonías', 'Hageo', 'Zacarías', 'Malaquías',
+            'Mateo', 'Marcos', 'Lucas', 'Juan', 'Hechos', 'Romanos', '1 Corintios', '2 Corintios', 'Gálatas', 'Efesios', 'Filipenses',
+            'Colosenses', '1 Tesalonicenses', '2 Tesalonicenses', '1 Timoteo', '2 Timoteo', 'Tito', 'Filemón', 'Hebreos', 'Santiago',
+            '1 Pedro', '2 Pedro', '1 Juan', '2 Juan', '3 Juan', 'Judas', 'Apocalipsis'
+        ],
+        'en': [
+            'Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy', 'Joshua', 'Judges', 'Ruth',
+            '1 Samuel', '2 Samuel', '1 Kings', '2 Kings', '1 Chronicles', '2 Chronicles', 'Ezra', 'Nehemiah', 'Esther',
+            'Job', 'Psalms', 'Proverbs', 'Ecclesiastes', 'Song of Solomon', 'Isaiah', 'Jeremiah', 'Lamentations', 'Ezekiel', 'Daniel',
+            'Hosea', 'Joel', 'Amos', 'Obadiah', 'Jonah', 'Micah', 'Nahum', 'Habakkuk', 'Zephaniah', 'Haggai', 'Zechariah', 'Malachi',
+            'Matthew', 'Mark', 'Luke', 'John', 'Acts', 'Romans', '1 Corinthians', '2 Corinthians', 'Galatians', 'Ephesians', 'Philippians',
+            'Colossians', '1 Thessalonians', '2 Thessalonians', '1 Timothy', '2 Timothy', 'Titus', 'Philemon', 'Hebrews', 'James',
+            '1 Peter', '2 Peter', '1 John', '2 John', '3 John', 'Jude', 'Revelation'
+        ]
+    };
+
+    function updateBookList() {
+        const langSelect = document.getElementById('bookLanguage');
+        const bookSelect = document.getElementById('bookFilter');
+        const selectedLang = langSelect.value;
+        const books = biblicalBooks[selectedLang] || [];
+        
+        const currentSelection = bookSelect.value;
+        
+        bookSelect.innerHTML = '<option value="">Todos os Livros</option>';
+        books.forEach(book => {
+            const option = document.createElement('option');
+            option.value = book.toLowerCase();
+            option.textContent = book;
+            bookSelect.appendChild(option);
+        });
+        
+        if (books.some(b => b.toLowerCase() === currentSelection)) {
+            bookSelect.value = currentSelection;
+        }
+    }
+
     function renderFilterChips() {
         const langs = ["Hebraico/Aramaico", "Grego Koiné", "Geral"];
         const types = ["Ferramenta de Parsing", "Diagrama/Infográfico", "Artigo Acadêmico", "Trabalho-Modelo", "Software", "Outros"];
@@ -1277,18 +1356,20 @@
 
     function filterResources() {
         const query = document.getElementById('searchInput').value.toLowerCase().trim();
+        const bookFilter = document.getElementById('bookFilter').value.toLowerCase().trim();
         const filtered = resources.filter(res => {
             const matchesQuery = !query || 
                 res.titulo.toLowerCase().includes(query) || 
                 res.descricao.toLowerCase().includes(query) || 
                 res.url.toLowerCase().includes(query);
             
+            const matchesBook = !bookFilter || res.titulo.toLowerCase().includes(bookFilter);
             const matchesLang = !activeFilters.lingua || res.lingua === activeFilters.lingua;
             const matchesType = !activeFilters.tipo || res.tipo === activeFilters.tipo;
             const matchesSub = !activeFilters.subcategoria || res.subcategoria === activeFilters.subcategoria;
             const matchesLevel = !activeFilters.nivel || res.nivel === activeFilters.nivel;
 
-            return matchesQuery && matchesLang && matchesType && matchesSub && matchesLevel;
+            return matchesQuery && matchesBook && matchesLang && matchesType && matchesSub && matchesLevel;
         });
 
         const list = document.getElementById('cardList');
@@ -1994,6 +2075,7 @@
             if (label) label.innerText = 'Modo Claro';
         }
 
+        updateBookList();
         updateDashboardStats();
         renderFilterChips();
         filterResources();
