@@ -1,66 +1,39 @@
-# O Sentido Autêntico v.1.0
-## "Tecnologia e profundidade histórica para conectar você ao 'sopro' original de Deus."
-### Curadoria Acadêmica  por **Rogério Ramão Lopes** (`rogerelizar@gmail.com`)
+# Línguas Bíblicas v.1.0
+
+### Curadoria Acadêmica e Teológica por **Rogério Ramão Lopes** (`rogerelizar@gmail.com`)
 *Desenvolvido em Setembro de 2026*
 
----
+Este é o repositório oficial do **Portal de Estudos de Línguas Bíblicas (Hebraico, Aramaico e Grego Koiné)**, um ambiente web interativo, responsivo e offline-first projetado sob medida para seminaristas, pastores, líderes cristãos e autodidatas brasileiros. 
 
-## 📖 Sobre o Projeto
-
-O **O Sentido Autêntico** é uma plataforma educacional e um ecossistema digital de código aberto (*open-source*) projetado especificamente para guiar estudantes de teologia, pastores e autodidatas brasileiros no aprendizado profundo do **Hebraico Bíblico, Aramaico e Grego Koiné**. 
-
-O projeto preenche a lacuna clássica entre a memorização morfológica mecânica e a verdadeira exegese teológica. Integrando o que há de melhor nas gramáticas de referência nacional e internacional (como **Allen Ross** para o Hebraico, **Lourenço Stelio Rega e William Mounce** para a morfologia de Grego, e **Daniel B. Wallace** para a sintaxe exegética do Novo Testamento), a plataforma propõe um **caminho de aprendizado econômico (R$ 0,00)** impulsionado pela consistência diária e potencializado pelo uso inteligente de inteligência artificial.
+O portal foi estruturado para ser uma **esteira de estudos progressiva de 5 níveis** (da Fundação à Fluência), combinando rigor acadêmico clássico com a inteligência artificial do **Notebook Gemini** para triplicar a velocidade de aprendizado e retenção dos textos bíblicos originais.
 
 ---
 
-## 🎨 Principais Recursos & Engenharia de UX/UI
+## 📂 Estrutura do Repositório (Pronto para GitHub Pages)
 
-O portal foi desenvolvido utilizando padrões modernos de desenvolvimento web e focado em uma experiência móvel fluida (*mobile-first*):
+Para hospedar o projeto no GitHub Pages e torná-lo instalável no celular/computador como aplicativo (PWA), organize sua pasta raiz exatamente assim:
 
-*   **Navegação Lateral Inteligente (Desktop & Mobile):** Uma sidebar estilizada com ocultação automática após 4 segundos de inatividade e botão flutuante dourado (**FAB**) para reabertura, otimizando 100% da largura útil da tela para a leitura focada dos textos.
-*   **Acessibilidade Universal Integrada (A11y Panel):**
-    *   *Leitor de Voz (Text-to-Speech):* Síntese de fala integrada que lê em voz alta a introdução acadêmica do portal diretamente pelo navegador.
-    *   *Fonte Amigável para Dislexia:* Alternador dinâmico de fonte que melhora o espaçamento de caracteres e linhas, reduzindo a fadiga visual.
-    *   *Alto Contraste:* Controles de contraste absoluto para pessoas com baixa visão ou daltonismo.
-    *   *Ajuste Dinâmico de Fontes:* Botões dedicados para aumentar, diminuir ou restaurar a escala tipográfica de todo o conteúdo útil.
-*   **Player de Áudio Premium:** Um reprodutor de áudio customizado integrado para a escuta da palestra-curadoria *Línguas Bíblicas e Tecnologia* (22m24s), com barra de progresso responsiva, controle de volume fino e animação pulsante circular em ouro no ícone do microfone durante a reprodução.
-*   **Transformação de Tabelas Responsivas:** Engenharia CSS que transforma tabelas densas em cartões verticais independentes em telas de celulares, mantendo as capas dos livros grandes, centralizadas e com as descrições fluindo confortavelmente logo abaixo da imagem, eliminando o incômodo zoom horizontal.
-*   **Disclaimer e Termo de Consentimento:** Um modal de abertura de duas colunas (Welcome Modal) com o manifesto teológico do projeto, assinatura de curadoria, isenções de responsabilidade acadêmica e um checkbox interativo que habilita o botão de entrada somente após o consentimento do propósito do estudo.
-*   **Seção Flat de Apoio Financeiro:** Um card estático estilizado com bordas douradas tracejadas posicionado no encerramento da página principal, contendo um botão de clique único para cópia instantânea da chave PIX oficial.
-
----
-
-## 🛠️ Catálogo Integrado: "Ferramentas Bíblicas"
-
-Incluído como um aplicativo de apoio direto, o **`ferramentas-biblicas.html`** funciona como um mini cofre digital pessoal onde o estudante pode:
-*   **Minerar Recursos:** Interface no estilo de cards deslizáveis (*swipe*) para avaliar, descartar ou salvar links acadêmicos úteis de exegese, dicionários e softwares (Sefaria, STEP Bible, Blue Letter Bible).
-*   **Favoritar e Catalogar:** Banco de dados offline local (*localStorage*) para guardar recursos essenciais de pesquisa exegética.
-*   **Exportar para PDF:** Geração de um catálogo de recursos em tamanho A4 estruturado de forma acadêmica para impressão ou backup físico.
-*   **Sobre & Instituições:** Modal em formato de manuscrito clássico em papel pergaminho detalhando o propósito do projeto e recomendando as grandes faculdades e seminários brasileiros de rigor teológico (Faculdade Batista Logos, ISBC e SBRS).
-
----
-
-## 📂 Estrutura do Repositório
-
-```bash
-o-sentido-autentico/
-├── index.html                   # Página principal (Portal, Hebraico e Grego)
-├── ferramentas-biblicas.html    # Aplicativo de mineração, favoritos e PDF
-├── styles.css                   # Folha de estilos responsiva com Modo Escuro e A11y
-├── script.js                   # Lógicas de navegação, player de áudio e acessibilidade
-├── sw.js                        # Service Worker para caching offline completo (PWA)
-├── manifest.json                # Manifesto de instalação do aplicativo no celular/PC
-├── README.md                    # Documentação do projeto
-├── processar_imagens.py         # Script Python utilitário para otimização de capas
-└── imagens/                     # Direpório local contendo as capas de livros e infográficos
-🚀 Como Executar e Instalar
-O portal foi construído como um aplicativo web progressivo (PWA), o que significa que ele pode ser executado offline diretamente no seu dispositivo:
-Acesse o link oficial do portal: https://seu-usuario.github.io/o-sentido-autentico/
-Instale como Aplicativo: No seu navegador (Chrome, Edge ou Safari), clique no ícone de instalação localizado na barra lateral ou no menu de opções para adicionar O Sentido Autêntico à tela de início do seu smartphone ou computador.
-Aproveite Offline: Uma vez instalado, o Service Worker garante que você possa acessar os roteiros de 5 níveis, cronogramas, deques do Anki e prompts de IA mesmo sem conexão com a internet.
-📜 Licença e Direitos Autorais
-Este projeto foi idealizado e desenvolvido sob a curadoria teológica e acadêmica de Rogério Ramão Lopes em Setembro de 2026.
-Todos os direitos reservados. Licenciado sob os termos da licença internacional Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 (CC BY-NC-SA 4.0). Você está livre para compartilhar e adaptar o material, desde que atribua o crédito apropriado ao autor, não o utilize para fins comerciais e distribua suas contribuições sob a mesma licença.
+```
+linguas-biblicas/
+├── index.html                 ← Portal central (HTML5 semântico)
+├── ferramentas-biblicas.html  ← Catálogo de Hermenêutica e Mineração (opcional)
+├── línguas_bíblicas_e_tecnologia.m4a ← Palestra de áudio-curadoria (22 min 24 seg)
+├── styles.css                 ← Folha de estilos premium com Modo Escuro
+├── script.js                  ← Lógica das abas, Chart.js, player e modal
+├── manifest.json              ← Configurações PWA (Instalação e Ícones)
+├── sw.js                      ← Service Worker (Suporte 100% Offline e Cache)
+├── processar_imagens.py       ← Utilitário em Python para processamento de capas
+├── README.md                  ← Este arquivo descritivo
+└── imagens/                   ← Pasta local de ativos de imagem
+    ├── infografico-hebraico.png  ← Roteiro estruturado de Hebraico/Aramaico
+    ├── infografico-grego.png     ← Roteiro estruturado de Grego Koiné
+    ├── infografico-gemini.png    ← Esteira de aceleração com Notebook Gemini
+    ├── infografico-notebook.png  ← Guia de softwares e ferramentas
+    ├── capa-ross.png             ← Capa da gramática de Allen P. Ross (.png ou .jpg)
+    ├── capa-rega.png             ← Capa da gramática de Lourenço Stelio Rega
+    ├── capa-mounce.png           ← Capa da gramática de William Mounce
+    └── capa-wallace.png          ← Capa da gramática de Daniel B. Wallace
+```
 
 ---
 
