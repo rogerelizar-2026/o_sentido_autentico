@@ -78,8 +78,9 @@
             border-right: 1px solid var(--border-color);
             padding: 2rem 1.5rem;
             position: sticky;
-            top: min(0px, calc(100vh - 100%));
-            height: max-content;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
