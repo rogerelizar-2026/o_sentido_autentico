@@ -84,56 +84,68 @@
     const greekMenu = document.getElementById('greek-menu');
     const body = document.body;
 
+    function switchTab(targetLang) {
+        const langBtns = document.querySelectorAll('.lang-btn');
+        const portalHub = document.getElementById('portal-hub');
+        const hebrewHub = document.getElementById('hebrew-hub');
+        const greekHub = document.getElementById('greek-hub');
+        const portalMenu = document.getElementById('portal-menu');
+        const hebrewMenu = document.getElementById('hebrew-menu');
+        const greekMenu = document.getElementById('greek-menu');
+        const body = document.body;
+
+        langBtns.forEach(b => {
+            if (b.getAttribute('data-lang') === targetLang) {
+                b.classList.add('active');
+            } else {
+                b.classList.remove('active');
+            }
+        });
+        if (targetLang === 'portal') {
+            if (portalHub) portalHub.style.display = 'block';
+            if (hebrewHub) hebrewHub.style.display = 'none';
+            if (greekHub) greekHub.style.display = 'none';
+            
+            if (portalMenu) portalMenu.style.display = 'flex';
+            if (hebrewMenu) hebrewMenu.style.display = 'none';
+            if (greekMenu) greekMenu.style.display = 'none';
+            
+            body.className = 'portal-active';
+        } else if (targetLang === 'hebrew') {
+            if (portalHub) portalHub.style.display = 'none';
+            if (hebrewHub) hebrewHub.style.display = 'block';
+            if (greekHub) greekHub.style.display = 'none';
+            
+            if (portalMenu) portalMenu.style.display = 'none';
+            if (hebrewMenu) hebrewMenu.style.display = 'flex';
+            if (greekMenu) greekMenu.style.display = 'none';
+            
+            body.className = 'hebrew-active';
+        } else if (targetLang === 'greek') {
+            if (portalHub) portalHub.style.display = 'none';
+            if (hebrewHub) hebrewHub.style.display = 'none';
+            if (greekHub) greekHub.style.display = 'block';
+            
+            if (portalMenu) portalMenu.style.display = 'none';
+            if (hebrewMenu) hebrewMenu.style.display = 'none';
+            if (greekMenu) greekMenu.style.display = 'flex';
+            
+            body.className = 'greek-active';
+        }
+        // Auto collapse after switching tab to let user see content
+        body.classList.add('sidebar-collapsed');
+    }
+    
     langBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             const targetLang = btn.getAttribute('data-lang');
-            langBtns.forEach(b => {
-                if (b.getAttribute('data-lang') === targetLang) {
-                    b.classList.add('active');
-                } else {
-                    b.classList.remove('active');
-                }
-            });
-            if (targetLang === 'portal') {
-                if (portalHub) portalHub.style.display = 'block';
-                if (hebrewHub) hebrewHub.style.display = 'none';
-                if (greekHub) greekHub.style.display = 'none';
-                
-                if (portalMenu) portalMenu.style.display = 'flex';
-                if (hebrewMenu) hebrewMenu.style.display = 'none';
-                if (greekMenu) greekMenu.style.display = 'none';
-                
-                body.className = 'portal-active';
-            } else if (targetLang === 'hebrew') {
-                if (portalHub) portalHub.style.display = 'none';
-                if (hebrewHub) hebrewHub.style.display = 'block';
-                if (greekHub) greekHub.style.display = 'none';
-                
-                if (portalMenu) portalMenu.style.display = 'none';
-                if (hebrewMenu) hebrewMenu.style.display = 'flex';
-                if (greekMenu) greekMenu.style.display = 'none';
-                
-                body.className = 'hebrew-active';
-            } else if (targetLang === 'greek') {
-                if (portalHub) portalHub.style.display = 'none';
-                if (hebrewHub) hebrewHub.style.display = 'none';
-                if (greekHub) greekHub.style.display = 'block';
-                
-                if (portalMenu) portalMenu.style.display = 'none';
-                if (hebrewMenu) hebrewMenu.style.display = 'none';
-                if (greekMenu) greekMenu.style.display = 'flex';
-                
-                body.className = 'greek-active';
-            }
-            
-            // Auto collapse after switching tab to let user see content
-            body.classList.add('sidebar-collapsed');
-            
+            switchTab(targetLang);
             // Scroll to top to let user see top of new tab
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });
+    window.switchTab = switchTab;
 
 // Dark Mode Toggle Logic
     const themeToggle = document.getElementById('theme-toggle');
@@ -787,6 +799,7 @@ function resetWelcomeModal() {
 // Global exposure
 window.closeWelcomeModal = closeWelcomeModal;
 window.resetWelcomeModal = resetWelcomeModal;
+window.switchTab = switchTab;
 
 
 // ==========================================
@@ -1216,18 +1229,41 @@ window.toggleTTS = toggleTTS;
 // INSTITUTIONS RECOMMENDED MODAL (V18/V21)
 // ==========================================
 function showInstitutionsModal() {
-    const overlay = document.getElementById('institutions-modal-overlay');
-    if (overlay) {
-        overlay.classList.add('show');
-        overlay.style.display = 'flex';
+    // Switch to portal tab first
+    if (typeof window.switchTab === 'function') {
+        window.switchTab('portal');
+    }
+    document.body.classList.add('sidebar-collapsed');
+    const target = document.getElementById('port-institutions');
+    if (target) {
+        setTimeout(() => {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
     }
 }
 function closeInstitutionsModal() {
-    const overlay = document.getElementById('institutions-modal-overlay');
-    if (overlay) {
-        overlay.classList.remove('show');
-        overlay.style.display = 'none';
-    }
+    // Do nothing since it is now a flat section
 }
 window.showInstitutionsModal = showInstitutionsModal;
 window.closeInstitutionsModal = closeInstitutionsModal;
+
+// Intercept menu clicks on flat section links (Institutions & Coffee Card)
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.nav-item.nav-external a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href === '#port-coffee' || href === '#port-institutions') {
+                e.preventDefault();
+                if (typeof window.switchTab === 'function') {
+                    window.switchTab('portal');
+                }
+                const target = document.querySelector(href);
+                if (target) {
+                    setTimeout(() => {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 120);
+                }
+            }
+        });
+    });
+});

@@ -431,30 +431,7 @@
         .manual-problem { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; }
         .manual-problem .problem-title { font-weight: 700; color: var(--primary); margin-bottom: 4px; font-size: 13px; }
         .manual-problem .problem-solution { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
-    
-    /* Parchment Manuscript and Table contrast protection in light and dark mode */
-    .manuscript, 
-    .manuscript *, 
-    .dark .manuscript, 
-    .dark .manuscript *,
-    [data-theme="dark"] .manuscript,
-    [data-theme="dark"] .manuscript * {
-        color: #3d2817 !important;
-    }
-    .manuscript h2, .dark .manuscript h2 { color: #5c2e0e !important; font-size: 2rem !important; }
-    .manuscript .ms-subtitle, .dark .manuscript .ms-subtitle { color: #7a3f0e !important; }
-    .manuscript h3, .dark .manuscript h3 { color: #5c2e0e !important; border-bottom: 1px solid rgba(139,69,19,0.25) !important; font-size: 1.4rem !important; }
-    .manuscript p, .dark .manuscript p { font-size: 1.15rem !important; line-height: 1.65 !important; }
-    .manuscript li, .dark .manuscript li { font-size: 1.1rem !important; }
-    .ms-table, .dark .ms-table { width: 100% !important; border-collapse: collapse !important; border: 1px solid rgba(139, 69, 19, 0.3) !important; }
-    .ms-table th, .dark .ms-table th { background-color: #5c2e0e !important; color: #f4e8c8 !important; padding: 10px 12px !important; font-size: 1.05rem !important; }
-    .ms-table td, .dark .ms-table td { color: #3d2817 !important; border-bottom: 1px dashed rgba(139, 69, 19, 0.25) !important; padding: 10px 12px !important; font-size: 1.05rem !important; }
-    .ms-table a, .dark .ms-table a { color: #8b4513 !important; border-bottom: 1px dotted #8b4513 !important; font-weight: 700 !important; }
-    .manuscript .contact-box, .dark .manuscript .contact-box { background-color: rgba(139,69,19,0.08) !important; border: 1px solid rgba(139,69,19,0.3) !important; }
-    .manuscript .contact-box a, .dark .manuscript .contact-box a { color: #5c2e0e !important; font-size: 1.15rem !important; }
-    .manuscript .signature, .dark .manuscript .signature { color: #5c2e0e !important; border-top: 1px solid rgba(139,69,19,0.25) !important; }
-    
-</style>
+    </style>
 </head>
 <body class="portal-active">
 
@@ -852,13 +829,13 @@
             <thead>
                 <tr>
                     <th>Instituição</th>
-                    <th>Estado / Meio</th>
+                    <th>Estado / UF</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td><a href="https://faculdadebatistalogos.edu.br/" target="_blank">Faculdade Batista Logos</a></td><td>Sumaré / SP</td></tr>
-                <tr><td><a href="https://isbc.com.br/" target="_blank">ISBC — Instituto Bíblico</a></td><td>São Paulo / SP</td></tr>
-                <tr><td><a href="https://sbrscuritiba.com/" target="_blank">SBRS — Seminário Batista do Sul</a></td><td>Curitiba / PR</td></tr>
+                <tr><td><a href="https://faculdadebatistalogos.edu.br/" target="_blank">Faculdade Batista Logos</a></td><td> São Paulo / SP</td></tr>
+                <tr><td><a href="https://isbc.com.br/" target="_blank">ISBC — Instituto Bíblico Cariri</a></td><td>Crato / CE</td></tr>
+                <tr><td><a href="https://sbrscuritiba.com/" target="_blank">SBRS — Seminário Batista do Sul</a></td><td>Pinhais / PR</td></tr>
                 <tr><td><a href="http://aibreb.org.br/instituicoes_seminarios.html" target="_blank">AIBREB — Diretório de Seminários</a></td><td>Âmbito Nacional</td></tr>
             </tbody>
         </table>
@@ -888,13 +865,13 @@
             <thead>
                 <tr>
                     <th>Instituição</th>
-                    <th>Estado / Meio</th>
+                    <th>Estado / UF</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td><a href="https://faculdadebatistalogos.edu.br/" target="_blank">Faculdade Batista Logos</a></td><td>Sumaré / SP</td></tr>
-                <tr><td><a href="https://isbc.com.br/" target="_blank">ISBC — Instituto Bíblico</a></td><td>São Paulo / SP</td></tr>
-                <tr><td><a href="https://sbrscuritiba.com/" target="_blank">SBRS — Seminário Batista do Sul</a></td><td>Curitiba / PR</td></tr>
+                <tr><td><a href="https://faculdadebatistalogos.edu.br/" target="_blank">Faculdade Batista Logos</a></td><td> São Paulo / SP</td></tr>
+                <tr><td><a href="https://isbc.com.br/" target="_blank">ISBC — Instituto Bíblico Cariri</a></td><td>Crato / CE</td></tr>
+                <tr><td><a href="https://sbrscuritiba.com/" target="_blank">SBRS — Seminário Batista do Sul</a></td><td>Pinhais / PR</td></tr>
                 <tr><td><a href="http://aibreb.org.br/instituicoes_seminarios.html" target="_blank">AIBREB — Diretório de Seminários</a></td><td>Âmbito Nacional</td></tr>
             </tbody>
         </table>
@@ -1134,10 +1111,6 @@
     // VIEW CONTROLLER
     // ==========================================
     function sidebarNav(viewId) {
-        if (viewId === 'mining') {
-            goToMining();
-            return;
-        }
         document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
         document.getElementById(`view-${viewId}`).classList.remove('hidden');
 

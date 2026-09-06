@@ -5,7 +5,7 @@ const ASSETS = [
     'script.js',
     'manifest.json',
     'ferramentas-biblicas.html',
-    'linguas_biblicas_e_tecnologia.m4a',
+    'línguas_bíblicas_e_tecnologia.m4a',
     'imagens/infografico-hebraico.png',
     'imagens/infografico-grego.png',
     'imagens/infografico-gemini.png',
