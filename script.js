@@ -823,135 +823,6 @@ window.copyPixKey = copyPixKey;
 
 
 // ==========================================
-// CUSTOM INTERACTIVE AUDIO PLAYER LOGIC (V6)
-// ==========================================
-
-let audioEl = null;
-let playBtn = null;
-let playIcon = null;
-let progressBar = null;
-let currentTimeLabel = null;
-let totalTimeLabel = null;
-let muteBtn = null;
-let volumeIcon = null;
-let volumeBar = null;
-let pulseIcon = null;
-
-function initAudioPlayer() {
-    audioEl = document.getElementById('biblical-audio');
-    playBtn = document.getElementById('audio-play-btn');
-    playIcon = document.getElementById('audio-play-icon');
-    progressBar = document.getElementById('audio-progress-bar');
-    currentTimeLabel = document.getElementById('audio-current-time');
-    totalTimeLabel = document.getElementById('audio-total-time');
-    muteBtn = document.getElementById('audio-mute-btn');
-    volumeIcon = document.getElementById('audio-volume-icon');
-    volumeBar = document.getElementById('audio-volume-bar');
-    pulseIcon = document.querySelector('.audio-pulse-icon');
-
-    if (!audioEl) return;
-
-    // Listeners
-    audioEl.removeEventListener('timeupdate', updateAudioProgress);
-    audioEl.addEventListener('timeupdate', updateAudioProgress);
-    
-    audioEl.addEventListener('loadedmetadata', () => {
-        if (totalTimeLabel) {
-            totalTimeLabel.innerText = formatAudioTime(audioEl.duration);
-        }
-    });
-    audioEl.addEventListener('ended', resetAudioPlayerState);
-}
-
-function toggleBiblicalAudio() {
-    if (!audioEl) initAudioPlayer();
-    if (!audioEl) return;
-
-    if (audioEl.paused) {
-        audioEl.play().then(() => {
-            if (playIcon) {
-                playIcon.className = 'fa-solid fa-pause';
-            }
-            if (pulseIcon) pulseIcon.classList.add('audio-pulse-playing');
-        }).catch(err => {
-            console.error('Erro ao tocar áudio:', err);
-        });
-    } else {
-        audioEl.pause();
-        resetAudioPlayerState();
-    }
-}
-
-function resetAudioPlayerState() {
-    if (playIcon) {
-        playIcon.className = 'fa-solid fa-play';
-    }
-    if (pulseIcon) pulseIcon.classList.remove('audio-pulse-playing');
-}
-
-function updateAudioProgress() {
-    if (!audioEl || !progressBar) return;
-    
-    const percentage = (audioEl.currentTime / audioEl.duration) * 100;
-    progressBar.value = isNaN(percentage) ? 0 : percentage;
-    
-    if (currentTimeLabel) {
-        currentTimeLabel.innerText = formatAudioTime(audioEl.currentTime);
-    }
-}
-
-function seekBiblicalAudio(value) {
-    if (!audioEl) return;
-    const seekTo = (value / 100) * audioEl.duration;
-    audioEl.currentTime = isNaN(seekTo) ? 0 : seekTo;
-}
-
-function changeBiblicalVolume(value) {
-    if (!audioEl) return;
-    audioEl.volume = value;
-    updateVolumeIcon(value);
-}
-
-function toggleBiblicalMute() {
-    if (!audioEl) return;
-    if (audioEl.muted) {
-        audioEl.muted = false;
-        if (volumeBar) volumeBar.value = audioEl.volume;
-        updateVolumeIcon(audioEl.volume);
-    } else {
-        audioEl.muted = true;
-        if (volumeBar) volumeBar.value = 0;
-        if (volumeIcon) {
-            volumeIcon.className = 'fa-solid fa-volume-xmark';
-        }
-    }
-}
-
-function updateVolumeIcon(volume) {
-    if (!volumeIcon) return;
-    if (volume == 0) {
-        volumeIcon.className = 'fa-solid fa-volume-xmark';
-    } else if (volume < 0.4) {
-        volumeIcon.className = 'fa-solid fa-volume-low';
-    } else {
-        volumeIcon.className = 'fa-solid fa-volume-high';
-    }
-}
-
-function formatAudioTime(seconds) {
-    if (isNaN(seconds)) return "00:00";
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-}
-
-// Global exposure
-window.toggleBiblicalAudio = toggleBiblicalAudio;
-window.seekBiblicalAudio = seekBiblicalAudio;
-window.changeBiblicalVolume = changeBiblicalVolume;
-window.toggleBiblicalMute = toggleBiblicalMute;
-
-
 // Check if welcome modal was already dismissed on load, and init player
 window.addEventListener('DOMContentLoaded', () => {
     // Apply saved A11y settings
@@ -992,7 +863,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
     // Initialize audio player
-    initAudioPlayer();
+    
 });
 
 // ==========================================

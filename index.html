@@ -108,8 +108,8 @@
                                     <td style="padding: 6px; text-align: center;">SP</td>
                                 </tr>
                                 <tr style="border-bottom: 1px dashed var(--border-color);">
-                                    <td style="padding: 6px;"><a href="https://isbc.com.br/" target="_blank" style="color: #8b4513; font-weight: 700; text-decoration: underline;">ISBC — Instituto Bíblico</a></td>
-                                    <td style="padding: 6px; text-align: center;">SP</td>
+                                    <td style="padding: 6px;"><a href="https://isbc.com.br/" target="_blank" style="color: #8b4513; font-weight: 700; text-decoration: underline;">Seminário Batista do Cariri</a></td>
+                                    <td style="padding: 6px; text-align: center;">CE</td>
                                 </tr>
                                 <tr style="border-bottom: 1px dashed var(--border-color);">
                                     <td style="padding: 6px;"><a href="https://sbrscuritiba.com/" target="_blank" style="color: #8b4513; font-weight: 700; text-decoration: underline;">SBRS — Seminário Batista do Sul</a></td>
@@ -189,7 +189,7 @@
         <!-- Menu Navigation - Portal (Active by default) -->
         <ul class="nav-menu" id="portal-menu">
             <li class="nav-item active"><a href="#port-intro"><i class="fa-solid fa-house"></i> Boas-vindas</a></li>
-            <li class="nav-item"><a href="#port-books"><i class="fa-solid fa-book-open"></i> Biblioteca Teológica</a></li>
+            <li class="nav-item"><a href="#port-books"><i class="fa-solid fa-book-open"></i> Livros de Referência</a></li>
             <li class="nav-item"><a href="#port-mounce-wallace"><i class="fa-solid fa-scale-balanced"></i> Mounce vs Wallace</a></li>
             <li class="nav-item"><a href="#port-apps"><i class="fa-solid fa-mobile-screen-button"></i> Aplicativos de Bolso</a></li>
             <li class="nav-item"><a href="#port-gemini"><i class="fa-solid fa-robot"></i> Metodologia Gemini</a></li>
@@ -330,41 +330,7 @@
                     </ol>
                 </div>
 
-                <!-- PORTABLE INTERACTIVE AUDIO PLAYER CARD -->
-                <div class="audio-player-card">
-                    <div class="audio-player-header">
-                        <div class="audio-pulse-icon">
-                            <i class="fa-solid fa-microphone-lines"></i>
-                        </div>
-                        <div class="audio-player-title-block">
-                            <h4>Palestra: Línguas Bíblicas e Tecnologia</h4>
-                            <p>Reflexão prática sobre o uso de IA e o Notebook Gemini para acelerar o aprendizado (22:24)</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Native Audio Tag Hidden -->
-                    <audio id="biblical-audio" src="línguas_bíblicas_e_tecnologia.m4a" preload="none"></audio>
-                    
-                    <!-- Custom Controls Grid -->
-                    <div class="audio-player-controls">
-                        <button id="audio-play-btn" class="audio-ctrl-btn" title="Reproduzir" onclick="window.toggleBiblicalAudio()">
-                            <i id="audio-play-icon" class="fa-solid fa-play"></i>
-                        </button>
-                        
-                        <div class="audio-time-slider-container">
-                            <span id="audio-current-time" class="audio-time-label">00:00</span>
-                            <input type="range" id="audio-progress-bar" class="audio-progress-range" min="0" max="100" value="0" oninput="window.seekBiblicalAudio(this.value)">
-                            <span id="audio-total-time" class="audio-time-label">22:24</span>
-                        </div>
-                        
-                        <div class="audio-volume-container">
-                            <button id="audio-mute-btn" class="audio-ctrl-btn small-btn" title="Mutar" onclick="window.toggleBiblicalMute()">
-                                <i id="audio-volume-icon" class="fa-solid fa-volume-high"></i>
-                            </button>
-                            <input type="range" id="audio-volume-bar" class="audio-volume-range" min="0" max="1" step="0.1" value="0.8" oninput="window.changeBiblicalVolume(this.value)">
-                        </div>
-                    </div>
-                </div>
+                
 
                                 <div class="highlight-box" style="border-left: 4px solid var(--portal-primary); background-color: rgba(15, 55, 49, 0.03); margin-top: 1.5rem; padding: 1.5rem; border-radius: 0 10px 10px 0;">
                     <h4 style="font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--portal-primary); display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
@@ -384,9 +350,9 @@
                 </div>
             </section>
 
-            <!-- 1. Biblioteca Teológica -->
+            <!-- 1. Livros de Referência -->
             <section class="section-card" id="port-books">
-                <h3 class="section-title"><i class="fa-solid fa-book-bookmark"></i> Biblioteca Teológica de Referência</h3>
+                <h3 class="section-title"><i class="fa-solid fa-book-bookmark"></i> Livros de Referência</h3>
                 <p>
                     Abaixo apresentamos o mapeamento das quatro obras fundamentais discutidas em nossa curadoria, detalhando sua classificação por nível de dificuldade e o seu foco didático no portal:
                 </p>
@@ -599,19 +565,7 @@
                 
                 <div class="download-grid">
                     <!-- Audio: Línguas Bíblicas e Tecnologia -->
-                    <div class="download-card">
-                        <div class="download-icon-wrapper audio">
-                            <i class="fa-solid fa-microphone-lines"></i>
-                        </div>
-                        <div class="download-info">
-                            <h4>Áudio: Línguas Bíblicas e Tecnologia</h4>
-                            <p>Palestra de curadoria e reflexão prática sobre como usar a tecnologia, inteligência artificial e o Notebook Gemini para potencializar seus estudos das línguas bíblicas originais.</p>
-                            <span class="file-size"><i class="fa-solid fa-clock"></i> 22 min 24 seg · M4A</span>
-                        </div>
-                        <a href="línguas_bíblicas_e_tecnologia.m4a" download class="download-btn-card">
-                            <i class="fa-solid fa-download"></i> Baixar
-                        </a>
-                    </div>
+                    
 
 
 
@@ -693,7 +647,7 @@
                     </thead>
                     <tbody>
                         <tr><td><a href="https://faculdadebatistalogos.edu.br/" target="_blank">Faculdade Batista Logos</a></td><td> São Paulo / SP</td></tr>
-                        <tr><td><a href="https://isbc.com.br/" target="_blank">ISBC — Instituto Bíblico Cariri</a></td><td>Crato / CE</td></tr>
+                        <tr><td><a href="https://isbc.com.br/" target="_blank">Seminário Batista do Cariri</a></td><td>Crato / CE</td></tr>
                         <tr><td><a href="https://sbrscuritiba.com/" target="_blank">SBRS — Seminário Batista do Sul</a></td><td>Pinhais / PR</td></tr>
                         <tr><td><a href="http://aibreb.org.br/instituicoes_seminarios.html" target="_blank">AIBREB — Diretório de Seminários</a></td><td>Âmbito Nacional</td></tr>
                     </tbody>
