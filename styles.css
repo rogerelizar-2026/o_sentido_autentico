@@ -78,9 +78,8 @@
             border-right: 1px solid var(--border-color);
             padding: 2rem 1.5rem;
             position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
+            top: min(0px, calc(100vh - 100%));
+            height: max-content;
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
@@ -1437,6 +1436,7 @@ body.sidebar-collapsed .sidebar-toggle-fab {
         bottom: 0;
         width: 280px;
         height: 100vh;
+        overflow-y: auto !important;
         z-index: 1000;
         transform: translateX(-100%);
         margin-left: 0 !important; /* cancel margin-left collapse */
