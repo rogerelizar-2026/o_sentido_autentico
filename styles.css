@@ -2549,3 +2549,108 @@ input:focus, select:focus, textarea:focus, button:focus, a:focus {
         border-radius: 10px !important;
     }
 }
+
+/* ==========================================================================
+   V22 ACCESSIBILITY TOOLBAR AND KEYBOARD NAVIGATION STYLES
+   Moved from accessibility.js to reduce CSS injection and improve performance
+   ========================================================================== */
+
+/* Barra de ferramentas de acessibilidade */
+.accessibility-toolbar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--bg-primary, #fff);
+    border: 2px solid var(--gold, #c5a059);
+    border-radius: 8px;
+    padding: 0.5rem;
+    display: flex;
+    gap: 0.25rem;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.a11y-btn {
+    background: transparent;
+    border: 1px solid var(--border-color, #ddd);
+    border-radius: 4px;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: var(--text-primary, #333);
+    transition: all 0.2s ease;
+    min-width: 40px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.a11y-btn:hover {
+    background: var(--gold, #c5a059);
+    color: #fff;
+    border-color: var(--gold, #c5a059);
+}
+
+.a11y-btn[aria-pressed="true"] {
+    background: var(--gold, #c5a059);
+    color: #fff;
+    border-color: var(--gold-dark, #8b6f2e);
+}
+
+.a11y-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Keyboard navigation focus styles */
+body.keyboard-navigation *:focus {
+    outline: 3px solid var(--gold, #c5a059) !important;
+    outline-offset: 2px !important;
+}
+
+body.keyboard-navigation *:focus:not(:focus-visible) {
+    outline: none !important;
+}
+
+/* Skip link */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold-dark, #8b6f2e);
+    color: #fff !important;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 0 0 8px 8px;
+    z-index: 10000;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Improve link contrast */
+a {
+    text-underline-offset: 2px;
+}
+
+a:hover,
+a:focus {
+    text-decoration-thickness: 2px;
+}

@@ -12,10 +12,10 @@ Foram identificados **28 problemas** distribuídos em **6 categorias críticas**
 
 **Status da Correção (Outubro 2024):**
 - ✅ 7 bugs críticos resolvidos (Categoria 1 completa)
-- ✅ 2 redundâncias resolvidas (Categoria 2: itens 2.2 e 2.4)
-- 🔄 19 problemas restantes aguardando implementação
+- ✅ 3 redundâncias resolvidas (Categoria 2: itens 2.1, 2.2 e 2.4)
+- 🔄 18 problemas restantes aguardando implementação
 
-**Progresso Geral:** 32% concluído (9/28 problemas resolvidos)
+**Progresso Geral:** 36% concluído (10/28 problemas resolvidos)
 
 ---
 
@@ -68,10 +68,19 @@ Foram identificados **28 problemas** distribuídos em **6 categorias críticas**
 
 ## 🟠 Categoria 2: Redundâncias de Código
 
-### 2.1 CSS injetado dinamicamente duplicado - ⚠️ PENDENTE
-- **Arquivos:** `accessibility.js` (linhas 243-394) e `styles.css`
-- **Problema:** O arquivo `accessibility.js` injeta estilos CSS via JavaScript (linhas 243-394) que provavelmente já existem em `styles.css`. Isso causa duplicação de regras e aumento desnecessário do tamanho do DOM.
-- **Solução Proposta:** Mover todos os estilos de acessibilidade para `styles.css` e remover a injeção dinâmica.
+### 2.1 CSS injetado dinamicamente duplicado - ✅ RESOLVIDO
+- **Arquivos:** `accessibility.js` (linhas 243-399 originalmente) e `styles.css`
+- **Problema Original:** O arquivo `accessibility.js` injetava estilos CSS via JavaScript (~157 linhas de código CSS) que causavam duplicação de regras, aumento desnecessário do DOM e complexidade de manutenção.
+- **Solução Implementada:** 
+  - Todos os estilos de acessibilidade foram movidos para `styles.css` na seção V22 (linhas 2553-2656)
+  - Removida a injeção dinâmica de CSS do `accessibility.js` (linhas 242-399 deletadas)
+  - Adicionado comentário explicativo no `accessibility.js` sobre a mudança
+- **Benefícios:** 
+  - Redução de ~158 linhas no JavaScript
+  - CSS agora é cacheável pelo navegador
+  - Melhor performance (sem criação dinâmica de elementos `<style>`)
+  - Centralização de todos os estilos em um único arquivo
+  - Facilita manutenção e auditoria de CSS
 
 ### 2.2 Toggle functions duplicadas entre arquivos - ✅ RESOLVIDO
 - **Arquivos:** `script.js` e `accessibility.js`
