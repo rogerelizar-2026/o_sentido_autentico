@@ -11,9 +11,11 @@
 Foram identificados **28 problemas** distribuídos em **6 categorias críticas**, incluindo redundâncias de código, inconsistências de implementação, bugs potenciais, problemas de acessibilidade, questões de performance e vulnerabilidades de segurança.
 
 **Status da Correção (Outubro 2024):**
-- ✅ 4 bugs críticos resolvidos
-- ⚠️ 1 bug parcialmente resolvido (requer refatoração adicional)
-- 🔄 23 problemas restantes aguardando implementação
+- ✅ 7 bugs críticos resolvidos (Categoria 1 completa)
+- ✅ 2 redundâncias resolvidas (Categoria 2: itens 2.2 e 2.4)
+- 🔄 19 problemas restantes aguardando implementação
+
+**Progresso Geral:** 32% concluído (9/28 problemas resolvidos)
 
 ---
 
@@ -24,60 +26,74 @@ Foram identificados **28 problemas** distribuídos em **6 categorias críticas**
 - **Problema Original:** A variável `sidebarTimeout` era declarada dentro do IIFE `SidebarManager` mas era referenciada no escopo global.
 - **Solução Implementada:** A função `resetSidebarTimer` foi exposta através do objeto retornado por `SidebarManager` como `window.resetSidebarTimer`, permitindo acesso externo seguro sem expor a variável interna diretamente.
 
-### 1.2 Função `switchTab` duplicada e conflitante
+### 1.2 Função `switchTab` duplicada e conflitante - ✅ RESOLVIDO
 - **Arquivo:** `script.js` (linhas 125, 809)
-- **Problema:** A função `switchTab` é exposta duas vezes globalmente (linha 125 dentro de `LanguageSwitcher.init()` e linha 809 explicitamente). Pode causar confusão de escopo.
-- **Solução Proposta:** Manter apenas uma exposição global na seção de inicialização.
+- **Problema:** A função `switchTab` era exposta duas vezes globalmente (linha 125 dentro de `LanguageSwitcher.init()` e linha 809 explicitamente). Podia causar confusão de escopo.
+- **Solução Implementada:** Removida a exposição redundância, mantendo apenas na seção de inicialização global.
 
 ### 1.3 Funções `showInstitutionsModal` e `closeInstitutionsModal` duplicadas - ✅ RESOLVIDO
 - **Arquivo:** `script.js` 
 - **Problema Original:** As mesmas funções eram declaradas duas vezes com implementações diferentes (linhas 1009-1022 e 1109-1126). A segunda declaração sobrescrevia a primeira, tornando o código das linhas 1009-1022 morto/inútil.
 - **Solução Implementada:** Removida a primeira declaração duplicada (linhas 1009-1022), mantendo apenas a implementação consolidada nas linhas 1101-1118.
 
-### 1.4 Event listener `DOMContentLoaded` duplicado - ✅ PARCIALMENTE RESOLVIDO
+### 1.4 Event listener `DOMContentLoaded` duplicado - ✅ RESOLVIDO
 - **Arquivo:** `script.js` (linhas 235 e 835)
 - **Problema Original:** Existiam três listeners separados para `DOMContentLoaded` executando lógica similar.
 - **Solução Implementada:** 
   - Unificado o listener da linha 235 de `window.addEventListener` para `document.addEventListener` para consistência
   - Removido o terceiro listener (antiga linha 1121) que envolvia menu de instituições, movendo a lógica para execução direta após a definição das funções
-  - Mantidos dois listeners principais (linhas 235 e 835) pois possuem responsabilidades distintas: um para gráficos Chart.js e outro para configurações de acessibilidade e modal de boas-vindas
-- **Observação:** A consolidação completa exigiria reestruturação maior do código dos gráficos
+  - Consolidados os listeners restantes: um para gráficos Chart.js E configurações de acessibilidade (linha 235), removido listener redundante da linha 835
+- **Resultado:** Apenas UM listener `DOMContentLoaded` agora gerencia toda a inicialização.
 
 ### 1.5 Fallback de imagem `onerror` problemático - ✅ RESOLVIDO
 - **Arquivo:** `script.js` (linha 941 originalmente)
 - **Problema Original:** O uso de `innerHTML` com interpolação direta para imagens podia causar comportamento inesperado em caso de erro de carregamento.
 - **Solução Implementada:** Substituído por criação dinâmica de elemento `img` com handler `onerror` adequado que exibe mensagem de "Imagem não disponível" ao invés de tentar carregar fallbacks potencialmente inexistentes.
 
+### 1.6 Funções de acessibilidade duplicadas entre script.js e accessibility.js - ✅ RESOLVIDO
+- **Arquivos:** `script.js` (linhas 993-1034 originalmente) e `accessibility.js` (linhas 97-125)
+- **Problema:** 
+  - `adjustFontSize`, `toggleDyslexiaFont`, `toggleHighContrast` existiam em ambos os arquivos com implementações ligeiramente diferentes
+  - Dois sistemas de estado separados causavam inconsistência
+  - localStorage era gerenciado de forma redundante
+- **Solução Implementada:** 
+  - Criado módulo unificado de acessibilidade em `script.js` (linhas 991-1119) encapsulado em IIFE
+  - Estado centralizado em `a11yState` com gerenciamento único
+  - Sincronização com `accessibility.js` via `window.accessibilityTools` quando disponível
+  - Carregamento e aplicação de configurações salvas unificados
+  - Exportação global mantida para compatibilidade com HTML (`window.adjustFontSize`, etc.)
+- **Benefícios:** Estado consistente, sem duplicação de lógica, sincronização automática entre sistemas.
+
 ---
 
 ## 🟠 Categoria 2: Redundâncias de Código
 
-### 2.1 CSS injetado dinamicamente duplicado
+### 2.1 CSS injetado dinamicamente duplicado - ⚠️ PENDENTE
 - **Arquivos:** `accessibility.js` (linhas 243-394) e `styles.css`
 - **Problema:** O arquivo `accessibility.js` injeta estilos CSS via JavaScript (linhas 243-394) que provavelmente já existem em `styles.css`. Isso causa duplicação de regras e aumento desnecessário do tamanho do DOM.
 - **Solução Proposta:** Mover todos os estilos de acessibilidade para `styles.css` e remover a injeção dinâmica.
 
-### 2.2 Toggle functions duplicadas entre arquivos
+### 2.2 Toggle functions duplicadas entre arquivos - ✅ RESOLVIDO
 - **Arquivos:** `script.js` e `accessibility.js`
-- **Problema:** 
-  - `toggleHighContrast` existe em `script.js` (linha 1058) e `accessibility.js` (linha 97)
-  - `toggleLargeText` / ajuste de fonte existe em ambos os arquivos
-- **Solução Proposta:** Centralizar todas as funções de acessibilidade em `accessibility.js` e remover duplicatas do `script.js`.
+- **Problema Original:** 
+  - `toggleHighContrast` existia em `script.js` (linha 1058) e `accessibility.js` (linha 97)
+  - `toggleLargeText` / ajuste de fonte existia em ambos os arquivos
+- **Solução Implementada:** Centralizadas todas as funções de acessibilidade em módulo unificado no `script.js` (linhas 991-1119), com sincronização automática com `accessibility.js` quando disponível.
 
-### 2.3 Seletor de elementos repetido múltiplas vezes
+### 2.3 Seletor de elementos repetido múltiplas vezes - ⚠️ PENDENTE
 - **Arquivo:** `script.js`
 - **Problema:** `document.getElementById('welcome-modal-overlay')` é chamado pelo menos 6 vezes em diferentes funções. Deveria ser cacheado.
 - **Solução Proposta:** Criar uma variável cacheada no escopo superior.
 
-### 2.4 Configurações de localStorage redundantes
+### 2.4 Configurações de localStorage redundantes - ✅ RESOLVIDO
 - **Arquivos:** `script.js` e `accessibility.js`
-- **Problema:** 
-  - `script.js` usa `localStorage.getItem('dyslexiaActive')`, `localStorage.getItem('contrastActive')`, `localStorage.getItem('fontScale')`
-  - `accessibility.js` usa `localStorage.getItem('accessibilitySettings')` com objeto JSON
+- **Problema Original:** 
+  - `script.js` usava `localStorage.getItem('dyslexiaActive')`, `localStorage.getItem('contrastActive')`, `localStorage.getItem('fontScale')`
+  - `accessibility.js` usava `localStorage.getItem('accessibilitySettings')` com objeto JSON
 - **Inconsistência:** Dois sistemas diferentes de persistência de configurações de acessibilidade.
-- **Solução Proposta:** Unificar para um único sistema (preferencialmente o do `accessibility.js` que é mais organizado).
+- **Solução Implementada:** Unificado para sistema único no módulo de acessibilidade do `script.js`, mantendo compatibilidade com chaves individuais para retrocompatibilidade, mas com estado centralizado em `a11yState`.
 
-### 2.5 Chart.js configurations repetitivas
+### 2.5 Chart.js configurations repetitivas - ⚠️ PENDENTE
 - **Arquivo:** `script.js` (linhas 258-710)
 - **Problema:** Configurações de opções de gráficos (responsive, maintainAspectRatio, plugins.title.font) são repetidas literalmente em todos os 9+ gráficos.
 - **Solução Proposta:** Criar objetos de configuração compartilhados.
