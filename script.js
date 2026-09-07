@@ -123,7 +123,6 @@
                         switchTab(btn.getAttribute('data-lang'));
                     });
                 });
-                window.switchTab = switchTab;
             }
         };
     })();
@@ -807,7 +806,6 @@ function resetWelcomeModal() {
 // Global exposure
 window.closeWelcomeModal = closeWelcomeModal;
 window.resetWelcomeModal = resetWelcomeModal;
-window.switchTab = switchTab;
 
 
 // ==========================================
@@ -833,29 +831,6 @@ window.copyPixKey = copyPixKey;
 // ==========================================
 // Check if welcome modal was already dismissed on load, and init player
 document.addEventListener('DOMContentLoaded', () => {
-    // Apply saved A11y settings
-    if (localStorage.getItem('dyslexiaActive') === 'true') {
-        document.body.classList.add('dyslexia-font');
-        const dyslexiaToggle = document.getElementById('dyslexia-toggle');
-        if (dyslexiaToggle) dyslexiaToggle.checked = true;
-    }
-    if (localStorage.getItem('contrastActive') === 'true') {
-        document.body.classList.add('high-contrast');
-        const contrastToggle = document.getElementById('contrast-toggle');
-        if (contrastToggle) contrastToggle.checked = true;
-    }
-    if (localStorage.getItem('fontScale')) {
-        const savedScale = parseFloat(localStorage.getItem('fontScale'));
-        window.adjustFontSize('reset'); // set default reference scale
-        // apply saved scale
-        setTimeout(() => {
-            const elementsToScale = document.querySelectorAll('.content p, .content li, .content td, .content h3, .content h4, .content span');
-            elementsToScale.forEach(el => {
-                el.style.fontSize = `calc(1rem * ${savedScale})`;
-            });
-        }, 100);
-    }
-
     const overlay = document.getElementById('welcome-modal-overlay');
     if (overlay) {
         if (localStorage.getItem('welcomeModalDismissed') === 'true') {
