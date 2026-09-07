@@ -62,11 +62,10 @@
         return {
             init: function() {
                 init();
+                // Expõe toggleSidebar globalmente pois é usado pelo HTML
                 window.toggleSidebar = toggleSidebar;
-                window.expandSidebar = expandSidebar;
-                window.resetSidebarTimer = resetSidebarTimer;
                 window.addEventListener('mousemove', handleMousemove, { passive: true });
-                ['mousemove', 'touchstart', 'keydown', 'scroll', 'mousedown'].forEach(evt => {
+                ['mousemove', 'touchstart', 'keydown', 'mousedown'].forEach(evt => {
                     window.addEventListener(evt, handleActivity, { passive: true });
                 });
                 resetSidebarTimer();
@@ -75,6 +74,7 @@
     })();
     
     SidebarManager.init();
+
 
     // ==========================================
     // LANGUAGE HUB SWITCHER AUTOMATION (V10 - Optimized)
@@ -232,7 +232,7 @@
 
     // Chart.js Configuration for Hebrew and Greek
     document.addEventListener('DOMContentLoaded', () => {
-    // Apply saved A11y settings
+    // Aplica configurações salvas ao carregar a página (apenas leitura - a lógica está em accessibility.js)
     if (localStorage.getItem('dyslexiaActive') === 'true') {
         document.body.classList.add('dyslexia-font');
         const dyslexiaToggle = document.getElementById('dyslexia-toggle');
@@ -245,8 +245,7 @@
     }
     if (localStorage.getItem('fontScale')) {
         const savedScale = parseFloat(localStorage.getItem('fontScale'));
-        window.adjustFontSize('reset'); // set default reference scale
-        // apply saved scale
+        // A função adjustFontSize será chamada via accessibility.js se necessário
         setTimeout(() => {
             const elementsToScale = document.querySelectorAll('.content p, .content li, .content td, .content h3, .content h4, .content span');
             elementsToScale.forEach(el => {
@@ -874,10 +873,18 @@ document.addEventListener('click', (e) => {
         return;
     }
     
-    // For HTML files or external websites, always open in a new tab
+    // Adiciona atributos de segurança em links externos
     link.setAttribute('target', '_blank');
-    link.setAttribute('rel', 'noopener');
+    link.setAttribute('rel', 'noopener noreferrer');
 });
+
+// Função de sanitização básica para prevenir XSS
+function sanitizeHTML(str) {
+    if (typeof str !== 'string') return str;
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+}
 
 function openMediaPreviewModal(href, type, title) {
     let mediaModal = document.getElementById('media-preview-modal-overlay');
@@ -886,10 +893,11 @@ function openMediaPreviewModal(href, type, title) {
         mediaModal.id = 'media-preview-modal-overlay';
         mediaModal.className = 'welcome-overlay';
         mediaModal.style.zIndex = '999999';
+        // Usa textContent para elementos com conteúdo dinâmico para prevenir XSS
         mediaModal.innerHTML = `
             <div class="welcome-modal" style="max-width: 800px; padding: 2rem; border-color: var(--gold);">
                 <button class="sidebar-close" onclick="closeMediaPreviewModal()" style="position: absolute; top: 1rem; right: 1rem; background: var(--bg-secondary); border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-xmark"></i></button>
-                <h3 id="media-modal-title" style="font-family: 'Cinzel', serif; color: var(--gold-dark); margin-bottom: 1.5rem; text-align: center;">Visualização de Recurso</h3>
+                <h3 id="media-modal-title" style="font-family: 'Cinzel', serif; color: var(--gold-dark); margin-bottom: 1.5rem; text-align: center;"></h3>
                 <div id="media-modal-content" style="display: flex; justify-content: center; align-items: center; min-height: 200px; margin-bottom: 1.5rem; background: rgba(0,0,0,0.03); border-radius: 8px; padding: 1rem; overflow: hidden;">
                     <!-- Content injected here -->
                 </div>
@@ -908,8 +916,8 @@ function openMediaPreviewModal(href, type, title) {
     const modalContent = document.getElementById('media-modal-content');
     const downloadBtn = document.getElementById('media-modal-download-btn');
     
-    // Clean and set title
-    modalTitle.innerText = title.trim() || 'Visualização de Recurso';
+    // Usa textContent para evitar XSS no título
+    modalTitle.textContent = title.trim() || 'Visualização de Recurso';
     downloadBtn.href = href;
     
     if (type === 'image') {
@@ -923,13 +931,29 @@ function openMediaPreviewModal(href, type, title) {
         modalContent.innerHTML = '';
         modalContent.appendChild(img);
     } else if (type === 'audio') {
-        modalContent.innerHTML = `
-            <div style="width: 100%; text-align: center; padding: 1rem;">
-                <i class="fa-solid fa-file-audio" style="font-size: 4rem; color: var(--gold); margin-bottom: 1rem; display: block;"></i>
-                <p style="margin-bottom: 1rem; font-weight: 600;">Reprodutor de Prévia</p>
-                <audio src="${href}" controls style="width: 100%; max-width: 500px;"></audio>
-            </div>
-        `;
+        // Cria elemento audio de forma segura
+        const audioContainer = document.createElement('div');
+        audioContainer.style.cssText = 'width: 100%; text-align: center; padding: 1rem;';
+        
+        const icon = document.createElement('i');
+        icon.className = 'fa-solid fa-file-audio';
+        icon.style.cssText = 'font-size: 4rem; color: var(--gold); margin-bottom: 1rem; display: block;';
+        
+        const label = document.createElement('p');
+        label.style.cssText = 'margin-bottom: 1rem; font-weight: 600;';
+        label.textContent = 'Reprodutor de Prévia';
+        
+        const audio = document.createElement('audio');
+        audio.src = href;
+        audio.controls = true;
+        audio.style.cssText = 'width: 100%; max-width: 500px;';
+        
+        audioContainer.appendChild(icon);
+        audioContainer.appendChild(label);
+        audioContainer.appendChild(audio);
+        
+        modalContent.innerHTML = '';
+        modalContent.appendChild(audioContainer);
     }
     
     mediaModal.classList.add('show');
@@ -989,134 +1013,9 @@ function toggleWelcomeButton(checked) {
 window.toggleWelcomeButton = toggleWelcomeButton;
 
 // ============================================================================
-// MÓDULO UNIFICADO DE ACESSIBILIDADE
-// Centraliza todas as funções de acessibilidade para evitar duplicação
-// entre script.js e accessibility.js
+// FIM DO MÓDULO DE ACESSIBILIDADE DUPLICADO
+// A lógica de acessibilidade foi centralizada em accessibility.js
 // ============================================================================
-
-(function() {
-    'use strict';
-
-    // Estado centralizado de acessibilidade
-    const a11yState = {
-        fontScale: 1.0,
-        dyslexiaActive: false,
-        contrastActive: false
-    };
-
-    // Carrega configurações salvas
-    function loadSettings() {
-        try {
-            const scale = localStorage.getItem('fontScale');
-            const dyslexia = localStorage.getItem('dyslexiaActive');
-            const contrast = localStorage.getItem('contrastActive');
-            
-            if (scale) a11yState.fontScale = parseFloat(scale);
-            if (dyslexia) a11yState.dyslexiaActive = dyslexia === 'true';
-            if (contrast) a11yState.contrastActive = contrast === 'true';
-        } catch (e) {
-            console.warn('Não foi possível carregar configurações de acessibilidade:', e);
-        }
-    }
-
-    // Font Size Adjuster
-    function adjustFontSize(action) {
-        if (action === 'increase') {
-            a11yState.fontScale = Math.min(a11yState.fontScale + 0.1, 1.4);
-        } else if (action === 'decrease') {
-            a11yState.fontScale = Math.max(a11yState.fontScale - 0.1, 0.8);
-        } else {
-            a11yState.fontScale = 1.0;
-        }
-        
-        const elementsToScale = document.querySelectorAll('.content p, .content li, .content td, .content h3, .content h4, .content span');
-        elementsToScale.forEach(el => {
-            el.style.fontSize = `calc(1rem * ${a11yState.fontScale})`;
-        });
-        
-        localStorage.setItem('fontScale', a11yState.fontScale);
-        
-        // Atualiza UI se existir
-        const scaleDisplay = document.getElementById('font-scale-display');
-        if (scaleDisplay) {
-            scaleDisplay.textContent = Math.round(a11yState.fontScale * 100) + '%';
-        }
-    }
-
-    // Dyslexia Font Toggle
-    function toggleDyslexiaFont(checked) {
-        a11yState.dyslexiaActive = !!checked;
-        if (checked) {
-            document.body.classList.add('dyslexia-font');
-            localStorage.setItem('dyslexiaActive', 'true');
-        } else {
-            document.body.classList.remove('dyslexia-font');
-            localStorage.removeItem('dyslexiaActive');
-        }
-        
-        // Sincroniza com accessibility.js se existir
-        if (window.accessibilityTools && checked) {
-            window.accessibilityTools.toggleLargeText();
-        }
-    }
-
-    // High Contrast Toggle
-    function toggleHighContrast(checked) {
-        a11yState.contrastActive = !!checked;
-        if (checked) {
-            document.body.classList.add('high-contrast');
-            localStorage.setItem('contrastActive', 'true');
-        } else {
-            document.body.classList.remove('high-contrast');
-            localStorage.removeItem('contrastActive');
-        }
-        
-        // Sincroniza estado visual dos checkboxes
-        const contrastToggle = document.getElementById('contrast-toggle');
-        const dyslexiaToggle = document.getElementById('dyslexia-toggle');
-        if (contrastToggle) contrastToggle.checked = checked;
-    }
-
-    // Aplica configurações salvas ao iniciar
-    function applySavedSettings() {
-        loadSettings();
-        
-        if (a11yState.fontScale !== 1.0) {
-            adjustFontSize('reset');
-            const elementsToScale = document.querySelectorAll('.content p, .content li, .content td, .content h3, .content h4, .content span');
-            elementsToScale.forEach(el => {
-                el.style.fontSize = `calc(1rem * ${a11yState.fontScale})`;
-            });
-        }
-        
-        if (a11yState.dyslexiaActive) {
-            document.body.classList.add('dyslexia-font');
-            const dyslexiaToggle = document.getElementById('dyslexia-toggle');
-            if (dyslexiaToggle) dyslexiaToggle.checked = true;
-        }
-        
-        if (a11yState.contrastActive) {
-            document.body.classList.add('high-contrast');
-            const contrastToggle = document.getElementById('contrast-toggle');
-            if (contrastToggle) contrastToggle.checked = true;
-        }
-    }
-
-    // Exporta funções globalmente para compatibilidade com HTML
-    window.adjustFontSize = adjustFontSize;
-    window.toggleDyslexiaFont = toggleDyslexiaFont;
-    window.toggleHighContrast = toggleHighContrast;
-    
-    // Expõe estado para debugging
-    window.a11yState = a11yState;
-
-    // Aplica configurações quando DOM estiver pronto
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', applySavedSettings);
-    } else {
-        applySavedSettings();
-    }
-})();
 
 // ============================================================================
 

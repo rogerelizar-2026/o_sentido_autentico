@@ -239,7 +239,9 @@
         }
     }
 
-    // Estilos CSS para acessibilidade
+    // Estilos CSS para acessibilidade (toolbar e elementos específicos)
+    // Nota: As classes de alto contraste, texto grande e redução de movimento
+    // foram movidas para styles.css para evitar duplicação
     const accessibilityStyles = `
         /* Barra de ferramentas de acessibilidade */
         .accessibility-toolbar {
@@ -301,17 +303,7 @@
             border: 0;
         }
         
-        /* Alto contraste */
-        body.high-contrast {
-            --text-primary: #000000 !important;
-            --text-secondary: #000000 !important;
-            --bg-primary: #ffffff !important;
-            --bg-secondary: #f0f0f0 !important;
-            --border-color: #000000 !important;
-            --gold: #000000 !important;
-            --gold-dark: #000000 !important;
-        }
-        
+        /* Alto contraste - regras específicas da toolbar */
         body.high-contrast a,
         body.high-contrast button {
             text-decoration: underline !important;
@@ -319,37 +311,6 @@
         
         body.high-contrast img {
             opacity: 0.9;
-        }
-        
-        /* Texto grande */
-        body.large-text {
-            font-size: 1.25em !important;
-        }
-        
-        body.large-text .sidebar {
-            font-size: 0.9em !important;
-        }
-        
-        /* Reduzir movimento */
-        body.reduce-motion *,
-        body.reduce-motion *::before,
-        body.reduce-motion *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-            scroll-behavior: auto !important;
-        }
-        
-        /* Preferência do sistema por redução de movimento */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
         }
         
         /* Foco visível para navegação por teclado */
@@ -412,5 +373,49 @@
         toggleReduceMotion,
         skipToContent,
         getConfig: () => ({ ...accessibilityConfig })
+    };
+
+    // Funções wrapper para compatibilidade com o HTML existente
+    window.toggleHighContrast = function(checked) {
+        if (checked && !accessibilityConfig.highContrast) {
+            toggleHighContrast();
+        } else if (!checked && accessibilityConfig.highContrast) {
+            toggleHighContrast();
+        }
+    };
+
+    window.adjustFontSize = function(action) {
+        const currentScale = parseFloat(localStorage.getItem('fontScale') || '1.0');
+        let newScale = currentScale;
+        
+        if (action === 'increase') {
+            newScale = Math.min(currentScale + 0.1, 1.4);
+        } else if (action === 'decrease') {
+            newScale = Math.max(currentScale - 0.1, 0.8);
+        } else if (action === 'reset') {
+            newScale = 1.0;
+        }
+        
+        localStorage.setItem('fontScale', newScale);
+        
+        const elementsToScale = document.querySelectorAll('.content p, .content li, .content td, .content h3, .content h4, .content span');
+        elementsToScale.forEach(el => {
+            el.style.fontSize = `calc(1rem * ${newScale})`;
+        });
+        
+        const scaleDisplay = document.getElementById('font-scale-display');
+        if (scaleDisplay) {
+            scaleDisplay.textContent = Math.round(newScale * 100) + '%';
+        }
+    };
+
+    window.toggleDyslexiaFont = function(checked) {
+        if (checked) {
+            document.body.classList.add('dyslexia-font');
+            localStorage.setItem('dyslexiaActive', 'true');
+        } else {
+            document.body.classList.remove('dyslexia-font');
+            localStorage.removeItem('dyslexiaActive');
+        }
     };
 })();
