@@ -365,7 +365,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="imagens/capa-ross.png" alt="Capa Ross" class="book-cover-img" onerror="if (this.src.indexOf('.png') !== -1) { this.src = 'imagens/capa-ross.jpg'; } else { this.style.display = 'none'; }">
+                                    <img src="imagens/capa-ross.png" alt="Capa do livro: Gramática do Hebraico Bíblico de Allen P. Ross" class="book-cover-img" onerror="if (this.src.indexOf('.png') !== -1) { this.src = 'imagens/capa-ross.jpg'; } else { this.style.display = 'none'; }">
                                 </td>
                                 <td><strong>"Gramática do Hebraico Bíblico"</strong><br>Allen P. Ross</td>
                                 <td>Vida</td>
@@ -374,7 +374,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="imagens/capa-rega.png" alt="Capa Rega" class="book-cover-img" onerror="if (this.src.indexOf('.png') !== -1) { this.src = 'imagens/capa-rega.jpg'; } else { this.style.display = 'none'; }">
+                                    <img src="imagens/capa-rega.png" alt="Capa do livro: Noções do Grego Bíblico" class="book-cover-img" onerror="if (this.src.indexOf('.png') !== -1) { this.src = 'imagens/capa-rega.jpg'; } else { this.style.display = 'none'; }">
                                 </td>
                                 <td><strong>"Noções do Grego Bíblico"</strong><br>Lourenço S. Rega & J. Bergmann</td>
                                 <td>Vida Nova</td>
@@ -383,7 +383,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="imagens/capa-mounce.png" alt="Capa Mounce" class="book-cover-img" onerror="if (this.src.indexOf('.png') !== -1) { this.src = 'imagens/capa-mounce.jpg'; } else { this.style.display = 'none'; }">
+                                    <img src="imagens/capa-mounce.png" alt="Capa do livro: Fundamentos do Grego Bíblico de William D. Mounce" class="book-cover-img" onerror="if (this.src.indexOf('.png') !== -1) { this.src = 'imagens/capa-mounce.jpg'; } else { this.style.display = 'none'; }">
                                 </td>
                                 <td><strong>"Fundamentos do Grego Bíblico"</strong><br>William D. Mounce</td>
                                 <td>Vida Nova</td>
@@ -392,7 +392,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="imagens/capa-wallace.png" alt="Capa Wallace" class="book-cover-img" onerror="if (this.src.indexOf('.png') !== -1) { this.src = 'imagens/capa-wallace.jpg'; } else { this.style.display = 'none'; }">
+                                    <img src="imagens/capa-wallace.png" alt="Capa do livro: Gramática Grega de Daniel B. Wallace" class="book-cover-img" onerror="if (this.src.indexOf('.png') !== -1) { this.src = 'imagens/capa-wallace.jpg'; } else { this.style.display = 'none'; }">
                                 </td>
                                 <td><strong>"Gramática Grega: Sintaxe Exegética"</strong><br>Daniel B. Wallace</td>
                                 <td>Batista Regular</td>
@@ -2805,9 +2805,15 @@ Atue como um analista morfossemântico e sintático especialista no Grego do Nov
 
 
 <!-- Floating Sidebar Toggle Button (FAB) -->
-<button id="sidebar-toggle-fab" class="sidebar-toggle-fab" onclick="window.toggleSidebar()" title="Abrir Menu">
-    <i class="fa-solid fa-bars"></i>
+<button id="sidebar-toggle-fab" class="sidebar-toggle-fab" onclick="window.toggleSidebar()" title="Abrir Menu" aria-label="Alternar menu lateral" aria-expanded="false">
+    <i class="fa-solid fa-bars" aria-hidden="true"></i>
 </button>
+
+<!-- Link para pular para conteúdo principal -->
+<a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+<!-- Scripts de Acessibilidade -->
+<script src="accessibility.js" defer></script>
 
 </body>
 </html>
