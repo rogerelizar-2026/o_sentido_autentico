@@ -281,132 +281,8 @@
         }
     }
 
-    // Estilos CSS para acessibilidade (toolbar e elementos específicos)
-    // Nota: As classes de alto contraste, texto grande e redução de movimento
-    // foram movidas para styles.css para evitar duplicação
-    const accessibilityStyles = `
-        /* Barra de ferramentas de acessibilidade */
-        .accessibility-toolbar {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--bg-primary, #fff);
-            border: 2px solid var(--gold, #c5a059);
-            border-radius: 8px;
-            padding: 0.5rem;
-            display: flex;
-            gap: 0.25rem;
-            z-index: 9999;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        
-        .a11y-btn {
-            background: transparent;
-            border: 1px solid var(--border-color, #ddd);
-            border-radius: 4px;
-            padding: 0.5rem;
-            cursor: pointer;
-            color: var(--text-primary, #333);
-            transition: all 0.2s ease;
-            min-width: 40px;
-            min-height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .a11y-btn:hover {
-            background: var(--gold, #c5a059);
-            color: #fff;
-            border-color: var(--gold, #c5a059);
-        }
-        
-        .a11y-btn[aria-pressed="true"] {
-            background: var(--gold-dark, #8b6f2e);
-            color: #fff;
-            border-color: var(--gold-dark, #8b6f2e);
-        }
-        
-        .a11y-btn:focus {
-            outline: 3px solid var(--gold, #c5a059);
-            outline-offset: 2px;
-        }
-        
-        /* Texto apenas para leitores de tela */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-        
-        /* Alto contraste - regras específicas da toolbar */
-        body.high-contrast a,
-        body.high-contrast button {
-            text-decoration: underline !important;
-        }
-        
-        body.high-contrast img {
-            opacity: 0.9;
-        }
-        
-        /* Foco visível para navegação por teclado */
-        body.keyboard-navigation *:focus {
-            outline: 3px solid var(--gold, #c5a059) !important;
-            outline-offset: 2px !important;
-        }
-        
-        body.keyboard-navigation *:focus:not(:focus-visible) {
-            outline: none !important;
-        }
-        
-        /* Skip link */
-        .skip-link {
-            position: absolute;
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gold-dark, #8b6f2e);
-            color: #fff !important;
-            padding: 0.75rem 1.5rem;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 0 0 8px 8px;
-            z-index: 10000;
-            transition: top 0.3s ease;
-        }
-        
-        .skip-link:focus {
-            top: 0;
-        }
-        
-        /* Melhorar contraste de links */
-        a {
-            text-underline-offset: 2px;
-        }
-        
-        a:hover,
-        a:focus {
-            text-decoration-thickness: 2px;
-        }
-    `;
-
-    // Injeta estilos
-    const styleSheet = document.createElement('style');
-    styleSheet.textContent = accessibilityStyles;
-    document.head.appendChild(styleSheet);
-
-    // Inicializa quando o DOM estiver pronto
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initAccessibility);
-    } else {
-        initAccessibility();
-    }
+    // Nota: Estilos CSS da toolbar de acessibilidade foram movidos para styles.css
+    // para evitar injeção dinâmica de CSS e consolidar todos os estilos em um único arquivo
 
     // Exporta funções globais se necessário
     window.accessibilityTools = {
@@ -417,7 +293,7 @@
         getConfig: () => ({ ...accessibilityConfig })
     };
 
-    // Funções wrapper para compatibilidade com o HTML existente
+    // Funções wrapper para compatibilidade com o HTML existente e centralização da lógica de acessibilidade
     window.toggleHighContrast = function(checked) {
         if (checked && !accessibilityConfig.highContrast) {
             toggleHighContrast();
@@ -460,4 +336,46 @@
             localStorage.removeItem('dyslexiaActive');
         }
     };
+
+    // Centraliza o carregamento das configurações salvas no localStorage
+    function loadSavedAccessibilitySettings() {
+        try {
+            if (localStorage.getItem('dyslexiaActive') === 'true') {
+                document.body.classList.add('dyslexia-font');
+                const dyslexiaToggle = document.getElementById('dyslexia-toggle');
+                if (dyslexiaToggle) dyslexiaToggle.checked = true;
+            }
+            if (localStorage.getItem('contrastActive') === 'true') {
+                document.body.classList.add('high-contrast');
+                const contrastToggle = document.getElementById('contrast-toggle');
+                if (contrastToggle) contrastToggle.checked = true;
+            }
+            if (localStorage.getItem('fontScale')) {
+                const savedScale = parseFloat(localStorage.getItem('fontScale'));
+                setTimeout(() => {
+                    const elementsToScale = document.querySelectorAll('.content p, .content li, .content td, .content h3, .content h4, .content span');
+                    elementsToScale.forEach(el => {
+                        el.style.fontSize = `calc(1rem * ${savedScale})`;
+                    });
+                    const scaleDisplay = document.getElementById('font-scale-display');
+                    if (scaleDisplay) {
+                        scaleDisplay.textContent = Math.round(savedScale * 100) + '%';
+                    }
+                }, 100);
+            }
+        } catch (err) {
+            console.error('Erro ao carregar configurações de acessibilidade:', err);
+        }
+    }
+
+    // Inicializa quando o DOM estiver pronto
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            initAccessibility();
+            loadSavedAccessibilitySettings();
+        });
+    } else {
+        initAccessibility();
+        loadSavedAccessibilitySettings();
+    }
 })();
