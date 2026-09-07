@@ -127,6 +127,8 @@
         };
     })();
     
+    LanguageSwitcher.init();
+
     // Dark Mode & Theme Manager
     const ThemeManager = (function() {
         let body = document.body;
