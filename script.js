@@ -988,50 +988,137 @@ function toggleWelcomeButton(checked) {
 }
 window.toggleWelcomeButton = toggleWelcomeButton;
 
-// Font Size Adjuster
-let currentFontScale = 1.0;
-function adjustFontSize(action) {
-    if (action === 'increase') {
-        currentFontScale = Math.min(currentFontScale + 0.1, 1.4);
-    } else if (action === 'decrease') {
-        currentFontScale = Math.max(currentFontScale - 0.1, 0.8);
-    } else {
-        currentFontScale = 1.0;
-    }
-    
-    // Set text size dynamically on main elements
-    const elementsToScale = document.querySelectorAll('.content p, .content li, .content td, .content h3, .content h4, .content span');
-    elementsToScale.forEach(el => {
-        el.style.fontSize = `calc(1rem * ${currentFontScale})`;
-    });
-    
-    localStorage.setItem('fontScale', currentFontScale);
-}
-window.adjustFontSize = adjustFontSize;
+// ============================================================================
+// MÓDULO UNIFICADO DE ACESSIBILIDADE
+// Centraliza todas as funções de acessibilidade para evitar duplicação
+// entre script.js e accessibility.js
+// ============================================================================
 
-// Dyslexia Font Toggle
-function toggleDyslexiaFont(checked) {
-    if (checked) {
-        document.body.classList.add('dyslexia-font');
-        localStorage.setItem('dyslexiaActive', 'true');
-    } else {
-        document.body.classList.remove('dyslexia-font');
-        localStorage.removeItem('dyslexiaActive');
-    }
-}
-window.toggleDyslexiaFont = toggleDyslexiaFont;
+(function() {
+    'use strict';
 
-// High Contrast Toggle
-function toggleHighContrast(checked) {
-    if (checked) {
-        document.body.classList.add('high-contrast');
-        localStorage.setItem('contrastActive', 'true');
-    } else {
-        document.body.classList.remove('high-contrast');
-        localStorage.removeItem('contrastActive');
+    // Estado centralizado de acessibilidade
+    const a11yState = {
+        fontScale: 1.0,
+        dyslexiaActive: false,
+        contrastActive: false
+    };
+
+    // Carrega configurações salvas
+    function loadSettings() {
+        try {
+            const scale = localStorage.getItem('fontScale');
+            const dyslexia = localStorage.getItem('dyslexiaActive');
+            const contrast = localStorage.getItem('contrastActive');
+            
+            if (scale) a11yState.fontScale = parseFloat(scale);
+            if (dyslexia) a11yState.dyslexiaActive = dyslexia === 'true';
+            if (contrast) a11yState.contrastActive = contrast === 'true';
+        } catch (e) {
+            console.warn('Não foi possível carregar configurações de acessibilidade:', e);
+        }
     }
-}
-window.toggleHighContrast = toggleHighContrast;
+
+    // Font Size Adjuster
+    function adjustFontSize(action) {
+        if (action === 'increase') {
+            a11yState.fontScale = Math.min(a11yState.fontScale + 0.1, 1.4);
+        } else if (action === 'decrease') {
+            a11yState.fontScale = Math.max(a11yState.fontScale - 0.1, 0.8);
+        } else {
+            a11yState.fontScale = 1.0;
+        }
+        
+        const elementsToScale = document.querySelectorAll('.content p, .content li, .content td, .content h3, .content h4, .content span');
+        elementsToScale.forEach(el => {
+            el.style.fontSize = `calc(1rem * ${a11yState.fontScale})`;
+        });
+        
+        localStorage.setItem('fontScale', a11yState.fontScale);
+        
+        // Atualiza UI se existir
+        const scaleDisplay = document.getElementById('font-scale-display');
+        if (scaleDisplay) {
+            scaleDisplay.textContent = Math.round(a11yState.fontScale * 100) + '%';
+        }
+    }
+
+    // Dyslexia Font Toggle
+    function toggleDyslexiaFont(checked) {
+        a11yState.dyslexiaActive = !!checked;
+        if (checked) {
+            document.body.classList.add('dyslexia-font');
+            localStorage.setItem('dyslexiaActive', 'true');
+        } else {
+            document.body.classList.remove('dyslexia-font');
+            localStorage.removeItem('dyslexiaActive');
+        }
+        
+        // Sincroniza com accessibility.js se existir
+        if (window.accessibilityTools && checked) {
+            window.accessibilityTools.toggleLargeText();
+        }
+    }
+
+    // High Contrast Toggle
+    function toggleHighContrast(checked) {
+        a11yState.contrastActive = !!checked;
+        if (checked) {
+            document.body.classList.add('high-contrast');
+            localStorage.setItem('contrastActive', 'true');
+        } else {
+            document.body.classList.remove('high-contrast');
+            localStorage.removeItem('contrastActive');
+        }
+        
+        // Sincroniza estado visual dos checkboxes
+        const contrastToggle = document.getElementById('contrast-toggle');
+        const dyslexiaToggle = document.getElementById('dyslexia-toggle');
+        if (contrastToggle) contrastToggle.checked = checked;
+    }
+
+    // Aplica configurações salvas ao iniciar
+    function applySavedSettings() {
+        loadSettings();
+        
+        if (a11yState.fontScale !== 1.0) {
+            adjustFontSize('reset');
+            const elementsToScale = document.querySelectorAll('.content p, .content li, .content td, .content h3, .content h4, .content span');
+            elementsToScale.forEach(el => {
+                el.style.fontSize = `calc(1rem * ${a11yState.fontScale})`;
+            });
+        }
+        
+        if (a11yState.dyslexiaActive) {
+            document.body.classList.add('dyslexia-font');
+            const dyslexiaToggle = document.getElementById('dyslexia-toggle');
+            if (dyslexiaToggle) dyslexiaToggle.checked = true;
+        }
+        
+        if (a11yState.contrastActive) {
+            document.body.classList.add('high-contrast');
+            const contrastToggle = document.getElementById('contrast-toggle');
+            if (contrastToggle) contrastToggle.checked = true;
+        }
+    }
+
+    // Exporta funções globalmente para compatibilidade com HTML
+    window.adjustFontSize = adjustFontSize;
+    window.toggleDyslexiaFont = toggleDyslexiaFont;
+    window.toggleHighContrast = toggleHighContrast;
+    
+    // Expõe estado para debugging
+    window.a11yState = a11yState;
+
+    // Aplica configurações quando DOM estiver pronto
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applySavedSettings);
+    } else {
+        applySavedSettings();
+    }
+})();
+
+// ============================================================================
 
 // TTS (Text-to-Speech Page Reader)
 let activeUtterance = null;
