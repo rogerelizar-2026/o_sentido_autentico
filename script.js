@@ -231,7 +231,147 @@ const SidebarManager = (function() {
         }
     }
 
-    // Chart.js Configuration for Hebrew and Greek
+    // ==========================================
+    // CHART.JS FACTORY & MANAGER (Optimized V2)
+    // ==========================================
+    const ChartManager = (function() {
+        // Armazena referências às instâncias dos gráficos para destruição posterior
+        const chartInstances = new Map();
+        
+        // Factory function para criar gráficos com configuração padrão
+        function createChart(canvasId, chartType, chartData, chartOptions) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) {
+                console.warn(`Canvas #${canvasId} não encontrado.`);
+                return null;
+            }
+            
+            // Destruir instância anterior se existir (evita memory leaks)
+            destroyChart(canvasId);
+            
+            const ctx = canvas.getContext('2d');
+            const defaultOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 750,
+                    easing: 'easeOutQuart'
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: { family: 'Inter', size: 11 }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(16, 42, 67, 0.95)',
+                        titleFont: { family: 'Cinzel', size: 13 },
+                        bodyFont: { family: 'Inter', size: 11 },
+                        padding: 12,
+                        cornerRadius: 6,
+                        displayColors: true
+                    }
+                }
+            };
+            
+            // Merge das opções padrão com as específicas
+            const mergedOptions = mergeOptions(defaultOptions, chartOptions);
+            
+            try {
+                const chart = new Chart(ctx, {
+                    type: chartType,
+                    data: chartData,
+                    options: mergedOptions
+                });
+                
+                // Armazenar referência para destruição futura
+                chartInstances.set(canvasId, chart);
+                return chart;
+            } catch (err) {
+                console.error(`Erro ao criar gráfico ${canvasId}:`, err);
+                return null;
+            }
+        }
+        
+        // Factory function específica para gráficos hebraicos
+        function createHebrewChart(canvasId, config) {
+            return createChart(canvasId, config.type, config.data, {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: config.title,
+                        font: { family: 'Cinzel', size: 14, weight: 'bold' },
+                        color: '#c5a059',
+                        padding: { bottom: 16 }
+                    },
+                    ...config.extraPlugins
+                },
+                scales: config.scales || {}
+            });
+        }
+        
+        // Factory function específica para gráficos gregos
+        function createGreekChart(canvasId, config) {
+            return createChart(canvasId, config.type, config.data, {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: config.title,
+                        font: { family: 'Cinzel', size: 14, weight: 'bold' },
+                        color: '#7b1d22',
+                        padding: { bottom: 16 }
+                    },
+                    ...config.extraPlugins
+                },
+                scales: config.scales || {}
+            });
+        }
+        
+        // Destroy chart instance
+        function destroyChart(canvasId) {
+            const existingChart = chartInstances.get(canvasId);
+            if (existingChart) {
+                existingChart.destroy();
+                chartInstances.delete(canvasId);
+            }
+        }
+        
+        // Destroy all charts
+        function destroyAllCharts() {
+            chartInstances.forEach((chart, id) => {
+                chart.destroy();
+            });
+            chartInstances.clear();
+        }
+        
+        // Utility: Deep merge de objetos
+        function mergeOptions(target, source) {
+            const result = { ...target };
+            for (const key in source) {
+                if (source.hasOwnProperty(key)) {
+                    if (typeof source[key] === 'object' && source[key] !== null && !Array.isArray(source[key])) {
+                        result[key] = mergeOptions(result[key] || {}, source[key]);
+                    } else {
+                        result[key] = source[key];
+                    }
+                }
+            }
+            return result;
+        }
+        
+        return {
+            createChart,
+            createHebrewChart,
+            createGreekChart,
+            destroyChart,
+            destroyAllCharts,
+            getChart: (id) => chartInstances.get(id)
+        };
+    })();
+    
+    // ==========================================
+    // CHART INITIALIZATION ON DOM READY
+    // ==========================================
     document.addEventListener('DOMContentLoaded', () => {
     // Nota: Configurações de acessibilidade são gerenciadas exclusivamente por accessibility.js
     // O carregamento das configurações salvas (dyslexia, contraste, fontScale) é feito lá
@@ -240,45 +380,26 @@ const SidebarManager = (function() {
         
         // Chart 1: Complexidade vs Tempo (Scatter Plot)
         try {
-        const ctxHeb1 = document.getElementById('chart1');
-        if (ctxHeb1) {
-            new Chart(ctxHeb1.getContext('2d'), {
-            type: 'scatter',
-            data: {
-                datasets: [{
-                    label: 'Métodos de Hebraico',
-                    data: [
-                        { x: 10, y: 9.8, label: 'Híbrido Integrado' },
-                        { x: 6, y: 9.5, label: 'Imersão Comunicativa' },
-                        { x: 8, y: 9.2, label: 'Leitura Direta' },
-                        { x: 12, y: 9.0, label: 'Tutoria Individual' },
-                        { x: 18, y: 8.5, label: 'Gramática-Tradução' },
-                        { x: 24, y: 8.0, label: 'Curso Universitário' },
-                        { x: 14, y: 7.8, label: 'Indutivo-Gramatical' }
-                    ],
-                    backgroundColor: 'rgba(197, 160, 89, 0.85)',
-                    borderColor: 'rgba(197, 160, 89, 1)',
-                    pointRadius: 8,
-                    pointHoverRadius: 10
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Complexidade vs Tempo (Hebraico)',
-                        font: { family: 'Cinzel', size: 14 }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(ctx) {
-                                const item = ctx.dataset.data[ctx.dataIndex];
-                                return `${item.label}: Tempo: ${item.x} meses, Eficácia: ${item.y}/10`;
-                            }
-                        }
-                    }
+            ChartManager.createHebrewChart('chart1', {
+                type: 'scatter',
+                title: 'Complexidade vs Tempo (Hebraico)',
+                data: {
+                    datasets: [{
+                        label: 'Métodos de Hebraico',
+                        data: [
+                            { x: 10, y: 9.8, label: 'Híbrido Integrado' },
+                            { x: 6, y: 9.5, label: 'Imersão Comunicativa' },
+                            { x: 8, y: 9.2, label: 'Leitura Direta' },
+                            { x: 12, y: 9.0, label: 'Tutoria Individual' },
+                            { x: 18, y: 8.5, label: 'Gramática-Tradução' },
+                            { x: 24, y: 8.0, label: 'Curso Universitário' },
+                            { x: 14, y: 7.8, label: 'Indutivo-Gramatical' }
+                        ],
+                        backgroundColor: 'rgba(197, 160, 89, 0.85)',
+                        borderColor: 'rgba(197, 160, 89, 1)',
+                        pointRadius: 8,
+                        pointHoverRadius: 10
+                    }]
                 },
                 scales: {
                     x: {
@@ -289,153 +410,122 @@ const SidebarManager = (function() {
                         min: 5,
                         max: 10
                     }
+                },
+                extraPlugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                const item = ctx.dataset.data[ctx.dataIndex];
+                                return `${item.label}: Tempo: ${item.x} meses, Eficácia: ${item.y}/10`;
+                            }
+                        }
+                    }
                 }
-            }
-        });
+            });
         } catch (err) {
             console.error('Erro ao criar gráfico Heb1:', err);
         }
 
         // Chart 2: Eficácia Multidimensional (Radar - Top 4)
         try {
-        const ctxHeb2 = document.getElementById('chart2');
-        if (ctxHeb2) {
-        new Chart(ctxHeb2.getContext('2d'), {
-            type: 'radar',
-            data: {
-                labels: ['Velocidade', 'Retenção', 'Capacidade Exegética', 'Custo-Benefício', 'Praticidade'],
-                datasets: [
-                    {
-                        label: 'Método Híbrido Integrado',
-                        data: [9.5, 9.9, 9.8, 10, 9.5],
-                        backgroundColor: 'rgba(197, 160, 89, 0.2)',
-                        borderColor: '#c5a059',
-                        borderWidth: 2
-                    },
-                    {
-                        label: 'Imersão Comunicativa',
-                        data: [9.2, 9.0, 8.5, 9.0, 9.2],
-                        backgroundColor: 'rgba(16, 42, 67, 0.15)',
-                        borderColor: '#102a43',
-                        borderWidth: 2
-                    },
-                    {
-                        label: 'Leitura Direta',
-                        data: [8.5, 8.8, 8.0, 9.5, 8.7],
-                        backgroundColor: 'rgba(74, 85, 104, 0.1)',
-                        borderColor: '#4a5568',
-                        borderWidth: 2
-                    },
-                    {
-                        label: 'Gramática-Tradução',
-                        data: [6.5, 7.0, 8.5, 8.0, 6.0],
-                        backgroundColor: 'rgba(226, 183, 101, 0.1)',
-                        borderColor: '#e2b765',
-                        borderWidth: 2
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Eficácia Multidimensional - Top 4 (Hebraico)',
-                        font: { family: 'Cinzel', size: 14 }
-                    }
+            ChartManager.createHebrewChart('chart2', {
+                type: 'radar',
+                title: 'Eficácia Multidimensional - Top 4 (Hebraico)',
+                data: {
+                    labels: ['Velocidade', 'Retenção', 'Capacidade Exegética', 'Custo-Benefício', 'Praticidade'],
+                    datasets: [
+                        {
+                            label: 'Método Híbrido Integrado',
+                            data: [9.5, 9.9, 9.8, 10, 9.5],
+                            backgroundColor: 'rgba(197, 160, 89, 0.2)',
+                            borderColor: '#c5a059',
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Imersão Comunicativa',
+                            data: [9.2, 9.0, 8.5, 9.0, 9.2],
+                            backgroundColor: 'rgba(16, 42, 67, 0.15)',
+                            borderColor: '#102a43',
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Leitura Direta',
+                            data: [8.5, 8.8, 8.0, 9.5, 8.7],
+                            backgroundColor: 'rgba(74, 85, 104, 0.1)',
+                            borderColor: '#4a5568',
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Gramática-Tradução',
+                            data: [6.5, 7.0, 8.5, 8.0, 6.0],
+                            backgroundColor: 'rgba(226, 183, 101, 0.1)',
+                            borderColor: '#e2b765',
+                            borderWidth: 2
+                        }
+                    ]
                 }
-            }
-        });
+            });
         } catch (err) {
             console.error('Erro ao criar gráfico Heb2:', err);
         }
 
         // Chart 3: Tempo de Aprendizado por Método (Horizontal Bar)
         try {
-        const ctxHeb3 = document.getElementById('chart3');
-        if (ctxHeb3) {
-        new Chart(ctxHeb3.getContext('2d'), {
-            type: 'bar',
-            data: {
-                labels: ['Híbrido Integrado', 'Imersão', 'Leitura Direta', 'Tutoria', 'Gramática-Tradução', 'Universitário', 'Indutivo'],
-                datasets: [{
-                    label: 'Tempo Estimado até Leitura Autônoma (Meses)',
-                    data: [8, 6, 9, 12, 18, 24, 15],
-                    backgroundColor: 'rgba(16, 42, 67, 0.75)',
-                    borderColor: 'rgba(16, 42, 67, 1)',
-                    borderWidth: 1,
-                    borderRadius: 4
-                }]
-            },
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Hebraico: Tempo de Aprendizado por Método',
-                        font: { family: 'Cinzel', size: 14 }
-                    }
+            ChartManager.createHebrewChart('chart3', {
+                type: 'bar',
+                title: 'Hebraico: Tempo de Aprendizado por Método',
+                data: {
+                    labels: ['Híbrido Integrado', 'Imersão', 'Leitura Direta', 'Tutoria', 'Gramática-Tradução', 'Universitário', 'Indutivo'],
+                    datasets: [{
+                        label: 'Tempo Estimado até Leitura Autônoma (Meses)',
+                        data: [8, 6, 9, 12, 18, 24, 15],
+                        backgroundColor: 'rgba(16, 42, 67, 0.75)',
+                        borderColor: 'rgba(16, 42, 67, 1)',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                extraPlugins: {
+                    legend: { display: false }
                 }
-            }
-        });
+            });
         } catch (err) {
             console.error('Erro ao criar gráfico Heb3:', err);
         }
 
         // Chart 4: Custo-Benefício (Bubble Chart)
         try {
-        const ctxHeb4 = document.getElementById('chart4');
-        if (ctxHeb4) {
-        new Chart(ctxHeb4.getContext('2d'), {
-            type: 'bubble',
-            data: {
-                datasets: [
-                    {
-                        label: 'Híbrido Integrado',
-                        data: [{ x: 1, y: 9.8, r: 18 }], // x is cost (1-5, 1 is free/cheap), y is efficacy, r is bubble size
-                        backgroundColor: 'rgba(197, 160, 89, 0.85)'
-                    },
-                    {
-                        label: 'Leitura Direta',
-                        data: [{ x: 2, y: 9.2, r: 14 }],
-                        backgroundColor: 'rgba(16, 42, 67, 0.85)'
-                    },
-                    {
-                        label: 'Gramática-Tradução',
-                        data: [{ x: 3, y: 8.5, r: 12 }],
-                        backgroundColor: 'rgba(74, 85, 104, 0.85)'
-                    },
-                    {
-                        label: 'Tutoria Individual',
-                        data: [{ x: 4, y: 9.0, r: 10 }],
-                        backgroundColor: 'rgba(123, 29, 34, 0.85)'
-                    },
-                    {
-                        label: 'Curso Acadêmico',
-                        data: [{ x: 5, y: 8.0, r: 8 }],
-                        backgroundColor: 'rgba(156, 46, 53, 0.85)'
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Custo-Benefício de Métodos (Hebraico)',
-                        font: { family: 'Cinzel', size: 14 }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(ctx) {
-                                return `${ctx.dataset.label}: Custo: Nível ${ctx.raw.x}/5, Eficácia: ${ctx.raw.y}/10`;
-                            }
+            ChartManager.createHebrewChart('chart4', {
+                type: 'bubble',
+                title: 'Custo-Benefício de Métodos (Hebraico)',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Híbrido Integrado',
+                            data: [{ x: 1, y: 9.8, r: 18 }],
+                            backgroundColor: 'rgba(197, 160, 89, 0.85)'
+                        },
+                        {
+                            label: 'Leitura Direta',
+                            data: [{ x: 2, y: 9.2, r: 14 }],
+                            backgroundColor: 'rgba(16, 42, 67, 0.85)'
+                        },
+                        {
+                            label: 'Gramática-Tradução',
+                            data: [{ x: 3, y: 8.5, r: 12 }],
+                            backgroundColor: 'rgba(74, 85, 104, 0.85)'
+                        },
+                        {
+                            label: 'Tutoria Individual',
+                            data: [{ x: 4, y: 9.0, r: 10 }],
+                            backgroundColor: 'rgba(123, 29, 34, 0.85)'
+                        },
+                        {
+                            label: 'Curso Acadêmico',
+                            data: [{ x: 5, y: 8.0, r: 8 }],
+                            backgroundColor: 'rgba(156, 46, 53, 0.85)'
                         }
-                    }
+                    ]
                 },
                 scales: {
                     x: {
@@ -448,9 +538,17 @@ const SidebarManager = (function() {
                         min: 5,
                         max: 10
                     }
+                },
+                extraPlugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                return `${ctx.dataset.label}: Custo: Nível ${ctx.raw.x}/5, Eficácia: ${ctx.raw.y}/10`;
+                            }
+                        }
+                    }
                 }
-            }
-        });
+            });
         } catch (err) {
             console.error('Erro ao criar gráfico Heb4:', err);
         }
@@ -460,44 +558,25 @@ const SidebarManager = (function() {
 
         // Chart 1: Complexidade vs Tempo (Scatter Plot)
         try {
-        const ctxGrk1 = document.getElementById('grkChart1');
-        if (ctxGrk1) {
-        new Chart(ctxGrk1.getContext('2d'), {
-            type: 'scatter',
-            data: {
-                datasets: [{
-                    label: 'Métodos de Grego',
-                    data: [
-                        { x: 9, y: 9.8, label: 'Método Híbrido Integrado (Rega/Wallace)' },
-                        { x: 14, y: 8.5, label: 'Mounce Gramática-Tradução' },
-                        { x: 8, y: 9.0, label: 'Método Indutivo Dobson' },
-                        { x: 6, y: 8.8, label: 'Imersão Comunicativa (Polis)' },
-                        { x: 12, y: 7.8, label: 'Método Tradicional' },
-                        { x: 20, y: 8.0, label: 'Curso Universitário' }
-                    ],
-                    backgroundColor: 'rgba(123, 29, 34, 0.85)',
-                    borderColor: 'rgba(123, 29, 34, 1)',
-                    pointRadius: 8,
-                    pointHoverRadius: 10
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Complexidade vs Tempo (Grego Koiné)',
-                        font: { family: 'Cinzel', size: 14 }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(ctx) {
-                                const item = ctx.dataset.data[ctx.dataIndex];
-                                return `${item.label}: Tempo: ${item.x} meses, Eficácia: ${item.y}/10`;
-                            }
-                        }
-                    }
+            ChartManager.createGreekChart('grkChart1', {
+                type: 'scatter',
+                title: 'Complexidade vs Tempo (Grego Koiné)',
+                data: {
+                    datasets: [{
+                        label: 'Métodos de Grego',
+                        data: [
+                            { x: 9, y: 9.8, label: 'Método Híbrido Integrado (Rega/Wallace)' },
+                            { x: 14, y: 8.5, label: 'Mounce Gramática-Tradução' },
+                            { x: 8, y: 9.0, label: 'Método Indutivo Dobson' },
+                            { x: 6, y: 8.8, label: 'Imersão Comunicativa (Polis)' },
+                            { x: 12, y: 7.8, label: 'Método Tradicional' },
+                            { x: 20, y: 8.0, label: 'Curso Universitário' }
+                        ],
+                        backgroundColor: 'rgba(123, 29, 34, 0.85)',
+                        borderColor: 'rgba(123, 29, 34, 1)',
+                        pointRadius: 8,
+                        pointHoverRadius: 10
+                    }]
                 },
                 scales: {
                     x: {
@@ -508,153 +587,122 @@ const SidebarManager = (function() {
                         min: 5,
                         max: 10
                     }
+                },
+                extraPlugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                const item = ctx.dataset.data[ctx.dataIndex];
+                                return `${item.label}: Tempo: ${item.x} meses, Eficácia: ${item.y}/10`;
+                            }
+                        }
+                    }
                 }
-            }
-        });
+            });
         } catch (err) {
             console.error('Erro ao criar gráfico Grk1:', err);
         }
 
         // Chart 2: Eficácia Multidimensional (Radar - Top 4)
         try {
-        const ctxGrk2 = document.getElementById('grkChart2');
-        if (ctxGrk2) {
-        new Chart(ctxGrk2.getContext('2d'), {
-            type: 'radar',
-            data: {
-                labels: ['Análise de Casos', 'Morfologia Verbal', 'Sintaxe Exegética', 'Retenção Anki', 'Usabilidade Prática'],
-                datasets: [
-                    {
-                        label: 'Método Híbrido Integrado (Rega/Wallace)',
-                        data: [9.8, 9.5, 9.7, 9.8, 9.6],
-                        backgroundColor: 'rgba(123, 29, 34, 0.2)',
-                        borderColor: '#7b1d22',
-                        borderWidth: 2
-                    },
-                    {
-                        label: 'Mounce Tradicional',
-                        data: [8.8, 9.2, 7.5, 7.0, 7.5],
-                        backgroundColor: 'rgba(197, 160, 89, 0.15)',
-                        borderColor: '#c5a059',
-                        borderWidth: 2
-                    },
-                    {
-                        label: 'Método Indutivo',
-                        data: [7.5, 8.0, 8.5, 7.5, 8.2],
-                        backgroundColor: 'rgba(74, 85, 104, 0.1)',
-                        borderColor: '#4a5568',
-                        borderWidth: 2
-                    },
-                    {
-                        label: 'Imersão (Polis)',
-                        data: [6.0, 7.0, 6.5, 9.0, 9.0],
-                        backgroundColor: 'rgba(226, 183, 101, 0.1)',
-                        borderColor: '#e2b765',
-                        borderWidth: 2
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Eficácia Multidimensional - Top 4 (Grego)',
-                        font: { family: 'Cinzel', size: 14 }
-                    }
+            ChartManager.createGreekChart('grkChart2', {
+                type: 'radar',
+                title: 'Eficácia Multidimensional - Top 4 (Grego)',
+                data: {
+                    labels: ['Análise de Casos', 'Morfologia Verbal', 'Sintaxe Exegética', 'Retenção Anki', 'Usabilidade Prática'],
+                    datasets: [
+                        {
+                            label: 'Método Híbrido Integrado (Rega/Wallace)',
+                            data: [9.8, 9.5, 9.7, 9.8, 9.6],
+                            backgroundColor: 'rgba(123, 29, 34, 0.2)',
+                            borderColor: '#7b1d22',
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Mounce Tradicional',
+                            data: [8.8, 9.2, 7.5, 7.0, 7.5],
+                            backgroundColor: 'rgba(197, 160, 89, 0.15)',
+                            borderColor: '#c5a059',
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Método Indutivo',
+                            data: [7.5, 8.0, 8.5, 7.5, 8.2],
+                            backgroundColor: 'rgba(74, 85, 104, 0.1)',
+                            borderColor: '#4a5568',
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Imersão (Polis)',
+                            data: [6.0, 7.0, 6.5, 9.0, 9.0],
+                            backgroundColor: 'rgba(226, 183, 101, 0.1)',
+                            borderColor: '#e2b765',
+                            borderWidth: 2
+                        }
+                    ]
                 }
-            }
-        });
+            });
         } catch (err) {
             console.error('Erro ao criar gráfico Grk2:', err);
         }
 
         // Chart 3: Tempo de Aprendizado de Casos e Paradigmas (Barras Horizontais)
         try {
-        const ctxGrk3 = document.getElementById('grkChart3');
-        if (ctxGrk3) {
-        new Chart(ctxGrk3.getContext('2d'), {
-            type: 'bar',
-            data: {
-                labels: ['Alfabeto & Fonética', 'Declinações (1ª e 2ª)', '3ª Declinação (Nomes)', 'Artigo & Casos Nominais', 'Sistema Verbal Presente', 'Estudo de Particípios', 'Sintaxe Exegética'],
-                datasets: [{
-                    label: 'Tempo Estimado de Domínio (Semanas)',
-                    data: [2, 4, 6, 5, 8, 8, 12],
-                    backgroundColor: 'rgba(123, 29, 34, 0.75)',
-                    borderColor: 'rgba(123, 29, 34, 1)',
-                    borderWidth: 1,
-                    borderRadius: 4
-                }]
-            },
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Grego: Curva de Complexidade e Tempo por Tópico',
-                        font: { family: 'Cinzel', size: 14 }
-                    }
+            ChartManager.createGreekChart('grkChart3', {
+                type: 'bar',
+                title: 'Grego: Curva de Complexidade e Tempo por Tópico',
+                data: {
+                    labels: ['Alfabeto & Fonética', 'Declinações (1ª e 2ª)', '3ª Declinação (Nomes)', 'Artigo & Casos Nominais', 'Sistema Verbal Presente', 'Estudo de Particípios', 'Sintaxe Exegética'],
+                    datasets: [{
+                        label: 'Tempo Estimado de Domínio (Semanas)',
+                        data: [2, 4, 6, 5, 8, 8, 12],
+                        backgroundColor: 'rgba(123, 29, 34, 0.75)',
+                        borderColor: 'rgba(123, 29, 34, 1)',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                extraPlugins: {
+                    legend: { display: false }
                 }
-            }
-        });
+            });
         } catch (err) {
             console.error('Erro ao criar gráfico Grk3:', err);
         }
 
         // Chart 4: Custo-Benefício de Materiais (Bubble Chart)
         try {
-        const ctxGrk4 = document.getElementById('grkChart4');
-        if (ctxGrk4) {
-        new Chart(ctxGrk4.getContext('2d'), {
-            type: 'bubble',
-            data: {
-                datasets: [
-                    {
-                        label: 'Noções do Grego Bíblico (Rega)',
-                        data: [{ x: 1, y: 9.2, r: 16 }], // cost (1 is low, 5 is very high), y is efficacy, r is bubble size
-                        backgroundColor: 'rgba(197, 160, 89, 0.85)'
-                    },
-                    {
-                        label: 'Gramática Grega (Wallace)',
-                        data: [{ x: 2, y: 9.7, r: 18 }],
-                        backgroundColor: 'rgba(123, 29, 34, 0.85)'
-                    },
-                    {
-                        label: 'Fundamentos Grego (Mounce)',
-                        data: [{ x: 1.5, y: 8.8, r: 14 }],
-                        backgroundColor: 'rgba(16, 42, 67, 0.85)'
-                    },
-                    {
-                        label: 'Software Logos (Avançado)',
-                        data: [{ x: 4.5, y: 9.5, r: 12 }],
-                        backgroundColor: 'rgba(74, 85, 104, 0.85)'
-                    },
-                    {
-                        label: 'Curso Acadêmico Completo',
-                        data: [{ x: 5, y: 8.5, r: 8 }],
-                        backgroundColor: 'rgba(156, 46, 53, 0.85)'
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Custo-Benefício de Materiais de Grego',
-                        font: { family: 'Cinzel', size: 14 }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(ctx) {
-                                return `${ctx.dataset.label}: Custo: Nível ${ctx.raw.x}/5, Eficácia: ${ctx.raw.y}/10`;
-                            }
+            ChartManager.createGreekChart('grkChart4', {
+                type: 'bubble',
+                title: 'Custo-Benefício de Materiais de Grego',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Noções do Grego Bíblico (Rega)',
+                            data: [{ x: 1, y: 9.2, r: 16 }],
+                            backgroundColor: 'rgba(197, 160, 89, 0.85)'
+                        },
+                        {
+                            label: 'Gramática Grega (Wallace)',
+                            data: [{ x: 2, y: 9.7, r: 18 }],
+                            backgroundColor: 'rgba(123, 29, 34, 0.85)'
+                        },
+                        {
+                            label: 'Fundamentos Grego (Mounce)',
+                            data: [{ x: 1.5, y: 8.8, r: 14 }],
+                            backgroundColor: 'rgba(16, 42, 67, 0.85)'
+                        },
+                        {
+                            label: 'Software Logos (Avançado)',
+                            data: [{ x: 4.5, y: 9.5, r: 12 }],
+                            backgroundColor: 'rgba(74, 85, 104, 0.85)'
+                        },
+                        {
+                            label: 'Curso Acadêmico Completo',
+                            data: [{ x: 5, y: 8.5, r: 8 }],
+                            backgroundColor: 'rgba(156, 46, 53, 0.85)'
                         }
-                    }
+                    ]
                 },
                 scales: {
                     x: {
@@ -667,51 +715,48 @@ const SidebarManager = (function() {
                         min: 5,
                         max: 10
                     }
+                },
+                extraPlugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                return `${ctx.dataset.label}: Custo: Nível ${ctx.raw.x}/5, Eficácia: ${ctx.raw.y}/10`;
+                            }
+                        }
+                    }
                 }
-            }
-        });
+            });
         } catch (err) {
             console.error('Erro ao criar gráfico Grk4:', err);
         }
 
         // Chart 5: Complexidade Sintática vs Resultado de Leitura (Line Chart)
         try {
-        const ctxGrk5 = document.getElementById('grkChart5');
-        if (ctxGrk5) {
-        new Chart(ctxGrk5.getContext('2d'), {
-            type: 'line',
-            data: {
-                labels: ['Nível 1: Fundação', 'Nível 2: Básico', 'Nível 3: Intermediário', 'Nível 4: Avançado', 'Nível 5: Fluência'],
-                datasets: [
-                    {
-                        label: 'Dificuldade Sintática',
-                        data: [2, 4.5, 6.8, 8.5, 9.5],
-                        borderColor: '#7b1d22',
-                        backgroundColor: 'transparent',
-                        borderWidth: 3,
-                        tension: 0.3
-                    },
-                    {
-                        label: 'Autonomia de Leitura (%)',
-                        data: [10, 35, 60, 85, 98],
-                        borderColor: '#c5a059',
-                        backgroundColor: 'transparent',
-                        borderWidth: 3,
-                        borderDash: [5, 5],
-                        tension: 0.3,
-                        yAxisID: 'yPercentage'
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Curva de Dificuldade vs Autonomia no Grego',
-                        font: { family: 'Cinzel', size: 14 }
-                    }
+            ChartManager.createGreekChart('grkChart5', {
+                type: 'line',
+                title: 'Curva de Dificuldade vs Autonomia no Grego',
+                data: {
+                    labels: ['Nível 1: Fundação', 'Nível 2: Básico', 'Nível 3: Intermediário', 'Nível 4: Avançado', 'Nível 5: Fluência'],
+                    datasets: [
+                        {
+                            label: 'Dificuldade Sintática',
+                            data: [2, 4.5, 6.8, 8.5, 9.5],
+                            borderColor: '#7b1d22',
+                            backgroundColor: 'transparent',
+                            borderWidth: 3,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Autonomia de Leitura (%)',
+                            data: [10, 35, 60, 85, 98],
+                            borderColor: '#c5a059',
+                            backgroundColor: 'transparent',
+                            borderWidth: 3,
+                            borderDash: [5, 5],
+                            tension: 0.3,
+                            yAxisID: 'yPercentage'
+                        }
+                    ]
                 },
                 scales: {
                     y: {
@@ -729,8 +774,7 @@ const SidebarManager = (function() {
                         }
                     }
                 }
-            }
-        });
+            });
         } catch (err) {
             console.error('Erro ao criar gráfico Grk5:', err);
         }
