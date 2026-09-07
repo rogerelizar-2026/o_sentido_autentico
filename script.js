@@ -1,184 +1,189 @@
 
     // ==========================================
-    // SIDEBAR AUTO-HIDE TIMER LOGIC (V9)
+    // SIDEBAR AUTO-HIDE TIMER LOGIC (V10 - Optimized)
     // ==========================================
-    let sidebarTimeout;
-    const sidebarCollapseDelay = 4000; // 4 seconds of inactivity
-
-    function resetSidebarTimer() {
-        const body = document.body;
-        const sidebar = document.querySelector('.sidebar');
-        if (!sidebar) return;
+    const SidebarManager = (function() {
+        let sidebarTimeout = null;
+        const sidebarCollapseDelay = 4000;
+        let sidebar = null;
+        let overlay = null;
         
-        clearTimeout(sidebarTimeout);
-        
-        // If welcome modal is open, do not start the timer or collapse
-        const overlay = document.getElementById('welcome-modal-overlay');
-        if (overlay && overlay.classList.contains('show')) {
-            return;
+        function init() {
+            sidebar = document.querySelector('.sidebar');
+            overlay = document.getElementById('welcome-modal-overlay');
         }
         
-        // Only run collapse if sidebar is currently visible (not collapsed)
-        if (!body.classList.contains('sidebar-collapsed')) {
-            sidebarTimeout = setTimeout(() => {
-                const isHovered = sidebar.matches(':hover');
-                const activeEl = document.activeElement;
-                const isInputFocused = activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.tagName === 'SELECT');
-                
-                if (!isHovered && !isInputFocused) {
-                    body.classList.add('sidebar-collapsed');
-                } else {
-                    // Try again in 2 seconds
-                    resetSidebarTimer();
-                }
-            }, sidebarCollapseDelay);
+        function resetSidebarTimer() {
+            if (!sidebar) return;
+            clearTimeout(sidebarTimeout);
+            
+            if (overlay && overlay.classList.contains('show')) return;
+            
+            if (!document.body.classList.contains('sidebar-collapsed')) {
+                sidebarTimeout = setTimeout(() => {
+                    const isHovered = sidebar.matches(':hover');
+                    const activeEl = document.activeElement;
+                    const isInputFocused = activeEl && /^(INPUT|TEXTAREA|SELECT)$/.test(activeEl.tagName);
+                    
+                    if (!isHovered && !isInputFocused) {
+                        document.body.classList.add('sidebar-collapsed');
+                    } else {
+                        resetSidebarTimer();
+                    }
+                }, sidebarCollapseDelay);
+            }
         }
-    }
 
-    function expandSidebar() {
-        document.body.classList.remove('sidebar-collapsed');
-        resetSidebarTimer();
-    }
-
-    function toggleSidebar() {
-        const body = document.body;
-        if (body.classList.contains('sidebar-collapsed')) {
-            expandSidebar();
-        } else {
-            body.classList.add('sidebar-collapsed');
+        function expandSidebar() {
+            document.body.classList.remove('sidebar-collapsed');
+            resetSidebarTimer();
         }
-    }
 
-    // Expose toggler globally
-    window.toggleSidebar = toggleSidebar;
-    window.expandSidebar = expandSidebar;
-
-    // Expand on mouse movement near left edge (clientX < 30)
-    window.addEventListener('mousemove', (e) => {
-        if (document.body.classList.contains('sidebar-collapsed') && e.clientX < 30) {
-            expandSidebar();
+        function toggleSidebar() {
+            const body = document.body;
+            body.classList.toggle('sidebar-collapsed', !body.classList.contains('sidebar-collapsed'));
+            if (!body.classList.contains('sidebar-collapsed')) {
+                resetSidebarTimer();
+            }
         }
-    }, { passive: true });
-
-    // Reset timer on user activity if expanded
-    ['mousemove', 'touchstart', 'keydown', 'scroll', 'mousedown'].forEach(evt => {
-        window.addEventListener(evt, () => {
+        
+        function handleMousemove(e) {
+            if (document.body.classList.contains('sidebar-collapsed') && e.clientX < 30) {
+                expandSidebar();
+            }
+        }
+        
+        function handleActivity() {
             if (!document.body.classList.contains('sidebar-collapsed')) {
                 resetSidebarTimer();
             }
-        }, { passive: true });
-    });
-
-    // Start sidebar timer initially
-    resetSidebarTimer();
-
-    // ==========================================
-    // LANGUAGE HUB SWITCHER AUTOMATION (V9)
-    // ==========================================
-    const langBtns = document.querySelectorAll('.lang-btn');
-    const portalHub = document.getElementById('portal-hub');
-    const hebrewHub = document.getElementById('hebrew-hub');
-    const greekHub = document.getElementById('greek-hub');
-    const portalMenu = document.getElementById('portal-menu');
-    const hebrewMenu = document.getElementById('hebrew-menu');
-    const greekMenu = document.getElementById('greek-menu');
-    const body = document.body;
-
-    function switchTab(targetLang) {
-        const langBtns = document.querySelectorAll('.lang-btn');
-        const portalHub = document.getElementById('portal-hub');
-        const hebrewHub = document.getElementById('hebrew-hub');
-        const greekHub = document.getElementById('greek-hub');
-        const portalMenu = document.getElementById('portal-menu');
-        const hebrewMenu = document.getElementById('hebrew-menu');
-        const greekMenu = document.getElementById('greek-menu');
-        const body = document.body;
-
-        langBtns.forEach(b => {
-            if (b.getAttribute('data-lang') === targetLang) {
-                b.classList.add('active');
-            } else {
-                b.classList.remove('active');
-            }
-        });
-        if (targetLang === 'portal') {
-            if (portalHub) portalHub.style.display = 'block';
-            if (hebrewHub) hebrewHub.style.display = 'none';
-            if (greekHub) greekHub.style.display = 'none';
-            
-            if (portalMenu) portalMenu.style.display = 'flex';
-            if (hebrewMenu) hebrewMenu.style.display = 'none';
-            if (greekMenu) greekMenu.style.display = 'none';
-            
-            body.className = 'portal-active';
-        } else if (targetLang === 'hebrew') {
-            if (portalHub) portalHub.style.display = 'none';
-            if (hebrewHub) hebrewHub.style.display = 'block';
-            if (greekHub) greekHub.style.display = 'none';
-            
-            if (portalMenu) portalMenu.style.display = 'none';
-            if (hebrewMenu) hebrewMenu.style.display = 'flex';
-            if (greekMenu) greekMenu.style.display = 'none';
-            
-            body.className = 'hebrew-active';
-        } else if (targetLang === 'greek') {
-            if (portalHub) portalHub.style.display = 'none';
-            if (hebrewHub) hebrewHub.style.display = 'none';
-            if (greekHub) greekHub.style.display = 'block';
-            
-            if (portalMenu) portalMenu.style.display = 'none';
-            if (hebrewMenu) hebrewMenu.style.display = 'none';
-            if (greekMenu) greekMenu.style.display = 'flex';
-            
-            body.className = 'greek-active';
         }
-        // Auto collapse after switching tab to let user see content
-        body.classList.add('sidebar-collapsed');
-    }
+
+        return {
+            init: function() {
+                init();
+                window.toggleSidebar = toggleSidebar;
+                window.expandSidebar = expandSidebar;
+                window.addEventListener('mousemove', handleMousemove, { passive: true });
+                ['mousemove', 'touchstart', 'keydown', 'scroll', 'mousedown'].forEach(evt => {
+                    window.addEventListener(evt, handleActivity, { passive: true });
+                });
+                resetSidebarTimer();
+            }
+        };
+    })();
     
-    langBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const targetLang = btn.getAttribute('data-lang');
-            switchTab(targetLang);
-            // Scroll to top to let user see top of new tab
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    });
-    window.switchTab = switchTab;
+    SidebarManager.init();
 
-// Dark Mode Toggle Logic
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('change', () => {
-        if (themeToggle.checked) {
-            body.setAttribute('data-theme', 'dark');
-        } else {
-            body.removeAttribute('data-theme');
+    // ==========================================
+    // LANGUAGE HUB SWITCHER AUTOMATION (V10 - Optimized)
+    // ==========================================
+    const LanguageSwitcher = (function() {
+        const elements = {};
+        
+        function cacheElements() {
+            elements.langBtns = document.querySelectorAll('.lang-btn');
+            elements.portalHub = document.getElementById('portal-hub');
+            elements.hebrewHub = document.getElementById('hebrew-hub');
+            elements.greekHub = document.getElementById('greek-hub');
+            elements.portalMenu = document.getElementById('portal-menu');
+            elements.hebrewMenu = document.getElementById('hebrew-menu');
+            elements.greekMenu = document.getElementById('greek-menu');
         }
-    });
-
-    // Active Navigation Highlighting
-    const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-            if (item.classList.contains('nav-external')) return; // Ignore sibling external links
-            let activeMenu;
-            if (body.classList.contains('portal-active')) {
-                activeMenu = portalMenu;
-            } else if (body.classList.contains('hebrew-active')) {
-                activeMenu = hebrewMenu;
-            } else {
-                activeMenu = greekMenu;
+        
+        function updateButtons(targetLang) {
+            elements.langBtns.forEach(b => {
+                b.classList.toggle('active', b.getAttribute('data-lang') === targetLang);
+            });
+        }
+        
+        function switchTab(targetLang) {
+            const hubs = { portal: elements.portalHub, hebrew: elements.hebrewHub, greek: elements.greekHub };
+            const menus = { portal: elements.portalMenu, hebrew: elements.hebrewMenu, greek: elements.greekMenu };
+            const classes = { portal: 'portal-active', hebrew: 'hebrew-active', greek: 'greek-active' };
+            
+            ['portal', 'hebrew', 'greek'].forEach(lang => {
+                if (hubs[lang]) hubs[lang].style.display = (lang === targetLang ? 'block' : 'none');
+                if (menus[lang]) menus[lang].style.display = (lang === targetLang ? 'flex' : 'none');
+            });
+            
+            document.body.className = classes[targetLang] || '';
+            document.body.classList.add('sidebar-collapsed');
+            updateButtons(targetLang);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        return {
+            init: function() {
+                cacheElements();
+                elements.langBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        switchTab(btn.getAttribute('data-lang'));
+                    });
+                });
+                window.switchTab = switchTab;
             }
+        };
+    })();
+    
+    // Dark Mode & Theme Manager
+    const ThemeManager = (function() {
+        let body = document.body;
+        
+        function init() {
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('change', () => {
+                    body.toggleAttribute('data-theme', themeToggle.checked);
+                    if (themeToggle.checked) {
+                        body.setAttribute('data-theme', 'dark');
+                    } else {
+                        body.removeAttribute('data-theme');
+                    }
+                });
+            }
+        }
+        
+        return { init: init };
+    })();
+    
+    ThemeManager.init();
+
+    // Active Navigation Highlighting (Optimized)
+    const NavigationManager = (function() {
+        const navItems = document.querySelectorAll('.nav-item');
+        
+        function handleClick(item) {
+            if (item.classList.contains('nav-external')) return;
+            
+            let activeMenu = null;
+            const body = document.body;
+            if (body.classList.contains('portal-active')) {
+                activeMenu = document.getElementById('portal-menu');
+            } else if (body.classList.contains('hebrew-active')) {
+                activeMenu = document.getElementById('hebrew-menu');
+            } else {
+                activeMenu = document.getElementById('greek-menu');
+            }
+            
             if (activeMenu) {
                 activeMenu.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
                 item.classList.add('active');
             }
-            
-            // Auto collapse sidebar on menu click for a fluid user journey!
-            document.body.classList.add('sidebar-collapsed');
-        });
-    });
+            body.classList.add('sidebar-collapsed');
+        }
+        
+        return {
+            init: function() {
+                navItems.forEach(item => {
+                    item.addEventListener('click', () => handleClick(item));
+                });
+            }
+        };
+    })();
+    
+    NavigationManager.init();
 
     // Copy to Clipboard Utility function supporting both ID and element reference
     function copyPrompt(param) {
