@@ -64,6 +64,7 @@
                 init();
                 window.toggleSidebar = toggleSidebar;
                 window.expandSidebar = expandSidebar;
+                window.resetSidebarTimer = resetSidebarTimer;
                 window.addEventListener('mousemove', handleMousemove, { passive: true });
                 ['mousemove', 'touchstart', 'keydown', 'scroll', 'mousedown'].forEach(evt => {
                     window.addEventListener(evt, handleActivity, { passive: true });
@@ -231,7 +232,7 @@
     }
 
     // Chart.js Configuration for Hebrew and Greek
-    window.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
     // Apply saved A11y settings
     if (localStorage.getItem('dyslexiaActive') === 'true') {
         document.body.classList.add('dyslexia-font');
@@ -831,7 +832,7 @@ window.copyPixKey = copyPixKey;
 
 // ==========================================
 // Check if welcome modal was already dismissed on load, and init player
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     // Apply saved A11y settings
     if (localStorage.getItem('dyslexiaActive') === 'true') {
         document.body.classList.add('dyslexia-font');
@@ -861,12 +862,11 @@ window.addEventListener('DOMContentLoaded', () => {
             overlay.classList.remove('show');
             // Ensure sidebar is open on subsequent accesses and start timer
             document.body.classList.remove('sidebar-collapsed');
-            resetSidebarTimer();
+            SidebarManager.resetTimer();
         } else {
             overlay.classList.add('show');
             // Ensure sidebar is open under the welcome modal but paused
             document.body.classList.remove('sidebar-collapsed');
-            clearTimeout(sidebarTimeout);
         }
     }
     // Initialize audio player
@@ -938,7 +938,15 @@ function openMediaPreviewModal(href, type, title) {
     downloadBtn.href = href;
     
     if (type === 'image') {
-        modalContent.innerHTML = `<img src="${href}" alt="${title}" style="max-width: 100%; max-height: 50vh; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">`;
+        const img = document.createElement('img');
+        img.src = href;
+        img.alt = title || 'Visualização de Imagem';
+        img.style.cssText = 'max-width: 100%; max-height: 50vh; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);';
+        img.onerror = function() {
+            modalContent.innerHTML = '<div style="text-align: center; padding: 2rem;"><i class="fa-solid fa-image" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 1rem;"></i><p>Imagem não disponível</p></div>';
+        };
+        modalContent.innerHTML = '';
+        modalContent.appendChild(img);
     } else if (type === 'audio') {
         modalContent.innerHTML = `
             <div style="width: 100%; text-align: center; padding: 1rem;">
@@ -1004,22 +1012,6 @@ function toggleWelcomeButton(checked) {
     }
 }
 window.toggleWelcomeButton = toggleWelcomeButton;
-
-// Recommended Institutions Modal
-function showInstitutionsModal() {
-    const modal = document.getElementById('institutions-modal-overlay');
-    if (modal) {
-        modal.classList.add('show');
-    }
-}
-function closeInstitutionsModal() {
-    const modal = document.getElementById('institutions-modal-overlay');
-    if (modal) {
-        modal.classList.remove('show');
-    }
-}
-window.showInstitutionsModal = showInstitutionsModal;
-window.closeInstitutionsModal = closeInstitutionsModal;
 
 // Font Size Adjuster
 let currentFontScale = 1.0;
@@ -1126,22 +1118,20 @@ window.showInstitutionsModal = showInstitutionsModal;
 window.closeInstitutionsModal = closeInstitutionsModal;
 
 // Intercept menu clicks on flat section links (Institutions & Coffee Card)
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.nav-item.nav-external a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
-            if (href === '#port-coffee' || href === '#port-institutions') {
-                e.preventDefault();
-                if (typeof window.switchTab === 'function') {
-                    window.switchTab('portal');
-                }
-                const target = document.querySelector(href);
-                if (target) {
-                    setTimeout(() => {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 120);
-                }
+document.querySelectorAll('.nav-item.nav-external a').forEach(link => {
+    link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href === '#port-coffee' || href === '#port-institutions') {
+            e.preventDefault();
+            if (typeof window.switchTab === 'function') {
+                window.switchTab('portal');
             }
-        });
+            const target = document.querySelector(href);
+            if (target) {
+                setTimeout(() => {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 120);
+            }
+        }
     });
 });
