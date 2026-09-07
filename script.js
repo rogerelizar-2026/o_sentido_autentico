@@ -233,32 +233,38 @@ const SidebarManager = (function() {
     // Chart.js Configuration for Hebrew and Greek
     document.addEventListener('DOMContentLoaded', () => {
     // Aplica configurações salvas ao carregar a página (apenas leitura - a lógica está em accessibility.js)
-    if (localStorage.getItem('dyslexiaActive') === 'true') {
-        document.body.classList.add('dyslexia-font');
-        const dyslexiaToggle = document.getElementById('dyslexia-toggle');
-        if (dyslexiaToggle) dyslexiaToggle.checked = true;
-    }
-    if (localStorage.getItem('contrastActive') === 'true') {
-        document.body.classList.add('high-contrast');
-        const contrastToggle = document.getElementById('contrast-toggle');
-        if (contrastToggle) contrastToggle.checked = true;
-    }
-    if (localStorage.getItem('fontScale')) {
-        const savedScale = parseFloat(localStorage.getItem('fontScale'));
-        // A função adjustFontSize será chamada via accessibility.js se necessário
-        setTimeout(() => {
-            const elementsToScale = document.querySelectorAll('.content p, .content li, .content td, .content h3, .content h4, .content span');
-            elementsToScale.forEach(el => {
-                el.style.fontSize = `calc(1rem * ${savedScale})`;
-            });
-        }, 100);
+    try {
+        if (localStorage.getItem('dyslexiaActive') === 'true') {
+            document.body.classList.add('dyslexia-font');
+            const dyslexiaToggle = document.getElementById('dyslexia-toggle');
+            if (dyslexiaToggle) dyslexiaToggle.checked = true;
+        }
+        if (localStorage.getItem('contrastActive') === 'true') {
+            document.body.classList.add('high-contrast');
+            const contrastToggle = document.getElementById('contrast-toggle');
+            if (contrastToggle) contrastToggle.checked = true;
+        }
+        if (localStorage.getItem('fontScale')) {
+            const savedScale = parseFloat(localStorage.getItem('fontScale'));
+            // A função adjustFontSize será chamada via accessibility.js se necessário
+            setTimeout(() => {
+                const elementsToScale = document.querySelectorAll('.content p, .content li, .content td, .content h3, .content h4, .content span');
+                elementsToScale.forEach(el => {
+                    el.style.fontSize = `calc(1rem * ${savedScale})`;
+                });
+            }, 100);
+        }
+    } catch (err) {
+        console.error('Erro ao aplicar configurações de acessibilidade:', err);
     }
 
         // --- HEBREW CHARTS ---
         
         // Chart 1: Complexidade vs Tempo (Scatter Plot)
-        const ctxHeb1 = document.getElementById('chart1').getContext('2d');
-        new Chart(ctxHeb1, {
+        try {
+        const ctxHeb1 = document.getElementById('chart1');
+        if (ctxHeb1) {
+            new Chart(ctxHeb1.getContext('2d'), {
             type: 'scatter',
             data: {
                 datasets: [{
@@ -308,10 +314,15 @@ const SidebarManager = (function() {
                 }
             }
         });
+        } catch (err) {
+            console.error('Erro ao criar gráfico Heb1:', err);
+        }
 
         // Chart 2: Eficácia Multidimensional (Radar - Top 4)
-        const ctxHeb2 = document.getElementById('chart2').getContext('2d');
-        new Chart(ctxHeb2, {
+        try {
+        const ctxHeb2 = document.getElementById('chart2');
+        if (ctxHeb2) {
+        new Chart(ctxHeb2.getContext('2d'), {
             type: 'radar',
             data: {
                 labels: ['Velocidade', 'Retenção', 'Capacidade Exegética', 'Custo-Benefício', 'Praticidade'],
@@ -358,10 +369,15 @@ const SidebarManager = (function() {
                 }
             }
         });
+        } catch (err) {
+            console.error('Erro ao criar gráfico Heb2:', err);
+        }
 
         // Chart 3: Tempo de Aprendizado por Método (Horizontal Bar)
-        const ctxHeb3 = document.getElementById('chart3').getContext('2d');
-        new Chart(ctxHeb3, {
+        try {
+        const ctxHeb3 = document.getElementById('chart3');
+        if (ctxHeb3) {
+        new Chart(ctxHeb3.getContext('2d'), {
             type: 'bar',
             data: {
                 labels: ['Híbrido Integrado', 'Imersão', 'Leitura Direta', 'Tutoria', 'Gramática-Tradução', 'Universitário', 'Indutivo'],
@@ -387,10 +403,15 @@ const SidebarManager = (function() {
                 }
             }
         });
+        } catch (err) {
+            console.error('Erro ao criar gráfico Heb3:', err);
+        }
 
         // Chart 4: Custo-Benefício (Bubble Chart)
-        const ctxHeb4 = document.getElementById('chart4').getContext('2d');
-        new Chart(ctxHeb4, {
+        try {
+        const ctxHeb4 = document.getElementById('chart4');
+        if (ctxHeb4) {
+        new Chart(ctxHeb4.getContext('2d'), {
             type: 'bubble',
             data: {
                 datasets: [
@@ -452,13 +473,18 @@ const SidebarManager = (function() {
                 }
             }
         });
+        } catch (err) {
+            console.error('Erro ao criar gráfico Heb4:', err);
+        }
 
 
         // --- GREEK CHARTS ---
 
         // Chart 1: Complexidade vs Tempo (Scatter Plot)
-        const ctxGrk1 = document.getElementById('grkChart1').getContext('2d');
-        new Chart(ctxGrk1, {
+        try {
+        const ctxGrk1 = document.getElementById('grkChart1');
+        if (ctxGrk1) {
+        new Chart(ctxGrk1.getContext('2d'), {
             type: 'scatter',
             data: {
                 datasets: [{
@@ -507,10 +533,15 @@ const SidebarManager = (function() {
                 }
             }
         });
+        } catch (err) {
+            console.error('Erro ao criar gráfico Grk1:', err);
+        }
 
         // Chart 2: Eficácia Multidimensional (Radar - Top 4)
-        const ctxGrk2 = document.getElementById('grkChart2').getContext('2d');
-        new Chart(ctxGrk2, {
+        try {
+        const ctxGrk2 = document.getElementById('grkChart2');
+        if (ctxGrk2) {
+        new Chart(ctxGrk2.getContext('2d'), {
             type: 'radar',
             data: {
                 labels: ['Análise de Casos', 'Morfologia Verbal', 'Sintaxe Exegética', 'Retenção Anki', 'Usabilidade Prática'],
@@ -557,10 +588,15 @@ const SidebarManager = (function() {
                 }
             }
         });
+        } catch (err) {
+            console.error('Erro ao criar gráfico Grk2:', err);
+        }
 
         // Chart 3: Tempo de Aprendizado de Casos e Paradigmas (Barras Horizontais)
-        const ctxGrk3 = document.getElementById('grkChart3').getContext('2d');
-        new Chart(ctxGrk3, {
+        try {
+        const ctxGrk3 = document.getElementById('grkChart3');
+        if (ctxGrk3) {
+        new Chart(ctxGrk3.getContext('2d'), {
             type: 'bar',
             data: {
                 labels: ['Alfabeto & Fonética', 'Declinações (1ª e 2ª)', '3ª Declinação (Nomes)', 'Artigo & Casos Nominais', 'Sistema Verbal Presente', 'Estudo de Particípios', 'Sintaxe Exegética'],
@@ -586,10 +622,15 @@ const SidebarManager = (function() {
                 }
             }
         });
+        } catch (err) {
+            console.error('Erro ao criar gráfico Grk3:', err);
+        }
 
         // Chart 4: Custo-Benefício de Materiais (Bubble Chart)
-        const ctxGrk4 = document.getElementById('grkChart4').getContext('2d');
-        new Chart(ctxGrk4, {
+        try {
+        const ctxGrk4 = document.getElementById('grkChart4');
+        if (ctxGrk4) {
+        new Chart(ctxGrk4.getContext('2d'), {
             type: 'bubble',
             data: {
                 datasets: [
@@ -651,10 +692,15 @@ const SidebarManager = (function() {
                 }
             }
         });
+        } catch (err) {
+            console.error('Erro ao criar gráfico Grk4:', err);
+        }
 
         // Chart 5: Complexidade Sintática vs Resultado de Leitura (Line Chart)
-        const ctxGrk5 = document.getElementById('grkChart5').getContext('2d');
-        new Chart(ctxGrk5, {
+        try {
+        const ctxGrk5 = document.getElementById('grkChart5');
+        if (ctxGrk5) {
+        new Chart(ctxGrk5.getContext('2d'), {
             type: 'line',
             data: {
                 labels: ['Nível 1: Fundação', 'Nível 2: Básico', 'Nível 3: Intermediário', 'Nível 4: Avançado', 'Nível 5: Fluência'],
@@ -707,6 +753,9 @@ const SidebarManager = (function() {
                 }
             }
         });
+        } catch (err) {
+            console.error('Erro ao criar gráfico Grk5:', err);
+        }
     });
 
 // ==========================================
