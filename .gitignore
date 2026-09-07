@@ -1,1 +1,28 @@
-Nothing should be ignored based on the provided file changes. The only modified file is `ferramentas-biblicas.html`, which is a source file and should not be added to .gitignore.
+```gitignore
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment
+.venv/
+venv/
+.env
+.env.local
+*.env.*
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+
+# Editors
+.vscode/
+.idea/
+
+# Build artifacts
+dist/
+build/
+target/
+```
