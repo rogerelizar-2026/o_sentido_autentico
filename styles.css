@@ -2250,6 +2250,37 @@ body.dyslexia-font * {
     line-height: 1.8 !important;
 }
 
+/* Large Text */
+body.large-text {
+    font-size: 1.25em !important;
+}
+
+body.large-text .sidebar {
+    font-size: 0.9em !important;
+}
+
+/* Reduce Motion */
+body.reduce-motion *,
+body.reduce-motion *::before,
+body.reduce-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+
+/* System preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 /* High Contrast Override (Standard Theme Overrides) */
 body.high-contrast {
     --bg-primary: #ffffff !important;
