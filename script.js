@@ -62,8 +62,9 @@ const SidebarManager = (function() {
         return {
             init: function() {
                 init();
-                // Expõe toggleSidebar globalmente pois é usado pelo HTML
+                // Expõe toggleSidebar e resetTimer globalmente pois são usados pelo HTML
                 window.toggleSidebar = toggleSidebar;
+                window.resetSidebarTimer = resetSidebarTimer;
                 window.addEventListener('mousemove', handleMousemove, { passive: true });
                 ['mousemove', 'touchstart', 'keydown', 'mousedown'].forEach(evt => {
                     window.addEventListener(evt, handleActivity, { passive: true });
@@ -232,31 +233,8 @@ const SidebarManager = (function() {
 
     // Chart.js Configuration for Hebrew and Greek
     document.addEventListener('DOMContentLoaded', () => {
-    // Aplica configurações salvas ao carregar a página (apenas leitura - a lógica está em accessibility.js)
-    try {
-        if (localStorage.getItem('dyslexiaActive') === 'true') {
-            document.body.classList.add('dyslexia-font');
-            const dyslexiaToggle = document.getElementById('dyslexia-toggle');
-            if (dyslexiaToggle) dyslexiaToggle.checked = true;
-        }
-        if (localStorage.getItem('contrastActive') === 'true') {
-            document.body.classList.add('high-contrast');
-            const contrastToggle = document.getElementById('contrast-toggle');
-            if (contrastToggle) contrastToggle.checked = true;
-        }
-        if (localStorage.getItem('fontScale')) {
-            const savedScale = parseFloat(localStorage.getItem('fontScale'));
-            // A função adjustFontSize será chamada via accessibility.js se necessário
-            setTimeout(() => {
-                const elementsToScale = document.querySelectorAll('.content p, .content li, .content td, .content h3, .content h4, .content span');
-                elementsToScale.forEach(el => {
-                    el.style.fontSize = `calc(1rem * ${savedScale})`;
-                });
-            }, 100);
-        }
-    } catch (err) {
-        console.error('Erro ao aplicar configurações de acessibilidade:', err);
-    }
+    // Nota: Configurações de acessibilidade são gerenciadas exclusivamente por accessibility.js
+    // O carregamento das configurações salvas (dyslexia, contraste, fontScale) é feito lá
 
         // --- HEBREW CHARTS ---
         
