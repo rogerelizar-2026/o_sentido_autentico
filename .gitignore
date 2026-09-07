@@ -1,1 +1,1 @@
-(empty)
+Nothing should be ignored since the changes only include image files (.png) and an HTML file, which are not build artifacts, dependencies, or temporary files. Image files should not be added to .gitignore according to the rules, and the HTML file is a source/config file.
