@@ -60,24 +60,66 @@
         toolbar.setAttribute('role', 'toolbar');
         toolbar.setAttribute('aria-label', 'Ferramentas de acessibilidade');
         
-        toolbar.innerHTML = `
-            <button id="a11y-contrast" class="a11y-btn" aria-pressed="${accessibilityConfig.highContrast}" title="Alto Contraste">
-                <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
-                <span class="sr-only">Alto Contraste</span>
-            </button>
-            <button id="a11y-text-size" class="a11y-btn" aria-pressed="${accessibilityConfig.largeText}" title="Aumentar Texto">
-                <i class="fa-solid fa-text-height" aria-hidden="true"></i>
-                <span class="sr-only">Aumentar Texto</span>
-            </button>
-            <button id="a11y-motion" class="a11y-btn" aria-pressed="${accessibilityConfig.reduceMotion}" title="Reduzir Movimento">
-                <i class="fa-solid fa-person-walking-with-cane" aria-hidden="true"></i>
-                <span class="sr-only">Reduzir Movimento</span>
-            </button>
-            <button id="a11y-skip-nav" class="a11y-btn" title="Pular Navegação">
-                <i class="fa-solid fa-arrow-down-long" aria-hidden="true"></i>
-                <span class="sr-only">Pular para Conteúdo</span>
-            </button>
-        `;
+        // Cria botões de forma segura usando createElement para prevenir XSS
+        const contrastBtn = document.createElement('button');
+        contrastBtn.id = 'a11y-contrast';
+        contrastBtn.className = 'a11y-btn';
+        contrastBtn.setAttribute('aria-pressed', accessibilityConfig.highContrast);
+        contrastBtn.setAttribute('title', 'Alto Contraste');
+        const contrastIcon = document.createElement('i');
+        contrastIcon.className = 'fa-solid fa-circle-half-stroke';
+        contrastIcon.setAttribute('aria-hidden', 'true');
+        const contrastText = document.createElement('span');
+        contrastText.className = 'sr-only';
+        contrastText.textContent = 'Alto Contraste';
+        contrastBtn.appendChild(contrastIcon);
+        contrastBtn.appendChild(contrastText);
+        
+        const textSizeBtn = document.createElement('button');
+        textSizeBtn.id = 'a11y-text-size';
+        textSizeBtn.className = 'a11y-btn';
+        textSizeBtn.setAttribute('aria-pressed', accessibilityConfig.largeText);
+        textSizeBtn.setAttribute('title', 'Aumentar Texto');
+        const textSizeIcon = document.createElement('i');
+        textSizeIcon.className = 'fa-solid fa-text-height';
+        textSizeIcon.setAttribute('aria-hidden', 'true');
+        const textSizeText = document.createElement('span');
+        textSizeText.className = 'sr-only';
+        textSizeText.textContent = 'Aumentar Texto';
+        textSizeBtn.appendChild(textSizeIcon);
+        textSizeBtn.appendChild(textSizeText);
+        
+        const motionBtn = document.createElement('button');
+        motionBtn.id = 'a11y-motion';
+        motionBtn.className = 'a11y-btn';
+        motionBtn.setAttribute('aria-pressed', accessibilityConfig.reduceMotion);
+        motionBtn.setAttribute('title', 'Reduzir Movimento');
+        const motionIcon = document.createElement('i');
+        motionIcon.className = 'fa-solid fa-person-walking-with-cane';
+        motionIcon.setAttribute('aria-hidden', 'true');
+        const motionText = document.createElement('span');
+        motionText.className = 'sr-only';
+        motionText.textContent = 'Reduzir Movimento';
+        motionBtn.appendChild(motionIcon);
+        motionBtn.appendChild(motionText);
+        
+        const skipNavBtn = document.createElement('button');
+        skipNavBtn.id = 'a11y-skip-nav';
+        skipNavBtn.className = 'a11y-btn';
+        skipNavBtn.setAttribute('title', 'Pular Navegação');
+        const skipNavIcon = document.createElement('i');
+        skipNavIcon.className = 'fa-solid fa-arrow-down-long';
+        skipNavIcon.setAttribute('aria-hidden', 'true');
+        const skipNavText = document.createElement('span');
+        skipNavText.className = 'sr-only';
+        skipNavText.textContent = 'Pular para Conteúdo';
+        skipNavBtn.appendChild(skipNavIcon);
+        skipNavBtn.appendChild(skipNavText);
+        
+        toolbar.appendChild(contrastBtn);
+        toolbar.appendChild(textSizeBtn);
+        toolbar.appendChild(motionBtn);
+        toolbar.appendChild(skipNavBtn);
         
         document.body.insertBefore(toolbar, document.body.firstChild);
         

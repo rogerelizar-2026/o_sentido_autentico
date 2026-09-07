@@ -1,8 +1,8 @@
 
-    // ==========================================
-    // SIDEBAR AUTO-HIDE TIMER LOGIC (V10 - Optimized)
-    // ==========================================
-    const SidebarManager = (function() {
+// ==========================================
+// SIDEBAR AUTO-HIDE TIMER LOGIC (V10 - Optimized)
+// ==========================================
+const SidebarManager = (function() {
         let sidebarTimeout = null;
         const sidebarCollapseDelay = 4000;
         let sidebar = null;
@@ -893,22 +893,58 @@ function openMediaPreviewModal(href, type, title) {
         mediaModal.id = 'media-preview-modal-overlay';
         mediaModal.className = 'welcome-overlay';
         mediaModal.style.zIndex = '999999';
-        // Usa textContent para elementos com conteúdo dinâmico para prevenir XSS
-        mediaModal.innerHTML = `
-            <div class="welcome-modal" style="max-width: 800px; padding: 2rem; border-color: var(--gold);">
-                <button class="sidebar-close" onclick="closeMediaPreviewModal()" style="position: absolute; top: 1rem; right: 1rem; background: var(--bg-secondary); border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-xmark"></i></button>
-                <h3 id="media-modal-title" style="font-family: 'Cinzel', serif; color: var(--gold-dark); margin-bottom: 1.5rem; text-align: center;"></h3>
-                <div id="media-modal-content" style="display: flex; justify-content: center; align-items: center; min-height: 200px; margin-bottom: 1.5rem; background: rgba(0,0,0,0.03); border-radius: 8px; padding: 1rem; overflow: hidden;">
-                    <!-- Content injected here -->
-                </div>
-                <div style="display: flex; justify-content: center; gap: 1rem;">
-                    <a id="media-modal-download-btn" href="" download class="welcome-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; background-color: var(--gold); color: white;">
-                        <i class="fa-solid fa-download"></i> Baixar Arquivo
-                    </a>
-                    <button class="welcome-btn" onclick="closeMediaPreviewModal()" style="background: none; border: 1px solid var(--border-color); color: var(--text-secondary); box-shadow: none;">Fechar</button>
-                </div>
-            </div>
-        `;
+        
+        // Cria estrutura do modal de forma segura usando createElement
+        const modalContainer = document.createElement('div');
+        modalContainer.className = 'welcome-modal';
+        modalContainer.style.cssText = 'max-width: 800px; padding: 2rem; border-color: var(--gold);';
+        
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'sidebar-close';
+        closeBtn.onclick = function() { closeMediaPreviewModal(); };
+        closeBtn.style.cssText = 'position: absolute; top: 1rem; right: 1rem; background: var(--bg-secondary); border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;';
+        const closeIcon = document.createElement('i');
+        closeIcon.className = 'fa-solid fa-xmark';
+        closeBtn.appendChild(closeIcon);
+        
+        const titleEl = document.createElement('h3');
+        titleEl.id = 'media-modal-title';
+        titleEl.style.cssText = "font-family: 'Cinzel', serif; color: var(--gold-dark); margin-bottom: 1.5rem; text-align: center;";
+        
+        const contentEl = document.createElement('div');
+        contentEl.id = 'media-modal-content';
+        contentEl.style.cssText = 'display: flex; justify-content: center; align-items: center; min-height: 200px; margin-bottom: 1.5rem; background: rgba(0,0,0,0.03); border-radius: 8px; padding: 1rem; overflow: hidden;';
+        
+        const actionsDiv = document.createElement('div');
+        actionsDiv.style.cssText = 'display: flex; justify-content: center; gap: 1rem;';
+        
+        const downloadLink = document.createElement('a');
+        downloadLink.id = 'media-modal-download-btn';
+        downloadLink.href = '';
+        downloadLink.setAttribute('download', '');
+        downloadLink.className = 'welcome-btn';
+        downloadLink.style.cssText = 'text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; background-color: var(--gold); color: white;';
+        const downloadIcon = document.createElement('i');
+        downloadIcon.className = 'fa-solid fa-download';
+        const downloadText = document.createTextNode(' Baixar Arquivo');
+        downloadLink.appendChild(downloadIcon);
+        downloadLink.appendChild(downloadText);
+        
+        const closeActionBtn = document.createElement('button');
+        closeActionBtn.className = 'welcome-btn';
+        closeActionBtn.onclick = function() { closeMediaPreviewModal(); };
+        closeActionBtn.style.cssText = 'background: none; border: 1px solid var(--border-color); color: var(--text-secondary); box-shadow: none;';
+        closeActionBtn.textContent = 'Fechar';
+        
+        actionsDiv.appendChild(downloadLink);
+        actionsDiv.appendChild(closeActionBtn);
+        
+        modalContainer.appendChild(closeBtn);
+        modalContainer.appendChild(titleEl);
+        modalContainer.appendChild(contentEl);
+        modalContainer.appendChild(actionsDiv);
+        
+        mediaModal.appendChild(modalContainer);
         document.body.appendChild(mediaModal);
     }
     
@@ -926,9 +962,27 @@ function openMediaPreviewModal(href, type, title) {
         img.alt = title || 'Visualização de Imagem';
         img.style.cssText = 'max-width: 100%; max-height: 50vh; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);';
         img.onerror = function() {
-            modalContent.innerHTML = '<div style="text-align: center; padding: 2rem;"><i class="fa-solid fa-image" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 1rem;"></i><p>Imagem não disponível</p></div>';
+            const errorContainer = document.createElement('div');
+            errorContainer.style.cssText = 'text-align: center; padding: 2rem;';
+            
+            const errorIcon = document.createElement('i');
+            errorIcon.className = 'fa-solid fa-image';
+            errorIcon.style.cssText = 'font-size: 3rem; color: var(--text-secondary); margin-bottom: 1rem; display: block;';
+            
+            const errorMsg = document.createElement('p');
+            errorMsg.textContent = 'Imagem não disponível';
+            
+            errorContainer.appendChild(errorIcon);
+            errorContainer.appendChild(errorMsg);
+            
+            while (modalContent.firstChild) {
+                modalContent.removeChild(modalContent.firstChild);
+            }
+            modalContent.appendChild(errorContainer);
         };
-        modalContent.innerHTML = '';
+        while (modalContent.firstChild) {
+            modalContent.removeChild(modalContent.firstChild);
+        }
         modalContent.appendChild(img);
     } else if (type === 'audio') {
         // Cria elemento audio de forma segura
@@ -952,7 +1006,9 @@ function openMediaPreviewModal(href, type, title) {
         audioContainer.appendChild(label);
         audioContainer.appendChild(audio);
         
-        modalContent.innerHTML = '';
+        while (modalContent.firstChild) {
+            modalContent.removeChild(modalContent.firstChild);
+        }
         modalContent.appendChild(audioContainer);
     }
     
