@@ -1198,6 +1198,16 @@
     }
 
     // ==========================================
+    // SECURITY: HTML ESCAPE FUNCTION TO PREVENT XSS
+    // ==========================================
+    function escapeHtml(str) {
+        if (!str) return '';
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
+    // ==========================================
     // THEME TOGGLE (Syncs with o-sentido-autentico)
     // ==========================================
     function toggleTheme() {
@@ -1210,13 +1220,23 @@
             html.classList.remove('dark');
             localStorage.setItem('theme', 'light');
             if (icon) icon.className = 'fa-solid fa-moon';
-            if (sidebarIcon) sidebarIcon.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            if (sidebarIcon) {
+                sidebarIcon.textContent = '';
+                const i = document.createElement('i');
+                i.className = 'fa-solid fa-moon';
+                sidebarIcon.appendChild(i);
+            }
             if (label) label.innerText = 'Modo Escuro';
         } else {
             html.classList.add('dark');
             localStorage.setItem('theme', 'dark');
             if (icon) icon.className = 'fa-solid fa-sun';
-            if (sidebarIcon) sidebarIcon.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            if (sidebarIcon) {
+                sidebarIcon.textContent = '';
+                const i = document.createElement('i');
+                i.className = 'fa-solid fa-sun';
+                sidebarIcon.appendChild(i);
+            }
             if (label) label.innerText = 'Modo Claro';
         }
     }
@@ -1423,13 +1443,13 @@
                 card.innerHTML = `
                     <div class="flex-1 min-w-0" onclick="showFicha(${res.id})">
                         <div class="flex items-center gap-2 mb-1.5 flex-wrap">
-                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:var(--primary-soft); color:var(--primary)">${res.tipo}</span>
-                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:rgba(197,160,89,0.12); color:var(--gold-dark)">${res.nivel}</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:var(--primary-soft); color:var(--primary)">${escapeHtml(res.tipo)}</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:rgba(197,160,89,0.12); color:var(--gold-dark)">${escapeHtml(res.nivel)}</span>
                         </div>
-                        <h4 class="font-display font-bold text-lg text-primary hover:text-gold transition-all cursor-pointer">${res.titulo}</h4>
-                        <p class="text-xs text-muted leading-relaxed line-clamp-2 mt-1">${res.descricao}</p>
-                        <a href="${res.url}" target="_blank" rel="noopener noreferrer" class="text-[11px] font-semibold text-gold-dark hover:underline mt-2 inline-flex items-center gap-1">
-                            <i class="fa-solid fa-link"></i> ${res.url}
+                        <h4 class="font-display font-bold text-lg text-primary hover:text-gold transition-all cursor-pointer">${escapeHtml(res.titulo)}</h4>
+                        <p class="text-xs text-muted leading-relaxed line-clamp-2 mt-1">${escapeHtml(res.descricao)}</p>
+                        <a href="${escapeHtml(res.url)}" target="_blank" rel="noopener noreferrer" class="text-[11px] font-semibold text-gold-dark hover:underline mt-2 inline-flex items-center gap-1">
+                            <i class="fa-solid fa-link"></i> ${escapeHtml(res.url)}
                         </a>
                     </div>
                     <div class="flex items-center gap-2 justify-end">
@@ -1471,13 +1491,13 @@
             <div class="text-center ornament mb-2">❦ ✦ ❦</div>
             <p class="text-center font-bold text-lg mb-4" style="color:var(--gold-dark)">FICHA DE PESQUISA ACADÊMICA</p>
             <div class="space-y-2 border-t border-b border-dashed border-gold py-4 my-2">
-                <p><strong>Recurso:</strong> ${res.titulo}</p>
-                <p><strong>Língua/Foco:</strong> ${res.lingua}</p>
-                <p><strong>Nível Teológico:</strong> ${res.nivel}</p>
-                <p><strong>Tipo de Recurso:</strong> ${res.tipo}</p>
-                <p><strong>Subcategoria:</strong> ${res.subcategoria}</p>
-                <p><strong>Endereço Digital:</strong> <a href="${res.url}" target="_blank" rel="noopener noreferrer" class="text-gold-dark underline font-bold">${res.url}</a></p>
-                <p class="mt-3 text-justify leading-relaxed"><strong>Descrição Exegética:</strong> ${res.descricao}</p>
+                <p><strong>Recurso:</strong> ${escapeHtml(res.titulo)}</p>
+                <p><strong>Língua/Foco:</strong> ${escapeHtml(res.lingua)}</p>
+                <p><strong>Nível Teológico:</strong> ${escapeHtml(res.nivel)}</p>
+                <p><strong>Tipo de Recurso:</strong> ${escapeHtml(res.tipo)}</p>
+                <p><strong>Subcategoria:</strong> ${escapeHtml(res.subcategoria)}</p>
+                <p><strong>Endereço Digital:</strong> <a href="${escapeHtml(res.url)}" target="_blank" rel="noopener noreferrer" class="text-gold-dark underline font-bold">${escapeHtml(res.url)}</a></p>
+                <p class="mt-3 text-justify leading-relaxed"><strong>Descrição Exegética:</strong> ${escapeHtml(res.descricao)}</p>
             </div>
             <p class="text-xs text-center text-muted italic mt-4">Curadoria estruturada sob a supervisão teológica de Rogério Ramão Lopes</p>
         `;
@@ -1677,12 +1697,12 @@
         card.innerHTML = `
             <div onclick="editCurrentMiningCard()">
                 <div class="flex items-center gap-2 mb-2 flex-wrap">
-                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:var(--primary-soft); color:var(--primary)">${cardData.tipo || 'Software'}</span>
-                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:rgba(197,160,89,0.12); color:var(--gold-dark)">${cardData.nivel || 'Iniciante'}</span>
+                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:var(--primary-soft); color:var(--primary)">${escapeHtml(cardData.tipo) || 'Software'}</span>
+                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:rgba(197,160,89,0.12); color:var(--gold-dark)">${escapeHtml(cardData.nivel) || 'Iniciante'}</span>
                 </div>
-                <h4 class="font-display font-bold text-xl text-primary hover:text-gold transition-all mb-2">${cardData.titulo}</h4>
-                <p class="text-xs text-muted leading-relaxed line-clamp-5">${cardData.descricao}</p>
-                <span class="text-[10px] font-bold text-gold-dark underline mt-3 block truncate"><i class="fa-solid fa-link mr-1"></i>${cardData.url}</span>
+                <h4 class="font-display font-bold text-xl text-primary hover:text-gold transition-all mb-2">${escapeHtml(cardData.titulo)}</h4>
+                <p class="text-xs text-muted leading-relaxed line-clamp-5">${escapeHtml(cardData.descricao)}</p>
+                <span class="text-[10px] font-bold text-gold-dark underline mt-3 block truncate"><i class="fa-solid fa-link mr-1"></i>${escapeHtml(cardData.url)}</span>
             </div>
             <div class="text-[10px] text-center text-muted italic border-t border-dashed border-gold pt-3">
                 <i class="fa-solid fa-hand-pointer mr-1"></i> Toque para customizar ou deslize para os lados.
@@ -1938,13 +1958,13 @@
                 card.innerHTML = `
                     <div class="flex-1 min-w-0" onclick="showFicha(${res.id})">
                         <div class="flex items-center gap-2 mb-1.5 flex-wrap">
-                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:var(--primary-soft); color:var(--primary)">${res.tipo}</span>
-                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:rgba(197,160,89,0.12); color:var(--gold-dark)">${res.nivel}</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:var(--primary-soft); color:var(--primary)">${escapeHtml(res.tipo)}</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:rgba(197,160,89,0.12); color:var(--gold-dark)">${escapeHtml(res.nivel)}</span>
                         </div>
-                        <h4 class="font-display font-bold text-lg text-primary hover:text-gold transition-all cursor-pointer">${res.titulo}</h4>
-                        <p class="text-xs text-muted leading-relaxed line-clamp-2 mt-1">${res.descricao}</p>
-                        <a href="${res.url}" target="_blank" rel="noopener noreferrer" class="text-[11px] font-semibold text-gold-dark hover:underline mt-2 inline-flex items-center gap-1">
-                            <i class="fa-solid fa-link"></i> ${res.url}
+                        <h4 class="font-display font-bold text-lg text-primary hover:text-gold transition-all cursor-pointer">${escapeHtml(res.titulo)}</h4>
+                        <p class="text-xs text-muted leading-relaxed line-clamp-2 mt-1">${escapeHtml(res.descricao)}</p>
+                        <a href="${escapeHtml(res.url)}" target="_blank" rel="noopener noreferrer" class="text-[11px] font-semibold text-gold-dark hover:underline mt-2 inline-flex items-center gap-1">
+                            <i class="fa-solid fa-link"></i> ${escapeHtml(res.url)}
                         </a>
                     </div>
                     <div class="flex items-center gap-2 justify-end">
@@ -1985,7 +2005,7 @@
             const barWrapper = document.createElement('div');
             barWrapper.innerHTML = `
                 <div class="flex items-center justify-between text-xs font-semibold mb-1">
-                    <span>${key}</span>
+                    <span>${escapeHtml(key)}</span>
                     <span>${val} recursos (${pct.toFixed(0)}%)</span>
                 </div>
                 <div class="w-full h-3 rounded-full bg-var(--surface-2) overflow-hidden" style="background:var(--surface-2)">
@@ -2136,7 +2156,7 @@
             const label = document.getElementById('sidebarThemeLabel');
             const sidebarIcon = document.getElementById('sidebarThemeIcon');
             if (icon) icon.className = 'fa-solid fa-sun';
-            if (sidebarIcon) sidebarIcon.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            if (sidebarIcon) sidebarIcon.textContent = ''; const si = document.createElement('i'); si.className = 'fa-solid fa-sun'; sidebarIcon.appendChild(si);;
             if (label) label.innerText = 'Modo Claro';
         }
 
