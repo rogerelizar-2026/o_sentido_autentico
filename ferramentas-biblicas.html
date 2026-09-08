@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O Sentido Autêntico — Ferramentas Bíblicas</title>
-    
-    <!-- PWA Meta Tags -->
+    <!-- Chart.js and FontAwesome -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600;700&family=SBL+Hebrew&family=SBL+Greek&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- PWA Meta Tags & Manifest -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#102a43">
     <meta name="mobile-web-app-capable" content="yes">
@@ -13,32 +17,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="O Sentido Autêntico">
     <link rel="apple-touch-icon" href="imagens/icon-192.png">
-    
-    <!-- Favicon: Bíblia Aberta (SVG inline, identical to portal page) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 14C25 8 13 7 5 10v42c8-3 20-2 27 4 7-6 19-7 27-4V10c-8-3-20-2-27 4z' fill='%230f3731'/%3E%3Cpath d='M32 16c-6-5-16-6-23-3v36c7-2 17-1 23 4 6-5 16-6 23-4V13c-7-3-17-2-23 3z' fill='%23fbfaf7'/%3E%3Cpath d='M32 16v37' stroke='%23c5a059' stroke-width='2.5'/%3E%3Cpath d='M13 20c5-2 11-1 15 1M13 27c5-2 11-1 15 1M13 34c5-2 11-1 15 1M13 41c5-2 11-1 15 1' stroke='%23a3803b' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3Cpath d='M36 21c4-2 10-3 15-1M36 28c4-2 10-3 15-1M36 35c4-2 10-3 15-1M36 42c4-2 10-3 15-1' stroke='%23a3803b' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
-
-    <!-- CSS/JS CDNs -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700;900&family=Noto+Serif+Hebrew:wght@400;700&family=Cardo:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=SBL+Hebrew&family=SBL+Greek&display=swap" rel="stylesheet">
-    <!-- jsPDF and autoTable loaded lazily only when export is requested -->
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: { extend: { fontFamily: {
-                serif: ['Lora', 'Merriweather', 'serif'],
-                sans: ['Inter', 'sans-serif'],
-                hebrew: ['"SBL Hebrew"', '"Noto Serif Hebrew"', 'serif'],
-                greek: ['"SBL Greek"', 'Cardo', 'serif'],
-                manuscript: ['"Cormorant Garamond"', 'serif'],
-                display: ['Cinzel', 'Lora', 'serif']
-            }}}
-        }
-    </script>
-
-    <style>
+    <!-- Favicon: Bíblia Aberta (SVG inline) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 14C25 8 13 7 5 10v42c8-3 20-2 27 4 7-6 19-7 27-4V10c-8-3-20-2-27 4z' fill='%231e3a5f'/%3E%3Cpath d='M32 16c-6-5-16-6-23-3v36c7-2 17-1 23 4 6-5 16-6 23-4V13c-7-3-17-2-23 3z' fill='%23f7f1e3'/%3E%3Cpath d='M32 16v37' stroke='%23b8860b' stroke-width='2.5'/%3E%3Cpath d='M13 20c5-2 11-1 15 1M13 27c5-2 11-1 15 1M13 34c5-2 11-1 15 1M13 41c5-2 11-1 15 1' stroke='%238a7a5c' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3Cpath d='M36 21c4-2 10-3 15-1M36 28c4-2 10-3 15-1M36 35c4-2 10-3 15-1M36 42c4-2 10-3 15-1' stroke='%238a7a5c' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+    <!-- Fallback favicon PNG -->
+    <link rel="icon" type="image/png" sizes="192x192" href="imagens/icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="imagens/icon-512.png">
+</head>
         :root {
             /* Aligned perfectly with O Sentido Autêntico light palette */
             --bg: #fbfaf7; 

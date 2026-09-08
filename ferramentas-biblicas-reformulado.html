@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Sentido Autêntico — Ferramentas Bíblicas</title>
+    <!-- Chart.js and FontAwesome -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600;700&family=SBL+Hebrew&family=SBL+Greek&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Favicon: Bíblia Aberta (SVG inline) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 14C25 8 13 7 5 10v42c8-3 20-2 27 4 7-6 19-7 27-4V10c-8-3-20-2-27 4z' fill='%231e3a5f'/%3E%3Cpath d='M32 16c-6-5-16-6-23-3v36c7-2 17-1 23 4 6-5 16-6 23-4V13c-7-3-17-2-23 3z' fill='%23f7f1e3'/%3E%3Cpath d='M32 16v37' stroke='%23b8860b' stroke-width='2.5'/%3E%3Cpath d='M13 20c5-2 11-1 15 1M13 27c5-2 11-1 15 1M13 34c5-2 11-1 15 1M13 41c5-2 11-1 15 1' stroke='%238a7a5c' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3Cpath d='M36 21c4-2 10-3 15-1M36 28c4-2 10-3 15-1M36 35c4-2 10-3 15-1M36 42c4-2 10-3 15-1' stroke='%238a7a5c' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+    <!-- Fallback favicon PNG -->
+    <link rel="icon" type="image/png" sizes="192x192" href="imagens/icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="imagens/icon-512.png">
+    <!-- PWA Meta Tags & Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#102a43">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="O Sentido Autêntico">
+    <link rel="apple-touch-icon" href="imagens/icon-192.png">
+</head>
+<body class="portal-active">
+
+<div class="wrapper">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-logo" style="text-align: center; padding-bottom: 1.5rem; border-bottom: 2px solid var(--border-color);">
+            <h1 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--gold-dark); letter-spacing: 1px; margin-bottom: 0.3rem;">O SENTIDO AUTÊNTICO</h1>
+            <p style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.3rem; line-height: 1.4;">Tecnologia e profundidade histórica para conectar você ao sopro original de Deus.</p>
+            <p style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 0.4rem; font-style: italic;">Por Rogério Ramão Lopes</p>
+        </div>
+
+        <!-- Language Hub Switcher -->
+        <div class="lang-selector-group">
+            <span class="group-title"><i class="fa-solid fa-layer-group"></i> Selecione o Portal</span>
+            <a href="index.html" class="lang-btn" title="Portal Geral" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.75rem;">
+                <i class="fa-solid fa-graduation-cap"></i> <span>Portal do Estudante</span>
+            </a>
+            <a href="index.html#hebrew-hub" class="lang-btn" title="Língua Hebraica" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.75rem;">
+                <i class="fa-solid fa-scroll"></i> <span>Hebraico/Aramaico</span>
+            </a>
+            <a href="index.html#greek-hub" class="lang-btn" title="Língua Grega" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.75rem;">
+                <i class="fa-solid fa-book-bible"></i> <span>Grego Koiné</span>
+            </a>
+            <button class="lang-btn active" data-lang="tools" title="Ferramentas de Mineração">
+                <i class="fa-solid fa-toolbox"></i> <span>Ferramentas Bíblicas</span>
+            </button>
+        </div>
+
+        <!-- Menu Navigation - Ferramentas Bíblicas -->
+        <ul class="nav-menu" id="tools-menu">
+            <li class="nav-item active"><a href="#tools-intro"><i class="fa-solid fa-house"></i> Visão Geral</a></li>
+            <li class="nav-item"><a href="#tools-catalog"><i class="fa-solid fa-list"></i> Catálogo de Ferramentas</a></li>
+            <li class="nav-item"><a href="#tools-filters"><i class="fa-solid fa-filter"></i> Filtros de Pesquisa</a></li>
+            <li class="nav-item"><a href="#tools-stats"><i class="fa-solid fa-chart-column"></i> Relatórios e Métricas</a></li>
+
+            <li class="nav-item"><a href="#port-institutions" onclick="showInstitutionsModal()"><i class="fa-solid fa-building-columns" style="color: var(--gold);"></i> Inst. Recomendadas</a></li>
+            <li class="nav-item"><a href="#port-coffee"><i class="fa-solid fa-mug-hot" style="color: var(--gold);"></i> Me paga um cafezinho?</a></li>
+        </ul>
+
+        <!-- Accessibility Panel (A11y - V18) -->
+        <div class="a11y-container" style="border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+            <span style="font-size: 0.75rem; font-weight: 700; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 0.4rem;">
+                <i class="fa-solid fa-universal-access"></i> Acessibilidade
+            </span>
+            <!-- Font Size Adjuster -->
+            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.825rem; font-weight: 600;">
+                <span>Tamanho do Texto</span>
+                <div style="display: flex; gap: 0.4rem;">
+                    <button onclick="window.adjustFontSize('decrease')" title="Diminuir texto" style="background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary); width: 28px; height: 28px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75rem;">A-</button>
+                    <button onclick="window.adjustFontSize('reset')" title="Tamanho padrão" style="background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary); width: 28px; height: 28px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75rem;"><i class="fa-solid fa-arrows-rotate"></i></button>
+                    <button onclick="window.adjustFontSize('increase')" title="Aumentar texto" style="background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary); width: 28px; height: 28px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75rem;">A+</button>
+                </div>
+            </div>
+            <!-- Dyslexia Font Toggle -->
+            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.825rem; font-weight: 600;">
+                <span>Fonte Dislexia</span>
+                <label class="theme-switch" style="position: relative; display: inline-block; width: 42px; height: 20px;">
+                    <input type="checkbox" id="dyslexia-toggle" onchange="window.toggleDyslexiaFont(this.checked)">
+                    <span class="slider" style="border-radius: 20px;"></span>
+                </label>
+            </div>
+            <!-- High Contrast Toggle -->
+            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.825rem; font-weight: 600;">
+                <span>Alto Contraste</span>
+                <label class="theme-switch" style="position: relative; display: inline-block; width: 42px; height: 20px;">
+                    <input type="checkbox" id="contrast-toggle" onchange="window.toggleHighContrast(this.checked)">
+                    <span class="slider" style="border-radius: 20px;"></span>
+                </label>
+            </div>
+            <!-- Text-to-Speech (Page Reader) -->
+            <button onclick="window.toggleTTS()" id="tts-btn" title="Ouvir Introdução" style="background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary); padding: 0.4rem 0.75rem; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; width: 100%; transition: var(--transition);">
+                <i id="tts-icon" class="fa-solid fa-volume-high" style="color: var(--gold-dark);"></i> <span id="tts-text">Ouvir Introdução</span>
+            </button>
+        </div>
+
+        <!-- Theme Switcher -->
+        <div class="theme-toggle-container">
+            <span style="font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-moon"></i> Modo Escuro</span>
+            <label class="theme-switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div id="pwa-install-container" style="display: none; margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem; text-align: center;">
+            <button id="pwa-install-btn" class="welcome-btn" style="width: 100%; font-size: 0.85rem; padding: 0.6rem 1rem;">
+                <i class="fa-solid fa-download"></i> Instalar Aplicativo
+            </button>
+        </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="content" id="main-content">
