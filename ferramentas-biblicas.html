@@ -13,9 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700;900&family=Noto+Serif+Hebrew:wght@400;700&family=Cardo:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=SBL+Hebrew&family=SBL+Greek&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-
+    <!-- jsPDF loaded lazily only when export is requested -->
+    
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -347,7 +346,7 @@
             gap: 14px;
             padding: 12px 16px; 
             border-radius: 10px;
-            color: var(--text-secondary); 
+            color: var(--text-muted); 
             font-size: 14px; 
             font-weight: 600;
             cursor: pointer; 
@@ -493,7 +492,7 @@
 
     <!-- VIEW 1: DASHBOARD -->
     <section id="view-dashboard" class="view anim-fade">
-        <div id="statsGrid" class="grid grid-cols-3 gap-3 mb-5">
+        <div id="statsGrid" class="grid grid-cols-3 gap-3 mb-5" aria-live="polite" aria-atomic="true">
             <div class="card-surface p-3 text-center">
                 <div class="font-display text-2xl font-bold" style="color:var(--primary)" id="statTotal">0</div>
                 <div class="text-[11px] font-semibold mt-0.5" style="color:var(--text-muted)">Recursos</div>
@@ -544,7 +543,7 @@
         <div class="text-[10px] uppercase tracking-wider mb-1.5 font-bold" style="color:var(--text-muted)">Nível</div>
         <div class="scroll-x flex gap-2 mb-6" id="levelChips"></div>
 
-        <div id="cardList" class="space-y-3"></div>
+        <div id="cardList" class="space-y-3" aria-live="polite" aria-atomic="true"></div>
         
         <div id="emptyDash" class="hidden text-center py-14">
             <i class="fa-solid fa-box-archive text-4xl mb-3" style="color:var(--text-muted)"></i>
@@ -780,7 +779,7 @@
         
         <div class="grid grid-cols-3 gap-2" id="editActionsFull">
             <button onclick="editActionDelete()" class="min-h-[48px] rounded-2xl font-bold card-surface text-sm transition-all hover:border-red-500 hover:text-red-500" style="color:#dc2626"><i class="fa-solid fa-trash mr-1"></i>Excluir</button>
-            <button onclick="closeAllSheets()" class="min-h-[48px] rounded-2xl font-bold card-surface text-sm transition-all hover:bg-var(--surface-2)">Cancelar</button>
+            <button onclick="closeAllSheets()" class="min-h-[48px] rounded-2xl font-bold card-surface text-sm transition-all hover:bg-opacity-50" style="background-color: var(--surface-2)">Cancelar</button>
             <button onclick="editActionSave()" class="min-h-[48px] rounded-2xl font-bold btn-primary text-sm transition-all"><i class="fa-solid fa-check mr-1"></i>Salvar</button>
         </div>
         
@@ -1095,13 +1094,23 @@
 
     let currentMiningIndex = 0;
 
-    // Filter status
-    let activeFilters = {
+    // Filter status - load from localStorage or initialize
+    const savedFilters = localStorage.getItem('ferramentas_filters');
+    let activeFilters = savedFilters ? JSON.parse(savedFilters) : {
         lingua: "",
         tipo: "",
         subcategoria: "",
         nivel: ""
     };
+    
+    // Save filters to localStorage whenever they change
+    function saveFilters() {
+        try {
+            localStorage.setItem('ferramentas_filters', JSON.stringify(activeFilters));
+        } catch (e) {
+            console.warn('Unable to save filters to localStorage:', e);
+        }
+    }
 
     // ==========================================
     // SIDEBAR AUTO-COLLAPSE (5s Inactivity)
@@ -1328,27 +1337,48 @@
         const allChip = document.createElement('button');
         allChip.className = `chip ${activeFilters[filterKey] === "" ? 'active' : ''}`;
         allChip.innerText = "Todos";
+        allChip.setAttribute('role', 'button');
+        allChip.setAttribute('aria-pressed', activeFilters[filterKey] === "");
+        allChip.tabIndex = 0;
         allChip.onclick = () => {
             activeFilters[filterKey] = "";
             if (filterKey === 'lingua') {
                 updateLanguageBodyTheme("");
             }
+            saveFilters();
             renderFilterChips();
             filterResources();
+        };
+        allChip.onkeydown = (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                allChip.click();
+            }
         };
         container.appendChild(allChip);
 
         items.forEach(item => {
             const chip = document.createElement('button');
-            chip.className = `chip ${activeFilters[filterKey] === item ? 'active' : ''}`;
+            const isActive = activeFilters[filterKey] === item;
+            chip.className = `chip ${isActive ? 'active' : ''}`;
             chip.innerText = item;
+            chip.setAttribute('role', 'button');
+            chip.setAttribute('aria-pressed', isActive);
+            chip.tabIndex = 0;
             chip.onclick = () => {
                 activeFilters[filterKey] = item;
                 if (filterKey === 'lingua') {
                     updateLanguageBodyTheme(item);
                 }
+                saveFilters();
                 renderFilterChips();
                 filterResources();
+            };
+            chip.onkeydown = (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    chip.click();
+                }
             };
             container.appendChild(chip);
         });
@@ -1403,10 +1433,10 @@
                         </a>
                     </div>
                     <div class="flex items-center gap-2 justify-end">
-                        <button onclick="toggleFavorite(${res.id})" class="w-10 h-10 rounded-full flex items-center justify-center text-lg transition-all active:scale-95" style="background:var(--surface-2); color:${res.favorito ? 'var(--gold)' : 'var(--text-muted)'}">
+                        <button onclick="toggleFavorite(${res.id})" class="w-10 h-10 rounded-full flex items-center justify-center text-lg transition-all active:scale-95" style="background:var(--surface-2); color:${res.favorito ? 'var(--gold)' : 'var(--text-muted)'}" aria-label="${res.favorito ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
                             <i class="fa-${res.favorito ? 'solid' : 'regular'} fa-star"></i>
                         </button>
-                        <button onclick="openEditSheet(${res.id})" class="w-10 h-10 rounded-full flex items-center justify-center text-lg transition-all active:scale-95" style="background:var(--surface-2); color:var(--text-muted)">
+                        <button onclick="openEditSheet(${res.id})" class="w-10 h-10 rounded-full flex items-center justify-center text-lg transition-all active:scale-95" style="background:var(--surface-2); color:var(--text-muted)" aria-label="Editar recurso">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
                     </div>
@@ -1414,6 +1444,9 @@
                 list.appendChild(card);
             });
         }
+        
+        // Update stats with aria-live announcement
+        updateDashboardStats();
     }
 
     function toggleFavorite(id) {
@@ -1966,27 +1999,55 @@
     // ==========================================
     // EXPOTING CATALOG IN PDF (jspdf)
     // ==========================================
-    function exportPDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+    async function exportPDF() {
+        // Lazy load jsPDF only when needed
+        if (!window.jspdf) {
+            try {
+                await new Promise((resolve, reject) => {
+                    const script1 = document.createElement('script');
+                    script1.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+                    script1.onload = resolve;
+                    script1.onerror = () => reject(new Error('Failed to load jsPDF'));
+                    document.head.appendChild(script1);
+                });
+                
+                await new Promise((resolve, reject) => {
+                    const script2 = document.createElement('script');
+                    script2.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js';
+                    script2.onload = resolve;
+                    script2.onerror = () => reject(new Error('Failed to load jsPDF autoTable'));
+                    document.head.appendChild(script2);
+                });
+                
+                showToast('Carregando biblioteca de PDF...');
+            } catch (error) {
+                console.error('Error loading jsPDF:', error);
+                showToast('Erro ao carregar biblioteca de PDF. Tente novamente.');
+                return;
+            }
+        }
+        
+        try {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
 
-        // Document styling matching premium theme
-        doc.setFillColor(251, 250, 247); // Cream background
-        doc.rect(0, 0, 210, 297, "F");
+            // Document styling matching premium theme
+            doc.setFillColor(251, 250, 247); // Cream background
+            doc.rect(0, 0, 210, 297, "F");
 
-        doc.setDrawColor(197, 160, 89); // Gold outer thin border
-        doc.setLineWidth(1);
-        doc.rect(5, 5, 200, 287);
+            doc.setDrawColor(197, 160, 89); // Gold outer thin border
+            doc.setLineWidth(1);
+            doc.rect(5, 5, 200, 287);
 
-        // Header Title
-        doc.setFont("Lora", "normal");
-        doc.setFontSize(22);
-        doc.setTextColor(15, 55, 49); // Primary teal
-        doc.text("O Sentido Autêntico — Ferramentas Bíblicas", 15, 20);
+            // Header Title
+            doc.setFont("Lora", "normal");
+            doc.setFontSize(22);
+            doc.setTextColor(15, 55, 49); // Primary teal
+            doc.text("O Sentido Autêntico — Ferramentas Bíblicas", 15, 20);
 
-        doc.setFontSize(10);
-        doc.setTextColor(117, 105, 90); // Muted gold
-        doc.text("CURADORIA ACADÊMICA: Rogério Ramão Lopes — Setembro de 2026", 15, 25);
+            doc.setFontSize(10);
+            doc.setTextColor(117, 105, 90); // Muted gold
+            doc.text("CURADORIA ACADÊMICA: Rogério Ramão Lopes — Setembro de 2026", 15, 25);
         doc.line(15, 28, 195, 28);
 
         // Prepare table data grouped by language and level
@@ -2025,6 +2086,10 @@
 
         doc.save("o-sentido-autentico-ferramentas-biblicas.pdf");
         showToast("Catálogo em PDF gerado e baixado com sucesso!");
+        } catch (error) {
+            console.error('Error generating PDF:', error);
+            showToast('Erro ao gerar PDF. Tente novamente.');
+        }
     }
 
     // ==========================================
