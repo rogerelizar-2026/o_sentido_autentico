@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700;900&family=Noto+Serif+Hebrew:wght@400;700&family=Cardo:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=SBL+Hebrew&family=SBL+Greek&display=swap" rel="stylesheet">
-    <!-- jsPDF loaded lazily only when export is requested -->
+    <!-- jsPDF and autoTable loaded lazily only when export is requested -->
     
     <script>
         tailwind.config = {
@@ -185,6 +185,7 @@
         @keyframes popIn { from { transform: scale(.96); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         @keyframes fadeScale { from { opacity:0; transform: scale(.98); } to { opacity:1; transform: scale(1); } }
         
+        /* Animation utility classes - shared with styles.css */
         .anim-slide-up { animation: slideUp .3s cubic-bezier(.2,.8,.3,1); }
         .anim-fade { animation: fadeIn .25s ease; }
         .anim-pop { animation: popIn .22s cubic-bezier(.2,.8,.3,1); }
@@ -948,149 +949,26 @@
     // ==========================================
     // INITIAL CURATED DATABASE (Passage 52 & 64)
     // ==========================================
-    let resources = [
-        {
-            id: 1,
-            titulo: "Duolingo Hebraico",
-            lingua: "Hebraico/Aramaico",
-            nivel: "Iniciante",
-            tipo: "Software",
-            subcategoria: "Memorização",
-            url: "https://www.duolingo.com/",
-            descricao: "Excelente porta de entrada para se familiarizar com as consoantes, sons, e vocabulários iniciais de base em hebraico.",
-            favorito: false
-        },
-        {
-            id: 2,
-            titulo: "Aleph with Beth",
-            lingua: "Hebraico/Aramaico",
-            nivel: "Iniciante",
-            tipo: "Trabalho-Modelo",
-            subcategoria: "Vídeo-aula",
-            url: "https://www.youtube.com/@alephwithbeth",
-            descricao: "Canal no YouTube com metodologia comunicativa e imersiva 100% em Hebraico Bíblico. Ideal para o Nível 1.",
-            favorito: true
-        },
-        {
-            id: 3,
-            titulo: "Sefaria.org",
-            lingua: "Hebraico/Aramaico",
-            nivel: "Intermediário",
-            tipo: "Software",
-            subcategoria: "Leitura/Texto",
-            url: "https://www.sefaria.org/",
-            descricao: "Biblioteca digital gigantesca contendo a Bíblia Hebraica interlinear, comentários clássicos, e traduções de Sages antigos.",
-            favorito: true
-        },
-        {
-            id: 4,
-            titulo: "Bible Hub Interlinear",
-            lingua: "Geral",
-            nivel: "Iniciante",
-            tipo: "Ferramenta de Parsing",
-            subcategoria: "Léxico/Dicionário",
-            url: "https://biblehub.com/interlinear",
-            descricao: "Acesso rápido palavra-por-palavra à morfologia, transliteração e códigos Strong para Hebraico e Grego.",
-            favorito: false
-        },
-        {
-            id: 5,
-            titulo: "Blue Letter Bible",
-            lingua: "Geral",
-            nivel: "Intermediário",
-            tipo: "Ferramenta de Parsing",
-            subcategoria: "Léxico/Dicionário",
-            url: "https://www.blueletterbible.org/",
-            descricao: "Excelente banco de dados de concordância, dicionário clássico BDB e Gesenius indexado às palavras bíblicas.",
-            favorito: false
-        },
-        {
-            id: 6,
-            titulo: "Anki Flashcards",
-            lingua: "Geral",
-            nivel: "Iniciante",
-            tipo: "Software",
-            subcategoria: "Memorização",
-            url: "https://apps.ankiweb.net/",
-            descricao: "Software de repetição espaçada (SRS). A ferramenta mais indicada para fixar paradigmas nominais e vocabulários.",
-            favorito: true
-        },
-        {
-            id: 7,
-            titulo: "STEP Bible",
-            lingua: "Geral",
-            nivel: "Intermediário",
-            tipo: "Software",
-            subcategoria: "Software",
-            url: "https://www.stepbible.org/",
-            descricao: "Software desenvolvido pela Tyndale House em Cambridge. Gratuito, offline e com anotações de morfologia de altíssimo nível.",
-            favorito: true
-        },
-        {
-            id: 8,
-            titulo: "ETCBC Database (SHEBANQ)",
-            lingua: "Hebraico/Aramaico",
-            nivel: "Avançado",
-            tipo: "Software",
-            subcategoria: "Software",
-            url: "https://etcbc.org/",
-            descricao: "Banco de dados sintático linguístico extremamente avançado para investigações estruturais profundas do Antigo Testamento.",
-            favorito: false
-        },
-        {
-            id: 9,
-            titulo: "Logos Bible Study Mobile",
-            lingua: "Geral",
-            nivel: "Avançado",
-            tipo: "Software",
-            subcategoria: "Software",
-            url: "https://www.logos.com/",
-            descricao: "Software exegético líder global com vasta biblioteca interligada de léxicos (HALOT/BDAG), morfologias e comentários acadêmicos.",
-            favorito: false
-        },
-        {
-            id: 10,
-            titulo: "Ginoskos App",
-            lingua: "Geral",
-            nivel: "Iniciante",
-            tipo: "Software",
-            subcategoria: "Memorização",
-            url: "https://play.google.com/store/apps/details?id=com.ginoskos.biblicallanguages",
-            descricao: "Excelente aplicativo para smartphone (4.7 estrelas) focado em cursos gramaticais de Grego, Hebraico, Aramaico e Latim por repetição espaçada.",
-            favorito: false
-        }
-    ];
+    let resources = [];
+    let miningPool = [];
 
-    // Candidate pool for swipe-mining
-    let miningPool = [
-        {
-            titulo: "Sofia App (Sem Anúncios)",
-            lingua: "Geral",
-            nivel: "Intermediário",
-            tipo: "Software",
-            subcategoria: "Léxico/Dicionário",
-            url: "https://play.google.com/store/apps",
-            descricao: "O melhor app para smartphone livre de propagandas. Integra códigos Strong, GK, domínios semânticos Louw-Nida e morfologia detalhada.",
-        },
-        {
-            titulo: "CAL (Comprehensive Aramaic Lexicon)",
-            lingua: "Hebraico/Aramaico",
-            nivel: "Acadêmico",
-            tipo: "Ferramenta de Parsing",
-            subcategoria: "Léxico/Dicionário",
-            url: "https://cal.huc.edu/",
-            descricao: "O maior dicionário online de referência para o estudo do Aramaico Bíblico e pós-bíblico (Targums/Siríaco)."
-        },
-        {
-            titulo: "Global Bible Tools (GBT)",
-            lingua: "Geral",
-            nivel: "Iniciante",
-            tipo: "Software",
-            subcategoria: "Leitura/Texto",
-            url: "https://globalbibletools.com/",
-            descricao: "Desenvolvido em parceria com o Aleph with Beth. Traz o texto bíblico interlinear associado a áudios sincronizados locais sem anúncios."
+    // Load data from external JSON file
+    async function loadData() {
+        try {
+            const response = await fetch('data/ferramentas-data.json');
+            if (!response.ok) throw new Error('Failed to load data');
+            const data = await response.json();
+            resources = data.resources || [];
+            miningPool = data.miningPool || [];
+            return true;
+        } catch (error) {
+            console.error('Error loading data:', error);
+            // Fallback to empty arrays if load fails
+            resources = [];
+            miningPool = [];
+            return false;
         }
-    ];
+    }
 
     let currentMiningIndex = 0;
 
@@ -2147,7 +2025,10 @@
     // ==========================================
     // DISMISS MODAL CHECKS & BOOTSTRAP
     // ==========================================
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', async () => {
+        // Load external data first
+        await loadData();
+        
         // Dark theme check
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
