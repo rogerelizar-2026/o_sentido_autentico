@@ -93,12 +93,12 @@
                     </div>
 
                     <!-- 3. Instituições Recomendadas -->
-                    <div style="border-top: 1px dashed var(--border-color); padding-top: 1rem;">
+                    <div id="institutions-section" style="border-top: 1px dashed var(--border-color); padding-top: 1rem;">
                         <h4 style="font-family: 'Cinzel', serif; color: var(--gold-dark); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem;"><i class="fa-solid fa-building-columns"></i> Instituições Recomendadas</h4>
                         <p style="color: var(--text-secondary); line-height: 1.4; margin-bottom: 0.5rem;">
                             Para quem deseja cursar teologia acadêmica formal e aprofundar-se nas línguas originais no Brasil:
                         </p>
-                        <table class="ms-table" style="width: 100%; border-collapse: collapse; font-size: 0.8rem; border: 1px solid var(--border-color); text-align: left;">
+                        <table id="institutions-table" class="ms-table" style="width: 100%; border-collapse: collapse; font-size: 0.8rem; border: 1px solid var(--border-color); text-align: left;">
                             <thead>
                                 <tr style="background: #5c2e0e; color: #f4e8c8;">
                                     <th style="padding: 6px; font-weight: 700;">Instituição</th>
@@ -130,7 +130,7 @@
                 <!-- Acknowledgment Checkbox -->
                 <div style="background: rgba(197, 160, 89, 0.05); border: 1px solid var(--gold); border-radius: 6px; padding: 0.75rem; margin-bottom: 0.75rem;">
                     <label style="display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.8rem; text-align: left; color: var(--text-primary); cursor: pointer; user-select: none;">
-                        <input type="checkbox" id="welcome-disclaimer-checkbox" style="margin-top: 0.15rem; cursor: pointer;" onchange="window.toggleWelcomeButton(this.checked)">
+                        <input type="checkbox" id="welcome-disclaimer-checkbox" style="margin-top: 0.15rem; cursor: pointer;" disabled onchange="window.toggleWelcomeButton(this.checked)">
                         <span>Compreendo e aceito o propósito, as isenções de responsabilidade e as diretrizes de estudo pessoal.</span>
                     </label>
                 </div>

@@ -1139,6 +1139,71 @@ function toggleWelcomeButton(checked) {
 }
 window.toggleWelcomeButton = toggleWelcomeButton;
 
+// Check if user has scrolled to the institutions table
+function checkInstitutionsVisibility() {
+    const institutionsSection = document.getElementById('institutions-section');
+    const checkbox = document.getElementById('welcome-disclaimer-checkbox');
+    const scrollContainer = document.getElementById('welcome-scroll-container');
+    
+    if (!institutionsSection || !checkbox || !scrollContainer) return;
+    
+    const sectionRect = institutionsSection.getBoundingClientRect();
+    const containerRect = scrollContainer.getBoundingClientRect();
+    
+    // Check if the institutions section is visible within the scroll container
+    const isVisible = sectionRect.top < containerRect.bottom && sectionRect.bottom > containerRect.top;
+    
+    if (isVisible) {
+        checkbox.disabled = false;
+        checkbox.style.cursor = 'pointer';
+        checkbox.parentElement.style.cursor = 'pointer';
+    }
+}
+
+// Handle checkbox click attempt before institutions are visible
+function handleCheckboxClick(event) {
+    const checkbox = document.getElementById('welcome-disclaimer-checkbox');
+    const institutionsSection = document.getElementById('institutions-section');
+    const scrollContainer = document.getElementById('welcome-scroll-container');
+    
+    if (!checkbox || !institutionsSection || !scrollContainer) return;
+    
+    if (checkbox.disabled) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        // Show message
+        alert('É importante ler até o fim!');
+        
+        // Scroll to institutions section
+        institutionsSection.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+}
+
+// Initialize checkbox behavior
+function initWelcomeCheckbox() {
+    const checkbox = document.getElementById('welcome-disclaimer-checkbox');
+    const scrollContainer = document.getElementById('welcome-scroll-container');
+    
+    if (!checkbox || !scrollContainer) return;
+    
+    // Add scroll listener to check visibility
+    scrollContainer.addEventListener('scroll', checkInstitutionsVisibility);
+    
+    // Add click handler to prevent early selection
+    checkbox.addEventListener('click', handleCheckboxClick);
+    
+    // Initial check
+    setTimeout(checkInstitutionsVisibility, 100);
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWelcomeCheckbox);
+} else {
+    initWelcomeCheckbox();
+}
+
 // ============================================================================
 // FIM DO MÓDULO DE ACESSIBILIDADE DUPLICADO
 // A lógica de acessibilidade foi centralizada em accessibility.js
