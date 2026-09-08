@@ -1,1 +1,1 @@
-Nothing should be ignored in this case, as the only added file is a markdown document (.md) which is a source/config file. No build artifacts, dependencies, or temporary files are present in the changes.
+(resumo-implementacao.md is a markdown file, data/ferramentas-data.json is a json file, and ferramentas-biblicas.html is an html file - these are all source/config files and should not be added to .gitignore)
