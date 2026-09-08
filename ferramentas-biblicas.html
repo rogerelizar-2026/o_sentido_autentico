@@ -577,13 +577,13 @@
             <div class="flex items-center justify-between mb-2 gap-2">
                 <div class="min-w-0">
                     <span class="text-xs uppercase tracking-wider font-bold" style="color:var(--text-muted)">Garimpando</span>
-                    <div class="font-display font-bold text-lg truncate" id="miningContext">—</div>
+                    <div class="font-display font-bold text-lg truncate" id="miningContext" aria-live="polite" aria-atomic="true">—</div>
                 </div>
                 <div class="flex items-center gap-2 flex-shrink-0">
                     <button onclick="showMiningSetup()" class="chip" style="min-height:44px" aria-label="Ajustar parâmetros">
                         <i class="fa-solid fa-sliders"></i> Parâmetros
                     </button>
-                    <span class="text-sm font-semibold px-3 py-1 rounded-full" style="background:var(--primary-soft); color:var(--primary)" id="miningCounter">0/0</span>
+                    <span class="text-sm font-semibold px-3 py-1 rounded-full" style="background:var(--primary-soft); color:var(--primary)" id="miningCounter" aria-live="polite" aria-atomic="true">0/0</span>
                 </div>
             </div>
             <div class="relative h-[420px] mt-3" id="cardStack"></div>
@@ -1488,6 +1488,8 @@
         document.getElementById('miningResults').classList.add('hidden');
         document.getElementById('miningDone').classList.add('hidden');
 
+        // Load saved mining filters from localStorage
+        loadMiningFilters();
         renderMiningParameters();
     }
 
@@ -1509,13 +1511,44 @@
             const isActive = (key === 'mining_lang' && miningFilters.lang === item) || (key === 'mining_sub' && miningFilters.sub === item);
             chip.className = `chip ${isActive ? 'active' : ''}`;
             chip.innerText = item;
+            chip.setAttribute('role', 'button');
+            chip.setAttribute('aria-pressed', isActive);
+            chip.tabIndex = 0;
             chip.onclick = () => {
                 if (key === 'mining_lang') miningFilters.lang = item;
                 if (key === 'mining_sub') miningFilters.sub = item;
+                saveMiningFilters();
                 renderMiningParameters();
+            };
+            chip.onkeydown = (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    chip.click();
+                }
             };
             container.appendChild(chip);
         });
+    }
+
+    // Save mining filters to localStorage
+    function saveMiningFilters() {
+        try {
+            localStorage.setItem('ferramentas_mining_filters', JSON.stringify(miningFilters));
+        } catch (e) {
+            console.warn('Unable to save mining filters:', e);
+        }
+    }
+
+    // Load mining filters from localStorage
+    function loadMiningFilters() {
+        try {
+            const saved = localStorage.getItem('ferramentas_mining_filters');
+            if (saved) {
+                miningFilters = JSON.parse(saved);
+            }
+        } catch (e) {
+            console.warn('Unable to load mining filters:', e);
+        }
     }
 
     let filteredMiningPool = [];
@@ -1596,37 +1629,28 @@
         let currentX = 0;
         let isDragging = false;
 
-        element.addEventListener('mousedown', start);
-        element.addEventListener('touchstart', start, { passive: true });
-
-        element.addEventListener('mousemove', move);
-        element.addEventListener('touchmove', move, { passive: true });
-
-        element.addEventListener('mouseup', end);
-        element.addEventListener('touchend', end);
-        element.addEventListener('mouseleave', end);
-
-        function start(e) {
-            startX = e.clientX || e.touches[0].clientX;
+        const start = (e) => {
+            startX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
             isDragging = true;
             element.classList.add('dragging');
-        }
+        };
 
-        function move(e) {
+        const move = (e) => {
             if (!isDragging) return;
-            const x = e.clientX || e.touches[0].clientX;
+            e.preventDefault();
+            const x = e.clientX || (e.touches && e.touches[0].clientX) || 0;
             currentX = x - startX;
-            
+
             // Apply slight rotation for realistic swipe card feeling
             const rotation = currentX * 0.05;
             element.style.transform = `translateX(${currentX}px) rotate(${rotation}deg)`;
-            
+
             // Fade slightly when swiped far
             const opacity = Math.max(1 - Math.abs(currentX) / 400, 0.4);
             element.style.opacity = opacity;
-        }
+        };
 
-        function end() {
+        const end = () => {
             if (!isDragging) return;
             isDragging = false;
             element.classList.remove('dragging');
@@ -1643,8 +1667,39 @@
                 element.style.opacity = "1";
             }
             currentX = 0;
+        };
+
+        // Cleanup function to remove listeners and prevent memory leaks
+        const cleanup = () => {
+            element.removeEventListener('mousedown', start);
+            element.removeEventListener('touchstart', start);
+            element.removeEventListener('mousemove', move);
+            element.removeEventListener('touchmove', move);
+            element.removeEventListener('mouseup', end);
+            element.removeEventListener('touchend', end);
+            element.removeEventListener('mouseleave', end);
+        };
+
+        element.addEventListener('mousedown', start);
+        element.addEventListener('touchstart', start, { passive: true });
+        element.addEventListener('mousemove', move);
+        element.addEventListener('touchmove', move, { passive: true });
+        element.addEventListener('mouseup', end);
+        element.addEventListener('touchend', end);
+        element.addEventListener('mouseleave', end);
+
+        // Store cleanup function on element for later removal when card is destroyed
+        element._cleanupSwipe = cleanup;
+    }
+
+    // Helper to cleanup gestures when removing mining cards
+    function cleanupMiningCard(element) {
+        if (element && element._cleanupSwipe) {
+            element._cleanupSwipe();
+            element._cleanupSwipe = null;
         }
     }
+
 
     function saveMiningDirect() {
         const card = filteredMiningPool[currentMiningIndex];
@@ -1660,6 +1715,11 @@
             favorito: false
         });
         showToast("Recurso Adicionado com Sucesso!");
+        // Cleanup event listeners from current card to prevent memory leaks
+        const container = document.getElementById('cardStack');
+        if (container && container.firstChild) {
+            cleanupMiningCard(container.firstChild);
+        }
         currentMiningIndex++;
         loadMiningCard();
     }
@@ -1683,6 +1743,11 @@
 
     function rejectCurrent() {
         showToast("Recurso ignorado.");
+        // Cleanup event listeners from current card to prevent memory leaks
+        const container = document.getElementById('cardStack');
+        if (container && container.firstChild) {
+            cleanupMiningCard(container.firstChild);
+        }
         currentMiningIndex++;
         loadMiningCard();
     }

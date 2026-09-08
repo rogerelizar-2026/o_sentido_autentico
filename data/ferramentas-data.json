@@ -1,0 +1,143 @@
+{
+  "resources": [
+    {
+      "id": 1,
+      "titulo": "Duolingo Hebraico",
+      "lingua": "Hebraico/Aramaico",
+      "nivel": "Iniciante",
+      "tipo": "Software",
+      "subcategoria": "Memorização",
+      "url": "https://www.duolingo.com/",
+      "descricao": "Excelente porta de entrada para se familiarizar com as consoantes, sons, e vocabulários iniciais de base em hebraico.",
+      "favorito": false
+    },
+    {
+      "id": 2,
+      "titulo": "Aleph with Beth",
+      "lingua": "Hebraico/Aramaico",
+      "nivel": "Iniciante",
+      "tipo": "Trabalho-Modelo",
+      "subcategoria": "Vídeo-aula",
+      "url": "https://www.youtube.com/@alephwithbeth",
+      "descricao": "Canal no YouTube com metodologia comunicativa e imersiva 100% em Hebraico Bíblico. Ideal para o Nível 1.",
+      "favorito": true
+    },
+    {
+      "id": 3,
+      "titulo": "Sefaria.org",
+      "lingua": "Hebraico/Aramaico",
+      "nivel": "Intermediário",
+      "tipo": "Software",
+      "subcategoria": "Leitura/Texto",
+      "url": "https://www.sefaria.org/",
+      "descricao": "Biblioteca digital gigantesca contendo a Bíblia Hebraica interlinear, comentários clássicos, e traduções de Sages antigos.",
+      "favorito": true
+    },
+    {
+      "id": 4,
+      "titulo": "Bible Hub Interlinear",
+      "lingua": "Geral",
+      "nivel": "Iniciante",
+      "tipo": "Ferramenta de Parsing",
+      "subcategoria": "Léxico/Dicionário",
+      "url": "https://biblehub.com/interlinear",
+      "descricao": "Acesso rápido palavra-por-palavra à morfologia, transliteração e códigos Strong para Hebraico e Grego.",
+      "favorito": false
+    },
+    {
+      "id": 5,
+      "titulo": "Blue Letter Bible",
+      "lingua": "Geral",
+      "nivel": "Intermediário",
+      "tipo": "Ferramenta de Parsing",
+      "subcategoria": "Léxico/Dicionário",
+      "url": "https://www.blueletterbible.org/",
+      "descricao": "Excelente banco de dados de concordância, dicionário clássico BDB e Gesenius indexado às palavras bíblicas.",
+      "favorito": false
+    },
+    {
+      "id": 6,
+      "titulo": "Anki Flashcards",
+      "lingua": "Geral",
+      "nivel": "Iniciante",
+      "tipo": "Software",
+      "subcategoria": "Memorização",
+      "url": "https://apps.ankiweb.net/",
+      "descricao": "Software de repetição espaçada (SRS). A ferramenta mais indicada para fixar paradigmas nominais e vocabulários.",
+      "favorito": true
+    },
+    {
+      "id": 7,
+      "titulo": "STEP Bible",
+      "lingua": "Geral",
+      "nivel": "Intermediário",
+      "tipo": "Software",
+      "subcategoria": "Software",
+      "url": "https://www.stepbible.org/",
+      "descricao": "Software desenvolvido pela Tyndale House em Cambridge. Gratuito, offline e com anotações de morfologia de altíssimo nível.",
+      "favorito": true
+    },
+    {
+      "id": 8,
+      "titulo": "ETCBC Database (SHEBANQ)",
+      "lingua": "Hebraico/Aramaico",
+      "nivel": "Avançado",
+      "tipo": "Software",
+      "subcategoria": "Software",
+      "url": "https://etcbc.org/",
+      "descricao": "Banco de dados sintático linguístico extremamente avançado para investigações estruturais profundas do Antigo Testamento.",
+      "favorito": false
+    },
+    {
+      "id": 9,
+      "titulo": "Logos Bible Study Mobile",
+      "lingua": "Geral",
+      "nivel": "Avançado",
+      "tipo": "Software",
+      "subcategoria": "Software",
+      "url": "https://www.logos.com/",
+      "descricao": "Software exegético líder global com vasta biblioteca interligada de léxicos (HALOT/BDAG), morfologias e comentários acadêmicos.",
+      "favorito": false
+    },
+    {
+      "id": 10,
+      "titulo": "Ginoskos App",
+      "lingua": "Geral",
+      "nivel": "Iniciante",
+      "tipo": "Software",
+      "subcategoria": "Memorização",
+      "url": "https://play.google.com/store/apps/details?id=com.ginoskos.biblicallanguages",
+      "descricao": "Excelente aplicativo para smartphone (4.7 estrelas) focado em cursos gramaticais de Grego, Hebraico, Aramaico e Latim por repetição espaçada.",
+      "favorito": false
+    }
+  ],
+  "miningPool": [
+    {
+      "titulo": "Sofia App (Sem Anúncios)",
+      "lingua": "Geral",
+      "nivel": "Intermediário",
+      "tipo": "Software",
+      "subcategoria": "Léxico/Dicionário",
+      "url": "https://play.google.com/store/apps",
+      "descricao": "O melhor app para smartphone livre de propagandas. Integra códigos Strong, GK, domínios semânticos Louw-Nida e morfologia detalhada."
+    },
+    {
+      "titulo": "CAL (Comprehensive Aramaic Lexicon)",
+      "lingua": "Hebraico/Aramaico",
+      "nivel": "Acadêmico",
+      "tipo": "Ferramenta de Parsing",
+      "subcategoria": "Léxico/Dicionário",
+      "url": "https://cal.huc.edu/",
+      "descricao": "O maior dicionário online de referência para o estudo do Aramaico Bíblico e pós-bíblico (Targums/Siríaco)."
+    },
+    {
+      "titulo": "Global Bible Tools (GBT)",
+      "lingua": "Geral",
+      "nivel": "Iniciante",
+      "tipo": "Software",
+      "subcategoria": "Leitura/Texto",
+      "url": "https://globalbibletools.com/",
+      "descricao": "Desenvolvido em parceria com o Aleph with Beth. Traz o texto bíblico interlinear associado a áudios sincronizados locais sem anúncios."
+    }
+  ]
+}
