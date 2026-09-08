@@ -582,14 +582,13 @@
             </div>
         </div>
 
-        <div class="text-[10px] uppercase tracking-wider mb-1.5 font-bold" style="color:var(--text-muted)">Língua</div>
-        <div class="scroll-x flex gap-2 mb-4" id="langChips"></div>
-        <div class="text-[10px] uppercase tracking-wider mb-1.5 font-bold" style="color:var(--text-muted)">Tipo</div>
-        <div class="scroll-x flex gap-2 mb-4" id="typeChips"></div>
-        <div class="text-[10px] uppercase tracking-wider mb-1.5 font-bold" style="color:var(--text-muted)">Subcategoria</div>
-        <div class="scroll-x flex gap-2 mb-4" id="subChips"></div>
-        <div class="text-[10px] uppercase tracking-wider mb-1.5 font-bold" style="color:var(--text-muted)">Nível</div>
-        <div class="scroll-x flex gap-2 mb-6" id="levelChips"></div>
+        <!-- Filtros removidos da tela principal - disponíveis apenas no menu lateral -->
+        <div class="card-surface p-4 mb-6 text-center">
+            <p class="text-sm font-semibold" style="color:var(--text-muted)">
+                <i class="fa-solid fa-filter mr-2"></i>
+                Use o menu lateral para filtrar por Língua, Tipo, Subcategoria e Nível
+            </p>
+        </div>
 
         <div id="cardList" class="space-y-3" aria-live="polite" aria-atomic="true"></div>
         
@@ -1361,20 +1360,9 @@
     }
 
     function renderFilterChips() {
-        // Get arrays from JSON metadata or use defaults
-        const allSubs = window.filterMetadata?.subcategorias || ["Léxico/Dicionário", "Gramática", "Leitura/Texto", "Vídeo-aula", "Memorização", "Software", "Crítica Textual", "Análise Sintática", "Domínios Semânticos", "Corpora Digitais", "Epigrafia", "Targums e Midrash", "Etimologia Comparativa", "Exegese Prática", "Outros"];
-        const allLevels = window.filterMetadata?.niveisProficiencia || ["Alfabetização", "Iniciante", "Intermediário", "Avançado", "Acadêmico", "Especialista"];
-        const allTypes = window.filterMetadata?.tiposRecurso || ["Ferramenta de Parsing", "Diagrama/Infográfico", "Artigo Acadêmico", "Trabalho-Modelo", "Software", "Edição Crítica", "Comentário Exegético", "Base de Dados", "Recurso Audiovisual", "API/Web Service", "Outros"];
-        
-        const langs = ["Hebraico/Aramaico", "Grego Koiné", "Geral"];
-        const types = allTypes;
-        const subs = allSubs;
-        const levels = allLevels;
-
-        renderChipsGroup('langChips', langs, 'lingua');
-        renderChipsGroup('typeChips', types, 'tipo');
-        renderChipsGroup('subChips', subs, 'subcategoria');
-        renderChipsGroup('levelChips', levels, 'nivel');
+        // Função mantida para compatibilidade, mas chips não são mais renderizados na tela principal
+        // Filtros agora disponíveis apenas no menu lateral via submenus
+        return;
     }
 
     function renderChipsGroup(containerId, items, filterKey) {
