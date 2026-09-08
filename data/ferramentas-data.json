@@ -1,4 +1,44 @@
 {
+  "metadata": {
+    "subcategorias": [
+      "Léxico/Dicionário",
+      "Gramática",
+      "Leitura/Texto",
+      "Vídeo-aula",
+      "Memorização",
+      "Software",
+      "Crítica Textual",
+      "Análise Sintática",
+      "Domínios Semânticos",
+      "Corpora Digitais",
+      "Epigrafia",
+      "Targums e Midrash",
+      "Etimologia Comparativa",
+      "Exegese Prática",
+      "Outros"
+    ],
+    "niveisProficiencia": [
+      "Alfabetização",
+      "Iniciante",
+      "Intermediário",
+      "Avançado",
+      "Acadêmico",
+      "Especialista"
+    ],
+    "tiposRecurso": [
+      "Ferramenta de Parsing",
+      "Diagrama/Infográfico",
+      "Artigo Acadêmico",
+      "Trabalho-Modelo",
+      "Software",
+      "Edição Crítica",
+      "Comentário Exegético",
+      "Base de Dados",
+      "Recurso Audiovisual",
+      "API/Web Service",
+      "Outros"
+    ]
+  },
   "resources": [
     {
       "id": 1,
@@ -138,6 +178,96 @@
       "subcategoria": "Leitura/Texto",
       "url": "https://globalbibletools.com/",
       "descricao": "Desenvolvido em parceria com o Aleph with Beth. Traz o texto bíblico interlinear associado a áudios sincronizados locais sem anúncios."
+    },
+    {
+      "titulo": "HALOT Online (Hebrew and Aramaic Lexicon)",
+      "lingua": "Hebraico/Aramaico",
+      "nivel": "Acadêmico",
+      "tipo": "Base de Dados",
+      "subcategoria": "Léxico/Dicionário",
+      "url": "https://www.logos.com/product/12456/hebrew-and-aramaic-lexicon-of-the-old-testament",
+      "descricao": "O padrão-ouro lexicográfico para Hebraico e Aramaico bíblicos. Oferece etimologia detalhada, ocorrências em todo o AT e análise semântica profunda."
+    },
+    {
+      "titulo": "BDAG - Greek-English Lexicon of the NT",
+      "lingua": "Grego Koiné",
+      "nivel": "Acadêmico",
+      "tipo": "Base de Dados",
+      "subcategoria": "Léxico/Dicionário",
+      "url": "https://www.logos.com/product/10789/greek-english-lexicon-of-the-new-testament",
+      "descricao": "O léxico grego mais respeitado academicamente. Essencial para exegese do Novo Testamento com análise semântica abrangente."
+    },
+    {
+      "titulo": "Biblia Hebraica Stuttgartensia (BHS)",
+      "lingua": "Hebraico/Aramaico",
+      "nivel": "Avançado",
+      "tipo": "Edição Crítica",
+      "subcategoria": "Crítica Textual",
+      "url": "https://www.academic-bible.com/en/online-bibles/biblia-hebraica-stuttgartensia-bhs/read-the-bible-text.html",
+      "descricao": "Edição crítica baseada no Codex Leningradensis (1008 d.C.). Inclui apparatus criticus completo para pesquisa textual avançada."
+    },
+    {
+      "titulo": "Novum Testamentum Graece (NA28)",
+      "lingua": "Grego Koiné",
+      "nivel": "Avançado",
+      "tipo": "Edição Crítica",
+      "subcategoria": "Crítica Textual",
+      "url": "https://www.academic-bible.com/en/online-bibles/novum-testamentum-graece-na-28/read-the-bible-text.html",
+      "descricao": "Edição crítica padrão do NT grego. Apparatus crítico essencial para estudos de crítica textual e estabelecimento do texto."
+    },
+    {
+      "titulo": "Dead Sea Scrolls Digital Library",
+      "lingua": "Hebraico/Aramaico",
+      "nivel": "Especialista",
+      "tipo": "Base de Dados",
+      "subcategoria": "Corpora Digitais",
+      "url": "https://www.deadseascrolls.org.il/",
+      "descricao": "Imagens de alta resolução e transcrições dos Manuscritos do Mar Morto. Recurso indispensável para crítica textual e estudos do Segundo Templo."
+    },
+    {
+      "titulo": "Perseus Digital Library",
+      "lingua": "Grego Koiné",
+      "nivel": "Intermediário",
+      "tipo": "Base de Dados",
+      "subcategoria": "Corpora Digitais",
+      "url": "http://www.perseus.tufts.edu/hopper/",
+      "descricao": "Biblioteca digital com textos gregos clássicos e bíblicos, léxicos integrados (LSJ), e ferramentas de análise morfológica."
+    },
+    {
+      "titulo": "Louw-Nida Semantic Domains",
+      "lingua": "Grego Koiné",
+      "nivel": "Avançado",
+      "tipo": "Base de Dados",
+      "subcategoria": "Domínios Semânticos",
+      "url": "https://www.logos.com/product/12345/greek-english-lexicon-of-the-new-testament-based-on-semantic-domains",
+      "descricao": "Léxico baseado em domínios semânticos. Revolucionário para compreensão do significado contextual das palavras gregas."
+    },
+    {
+      "titulo": "OpenText.org",
+      "lingua": "Grego Koiné",
+      "nivel": "Acadêmico",
+      "tipo": "Base de Dados",
+      "subcategoria": "Análise Sintática",
+      "url": "https://opentext.org/",
+      "descricao": "Banco de dados com anotação sintática completa do NT grego. Ferramenta poderosa para análise gramatical e estrutural."
+    },
+    {
+      "titulo": "Hebrew Syntax Network",
+      "lingua": "Hebraico/Aramaico",
+      "nivel": "Especialista",
+      "tipo": "Base de Dados",
+      "subcategoria": "Análise Sintática",
+      "url": "https://hebrewsyntax.org/",
+      "descricao": "Banco de dados com anotação sintática detalhada do hebraico bíblico. Ideal para pesquisas linguísticas avançadas."
+    },
+    {
+      "titulo": "Thesaurus Linguae Graecae (TLG)",
+      "lingua": "Grego Koiné",
+      "nivel": "Especialista",
+      "tipo": "Base de Dados",
+      "subcategoria": "Corpora Digitais",
+      "url": "https://stephanus.tlg.uci.edu/",
+      "descricao": "Corpus completo da literatura grega antiga. Recurso indispensável para estudos diacrônicos e comparação de usos linguísticos."
     }
   ]
 }

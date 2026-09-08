@@ -960,12 +960,15 @@
             const data = await response.json();
             resources = data.resources || [];
             miningPool = data.miningPool || [];
+            // Load metadata for filter arrays (subcategorias, niveisProficiencia, tiposRecurso)
+            window.filterMetadata = data.metadata || {};
             return true;
         } catch (error) {
             console.error('Error loading data:', error);
             // Fallback to empty arrays if load fails
             resources = [];
             miningPool = [];
+            window.filterMetadata = {};
             return false;
         }
     }
@@ -1216,10 +1219,15 @@
     }
 
     function renderFilterChips() {
+        // Get arrays from JSON metadata or use defaults
+        const allSubs = window.filterMetadata?.subcategorias || ["Léxico/Dicionário", "Gramática", "Leitura/Texto", "Vídeo-aula", "Memorização", "Software", "Crítica Textual", "Análise Sintática", "Domínios Semânticos", "Corpora Digitais", "Epigrafia", "Targums e Midrash", "Etimologia Comparativa", "Exegese Prática", "Outros"];
+        const allLevels = window.filterMetadata?.niveisProficiencia || ["Alfabetização", "Iniciante", "Intermediário", "Avançado", "Acadêmico", "Especialista"];
+        const allTypes = window.filterMetadata?.tiposRecurso || ["Ferramenta de Parsing", "Diagrama/Infográfico", "Artigo Acadêmico", "Trabalho-Modelo", "Software", "Edição Crítica", "Comentário Exegético", "Base de Dados", "Recurso Audiovisual", "API/Web Service", "Outros"];
+        
         const langs = ["Hebraico/Aramaico", "Grego Koiné", "Geral"];
-        const types = ["Ferramenta de Parsing", "Diagrama/Infográfico", "Artigo Acadêmico", "Trabalho-Modelo", "Software", "Outros"];
-        const subs = ["Léxico/Dicionário", "Gramática", "Leitura/Texto", "Vídeo-aula", "Memorização", "Software", "Outros"];
-        const levels = ["Iniciante", "Intermediário", "Avançado", "Acadêmico"];
+        const types = allTypes;
+        const subs = allSubs;
+        const levels = allLevels;
 
         renderChipsGroup('langChips', langs, 'lingua');
         renderChipsGroup('typeChips', types, 'tipo');
@@ -1755,6 +1763,9 @@
     function editCurrentMiningCard() {
         const cardData = filteredMiningPool[currentMiningIndex];
         
+        // Populate selects dynamically from metadata before setting values
+        populateEditSelects();
+        
         document.getElementById('f_titulo').value = cardData.titulo;
         document.getElementById('f_lingua').value = cardData.lingua;
         document.getElementById('f_nivel').value = cardData.nivel || "Iniciante";
@@ -1786,10 +1797,54 @@
     // ==========================================
     let editingResourceId = null;
 
+    // Populate select dropdowns with metadata arrays from JSON
+    function populateEditSelects() {
+        const linguaSelect = document.getElementById('f_lingua');
+        const nivelSelect = document.getElementById('f_nivel');
+        const tipoSelect = document.getElementById('f_tipo');
+        const subSelect = document.getElementById('f_sub');
+        
+        // Get metadata or use defaults
+        const metadata = window.filterMetadata || {};
+        const levels = metadata.niveisProficiencia || ["Alfabetização", "Iniciante", "Intermediário", "Avançado", "Acadêmico", "Especialista"];
+        const types = metadata.tiposRecurso || ["Ferramenta de Parsing", "Diagrama/Infográfico", "Artigo Acadêmico", "Trabalho-Modelo", "Software", "Edição Crítica", "Comentário Exegético", "Base de Dados", "Recurso Audiovisual", "API/Web Service", "Outros"];
+        const subs = metadata.subcategorias || ["Léxico/Dicionário", "Gramática", "Leitura/Texto", "Vídeo-aula", "Memorização", "Software", "Crítica Textual", "Análise Sintática", "Domínios Semânticos", "Corpora Digitais", "Epigrafia", "Targums e Midrash", "Etimologia Comparativa", "Exegese Prática", "Outros"];
+        
+        // Populate Nível
+        nivelSelect.innerHTML = '';
+        levels.forEach(level => {
+            const opt = document.createElement('option');
+            opt.value = level;
+            opt.textContent = level;
+            nivelSelect.appendChild(opt);
+        });
+        
+        // Populate Tipo
+        tipoSelect.innerHTML = '';
+        types.forEach(type => {
+            const opt = document.createElement('option');
+            opt.value = type;
+            opt.textContent = type;
+            tipoSelect.appendChild(opt);
+        });
+        
+        // Populate Subcategoria
+        subSelect.innerHTML = '';
+        subs.forEach(sub => {
+            const opt = document.createElement('option');
+            opt.value = sub;
+            opt.textContent = sub;
+            subSelect.appendChild(opt);
+        });
+    }
+
     function openEditSheet(id) {
         editingResourceId = id;
         const res = resources.find(r => r.id === id);
         if (!res) return;
+
+        // Populate selects dynamically from metadata
+        populateEditSelects();
 
         document.getElementById('f_titulo').value = res.titulo;
         document.getElementById('f_lingua').value = res.lingua;
