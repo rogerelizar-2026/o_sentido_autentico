@@ -392,7 +392,7 @@
             transition: background .2s ease;
             background: var(--surface-2);
         }
-        .submenu-header:hover { background: var(--border); }
+        .submenu-header:hover { background: var(--border); transform: translateX(2px); }
         .submenu-header .chevron { transition: transform .25s ease; }
         .submenu-header.expanded .chevron { transform: rotate(180deg); }
         .submenu-items {
@@ -401,7 +401,10 @@
             transition: max-height .3s ease;
             padding: 0 8px;
         }
-        .submenu-items.expanded { max-height: 500px; overflow-y: auto; }
+        .submenu-items.expanded { max-height: 500px; overflow-y: auto; opacity: 1; }
+        
+        /* Hover submenu trigger */
+        .sidebar-submenu:hover > .submenu-header { background: var(--primary-soft); }
         .submenu-chip {
             display: block;
             width: 100%;
@@ -1113,9 +1116,36 @@
             submenu.classList.remove('expanded');
             header.classList.remove('expanded');
         } else {
+            // Close other submenus
+            document.querySelectorAll('.submenu-items').forEach(el => {
+                if (el.id !== submenuId) {
+                    el.classList.remove('expanded');
+                    el.previousElementSibling?.classList.remove('expanded');
+                }
+            });
             submenu.classList.add('expanded');
             header.classList.add('expanded');
         }
+    }
+    
+    // Add hover event listeners to submenus
+    function initSubmenuHover() {
+        document.querySelectorAll('.sidebar-submenu').forEach(submenu => {
+            let hoverTimeout;
+            const header = submenu.querySelector('.submenu-header');
+            
+            submenu.addEventListener('mouseenter', () => {
+                hoverTimeout = setTimeout(() => {
+                    if (!header.classList.contains('expanded')) {
+                        header.click();
+                    }
+                }, 300);
+            });
+            
+            submenu.addEventListener('mouseleave', () => {
+                clearTimeout(hoverTimeout);
+            });
+        });
     }
     
     // Populate sidebar filter submenus with metadata
@@ -1614,8 +1644,9 @@
     }
 
     function renderMiningParameters() {
+        const metadata = window.filterMetadata || {};
         const langs = ["Todas", "Hebraico/Aramaico", "Grego Koiné", "Geral"];
-        const subs = ["Todas", "Léxico/Dicionário", "Gramática", "Leitura/Texto", "Vídeo-aula", "Memorização", "Software"];
+        const subs = ["Todas", ...(metadata.subcategorias?.filter(s => s !== "Outros") || ["Léxico/Dicionário", "Gramática", "Leitura/Texto", "Vídeo-aula", "Memorização", "Software", "Crítica Textual", "Análise Sintática", "Domínios Semânticos", "Corpora Digitais"])];
 
         renderMiningChips('miningLangChips', langs, 'mining_lang');
         renderMiningChips('miningSubChips', subs, 'mining_sub');
@@ -2060,34 +2091,71 @@
             empty.classList.remove('hidden');
         } else {
             empty.classList.add('hidden');
+            
+            // Ordenar por nível de proficiência (crescente)
+            const nivelOrder = { "Alfabetização": 1, "Iniciante": 2, "Intermediário": 3, "Avançado": 4, "Acadêmico": 5, "Especialista": 6 };
+            favs.sort((a, b) => (nivelOrder[a.nivel] || 99) - (nivelOrder[b.nivel] || 99));
+            
+            // Agrupar por língua e nível
+            const grouped = {};
             favs.forEach(res => {
-                const card = document.createElement('div');
-                card.className = "card-surface p-4 flex flex-col md:flex-row md:items-center justify-between gap-4";
+                const key = `${res.lingua}|${res.nivel}`;
+                if (!grouped[key]) grouped[key] = [];
+                grouped[key].push(res);
+            });
+            
+            // Criar cards agrupados
+            const groups = Object.keys(grouped).sort((a, b) => {
+                const [langA, lvlA] = a.split('|');
+                const [langB, lvlB] = b.split('|');
+                if (langA !== langB) return langA.localeCompare(langB);
+                return (nivelOrder[lvlA] || 99) - (nivelOrder[lvlB] || 99);
+            });
+            
+            groups.forEach(groupKey => {
+                const [lingua, nivel] = groupKey.split('|');
+                const items = grouped[groupKey];
+                
+                const groupCard = document.createElement('div');
+                groupCard.className = "card-surface p-4 mb-4";
                 
                 let borderTheme = "border-l-4 border-l-[#0f3731]";
-                if (res.lingua === "Hebraico/Aramaico") borderTheme = "border-l-4 border-l-[#102a43]";
-                if (res.lingua === "Grego Koiné") borderTheme = "border-l-4 border-l-[#7b1d22]";
-                card.className += ` ${borderTheme}`;
-
-                card.innerHTML = `
-                    <div class="flex-1 min-w-0" onclick="showFicha(${res.id})">
-                        <div class="flex items-center gap-2 mb-1.5 flex-wrap">
-                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:var(--primary-soft); color:var(--primary)">${escapeHtml(res.tipo)}</span>
-                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="background:rgba(197,160,89,0.12); color:var(--gold-dark)">${escapeHtml(res.nivel)}</span>
-                        </div>
-                        <h4 class="font-display font-bold text-lg text-primary hover:text-gold transition-all cursor-pointer">${escapeHtml(res.titulo)}</h4>
-                        <p class="text-xs text-muted leading-relaxed line-clamp-2 mt-1">${escapeHtml(res.descricao)}</p>
-                        <a href="${escapeHtml(res.url)}" target="_blank" rel="noopener noreferrer" class="text-[11px] font-semibold text-gold-dark hover:underline mt-2 inline-flex items-center gap-1">
-                            <i class="fa-solid fa-link"></i> ${escapeHtml(res.url)}
-                        </a>
+                if (lingua === "Hebraico/Aramaico") borderTheme = "border-l-4 border-l-[#102a43]";
+                if (lingua === "Grego Koiné") borderTheme = "border-l-4 border-l-[#7b1d22]";
+                groupCard.className += ` ${borderTheme}`;
+                
+                groupCard.innerHTML = `
+                    <div class="flex items-center gap-2 mb-3 pb-2 border-b" style="border-color:var(--border)">
+                        <span class="text-xs font-bold uppercase tracking-wider px-2 py-1 rounded" style="background:var(--primary-soft); color:var(--primary)">${escapeHtml(lingua)}</span>
+                        <span class="text-xs font-bold uppercase tracking-wider px-2 py-1 rounded" style="background:rgba(197,160,89,0.12); color:var(--gold-dark)">${escapeHtml(nivel)}</span>
+                        <span class="text-xs font-semibold ml-auto" style="color:var(--text-muted)">${items.length} recurso(s)</span>
                     </div>
-                    <div class="flex items-center gap-2 justify-end">
-                        <button onclick="toggleFavorite(${res.id})" class="w-10 h-10 rounded-full flex items-center justify-center text-lg transition-all" style="background:var(--surface-2); color:var(--gold)">
-                            <i class="fa-solid fa-star"></i>
-                        </button>
-                    </div>
+                    <div class="space-y-3"></div>
                 `;
-                list.appendChild(card);
+                
+                const itemsContainer = groupCard.querySelector('.space-y-3');
+                items.forEach(res => {
+                    const card = document.createElement('div');
+                    card.className = "p-3 rounded-lg hover:bg-opacity-50 transition-all";
+                    card.style.background = "var(--surface-2)";
+                    card.innerHTML = `
+                        <div class="flex items-start justify-between gap-2">
+                            <div class="flex-1 min-w-0" onclick="showFicha(${res.id})">
+                                <h5 class="font-display font-bold text-base text-primary hover:text-gold transition-all cursor-pointer">${escapeHtml(res.titulo)}</h5>
+                                <p class="text-xs text-muted leading-relaxed line-clamp-2 mt-1">${escapeHtml(res.descricao)}</p>
+                                <a href="${escapeHtml(res.url)}" target="_blank" rel="noopener noreferrer" class="text-[11px] font-semibold text-gold-dark hover:underline mt-2 inline-flex items-center gap-1">
+                                    <i class="fa-solid fa-link"></i> ${escapeHtml(res.url)}
+                                </a>
+                            </div>
+                            <button onclick="toggleFavorite(${res.id})" class="w-9 h-9 rounded-full flex items-center justify-center text-lg transition-all flex-shrink-0" style="background:var(--surface); color:var(--gold)">
+                                <i class="fa-solid fa-star"></i>
+                            </button>
+                        </div>
+                    `;
+                    itemsContainer.appendChild(card);
+                });
+                
+                list.appendChild(groupCard);
             });
         }
     }
@@ -2280,6 +2348,8 @@
         updateBookList();
         updateDashboardStats();
         renderFilterChips();
+        populateSidebarFilters();
+        initSubmenuHover();
         filterResources();
     });
 </script>
