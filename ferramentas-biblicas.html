@@ -144,8 +144,8 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.08);
         }
         .chip {
-            min-height: 40px; 
-            padding: 0 16px; 
+            min-height: 44px; 
+            padding: 0 18px; 
             border-radius: 999px;
             border: 1px solid var(--border); 
             background: var(--surface);
@@ -237,8 +237,8 @@
         ::placeholder { color: var(--text-muted); opacity: .7; }
 
         /* Subtítulo dinâmico */
-        #dynaSubtitle { transition: color .5s ease, opacity .4s ease; min-height: 18px; }
-        #dynaSubtitle.lang-highlight {
+        #dyna-subtitle { transition: color .5s ease, opacity .4s ease; min-height: 18px; }
+        #dyna-subtitle.lang-highlight {
             color: var(--gold-dark);
             font-style: normal;
             text-transform: none;
@@ -473,18 +473,18 @@
 
 <header class="sticky top-0 z-40 px-4 py-3 flex items-center justify-between" style="background:var(--bg); border-bottom:1px solid var(--border);">
     <div class="flex items-center gap-3 min-w-0">
-        <button id="helpBtn" onclick="openManual()" aria-label="Abrir manual" class="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 transition-all hover:scale-105" style="background:var(--surface-2); color:var(--primary)">
+        <button id="help-btn" onclick="openManual()" aria-label="Abrir manual" class="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 transition-all hover:scale-105" style="background:var(--surface-2); color:var(--primary)">
             <i class="fa-solid fa-circle-question"></i>
         </button>
         <div class="min-w-0">
             <h1 class="font-display text-xl font-bold leading-tight truncate" style="color:var(--primary)">
                 <i class="fa-solid fa-book-bible mr-1.5"></i>Ferramentas Bíblicas
             </h1>
-            <div id="dynaSubtitle" class="text-[11px] tracking-wide uppercase mt-0.5 font-semibold" style="color:var(--text-muted)">Curadoria · Hermenêutica · Exegese</div>
+            <div id="dyna-subtitle" class="text-[11px] tracking-wide uppercase mt-0.5 font-semibold" style="color:var(--text-muted)">Curadoria · Hermenêutica · Exegese</div>
         </div>
     </div>
-    <button id="themeToggle" onclick="toggleTheme()" aria-label="Alternar tema" class="w-12 h-12 rounded-full flex items-center justify-center text-lg flex-shrink-0 transition-all hover:scale-105" style="background:var(--surface-2); color:var(--primary)">
-        <i class="fa-solid fa-moon" id="themeIcon"></i>
+    <button id="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema" class="w-12 h-12 rounded-full flex items-center justify-center text-lg flex-shrink-0 transition-all hover:scale-105" style="background:var(--surface-2); color:var(--primary)">
+        <i class="fa-solid fa-moon" id="theme-icon"></i>
     </button>
 </header>
 
@@ -698,7 +698,7 @@
     </div>
 </aside>
 
-<button id="menuFab" class="menu-fab animate-pulse" aria-label="Abrir menu de navegação" onclick="toggleSidebar()">
+<button id="menu-fab" class="menu-fab animate-pulse" aria-label="Abrir menu de navegação" onclick="toggleSidebar()">
     <span class="icon-open"><i class="fa-solid fa-bars"></i></span>
     <span class="icon-close"><i class="fa-solid fa-xmark"></i></span>
 </button>
@@ -1149,7 +1149,7 @@
     function toggleSidebar() {
         const sidebar = document.getElementById('sidebarRight');
         const backdrop = document.getElementById('menuBackdrop');
-        const fab = document.getElementById('menuFab');
+        const fab = document.getElementById('menu-fab');
 
         if (sidebar.classList.contains('open')) {
             closeSidebar();
@@ -1164,7 +1164,7 @@
     function closeSidebar() {
         const sidebar = document.getElementById('sidebarRight');
         const backdrop = document.getElementById('menuBackdrop');
-        const fab = document.getElementById('menuFab');
+        const fab = document.getElementById('menu-fab');
         if (sidebar) sidebar.classList.remove('open');
         if (backdrop) backdrop.classList.remove('active');
         if (fab) fab.classList.remove('open');
@@ -1212,7 +1212,7 @@
     // ==========================================
     function toggleTheme() {
         const html = document.documentElement;
-        const icon = document.getElementById('themeIcon');
+        const icon = document.getElementById('theme-icon');
         const label = document.getElementById('sidebarThemeLabel');
         const sidebarIcon = document.getElementById('sidebarThemeIcon');
 
@@ -2152,7 +2152,7 @@
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
-            const icon = document.getElementById('themeIcon');
+            const icon = document.getElementById('theme-icon');
             const label = document.getElementById('sidebarThemeLabel');
             const sidebarIcon = document.getElementById('sidebarThemeIcon');
             if (icon) icon.className = 'fa-solid fa-sun';
