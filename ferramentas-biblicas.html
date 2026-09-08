@@ -286,11 +286,11 @@
         }
         .app-footer a.about-link:hover { opacity: .75; }
 
-        /* Sidebar direita + auto-hide style match with O Sentido Autêntico sidebar style */
+        /* Sidebar esquerda + auto-hide style match with O Sentido Autêntico sidebar style */
         .menu-fab {
             position: fixed; 
             bottom: 24px; 
-            right: 20px;
+            left: 20px;
             width: 58px; 
             height: 58px; 
             border-radius: 50%;
@@ -317,25 +317,25 @@
         .menu-backdrop { position: fixed; inset: 0; background: rgba(11,15,23,0.4); backdrop-filter: blur(2px); z-index: 9500; opacity: 0; pointer-events: none; transition: opacity .3s ease; }
         .menu-backdrop.active { opacity: 1; pointer-events: auto; }
 
-        .sidebar-right {
+        .sidebar-left {
             position: fixed; 
             top: 0; 
-            right: 0; 
+            left: 0; 
             height: 100vh; 
             height: 100dvh;
-            width: 290px; 
+            width: 320px; 
             max-width: 85vw;
             background: var(--surface); 
-            border-left: 1px solid var(--border);
-            box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+            border-right: 1px solid var(--border);
+            box-shadow: 10px 0 40px rgba(0,0,0,0.15);
             z-index: 10000; 
-            transform: translateX(100%);
+            transform: translateX(-100%);
             transition: transform .35s cubic-bezier(.2,.8,.3,1);
             display: flex; 
             flex-direction: column; 
             overflow: hidden;
         }
-        .sidebar-right.open { transform: translateX(0); }
+        .sidebar-left.open { transform: translateX(0); }
         .sidebar-header { padding: 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
         .sidebar-title { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; color: var(--primary); letter-spacing: 0.05em; text-transform: uppercase; }
         .sidebar-close { width: 36px; height: 36px; border-radius: 10px; background: var(--surface-2); color: var(--text-muted); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: var(--transition); }
@@ -376,6 +376,50 @@
         .autohide-bar.running .fill { transform: scaleX(0); }
         .sidebar-footer { padding: 15px 20px; border-top: 1px solid var(--border); font-size: 10px; color: var(--text-muted); text-align: center; letter-spacing: 0.04em; flex-shrink: 0; background: var(--surface-2); }
         .sidebar-footer .autohide-hint { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 6px; font-weight: 600; }
+        
+        /* Submenu styles for filter criteria */
+        .sidebar-submenu { margin-top: 8px; margin-bottom: 8px; }
+        .submenu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background .2s ease;
+            background: var(--surface-2);
+        }
+        .submenu-header:hover { background: var(--border); }
+        .submenu-header .chevron { transition: transform .25s ease; }
+        .submenu-header.expanded .chevron { transform: rotate(180deg); }
+        .submenu-items {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .3s ease;
+            padding: 0 8px;
+        }
+        .submenu-items.expanded { max-height: 500px; overflow-y: auto; }
+        .submenu-chip {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 8px 12px;
+            margin: 4px 0;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+            background: transparent;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all .2s ease;
+        }
+        .submenu-chip:hover { background: var(--surface-2); border-color: var(--gold); color: var(--text); }
+        .submenu-chip.active { background: var(--primary); color: #ffffff !important; border-color: var(--primary); }
+        .dark .submenu-chip.active { color: #1a1608 !important; }
 
         /* Manuscript (Sobre Modal) */
         .about-modal { position: fixed; inset: 0; background: rgba(11,15,23,0.85); backdrop-filter: blur(6px); z-index: 99999; display: none; align-items: center; justify-content: center; padding: 16px; overflow-y: auto; }
@@ -605,7 +649,10 @@
             <i class="fa-solid fa-circle-check text-5xl mb-4" style="color:var(--primary)"></i>
             <h3 class="font-display text-xl font-bold mb-1">Mineração Concluída!</h3>
             <p class="text-sm mb-6" style="color:var(--text-muted)" id="miningSummary">Você avaliou todos os recursos dessa rodada.</p>
-            <button onclick="resetMining()" class="btn-primary px-6"><i class="fa-solid fa-rotate-right mr-2"></i>Nova Mineração</button>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <button onclick="resetMining()" class="btn-primary px-6"><i class="fa-solid fa-rotate-right mr-2"></i>Nova Mineração</button>
+                <button onclick="goToDashboard()" class="card-surface px-6 py-3 font-bold flex items-center justify-center gap-2 hover:border-yellow-500 hover:text-yellow-600 transition-all" style="color:var(--text-muted)"><i class="fa-solid fa-house mr-2"></i>Voltar ao Início</button>
+            </div>
         </div>
     </section>
 
@@ -655,35 +702,74 @@
 <!-- BACKDROP & SIDEBAR -->
 <div id="menuBackdrop" class="menu-backdrop" onclick="closeSidebar()"></div>
 
-<aside id="sidebarRight" class="sidebar-right" onmouseenter="clearSidebarTimeout()" onmouseleave="startSidebarTimeout()" aria-label="Menu de navegação">
+<aside id="sidebarLeft" class="sidebar-left" aria-label="Menu de navegação e filtros">
     <div class="sidebar-header">
-        <div class="sidebar-title">Navegação</div>
+        <div class="sidebar-title">Filtros de Pesquisa</div>
         <button class="sidebar-close" onclick="closeSidebar()" aria-label="Fechar menu"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="sidebar-items">
-        <button class="sidebar-item active" data-view="dashboard" onclick="sidebarNav('dashboard')">
+        <!-- Submenu: Língua -->
+        <div class="sidebar-submenu">
+            <div class="submenu-header" onclick="toggleSubmenu('submenuLingua')">
+                <span><i class="fa-solid fa-language mr-2"></i>Língua</span>
+                <i class="fa-solid fa-chevron-down chevron"></i>
+            </div>
+            <div id="submenuLingua" class="submenu-items"></div>
+        </div>
+        
+        <!-- Submenu: Nível -->
+        <div class="sidebar-submenu">
+            <div class="submenu-header" onclick="toggleSubmenu('submenuNivel')">
+                <span><i class="fa-solid fa-graduation-cap mr-2"></i>Nível</span>
+                <i class="fa-solid fa-chevron-down chevron"></i>
+            </div>
+            <div id="submenuNivel" class="submenu-items"></div>
+        </div>
+        
+        <!-- Submenu: Tipo -->
+        <div class="sidebar-submenu">
+            <div class="submenu-header" onclick="toggleSubmenu('submenuTipo')">
+                <span><i class="fa-solid fa-tag mr-2"></i>Tipo</span>
+                <i class="fa-solid fa-chevron-down chevron"></i>
+            </div>
+            <div id="submenuTipo" class="submenu-items"></div>
+        </div>
+        
+        <!-- Submenu: Subcategoria -->
+        <div class="sidebar-submenu">
+            <div class="submenu-header" onclick="toggleSubmenu('submenuSub')">
+                <span><i class="fa-solid fa-folder mr-2"></i>Subcategoria</span>
+                <i class="fa-solid fa-chevron-down chevron"></i>
+            </div>
+            <div id="submenuSub" class="submenu-items"></div>
+        </div>
+        
+        <div class="sidebar-divider"></div>
+        
+        <!-- Navegação Principal -->
+        <button class="sidebar-item active" data-view="dashboard" onclick="sidebarNav('dashboard'); closeSidebar();">
             <span class="item-icon"><i class="fa-solid fa-table-cells-large"></i></span>
             <span class="item-label">Início</span>
         </button>
-        <button class="sidebar-item" data-view="mining" onclick="sidebarNav('mining')">
+        <button class="sidebar-item" data-view="mining" onclick="sidebarNav('mining'); closeSidebar();">
             <span class="item-icon"><i class="fa-solid fa-gem"></i></span>
             <span class="item-label">Mineração</span>
         </button>
-        <button class="sidebar-item" data-view="favorites" onclick="sidebarNav('favorites')">
+        <button class="sidebar-item" data-view="favorites" onclick="sidebarNav('favorites'); closeSidebar();">
             <span class="item-icon"><i class="fa-solid fa-star"></i></span>
             <span class="item-label">Favoritos</span>
             <span class="item-badge" id="sidebarFavBadge" style="display:none;">0</span>
         </button>
-        <button class="sidebar-item" data-view="reports" onclick="sidebarNav('reports')">
+        <button class="sidebar-item" data-view="reports" onclick="sidebarNav('reports'); closeSidebar();">
             <span class="item-icon"><i class="fa-solid fa-chart-column"></i></span>
             <span class="item-label">Relatórios</span>
         </button>
         <div class="sidebar-divider"></div>
-        <button class="sidebar-item" onclick="sidebarAction('manual')">
+        <button class="sidebar-item" onclick="sidebarAction('manual'); closeSidebar();">
             <span class="item-icon"><i class="fa-solid fa-circle-question"></i></span>
             <span class="item-label">Manual de Uso</span>
         </button>
-        <button class="sidebar-item" onclick="sidebarAction('about')">
+        <button class="sidebar-item" onclick="sidebarAction('about'); closeSidebar();">
             <span class="item-icon"><i class="fa-solid fa-feather-pointed"></i></span>
             <span class="item-label">Sobre o Projeto</span>
         </button>
@@ -694,13 +780,11 @@
     </div>
     <div class="sidebar-footer">
         <div>Curadoria Acadêmica</div>
-        <div class="autohide-hint"><i class="fa-solid fa-clock" style="opacity:.6;"></i><span>Fecha em <b id="autohideCounter">5</b>s</span></div>
-        <div class="autohide-bar" id="autohideBar"><div class="fill"></div></div>
     </div>
 </aside>
 
-<button id="menu-fab" class="menu-fab animate-pulse" aria-label="Abrir menu de navegação" onclick="toggleSidebar()">
-    <span class="icon-open"><i class="fa-solid fa-bars"></i></span>
+<button id="menu-fab" class="menu-fab animate-pulse" aria-label="Abrir menu de filtros" onclick="toggleSidebar()">
+    <span class="icon-open"><i class="fa-solid fa-filter"></i></span>
     <span class="icon-close"><i class="fa-solid fa-xmark"></i></span>
 </button>
 
@@ -994,41 +1078,10 @@
     }
 
     // ==========================================
-    // SIDEBAR AUTO-COLLAPSE (5s Inactivity)
+    // SIDEBAR CONTROLLER (LEFT SIDEBAR WITH FILTERS)
     // ==========================================
-    let sidebarTimeout;
-    const sidebarDelay = 5000;
-
-    function startSidebarTimeout() {
-        const sidebar = document.getElementById('sidebarRight');
-        if (!sidebar || !sidebar.classList.contains('open')) return;
-        
-        clearTimeout(sidebarTimeout);
-        let count = 5;
-        document.getElementById('autohideCounter').innerText = count;
-        
-        const bar = document.getElementById('autohideBar');
-        bar.classList.remove('running');
-        void bar.offsetWidth; // Trigger reflow
-        bar.classList.add('running');
-
-        sidebarTimeout = setInterval(() => {
-            count--;
-            document.getElementById('autohideCounter').innerText = count;
-            if (count <= 0) {
-                closeSidebar();
-            }
-        }, 1000);
-    }
-
-    function clearSidebarTimeout() {
-        clearTimeout(sidebarTimeout);
-        document.getElementById('autohideBar').classList.remove('running');
-        document.getElementById('autohideCounter').innerText = "5";
-    }
-
     function toggleSidebar() {
-        const sidebar = document.getElementById('sidebarRight');
+        const sidebar = document.getElementById('sidebarLeft');
         const backdrop = document.getElementById('menuBackdrop');
         const fab = document.getElementById('menu-fab');
 
@@ -1038,18 +1091,77 @@
             sidebar.classList.add('open');
             backdrop.classList.add('active');
             fab.classList.add('open');
-            startSidebarTimeout();
+            populateSidebarFilters();
         }
     }
 
     function closeSidebar() {
-        const sidebar = document.getElementById('sidebarRight');
+        const sidebar = document.getElementById('sidebarLeft');
         const backdrop = document.getElementById('menuBackdrop');
         const fab = document.getElementById('menu-fab');
         if (sidebar) sidebar.classList.remove('open');
         if (backdrop) backdrop.classList.remove('active');
         if (fab) fab.classList.remove('open');
-        clearTimeout(sidebarTimeout);
+    }
+    
+    // Toggle submenu expand/collapse
+    function toggleSubmenu(submenuId) {
+        const submenu = document.getElementById(submenuId);
+        const header = submenu.previousElementSibling;
+        
+        if (submenu.classList.contains('expanded')) {
+            submenu.classList.remove('expanded');
+            header.classList.remove('expanded');
+        } else {
+            submenu.classList.add('expanded');
+            header.classList.add('expanded');
+        }
+    }
+    
+    // Populate sidebar filter submenus with metadata
+    function populateSidebarFilters() {
+        const metadata = window.filterMetadata || {};
+        const linguas = ["Hebraico/Aramaico", "Grego Koiné", "Geral"];
+        const niveis = metadata.niveisProficiencia || ["Alfabetização", "Iniciante", "Intermediário", "Avançado", "Acadêmico", "Especialista"];
+        const tipos = metadata.tiposRecurso || ["Ferramenta de Parsing", "Diagrama/Infográfico", "Artigo Acadêmico", "Trabalho-Modelo", "Software", "Edição Crítica", "Comentário Exegético", "Base de Dados", "Recurso Audiovisual", "API/Web Service", "Outros"];
+        const subcategorias = metadata.subcategorias || ["Léxico/Dicionário", "Gramática", "Leitura/Texto", "Vídeo-aula", "Memorização", "Software", "Crítica Textual", "Análise Sintática", "Domínios Semânticos", "Corpora Digitais", "Epigrafia", "Targums e Midrash", "Etimologia Comparativa", "Exegese Prática", "Outros"];
+        
+        renderSubmenuChips('submenuLingua', linguas, 'lingua');
+        renderSubmenuChips('submenuNivel', niveis, 'nivel');
+        renderSubmenuChips('submenuTipo', tipos, 'tipo');
+        renderSubmenuChips('submenuSub', subcategorias, 'subcategoria');
+    }
+    
+    // Render chips for a submenu
+    function renderSubmenuChips(containerId, items, filterKey) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        // Add "Todos" chip
+        const allChip = document.createElement('button');
+        allChip.className = `submenu-chip ${activeFilters[filterKey] === "" ? 'active' : ''}`;
+        allChip.textContent = 'Todos';
+        allChip.onclick = () => applyFilterFromSidebar(filterKey, '');
+        container.appendChild(allChip);
+        
+        items.forEach(item => {
+            const chip = document.createElement('button');
+            const isActive = activeFilters[filterKey] === item;
+            chip.className = `submenu-chip ${isActive ? 'active' : ''}`;
+            chip.textContent = item;
+            chip.onclick = () => applyFilterFromSidebar(filterKey, item);
+            container.appendChild(chip);
+        });
+    }
+    
+    // Apply filter from sidebar selection
+    function applyFilterFromSidebar(filterKey, value) {
+        activeFilters[filterKey] = value;
+        populateSidebarFilters(); // Refresh to show active state
+        renderFilterChips(); // Update main dashboard chips
+        filterResources(); // Apply filter
     }
 
     // ==========================================
@@ -1790,6 +1902,10 @@
 
     function resetMining() {
         goToMining();
+    }
+    
+    function goToDashboard() {
+        sidebarNav('dashboard');
     }
 
     // ==========================================
