@@ -305,25 +305,29 @@
             <!-- Search & Language Tabs -->
             <div class="filters-bar" style="flex-direction: column; gap: 16px;">
                 <!-- Search Bar with Icon -->
-                <div style="position: relative; width: 100%;">
+<div style="position: relative; width: 100%; margin-bottom: 16px;">
                     <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted);">🔍</span>
-                    <input type="text" id="searchInput" class="filter-select" 
-                           placeholder="Buscar por nome, autor, tipo ou descrição..." 
+                    <input type="text" id="searchInput" class="filter-select"
+                           placeholder="Buscar por nome, autor, função ou texto bíblico..."
                            data-i18n-placeholder="searchPlaceholder"
-                           oninput="app.renderResources()"
-                           style="padding-left: 40px; width: 100%; box-sizing: border-box;">
-                    <span id="searchCount" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-muted);"></span>
+                           style="padding-left: 40px; padding-right: 140px; width: 100%; box-sizing: border-box;">
+                    <button id="searchBtn" class="btn btn-primary" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); padding: 8px 16px; font-size: 13px;" onclick="app.renderResources()">
+                        🔍 <span data-i18n="searchButton">Buscar</span>
+                    </button>
+                    <button id="searchClear" class="btn" style="position: absolute; right: 90px; top: 50%; transform: translateY(-50%); padding: 8px; color: var(--text-muted);" onclick="document.getElementById('searchInput').value=''; app.renderResources();" aria-label="Limpar busca">
+                        ✕
+                    </button>
+                    <span id="searchCount" style="position: absolute; right: 120px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-muted); font-weight: 600;"></span>
                 </div>
 
-                <!-- Language Tabs -->
-                <div class="filter-tabs scroll-x" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <!-- Language Tabs - Correct Order: Overview, Hebrew, Aramaic, Greek, General -->
+                <div class="filter-tabs scroll-x" style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
                     <button class="chip active" onclick="app.filterByLang('all')" data-filter="all" data-i18n="tabAll">Visão Geral</button>
                     <button class="chip" onclick="app.filterByLang('hebrew')" data-filter="hebrew" data-i18n="tabHebrew">Hebraico</button>
                     <button class="chip" onclick="app.filterByLang('aramaic')" data-filter="aramaic" data-i18n="tabAramaic">Aramaico</button>
                     <button class="chip" onclick="app.filterByLang('greek')" data-filter="greek" data-i18n="tabGreek">Grego</button>
                     <button class="chip" onclick="app.filterByLang('general')" data-filter="general" data-i18n="tabGeneral">Geral</button>
                 </div>
-            </div>
 
             <!-- Type & Level Filters (Secondary) -->
             <div class="filters-bar" style="margin-top: 12px; padding: 12px;">
@@ -443,7 +447,8 @@
                 statTools: "Ferramentas na Bancada",
                 statProjects: "Meus Projetos",
                 statLangs: "Idiomas Cobertos",
-                searchPlaceholder: "Buscar por nome, autor, tipo ou descrição...",
+                searchPlaceholder: "Buscar por nome, autor, função ou texto bíblico...",
+                searchButton: "Buscar",
                 filterType: "Tipo",
                 filterLevel: "Nível",
                 tabAll: "Visão Geral",
@@ -501,8 +506,9 @@
                 statTools: "Tools on Bench",
                 statProjects: "My Projects",
                 statLangs: "Languages Covered",
-                searchPlaceholder: "Search by name, author, type or description...",
+                searchPlaceholder: "Search by name, author, function or biblical text...",
                 filterType: "Type",
+                searchButton: "Search",
                 filterLevel: "Level",
                 tabAll: "Overview",
                 tabHebrew: "Hebrew",
@@ -559,9 +565,10 @@
                 statTools: "Herramientas en Banco",
                 statProjects: "Mis Proyectos",
                 statLangs: "Idiomas Cubiertos",
-                searchPlaceholder: "Buscar por nombre, autor, tipo o descripción...",
+                searchPlaceholder: "Buscar por nombre, autor, función o texto bíblico...",
                 filterType: "Tipo",
                 filterLevel: "Nivel",
+                searchButton: "Buscar",
                 tabAll: "Visión General",
                 tabHebrew: "Hebreo",
                 tabAramaic: "Arameo",
@@ -631,11 +638,11 @@
                     chip.classList.remove('active');
                     if(chip.dataset.filter === lang) chip.classList.add('active');
                 });
-
+                    });
                 // Update intro text dynamically
                 const introEl = document.getElementById('dynamicIntro');
                 const intros = {
-                    'all': 'Selecione uma língua abaixo ou use a busca para encontrar ferramentas de exegese, léxicos e gramáticas curadas academicamente.',
+                    'all': app.i18n[app.lang].introGeneral,
                     'hebrew': 'Ferramentas especializadas para Hebraico Bíblico: léxicos, gramáticas, interlineares e recursos de morfologia.',
                     'aramaic': 'Recursos focados em Aramaico Bíblico: dicionários, textos targúmicos e estudos de linguística semítica.',
                     'greek': 'Instrumentos para Grego Koiné: análise textual, léxicos do NT, morfologia e crítica textual.',
@@ -643,30 +650,6 @@
                 };
                 if(introEl && intros[lang]) {
                     introEl.textContent = intros[lang];
-                }
-
-                this.renderResources();
-            },
-
-            setupNavListeners() {
-                // Setup navigation for projects
-                const projectsNav = document.querySelector('[data-nav="projects"]');
-                if (projectsNav) {
-                    projectsNav.addEventListener('click', () => {
-                        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-                        projectsNav.classList.add('active');
-                        if(window.innerWidth < 1024) document.getElementById('sidebar').classList.remove('open');
-                        this.renderProjectsView();
-                    });
-                }
-                
-                // Setup "All" nav to reset view
-                const allNav = document.querySelector('[data-nav="all"]');
-                if (allNav) {
-                    allNav.addEventListener('click', () => {
-                        currentProjectId = null;
-                        this.renderResources();
-                    });
                 }
             },
 
