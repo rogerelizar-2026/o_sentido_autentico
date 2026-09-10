@@ -279,28 +279,54 @@
 
         <!-- Main Content -->
         <main class="main-content">
+            <!-- Hero Header -->
+            <div class="hero-header" style="margin-bottom: 2rem;">
+                <h1 data-i18n="appTitle" style="font-family: 'Cinzel', serif; font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;">Caixa de Ferramentas</h1>
+                <p class="subtitle" data-i18n="appSubtitle" style="color: var(--text-muted); font-style: italic; margin-bottom: 1rem;">Instrumentos para Escavação Profunda</p>
+                <p id="dynamicIntro" data-i18n="introGeneral" style="color: var(--text); line-height: 1.6;">Selecione uma língua abaixo ou use a busca para encontrar ferramentas de exegese, léxicos e gramáticas curadas academicamente.</p>
+            </div>
+
             <!-- Stats -->
             <div class="stats-grid">
                 <div class="card stat-card">
-                    <div class="stat-value" id="countTotal">0</div>
+                    <div class="stat-value" id="countTotal" style="color: var(--primary);">0</div>
                     <div class="stat-label" data-i18n="statTools">Ferramentas na Bancada</div>
                 </div>
                 <div class="card stat-card">
-                    <div class="stat-value" id="countFree">0</div>
-                    <div class="stat-label" data-i18n="statFree">Recursos Gratuitos</div>
+                    <div class="stat-value" id="countProjects" style="color: var(--gold);">0</div>
+                    <div class="stat-label" data-i18n="statProjects">Meus Projetos</div>
                 </div>
                 <div class="card stat-card">
-                    <div class="stat-value" id="countLangs">3</div>
+                    <div class="stat-value" id="countLangs" style="color: var(--text-muted);">3</div>
                     <div class="stat-label" data-i18n="statLangs">Idiomas Cobertos</div>
                 </div>
             </div>
 
-            <!-- Filters -->
-            <div class="filters-bar">
-                <div class="filter-group">
-                    <label class="filter-label" data-i18n="filterSearch">Busca</label>
-                    <input type="text" id="searchInput" class="filter-select" placeholder="Nome, autor ou descrição..." oninput="app.renderResources()">
+            <!-- Search & Language Tabs -->
+            <div class="filters-bar" style="flex-direction: column; gap: 16px;">
+                <!-- Search Bar with Icon -->
+                <div style="position: relative; width: 100%;">
+                    <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted);">🔍</span>
+                    <input type="text" id="searchInput" class="filter-select" 
+                           placeholder="Buscar por nome, autor, tipo ou descrição..." 
+                           data-i18n-placeholder="searchPlaceholder"
+                           oninput="app.renderResources()"
+                           style="padding-left: 40px; width: 100%; box-sizing: border-box;">
+                    <span id="searchCount" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-muted);"></span>
                 </div>
+
+                <!-- Language Tabs -->
+                <div class="filter-tabs scroll-x" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button class="chip active" onclick="app.filterByLang('all')" data-filter="all" data-i18n="tabAll">Visão Geral</button>
+                    <button class="chip" onclick="app.filterByLang('hebrew')" data-filter="hebrew" data-i18n="tabHebrew">Hebraico</button>
+                    <button class="chip" onclick="app.filterByLang('aramaic')" data-filter="aramaic" data-i18n="tabAramaic">Aramaico</button>
+                    <button class="chip" onclick="app.filterByLang('greek')" data-filter="greek" data-i18n="tabGreek">Grego</button>
+                    <button class="chip" onclick="app.filterByLang('general')" data-filter="general" data-i18n="tabGeneral">Geral</button>
+                </div>
+            </div>
+
+            <!-- Type & Level Filters (Secondary) -->
+            <div class="filters-bar" style="margin-top: 12px; padding: 12px;">
                 <div class="filter-group">
                     <label class="filter-label" data-i18n="filterType">Tipo</label>
                     <select id="typeFilter" class="filter-select" onchange="app.renderResources()">
@@ -323,7 +349,7 @@
             </div>
 
             <!-- Grid -->
-            <div id="resourceGrid" class="resource-grid">
+            <div id="resourceGrid" class="resource-grid" style="margin-top: 24px;">
                 <!-- Cards injected via JS -->
             </div>
         </main>
@@ -349,49 +375,49 @@
         // =========================================
         const resources = [
             {
-                id: 1, title: "Sefaria", lang: "hebrew", type: "website", level: "beginner", cost: "free",
+                id: 1, title: "Sefaria", author: "Sefaria Community", lang: "hebrew", type: "website", level: "beginner", cost: "free",
                 bias: "neutral", base: "Leningrad Codex",
                 desc: "Biblioteca digital aberta com textos judaicos interligados. Excelente para acesso rápido ao Texto Massorético e comentários clássicos.",
                 url: "https://www.sefaria.org"
             },
             {
-                id: 2, title: "Blue Letter Bible", lang: "greek", type: "website", level: "intermediate", cost: "free",
+                id: 2, title: "Blue Letter Bible", author: "Blue Letter Bible Ministries", lang: "greek", type: "website", level: "intermediate", cost: "free",
                 bias: "evangelical", base: "NA28 / BHS",
                 desc: "Ferramenta robusta de estudo bíblico com concordância Strong, léxicos e comentários integrados. Ideal para esboços de pregação.",
                 url: "https://www.blueletterbible.org"
             },
             {
-                id: 3, title: "STEP Bible", lang: "general", type: "software", level: "advanced", cost: "free",
+                id: 3, title: "STEP Bible", author: "Tyndale House", lang: "general", type: "software", level: "advanced", cost: "free",
                 bias: "academic", base: "Tyndale House",
                 desc: "Desenvolvido pela Tyndale House. Oferece morfologia detalhada e visualização de texto limpa. Disponível offline.",
                 url: "https://www.stepbible.org"
             },
             {
-                id: 4, title: "Duolingo (Hebrew)", lang: "hebrew", type: "course", level: "beginner", cost: "freemium",
+                id: 4, title: "Duolingo (Hebrew)", author: "Duolingo Inc.", lang: "hebrew", type: "course", level: "beginner", cost: "freemium",
                 bias: "modern", base: "N/A",
                 desc: "Porta de entrada gamificada para alfabetização e vocabulário básico. Bom para perder o medo das letras, mas limitado teologicamente.",
                 url: "https://duolingo.com"
             },
             {
-                id: 5, title: "Logos Bible Software", lang: "general", type: "software", level: "advanced", cost: "paid",
+                id: 5, title: "Logos Bible Software", author: "Faithlife Corporation", lang: "general", type: "software", level: "advanced", cost: "paid",
                 bias: "varied", base: "Multiple",
                 desc: "O padrão da indústria para pesquisa acadêmica profunda. Biblioteca vasta, mas requer investimento significativo.",
                 url: "https://www.logos.com"
             },
             {
-                id: 6, title: "Aleph with Beth", lang: "hebrew", type: "course", level: "beginner", cost: "free",
+                id: 6, title: "Aleph with Beth", author: "Miles Van Pelt", lang: "hebrew", type: "course", level: "beginner", cost: "free",
                 bias: "immersive", base: "Spoken Hebrew",
                 desc: "Curso de hebraico bíblico por imersão total no YouTube. Método natural sem tradução gramatical explícita inicial.",
                 url: "https://youtube.com/@alephwithbeth"
             },
             {
-                id: 7, title: "Perseus Digital Library", lang: "greek", type: "website", level: "advanced", cost: "free",
+                id: 7, title: "Perseus Digital Library", author: "Tufts University", lang: "greek", type: "website", level: "advanced", cost: "free",
                 bias: "classical", base: "TLG",
                 desc: "Recurso indispensável para grego clássico e koiné. Contém o Thesaurus Linguae Graecae e ferramentas de parsing avançadas.",
                 url: "http://www.perseus.tufts.edu"
             },
             {
-                id: 8, title: "Anki", lang: "general", type: "software", level: "beginner", cost: "free",
+                id: 8, title: "Anki", author: "Damien Elmes", lang: "general", type: "software", level: "beginner", cost: "free",
                 bias: "neutral", base: "User Generated",
                 desc: "Sistema de repetição espaçada (SRS). Essencial para memorizar paradigmas verbais e vocabulário a longo prazo.",
                 url: "https://apps.ankiweb.net"
@@ -406,6 +432,7 @@
             pt: {
                 appTitle: "Caixa de Ferramentas",
                 appSubtitle: "Instrumentos para Escavação Profunda",
+                introGeneral: "Selecione uma língua abaixo ou use a busca para encontrar ferramentas de exegese, léxicos e gramáticas curadas academicamente.",
                 navAll: "Visão Geral",
                 navHebrew: "Hebraico",
                 navGreek: "Grego",
@@ -414,11 +441,16 @@
                 navExport: "Exportar Bibliografia",
                 footerText: "© 2026 O Sentido Autêntico",
                 statTools: "Ferramentas na Bancada",
-                statFree: "Recursos Gratuitos",
+                statProjects: "Meus Projetos",
                 statLangs: "Idiomas Cobertos",
-                filterSearch: "Busca",
+                searchPlaceholder: "Buscar por nome, autor, tipo ou descrição...",
                 filterType: "Tipo",
                 filterLevel: "Nível",
+                tabAll: "Visão Geral",
+                tabHebrew: "Hebraico",
+                tabAramaic: "Aramaico",
+                tabGreek: "Grego",
+                tabGeneral: "Geral",
                 optAll: "Todos",
                 optSoftware: "Software/App",
                 optWebsite: "Site/Banco de Dados",
@@ -458,6 +490,7 @@
             en: {
                 appTitle: "Toolbox",
                 appSubtitle: "Instruments for Deep Excavation",
+                introGeneral: "Select a language below or use search to find exegetical tools, lexicons, and grammars curated academically.",
                 navAll: "Overview",
                 navHebrew: "Hebrew",
                 navGreek: "Greek",
@@ -466,11 +499,16 @@
                 navExport: "Export Bibliography",
                 footerText: "© 2026 O Sentido Autêntico",
                 statTools: "Tools on Bench",
-                statFree: "Free Resources",
+                statProjects: "My Projects",
                 statLangs: "Languages Covered",
-                filterSearch: "Search",
+                searchPlaceholder: "Search by name, author, type or description...",
                 filterType: "Type",
                 filterLevel: "Level",
+                tabAll: "Overview",
+                tabHebrew: "Hebrew",
+                tabAramaic: "Aramaic",
+                tabGreek: "Greek",
+                tabGeneral: "General",
                 optAll: "All",
                 optSoftware: "Software/App",
                 optWebsite: "Website/DB",
@@ -510,6 +548,7 @@
             es: {
                 appTitle: "Caja de Herramientas",
                 appSubtitle: "Instrumentos para Excavación Profunda",
+                introGeneral: "Seleccione un idioma abajo o use la búsqueda para encontrar herramientas exegéticas, léxicos y gramáticas curadas académicamente.",
                 navAll: "Visión General",
                 navHebrew: "Hebreo",
                 navGreek: "Griego",
@@ -518,11 +557,16 @@
                 navExport: "Exportar Bibliografía",
                 footerText: "© 2026 O Sentido Autêntico",
                 statTools: "Herramientas en Banco",
-                statFree: "Recursos Gratuitos",
+                statProjects: "Mis Proyectos",
                 statLangs: "Idiomas Cubiertos",
-                filterSearch: "Búsqueda",
+                searchPlaceholder: "Buscar por nombre, autor, tipo o descripción...",
                 filterType: "Tipo",
                 filterLevel: "Nivel",
+                tabAll: "Visión General",
+                tabHebrew: "Hebreo",
+                tabAramaic: "Arameo",
+                tabGreek: "Griego",
+                tabGeneral: "General",
                 optAll: "Todos",
                 optSoftware: "Software/App",
                 optWebsite: "Sitio/BD",
@@ -567,6 +611,7 @@
         const app = {
             lang: 'pt',
             theme: 'light',
+            currentFilter: 'all', // Default to 'all' (Visão Geral)
             
             init() {
                 this.loadSettings();
@@ -576,6 +621,31 @@
                 this.updateStats();
                 this.setupListeners();
                 this.setupNavListeners();
+            },
+
+            filterByLang(lang) {
+                this.currentFilter = lang;
+                
+                // Update UI chips
+                document.querySelectorAll('.filter-tabs .chip').forEach(chip => {
+                    chip.classList.remove('active');
+                    if(chip.dataset.filter === lang) chip.classList.add('active');
+                });
+
+                // Update intro text dynamically
+                const introEl = document.getElementById('dynamicIntro');
+                const intros = {
+                    'all': 'Selecione uma língua abaixo ou use a busca para encontrar ferramentas de exegese, léxicos e gramáticas curadas academicamente.',
+                    'hebrew': 'Ferramentas especializadas para Hebraico Bíblico: léxicos, gramáticas, interlineares e recursos de morfologia.',
+                    'aramaic': 'Recursos focados em Aramaico Bíblico: dicionários, textos targúmicos e estudos de linguística semítica.',
+                    'greek': 'Instrumentos para Grego Koiné: análise textual, léxicos do NT, morfologia e crítica textual.',
+                    'general': 'Ferramentas gerais de hermenêutica, metodologias de pesquisa e recursos multi-idioma.'
+                };
+                if(introEl && intros[lang]) {
+                    introEl.textContent = intros[lang];
+                }
+
+                this.renderResources();
             },
 
             setupNavListeners() {
@@ -637,7 +707,9 @@
                 });
                 // Update placeholders
                 const searchInput = document.getElementById('searchInput');
-                if(searchInput) searchInput.placeholder = this.lang === 'pt' ? "Nome, autor ou descrição..." : (this.lang === 'en' ? "Name, author or description..." : "Nombre, autor o descripción...");
+                if(searchInput) {
+                    searchInput.placeholder = translations[this.lang].searchPlaceholder || "Buscar...";
+                }
             },
 
             setupListeners() {
@@ -719,39 +791,57 @@
 
             renderResources() {
                 const grid = document.getElementById('resourceGrid');
-                const search = document.getElementById('searchInput').value.toLowerCase();
+                const searchInput = document.getElementById('searchInput');
+                const search = searchInput ? searchInput.value.toLowerCase() : '';
                 const typeF = document.getElementById('typeFilter').value;
                 const levelF = document.getElementById('levelFilter').value;
                 
-                // Simple filter logic (can be expanded for sidebar language filter)
+                // Filter by language (currentFilter) + search + type + level
                 const filtered = resources.filter(r => {
-                    const matchesSearch = r.title.toLowerCase().includes(search) || r.desc.toLowerCase().includes(search);
+                    const matchesLang = this.currentFilter === 'all' || r.lang === this.currentFilter;
+                    const matchesSearch = r.title.toLowerCase().includes(search) || r.desc.toLowerCase().includes(search) || (r.author && r.author.toLowerCase().includes(search));
                     const matchesType = typeF === 'all' || r.type === typeF;
                     const matchesLevel = levelF === 'all' || r.level === levelF;
-                    return matchesSearch && matchesType && matchesLevel;
+                    return matchesLang && matchesSearch && matchesType && matchesLevel;
                 });
 
-                grid.innerHTML = filtered.map(r => `
-                    <div class="card resource-card">
-                        <div class="card-header">
-                            <div>
-                                <div class="card-title">${r.title}</div>
-                                <span class="badge badge-${r.lang}">${this.getLabel('lang', r.lang)}</span>
+                // Update search count hint
+                const searchCountEl = document.getElementById('searchCount');
+                if(searchCountEl) {
+                    searchCountEl.textContent = filtered.length > 0 ? `${filtered.length} encontrado${filtered.length !== 1 ? 's' : ''}` : '';
+                }
+
+                if (filtered.length === 0) {
+                    grid.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 48px; color: var(--text-muted);">
+                            <div style="font-size: 48px; margin-bottom: 16px;">🔍</div>
+                            <h3 style="color: var(--text); margin-bottom: 8px;">Nenhuma ferramenta encontrada</h3>
+                            <p>Ajuste os filtros ou termos de busca para encontrar recursos.</p>
+                        </div>
+                    `;
+                } else {
+                    grid.innerHTML = filtered.map(r => `
+                        <div class="card resource-card" title="${r.desc}\n\nAutor: ${r.author || 'Não informado'}\nBase Textual: ${r.textBase || 'Variada'}\nViés: ${r.bias || 'Neutro'}">
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">${r.title}</div>
+                                    <span class="badge badge-${r.lang}">${this.getLabel('lang', r.lang)}</span>
+                                </div>
+                                <i class="fas fa-star" style="color: var(--border); cursor:pointer;" onclick="app.showNotification('Funcionalidade em breve: Favoritos')" title="Marcar como favorito"></i>
                             </div>
-                            <i class="fas fa-star" style="color: var(--border); cursor:pointer;" onclick="app.showNotification('Funcionalidade em breve')"></i>
+                            <div class="card-desc">${r.desc}</div>
+                            <div class="card-meta">
+                                <span class="badge" style="background:var(--surface-2); color:var(--text-muted)">${this.getLabel('type', r.type)}</span>
+                                <span class="badge" style="background:var(--surface-2); color:var(--text-muted)">${this.getLabel('level', r.level)}</span>
+                                <span class="badge" style="background:var(--surface-2); color:var(--text-muted)">${this.getLabel('cost', r.cost)}</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="btn btn-outline" onclick="app.openModal(${r.id})">${translations[this.lang].btnDetails}</button>
+                                <a href="${r.url}" target="_blank" class="btn btn-primary">${translations[this.lang].btnVisit}</a>
+                            </div>
                         </div>
-                        <div class="card-desc">${r.desc}</div>
-                        <div class="card-meta">
-                            <span class="badge" style="background:var(--surface-2); color:var(--text-muted)">${this.getLabel('type', r.type)}</span>
-                            <span class="badge" style="background:var(--surface-2); color:var(--text-muted)">${this.getLabel('level', r.level)}</span>
-                            <span class="badge" style="background:var(--surface-2); color:var(--text-muted)">${this.getLabel('cost', r.cost)}</span>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn btn-outline" onclick="app.openModal(${r.id})">${translations[this.lang].btnDetails}</button>
-                            <a href="${r.url}" target="_blank" class="btn btn-primary">${translations[this.lang].btnVisit}</a>
-                        </div>
-                    </div>
-                `).join('');
+                    `).join('');
+                }
 
                 this.updateStats(filtered.length);
             },
@@ -760,8 +850,8 @@
                 const count = countOverride !== null ? countOverride : resources.length;
                 document.getElementById('countTotal').textContent = count;
                 
-                const freeCount = resources.filter(r => r.cost === 'free').length;
-                document.getElementById('countFree').textContent = freeCount;
+                const projectCount = projects.length;
+                document.getElementById('countProjects').textContent = projectCount;
             },
 
             openModal(id, projectId = null) {
