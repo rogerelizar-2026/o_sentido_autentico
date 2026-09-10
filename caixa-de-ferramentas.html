@@ -264,13 +264,13 @@
         <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <nav style="display: flex; flex-direction: column; gap: 4px;">
-                <a href="#" class="nav-item active" onclick="app.filterView('all')"><i class="fas fa-th-large"></i> <span data-i18n="navAll">Visão Geral</span></a>
+                <a href="#" class="nav-item active" data-nav="all" onclick="app.filterView('all')"><i class="fas fa-th-large"></i> <span data-i18n="navAll">Visão Geral</span></a>
                 <a href="#" class="nav-item" onclick="app.filterView('hebrew')"><i class="fas fa-scroll"></i> <span data-i18n="navHebrew">Hebraico</span></a>
                 <a href="#" class="nav-item" onclick="app.filterView('greek')"><i class="fas fa-book-open"></i> <span data-i18n="navGreek">Grego</span></a>
                 <a href="#" class="nav-item" onclick="app.filterView('aramaic')"><i class="fas fa-language"></i> <span data-i18n="navAramaic">Aramaico</span></a>
                 <div style="height: 1px; background: var(--border); margin: 10px 0;"></div>
-                <a href="#" class="nav-item" onclick="app.showNotification('Em breve...')"><i class="fas fa-project-diagram"></i> <span data-i18n="navProjects">Meus Projetos</span></a>
-                <a href="#" class="nav-item" onclick="app.showNotification('Em breve...')"><i class="fas fa-file-export"></i> <span data-i18n="navExport">Exportar Bibliografia</span></a>
+                <a href="#" class="nav-item" data-nav="projects"><i class="fas fa-project-diagram"></i> <span data-i18n="navProjects">Meus Projetos</span></a>
+                <a href="#" class="nav-item" onclick="app.showNotification(translations[app.lang].comingSoon)"><i class="fas fa-file-export"></i> <span data-i18n="navExport">Exportar Bibliografia</span></a>
             </nav>
             <div style="margin-top: auto; padding-top: 20px; font-size: 11px; color: var(--text-muted); text-align: center;">
                 <p data-i18n="footerText">© 2026 O Sentido Autêntico</p>
@@ -338,7 +338,7 @@
     </div>
 
     <!-- Floating Message -->
-    <div class="floating-msg">
+    <div class="floating-msg" id="floatingMsg">
         <i class="fas fa-hourglass-half"></i>
         <span data-i18n="comingSoon">Em breve: Gestão de Projetos e Exportação</span>
     </div>
@@ -398,6 +398,10 @@
             }
         ];
 
+        // Projects state - loaded from localStorage or initialized empty
+        let projects = JSON.parse(localStorage.getItem('toolbox_projects') || '[]');
+        let currentProjectId = null; // null means viewing all resources
+
         const translations = {
             pt: {
                 appTitle: "Caixa de Ferramentas",
@@ -423,10 +427,13 @@
                 optBeginner: "Iniciante",
                 optIntermediate: "Intermediário",
                 optAdvanced: "Avançado/Acadêmico",
-                comingSoon: "Em breve: Gestão de Projetos e Exportação",
+                comingSoon: "Em breve: Exportação avançada",
                 btnDetails: "Detalhes",
                 btnVisit: "Visitar",
                 btnSave: "Salvar",
+                btnAddToProject: "Adicionar ao Projeto",
+                btnCreateProject: "Criar Projeto",
+                btnDeleteProject: "Excluir Projeto",
                 modalCost: "Custo",
                 modalBias: "Viés Teológico",
                 modalBase: "Base Textual",
@@ -439,7 +446,14 @@
                 langHebrew: "Hebraico",
                 langGreek: "Grego",
                 langAramaic: "Aramaico",
-                langGeneral: "Geral"
+                langGeneral: "Geral",
+                projectNewName: "Nome do projeto (ex: Tese sobre Romanos)",
+                projectEmpty: "Nenhum projeto criado ainda",
+                projectResources: "ferramentas neste projeto",
+                projectCreated: "Projeto criado com sucesso!",
+                projectDeleted: "Projeto excluído",
+                resourceAdded: "Ferramenta adicionada ao projeto!",
+                confirmDelete: "Tem certeza que deseja excluir este projeto?"
             },
             en: {
                 appTitle: "Toolbox",
@@ -465,10 +479,13 @@
                 optBeginner: "Beginner",
                 optIntermediate: "Intermediate",
                 optAdvanced: "Advanced/Academic",
-                comingSoon: "Coming Soon: Project Management & Export",
+                comingSoon: "Coming Soon: Advanced Export",
                 btnDetails: "Details",
                 btnVisit: "Visit",
                 btnSave: "Save",
+                btnAddToProject: "Add to Project",
+                btnCreateProject: "Create Project",
+                btnDeleteProject: "Delete Project",
                 modalCost: "Cost",
                 modalBias: "Theological Bias",
                 modalBase: "Textual Base",
@@ -481,7 +498,14 @@
                 langHebrew: "Hebrew",
                 langGreek: "Greek",
                 langAramaic: "Aramaic",
-                langGeneral: "General"
+                langGeneral: "General",
+                projectNewName: "Project name (e.g., Romans Thesis)",
+                projectEmpty: "No projects created yet",
+                projectResources: "tools in this project",
+                projectCreated: "Project created successfully!",
+                projectDeleted: "Project deleted",
+                resourceAdded: "Tool added to project!",
+                confirmDelete: "Are you sure you want to delete this project?"
             },
             es: {
                 appTitle: "Caja de Herramientas",
@@ -507,10 +531,13 @@
                 optBeginner: "Principiante",
                 optIntermediate: "Intermedio",
                 optAdvanced: "Avanzado/Académico",
-                comingSoon: "Pronto: Gestión de Proyectos y Exportación",
+                comingSoon: "Pronto: Exportación Avanzada",
                 btnDetails: "Detalles",
                 btnVisit: "Visitar",
                 btnSave: "Guardar",
+                btnAddToProject: "Añadir al Proyecto",
+                btnCreateProject: "Crear Proyecto",
+                btnDeleteProject: "Eliminar Proyecto",
                 modalCost: "Costo",
                 modalBias: "Sesgo Teológico",
                 modalBase: "Base Textual",
@@ -523,7 +550,14 @@
                 langHebrew: "Hebreo",
                 langGreek: "Griego",
                 langAramaic: "Arameo",
-                langGeneral: "General"
+                langGeneral: "General",
+                projectNewName: "Nombre del proyecto (ej: Tesis sobre Romanos)",
+                projectEmpty: "Ningún proyecto creado aún",
+                projectResources: "herramientas en este proyecto",
+                projectCreated: "¡Proyecto creado con éxito!",
+                projectDeleted: "Proyecto eliminado",
+                resourceAdded: "¡Herramienta añadida al proyecto!",
+                confirmDelete: "¿Está seguro de que desea eliminar este proyecto?"
             }
         };
 
@@ -541,6 +575,29 @@
                 this.renderResources();
                 this.updateStats();
                 this.setupListeners();
+                this.setupNavListeners();
+            },
+
+            setupNavListeners() {
+                // Setup navigation for projects
+                const projectsNav = document.querySelector('[data-nav="projects"]');
+                if (projectsNav) {
+                    projectsNav.addEventListener('click', () => {
+                        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+                        projectsNav.classList.add('active');
+                        if(window.innerWidth < 1024) document.getElementById('sidebar').classList.remove('open');
+                        this.renderProjectsView();
+                    });
+                }
+                
+                // Setup "All" nav to reset view
+                const allNav = document.querySelector('[data-nav="all"]');
+                if (allNav) {
+                    allNav.addEventListener('click', () => {
+                        currentProjectId = null;
+                        this.renderResources();
+                    });
+                }
             },
 
             loadSettings() {
@@ -601,6 +658,53 @@
                         sidebar.classList.remove('open');
                     }
                 });
+
+                // Search and filter listeners
+                document.getElementById('searchInput').addEventListener('input', () => this.renderResources());
+                document.getElementById('typeFilter').addEventListener('change', () => this.renderResources());
+                document.getElementById('levelFilter').addEventListener('change', () => this.renderResources());
+            },
+
+            saveProjects() {
+                localStorage.setItem('toolbox_projects', JSON.stringify(projects));
+            },
+
+            createProject(name) {
+                if (!name.trim()) return;
+                const newProject = {
+                    id: Date.now(),
+                    name: name.trim(),
+                    resourceIds: [],
+                    created: new Date().toISOString()
+                };
+                projects.push(newProject);
+                this.saveProjects();
+                this.showNotification(translations[this.lang].projectCreated);
+                this.renderProjectsView();
+            },
+
+            deleteProject(projectId) {
+                if (!confirm(translations[this.lang].confirmDelete)) return;
+                projects = projects.filter(p => p.id !== projectId);
+                if (currentProjectId === projectId) currentProjectId = null;
+                this.saveProjects();
+                this.showNotification(translations[this.lang].projectDeleted);
+                this.renderProjectsView();
+            },
+
+            addResourceToProject(resourceId, projectId) {
+                const project = projects.find(p => p.id === projectId);
+                if (project && !project.resourceIds.includes(resourceId)) {
+                    project.resourceIds.push(resourceId);
+                    this.saveProjects();
+                    this.showNotification(translations[this.lang].resourceAdded);
+                }
+            },
+
+            getProjectResources(projectId) {
+                const project = projects.find(p => p.id === projectId);
+                if (!project) return [];
+                return resources.filter(r => project.resourceIds.includes(r.id));
             },
 
             getLabel(key, val) {
@@ -660,11 +764,30 @@
                 document.getElementById('countFree').textContent = freeCount;
             },
 
-            openModal(id) {
+            openModal(id, projectId = null) {
                 const r = resources.find(x => x.id === id);
                 if (!r) return;
 
                 const t = translations[this.lang];
+                
+                // Build project selector if projects exist
+                let projectSelector = '';
+                if (projects.length > 0) {
+                    const options = projects.map(p => 
+                        `<option value="${p.id}">${p.name}</option>`
+                    ).join('');
+                    projectSelector = `
+                        <div style="margin-bottom:16px">
+                            <label style="display:block; font-size:13px; margin-bottom:6px; color:var(--text-muted)">${t.btnAddToProject}:</label>
+                            <select id="projectSelect" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border); background:var(--surface); color:var(--text)">
+                                <option value="">${t.navProjects}...</option>
+                                ${options}
+                            </select>
+                            <button class="btn btn-outline" style="margin-top:8px; width:100%" onclick="app.addToProjectFromModal(${r.id})">${t.btnAddToProject}</button>
+                        </div>
+                    `;
+                }
+
                 const html = `
                     <h2 style="margin-bottom:8px; color:var(--primary)">${r.title}</h2>
                     <div style="margin-bottom:20px; display:flex; gap:8px; flex-wrap:wrap">
@@ -686,14 +809,27 @@
                         </div>
                     </div>
 
+                    ${projectSelector}
+
                     <div style="display:flex; gap:12px">
                         <a href="${r.url}" target="_blank" class="btn btn-primary" style="flex:1">${t.btnVisit}</a>
-                        <button class="btn btn-outline" onclick="app.showNotification('Salvo nos favoritos (simulado)')">${t.btnSave}</button>
+                        <button class="btn btn-outline" onclick="app.closeModal()">${t.btnSave}</button>
                     </div>
                 `;
                 
                 document.getElementById('modalBody').innerHTML = html;
                 document.getElementById('detailModal').classList.add('active');
+            },
+
+            addToProjectFromModal(resourceId) {
+                const select = document.getElementById('projectSelect');
+                const projectId = parseInt(select.value);
+                if (projectId) {
+                    this.addResourceToProject(resourceId, projectId);
+                    setTimeout(() => this.closeModal(), 500);
+                } else {
+                    this.showNotification('Selecione um projeto primeiro');
+                }
             },
 
             closeModal() {
@@ -702,12 +838,143 @@
 
             showNotification(msg) {
                 // Reuse floating msg or create toast
-                const float = document.querySelector('.floating-msg span');
-                const original = float.textContent;
-                float.textContent = msg;
+                const float = document.getElementById('floatingMsg');
+                const span = float.querySelector('span');
+                const original = span.textContent;
+                const originalKey = span.getAttribute('data-i18n') || 'comingSoon';
+                
+                span.textContent = msg;
+                span.removeAttribute('data-i18n');
+                float.style.display = 'flex';
+                float.style.opacity = '1';
+                
                 setTimeout(() => {
-                    float.textContent = original;
+                    span.textContent = translations[this.lang][originalKey] || original;
+                    span.setAttribute('data-i18n', originalKey);
                 }, 3000);
+            },
+
+            renderProjectsView() {
+                const grid = document.getElementById('resourceGrid');
+                const t = translations[this.lang];
+                
+                if (projects.length === 0) {
+                    // Show empty state with create form
+                    grid.innerHTML = `
+                        <div style="text-align:center; padding:60px 20px; max-width:500px; margin:0 auto">
+                            <i class="fas fa-folder-open" style="font-size:48px; color:var(--border); margin-bottom:20px"></i>
+                            <h3 style="color:var(--text-muted); margin-bottom:12px">${t.projectEmpty}</h3>
+                            <div style="display:flex; gap:10px; margin-top:20px">
+                                <input type="text" id="newProjectInput" placeholder="${t.projectNewName}" 
+                                    style="flex:1; padding:12px; border-radius:8px; border:1px solid var(--border); background:var(--surface); color:var(--text)">
+                                <button class="btn btn-primary" onclick="app.handleCreateProject()">${t.btnCreateProject}</button>
+                            </div>
+                        </div>
+                    `;
+                    this.updateStats(0);
+                    return;
+                }
+
+                // Show list of projects
+                grid.innerHTML = `
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:20px">
+                        ${projects.map(p => {
+                            const count = p.resourceIds.length;
+                            return `
+                                <div class="card resource-card" style="cursor:pointer" onclick="app.openProject(${p.id})">
+                                    <div class="card-header">
+                                        <div>
+                                            <div class="card-title">${p.name}</div>
+                                            <span style="font-size:12px; color:var(--text-muted)">${count} ${t.projectResources}</span>
+                                        </div>
+                                        <button class="btn btn-outline" style="width:auto; padding:6px 12px" onclick="event.stopPropagation(); app.deleteProject(${p.id})">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                    <div style="padding:16px 0; color:var(--text-muted); font-size:13px">
+                                        <i class="far fa-calendar"></i> ${new Date(p.created).toLocaleDateString(this.lang === 'pt' ? 'pt-BR' : this.lang)}
+                                    </div>
+                                    <div class="card-actions">
+                                        <button class="btn btn-primary" style="width:100%" onclick="event.stopPropagation(); app.openProject(${p.id})">
+                                            ${t.btnVisit}
+                                        </button>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                    <div style="margin-top:30px; text-align:center">
+                        <div style="display:inline-flex; gap:10px; align-items:center">
+                            <input type="text" id="newProjectInput2" placeholder="${t.projectNewName}" 
+                                style="flex:1; padding:12px; width:250px; border-radius:8px; border:1px solid var(--border); background:var(--surface); color:var(--text)">
+                            <button class="btn btn-primary" onclick="app.handleCreateProject()">${t.btnCreateProject}</button>
+                        </div>
+                    </div>
+                `;
+                this.updateStats(projects.length);
+            },
+
+            handleCreateProject() {
+                const input = document.getElementById('newProjectInput') || document.getElementById('newProjectInput2');
+                if (input && input.value.trim()) {
+                    this.createProject(input.value.trim());
+                    input.value = '';
+                }
+            },
+
+            openProject(projectId) {
+                currentProjectId = projectId;
+                const project = projects.find(p => p.id === projectId);
+                if (!project) return;
+
+                const t = translations[this.lang];
+                const grid = document.getElementById('resourceGrid');
+                const projectResources = this.getProjectResources(projectId);
+
+                // Update active nav
+                document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+                
+                if (window.innerWidth < 1024) document.getElementById('sidebar').classList.remove('open');
+
+                if (projectResources.length === 0) {
+                    grid.innerHTML = `
+                        <div style="text-align:center; padding:60px 20px; max-width:500px; margin:0 auto">
+                            <i class="fas fa-tools" style="font-size:48px; color:var(--border); margin-bottom:20px"></i>
+                            <h3 style="color:var(--primary); margin-bottom:8px">${project.name}</h3>
+                            <p style="color:var(--text-muted); margin-bottom:20px">${t.projectEmpty}</p>
+                            <button class="btn btn-primary" onclick="app.renderResources()">${t.navAll}</button>
+                        </div>
+                    `;
+                } else {
+                    grid.innerHTML = `
+                        <div style="margin-bottom:20px; padding:16px; background:var(--surface-2); border-radius:12px">
+                            <h3 style="color:var(--primary); margin-bottom:4px">${project.name}</h3>
+                            <p style="color:var(--text-muted); font-size:13px">${projectResources.length} ${t.projectResources}</p>
+                        </div>
+                        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:20px">
+                            ${projectResources.map(r => `
+                                <div class="card resource-card">
+                                    <div class="card-header">
+                                        <div>
+                                            <div class="card-title">${r.title}</div>
+                                            <span class="badge badge-${r.lang}">${this.getLabel('lang', r.lang)}</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-desc">${r.desc}</div>
+                                    <div class="card-meta">
+                                        <span class="badge" style="background:var(--surface-2); color:var(--text-muted)">${this.getLabel('type', r.type)}</span>
+                                        <span class="badge" style="background:var(--surface-2); color:var(--text-muted)">${this.getLabel('level', r.level)}</span>
+                                    </div>
+                                    <div class="card-actions">
+                                        <button class="btn btn-outline" onclick="app.openModal(${r.id})">${t.btnDetails}</button>
+                                        <a href="${r.url}" target="_blank" class="btn btn-primary">${t.btnVisit}</a>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+                this.updateStats(projectResources.length);
             },
 
             filterView(lang) {
@@ -717,6 +984,9 @@
                 
                 // On mobile close sidebar
                 if(window.innerWidth < 1024) document.getElementById('sidebar').classList.remove('open');
+
+                // Reset project view
+                currentProjectId = null;
 
                 // Filter logic
                 const grid = document.getElementById('resourceGrid');
