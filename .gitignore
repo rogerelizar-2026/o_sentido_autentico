@@ -1,1 +1,7 @@
-Nothing should be ignored since the changes only include image files (.png) which should not be added to .gitignore according to the rules.
+# Image files
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.gif
+*.webm
