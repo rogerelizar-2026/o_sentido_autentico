@@ -496,6 +496,7 @@
                 <button class="btn btn-secondary" id="pdfBtn">📄 Gerar Relatório PDF</button>
                 <button class="btn btn-secondary" id="jsonBtn">💾 Backup JSON</button>
                 <button class="btn btn-primary" id="exportVaultBtn">📤 Exportar Vault como PDF</button>
+                <button class="btn btn-primary" id="externalSearchBtn" style="background: #2563eb;">🌐 Busca Externa Inteligente</button>
             </div>
         </div>
         
@@ -728,11 +729,99 @@
             document.getElementById('jsonBtn').addEventListener('click', () => exportJSON(filteredResources, 'Filtrados'));
             document.getElementById('exportVaultBtn').addEventListener('click', exportVaultPDF);
             document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            document.getElementById('externalSearchBtn').addEventListener('click', performExternalSearch);
             
             // Fechar modal ao clicar fora
             document.getElementById('vaultModal').addEventListener('click', (e) => {
                 if (e.target.id === 'vaultModal') e.target.classList.remove('active');
             });
+        }
+        
+        // ==========================================
+        // BUSCA EXTERNA INTELIGENTE
+        // ==========================================
+        function performExternalSearch() {
+            const query = searchQuery.trim();
+            
+            if (!query) {
+                showToast('Digite um termo para buscar externamente');
+                document.getElementById('searchInput').focus();
+                return;
+            }
+            
+            // Domínios acadêmicos confiáveis para estudo bíblico
+            const trustedDomains = [
+                'stepbible.org',
+                'biblehub.com',
+                'sefaria.org',
+                'dailydoseofgreek.com',
+                'biblicallanguagecenter.com',
+                'textusreceptus.com',
+                'ancient-hebrew.org',
+                'blueletterbible.org',
+                'biblegateway.com',
+                'perseus.tufts.edu'
+            ];
+            
+            // Constrói query com filtro de domínio para resultados acadêmicos
+            const siteQuery = trustedDomains.map(d => `site:${d}`).join(' OR ');
+            const fullQuery = `${query} (${siteQuery})`;
+            
+            // Opções de busca
+            const searchOptions = [
+                {
+                    name: 'Google Acadêmico (Sites Confiáveis)',
+                    url: `https://www.google.com/search?q=${encodeURIComponent(fullQuery)}`
+                },
+                {
+                    name: 'Busca Geral no Google',
+                    url: `https://www.google.com/search?q=${encodeURIComponent(query + ' biblical hebrew greek lexicon grammar')}`
+                },
+                {
+                    name: 'DuckDuckGo (Privacidade)',
+                    url: `https://duckduckgo.com/?q=${encodeURIComponent(query + ' biblical languages')}`
+                },
+                {
+                    name: 'Sefaria (Textos Judaicos)',
+                    url: `https://www.sefaria.org/search?q=${encodeURIComponent(query)}&tab=text`
+                },
+                {
+                    name: 'Step Bible (Grego/Hebraico)',
+                    url: `https://www.stepbible.org/?q=${encodeURIComponent(query)}`
+                }
+            ];
+            
+            // Cria modal de seleção
+            const modalHTML = `
+                <div class="modal-overlay active" id="searchModal">
+                    <div class="modal" style="max-width:500px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+                            <h2 style="font-family:var(--font-serif);">🌐 Busca Externa Inteligente</h2>
+                            <button class="btn-icon" onclick="document.getElementById('searchModal').remove()">✕</button>
+                        </div>
+                        <p style="color:var(--text-secondary);margin-bottom:1.5rem;font-size:0.95rem;">
+                            Termo: <strong>"${query}"</strong><br><br>
+                            Escolha onde buscar:
+                        </p>
+                        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+                            ${searchOptions.map(opt => `
+                                <button class="btn btn-secondary" 
+                                        onclick="window.open('${opt.url}', '_blank');document.getElementById('searchModal').remove();"
+                                        style="justify-content:flex-start;text-align:left;padding:1rem;">
+                                    ${opt.name}
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);">
+                            <p style="font-size:0.8rem;color:var(--text-secondary);">
+                                💡 Dica: A primeira opção filtra resultados apenas de sites acadêmicos confiáveis.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
         }
         
         // ==========================================
