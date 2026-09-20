@@ -683,6 +683,8 @@
             <li class="nav-item"><a href="#" onclick="exportVaultPDF()"><i class="fa-solid fa-file-pdf"></i> Meu Vault PDF</a></li>
             
             <li class="nav-separator" style="border-top: 2px solid var(--border-color); margin: 0.75rem 0;"></li>
+            
+            <li class="nav-item"><a href="manual-ferramentas-biblicas.html" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-book-open"></i> Manual Completo</a></li>
         </ul>
 
         <!-- Accessibility Panel (A11y) -->
@@ -2002,6 +2004,8 @@
             if (modal) {
                 modal.classList.remove('show');
                 localStorage.setItem('welcomeModalDismissed', 'true');
+                // Iniciar apresentação após fechar modal de boas-vindas
+                setTimeout(() => startPresentation(), 500);
             }
         };
 
@@ -2012,6 +2016,295 @@
                 btn.style.opacity = checked ? '1' : '0.5';
                 btn.style.pointerEvents = checked ? 'auto' : 'none';
             }
+        };
+
+        // Apresentação Tutorial Interativa
+        let currentStep = 0;
+        let presentationOverlay = null;
+
+        const presentationSteps = [
+            {
+                element: '.sidebar',
+                title: 'Menu Lateral',
+                text: 'Aqui você encontra o menu principal com acesso rápido a todas as funcionalidades: Vault, relatórios, backup e o Manual Completo!',
+                position: 'right'
+            },
+            {
+                element: '.search-box',
+                title: 'Busca Inteligente',
+                text: 'Digite qualquer termo para encontrar recursos. Use o ícone de varinha mágica ✨ para busca avançada!',
+                position: 'bottom'
+            },
+            {
+                element: '.filters',
+                title: 'Filtros por Categoria',
+                text: 'Clique nestes botões para filtrar os recursos por tipo: Gramática, Léxico, Manuscritologia, etc.',
+                position: 'bottom'
+            },
+            {
+                element: '.resources-grid',
+                title: 'Cards de Recursos',
+                text: 'Cada card mostra um recurso com título, autor, descrição e links. Use a estrela ⭐ para favoritar!',
+                position: 'top'
+            },
+            {
+                element: '.action-bar',
+                title: 'Barra de Ações',
+                text: 'Aqui estão os botões para exportar PDF, fazer backup e outras ações importantes.',
+                position: 'top'
+            },
+            {
+                element: '.floating-add-btn',
+                title: 'Adicionar Recurso',
+                text: 'Clique no botão + flutuante para adicionar novos recursos à sua coleção!',
+                position: 'left'
+            }
+        ];
+
+        function startPresentation() {
+            // Verifica se usuário já viu a apresentação
+            if (localStorage.getItem('presentationCompleted') === 'true') {
+                return;
+            }
+
+            currentStep = 0;
+            createPresentationOverlay();
+            showStep(currentStep);
+        }
+
+        function createPresentationOverlay() {
+            if (presentationOverlay) return;
+
+            presentationOverlay = document.createElement('div');
+            presentationOverlay.id = 'presentation-overlay';
+            presentationOverlay.style.cssText = `
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 9999;
+                display: none;
+                pointer-events: none;
+            `;
+
+            const balloon = document.createElement('div');
+            balloon.id = 'presentation-balloon';
+            balloon.style.cssText = `
+                position: absolute;
+                background: linear-gradient(135deg, #1e3a5f 0%, #102a43 100%);
+                color: white;
+                padding: 1.5rem;
+                border-radius: 12px;
+                max-width: 350px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                pointer-events: auto;
+                z-index: 10000;
+                font-family: var(--font-sans, 'Inter', sans-serif);
+                transform: translate(-50%, -50%);
+            `;
+
+            const title = document.createElement('h3');
+            title.id = 'presentation-title';
+            title.style.cssText = `
+                font-family: var(--font-serif, Georgia, serif);
+                font-size: 1.3rem;
+                margin-bottom: 0.75rem;
+                color: #f5e6d3;
+            `;
+
+            const text = document.createElement('p');
+            text.id = 'presentation-text';
+            text.style.cssText = `
+                font-size: 0.95rem;
+                line-height: 1.5;
+                margin-bottom: 1rem;
+                opacity: 0.95;
+            `;
+
+            const progress = document.createElement('div');
+            progress.id = 'presentation-progress';
+            progress.style.cssText = `
+                display: flex;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+            `;
+
+            const buttons = document.createElement('div');
+            buttons.style.cssText = `
+                display: flex;
+                gap: 0.5rem;
+                justify-content: space-between;
+                align-items: center;
+            `;
+
+            const prevBtn = document.createElement('button');
+            prevBtn.id = 'presentation-prev';
+            prevBtn.textContent = '← Anterior';
+            prevBtn.style.cssText = `
+                padding: 0.5rem 1rem;
+                border: 1px solid rgba(255,255,255,0.3);
+                background: transparent;
+                color: white;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 0.85rem;
+                transition: all 0.2s;
+            `;
+            prevBtn.onmouseover = () => prevBtn.style.background = 'rgba(255,255,255,0.1)';
+            prevBtn.onmouseout = () => prevBtn.style.background = 'transparent';
+
+            const nextBtn = document.createElement('button');
+            nextBtn.id = 'presentation-next';
+            nextBtn.textContent = 'Próximo →';
+            nextBtn.style.cssText = `
+                padding: 0.5rem 1rem;
+                border: none;
+                background: #d4a574;
+                color: #1a1612;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 0.85rem;
+                font-weight: 600;
+                transition: all 0.2s;
+            `;
+            nextBtn.onmouseover = () => nextBtn.style.background = '#e8b988';
+
+            const skipBtn = document.createElement('button');
+            skipBtn.textContent = 'Esc para sair';
+            skipBtn.style.cssText = `
+                padding: 0.4rem 0.75rem;
+                border: 1px solid rgba(255,255,255,0.3);
+                background: transparent;
+                color: rgba(255,255,255,0.7);
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.75rem;
+            `;
+            skipBtn.onclick = closePresentation;
+
+            prevBtn.onclick = () => changeStep(-1);
+            nextBtn.onclick = () => changeStep(1);
+
+            buttons.appendChild(prevBtn);
+            buttons.appendChild(nextBtn);
+            buttons.appendChild(skipBtn);
+
+            balloon.appendChild(title);
+            balloon.appendChild(text);
+            balloon.appendChild(progress);
+            balloon.appendChild(buttons);
+            presentationOverlay.appendChild(balloon);
+            document.body.appendChild(presentationOverlay);
+
+            // Fechar com ESC
+            document.addEventListener('keydown', handleEscKey);
+        }
+
+        function handleEscKey(e) {
+            if (e.key === 'Escape' && presentationOverlay && presentationOverlay.style.display === 'flex') {
+                closePresentation();
+            }
+        }
+
+        function showStep(stepIndex) {
+            if (stepIndex < 0 || stepIndex >= presentationSteps.length) return;
+
+            const step = presentationSteps[stepIndex];
+            const element = document.querySelector(step.element);
+            const balloon = document.getElementById('presentation-balloon');
+            const title = document.getElementById('presentation-title');
+            const text = document.getElementById('presentation-text');
+            const progress = document.getElementById('presentation-progress');
+            const prevBtn = document.getElementById('presentation-prev');
+            const nextBtn = document.getElementById('presentation-next');
+
+            if (!element || !balloon) return;
+
+            // Atualiza conteúdo
+            title.textContent = step.title;
+            text.textContent = step.text;
+
+            // Atualiza progresso
+            progress.innerHTML = '';
+            for (let i = 0; i < presentationSteps.length; i++) {
+                const dot = document.createElement('span');
+                dot.style.cssText = `
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background: ${i === stepIndex ? '#d4a574' : 'rgba(255,255,255,0.3)'};
+                    transition: all 0.2s;
+                `;
+                progress.appendChild(dot);
+            }
+
+            // Atualiza botões
+            prevBtn.style.visibility = stepIndex === 0 ? 'hidden' : 'visible';
+            nextBtn.textContent = stepIndex === presentationSteps.length - 1 ? '✓ Concluir' : 'Próximo →';
+
+            // Posiciona o balão
+            const rect = element.getBoundingClientRect();
+            let balloonLeft, balloonTop;
+
+            switch (step.position) {
+                case 'right':
+                    balloonLeft = rect.right + 20;
+                    balloonTop = rect.top + rect.height / 2;
+                    break;
+                case 'left':
+                    balloonLeft = rect.left - 20;
+                    balloonTop = rect.top + rect.height / 2;
+                    break;
+                case 'bottom':
+                    balloonLeft = rect.left + rect.width / 2;
+                    balloonTop = rect.bottom + 20;
+                    break;
+                case 'top':
+                    balloonLeft = rect.left + rect.width / 2;
+                    balloonTop = rect.top - 20;
+                    break;
+                default:
+                    balloonLeft = rect.left + rect.width / 2;
+                    balloonTop = rect.top + rect.height / 2;
+            }
+
+            balloon.style.left = `${balloonLeft}px`;
+            balloon.style.top = `${balloonTop}px`;
+
+            // Mostra overlay
+            presentationOverlay.style.display = 'flex';
+        }
+
+        function changeStep(delta) {
+            const newStep = currentStep + delta;
+            
+            if (newStep >= presentationSteps.length) {
+                // Conclusão
+                closePresentation(true);
+                return;
+            }
+            
+            if (newStep >= 0) {
+                currentStep = newStep;
+                showStep(currentStep);
+            }
+        }
+
+        function closePresentation(completed = false) {
+            if (presentationOverlay) {
+                presentationOverlay.style.display = 'none';
+                if (completed) {
+                    localStorage.setItem('presentationCompleted', 'true');
+                    showToast('✅ Apresentação concluída! Use o Menu Lateral → Manual Completo para revisar.');
+                }
+            }
+            document.removeEventListener('keydown', handleEscKey);
+        }
+
+        // Expor função globalmente para reexibir apresentação
+        window.restartPresentation = function() {
+            localStorage.removeItem('presentationCompleted');
+            currentStep = 0;
+            startPresentation();
         };
     </script>
 
