@@ -818,7 +818,7 @@
         }
         
         function getLanguageLabel(lang) {
-            const labels = { 'hebraico': 'עברית Hebraico', 'aramaico': 'ארמית Aramaico', 'grego': 'Ελληνικά Grego' };
+            const labels = { 'hebraico': 'Hebraico', 'aramaico': 'Aramaico', 'grego': 'Grego' };
             return labels[lang] || lang;
         }
         
@@ -897,66 +897,76 @@
             
             try {
                 const { jsPDF } = window.jspdf;
-                const doc = new jsPDF('p', 'mm', 'a4');
+                const doc = new jsPDF('p', 'mm', 'a4', true);
                 const pageWidth = 210;
                 const margin = 20;
                 const usableWidth = pageWidth - (margin * 2);
                 let y = 20;
                 
-                // Cabeçalho
-                doc.setFontSize(20);
-                doc.setFont('times', 'bold');
-                doc.text(title, pageWidth / 2, y, { align: 'center' });
-                y += 8;
+                // Fundo branco
+                doc.setFillColor(255, 255, 255);
+                doc.rect(0, 0, pageWidth, 297, 'F');
                 
-                doc.setFontSize(10);
-                doc.setFont('times', 'italic');
-                doc.text('O Sentido Autêntico · Curadoria Rogério Ramão Lopes', pageWidth / 2, y, { align: 'center' });
-                y += 5;
+                // Cabeçalho - Título fixo "Recursos Bíblicos"
+                doc.setFontSize(20);
+                doc.setFont('helvetica', 'bold');
+                doc.setTextColor(0, 0, 0);
+                doc.text('Recursos Bíblicos', pageWidth / 2, y, { align: 'center' });
+                y += 10;
                 
                 const today = new Date();
                 doc.setFontSize(9);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(80, 80, 80);
                 doc.text(`Gerado em ${today.toLocaleDateString('pt-BR')} às ${today.toLocaleTimeString('pt-BR')}`, pageWidth / 2, y, { align: 'center' });
                 y += 12;
                 
                 // Linha decorativa
-                doc.setDrawColor(139, 69, 19);
+                doc.setDrawColor(200, 200, 200);
                 doc.line(margin, y, pageWidth - margin, y);
-                y += 8;
+                y += 10;
                 
                 // Recursos
                 resources.forEach(r => {
                     if (y > 270) {
                         doc.addPage();
+                        doc.setFillColor(255, 255, 255);
+                        doc.rect(0, 0, pageWidth, 297, 'F');
                         y = 20;
                     }
                     
+                    // Título do recurso
                     doc.setFontSize(12);
-                    doc.setFont('times', 'bold');
-                    doc.setTextColor(139, 69, 19);
+                    doc.setFont('helvetica', 'bold');
+                    doc.setTextColor(0, 0, 0);
                     doc.text(r.title, margin, y);
-                    y += 5;
+                    y += 6;
                     
+                    // Autor, idioma e tipo
                     doc.setFontSize(9);
-                    doc.setFont('times', 'italic');
-                    doc.setTextColor(92, 77, 58);
+                    doc.setFont('helvetica', 'italic');
+                    doc.setTextColor(80, 80, 80);
                     doc.text(`${r.author} · ${getLanguageLabel(r.language)} · ${r.type}`, margin, y);
-                    y += 5;
+                    y += 6;
                     
-                    doc.setFont('times', 'normal');
-                    doc.setTextColor(44, 36, 22);
+                    // Descrição
+                    doc.setFont('helvetica', 'normal');
+                    doc.setTextColor(0, 0, 0);
                     const descLines = doc.splitTextToSize(r.description, usableWidth);
                     doc.text(descLines, margin, y);
-                    y += descLines.length * 4;
+                    y += descLines.length * 5 + 2;
                     
-                    doc.setFontSize(8);
-                    doc.setTextColor(0, 0, 200);
-                    doc.text(`🔗 ${r.link}`, margin, y);
-                    y += 7;
+                    // Link clicável
+                    doc.setFontSize(9);
+                    doc.setTextColor(0, 0, 180);
+                    const linkText = r.link;
+                    doc.textWithLink(linkText, margin, y, { url: r.link });
+                    y += 10;
                     
-                    doc.setDrawColor(212, 197, 169);
-                    doc.line(margin, y - 2, pageWidth - margin, y - 2);
-                    y += 3;
+                    // Linha separadora
+                    doc.setDrawColor(220, 220, 220);
+                    doc.line(margin, y - 3, pageWidth - margin, y - 3);
+                    y += 5;
                 });
                 
                 // Rodapé
@@ -964,11 +974,12 @@
                 for (let i = 1; i <= pageCount; i++) {
                     doc.setPage(i);
                     doc.setFontSize(8);
+                    doc.setFont('helvetica', 'normal');
                     doc.setTextColor(150, 150, 150);
                     doc.text(`Página ${i} de ${pageCount}`, pageWidth / 2, 290, { align: 'center' });
                 }
                 
-                doc.save(`Relatorio_${title.replace(/\s+/g, '_')}_${getFormattedDate()}.pdf`);
+                doc.save(`Recursos_Biblicos_${getFormattedDate()}.pdf`);
                 showToast('PDF gerado com sucesso!');
             } catch (err) {
                 console.error(err);
