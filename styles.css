@@ -37,7 +37,14 @@
             padding: 0;
         }
 
-        html, body {
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden !important;
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+
+        body {
             overflow-x: hidden !important;
             max-width: 100% !important;
             width: 100% !important;
