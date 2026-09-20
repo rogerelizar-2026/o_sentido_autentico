@@ -747,7 +747,6 @@
                     <input type="text" id="searchInput" placeholder="Buscar recurso, autor ou palavra-chave..." aria-label="Buscar recursos">
                     <div class="search-actions">
                         <button class="btn-icon-only" id="smartSearchBtn" title="Busca Inteligente"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
-                        <button class="btn-icon-only" id="addResourceBtnTop" title="Adicionar Recurso"><i class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
             </div>
@@ -1204,6 +1203,12 @@
             document.getElementById('themeToggle').addEventListener('click', toggleTheme);
             document.getElementById('externalSearchBtn').addEventListener('click', performExternalSearch);
             document.getElementById('addResourceBtn').addEventListener('click', openAddResourceModal);
+            
+            // Botão Busca Inteligente
+            const smartSearchBtn = document.getElementById('smartSearchBtn');
+            if (smartSearchBtn) {
+                smartSearchBtn.addEventListener('click', performExternalSearch);
+            }
             
             // Botão flutuante - visibilidade e ação
             const floatingAddBtn = document.getElementById('floatingAddBtn');
