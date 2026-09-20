@@ -10,13 +10,13 @@
   "scope": "./",
   "icons": [
     {
-      "src": "imagens/icon-192.png",
+      "src": "imagens/icon-project-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "imagens/icon-512.png",
+      "src": "imagens/icon-project-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
