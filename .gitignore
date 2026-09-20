@@ -1,1 +1,1 @@
-(index.html is a source file, and there are no build artifacts, dependencies, or temp files in the changes)
+Nothing should be ignored in this case, as only a single HTML file was modified and no build artifacts, dependencies, or temporary files were detected.
