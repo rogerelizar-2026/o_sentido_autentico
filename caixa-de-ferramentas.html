@@ -1183,10 +1183,11 @@
                 });
             });
             
-            // Filtros de língua
-            document.querySelectorAll('#languageFilters .filter-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('#languageFilters .filter-btn').forEach(b => b.classList.remove('active'));
+            // Filtros de língua (sidebar) - ignora o link externo "Portal do Estudante"
+            document.querySelectorAll('.lang-btn[data-lang]:not(.nav-external)').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelectorAll('.lang-btn[data-lang]:not(.nav-external)').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     currentLanguage = btn.dataset.lang;
                     renderResources();
@@ -1329,7 +1330,9 @@
         function renderResources() {
             filteredResources = resourcesDB.filter(r => {
                 const matchCategory = currentCategory === 'all' || r.category === currentCategory;
-                const matchLanguage = currentLanguage === 'all' || r.language === currentLanguage;
+                // Suporte para "todas" como sinônimo de "all"
+                const normalizedLanguage = currentLanguage === 'todas' ? 'all' : currentLanguage;
+                const matchLanguage = normalizedLanguage === 'all' || r.language === normalizedLanguage;
                 const matchSearch = !searchQuery || 
                     r.title.toLowerCase().includes(searchQuery) ||
                     r.author.toLowerCase().includes(searchQuery) ||
@@ -1355,7 +1358,9 @@
             // Atualizar filtros ativos
             const filters = [];
             if (currentCategory !== 'all') filters.push(getCategoryLabel(currentCategory));
-            if (currentLanguage !== 'all') filters.push(getLanguageLabel(currentLanguage));
+            // Normaliza "todas" para não aparecer como filtro ativo
+            const normalizedLang = currentLanguage === 'todas' ? 'all' : currentLanguage;
+            if (normalizedLang !== 'all') filters.push(getLanguageLabel(normalizedLang));
             if (searchQuery) filters.push(`"${searchQuery}"`);
             active.textContent = filters.length ? `Filtros: ${filters.join(' · ')}` : '';
         }
@@ -1604,7 +1609,7 @@
                     totalResources: resources.length,
                     filters: {
                         category: currentCategory,
-                        language: currentLanguage,
+                        language: currentLanguage === 'todas' ? 'all' : currentLanguage,
                         search: searchQuery
                     }
                 },
