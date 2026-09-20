@@ -731,9 +731,12 @@
                     <input type="checkbox" id="editResourceFree" style="width:1.2rem;height:1.2rem;">
                     <label for="editResourceFree" style="font-size:0.95rem;">Recurso Gratuito</label>
                 </div>
-                <div style="margin-top:1rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
-                    <button type="submit" class="btn btn-primary" style="flex:1;justify-content:center;">💾 Atualizar Recurso</button>
+                <div id="editActionButtons" style="margin-top:1rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
+                    <button type="submit" class="btn btn-primary" style="flex:1;justify-content:center;">💾 Salvar Edição</button>
                     <button type="button" class="btn btn-secondary" onclick="closeEditResourceModal()" style="flex:1;justify-content:center;">Cancelar</button>
+                </div>
+                <div id="deleteSection" style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);display:none;">
+                    <button type="button" id="deleteBtn" class="btn" style="width:100%;justify-content:center;background:#dc3545;color:white;" onclick="requestDeleteConfirmation()">🗑️ Excluir Cartão</button>
                 </div>
             </form>
         </div>
@@ -1482,16 +1485,25 @@
             }
         }
         
+
         // ==========================================
         // EDITAR RECURSO
         // ==========================================
+        let deleteConfirmCount = 0;
+        let saveConfirmCount = 0;
+        let currentEditId = null;
+
         function openEditResourceModal(id) {
             const resource = resourcesDB.find(r => r.id === id);
             if (!resource) {
                 showToast('Recurso não encontrado');
                 return;
             }
-            
+
+            currentEditId = id;
+            deleteConfirmCount = 0;
+            saveConfirmCount = 0;
+
             // Preencher formulário com dados do recurso
             document.getElementById('editResourceId').value = resource.id;
             document.getElementById('editResourceTitle').value = resource.title;
@@ -1503,19 +1515,92 @@
             document.getElementById('editResourceLink').value = resource.link;
             document.getElementById('editResourceDescription').value = resource.description;
             document.getElementById('editResourceFree').checked = resource.free || false;
-            
+
+            // Mostrar botão de excluir e resetar estado dos botões
+            document.getElementById('deleteSection').style.display = 'block';
+            document.getElementById('deleteBtn').textContent = '🗑️ Excluir Cartão';
+            document.getElementById('deleteBtn').style.background = '#dc3545';
+            document.getElementById('deleteBtn').style.color = 'white';
+
+            // Resetar botão de salvar
+            const saveBtn = document.querySelector('#editActionButtons button[type="submit"]');
+            saveBtn.textContent = '💾 Salvar Edição';
+            saveBtn.style.background = '';
+            saveBtn.style.color = '';
+
             // Abrir modal
             document.getElementById('editResourceModal').classList.add('active');
         }
-        
+
         function closeEditResourceModal() {
             document.getElementById('editResourceModal').classList.remove('active');
             document.getElementById('editResourceForm').reset();
+            deleteConfirmCount = 0;
+            saveConfirmCount = 0;
+            currentEditId = null;
         }
-        
-        function handleEditResource(e) {
+
+        function requestDeleteConfirmation() {
+            deleteConfirmCount++;
+            const deleteBtn = document.getElementById('deleteBtn');
+
+            if (deleteConfirmCount === 1) {
+                deleteBtn.textContent = '⚠️ Clique novamente para confirmar exclusão';
+                deleteBtn.style.background = '#ffc107';
+                deleteBtn.style.color = '#000';
+                showToast('Clique novamente para confirmar a exclusão');
+            } else {
+                // Executar exclusão
+                deleteResource(currentEditId);
+            }
+        }
+
+        function deleteResource(id) {
+            const resourceIndex = resourcesDB.findIndex(r => r.id === id);
+            if (resourceIndex === -1) {
+                showToast('Recurso não encontrado');
+                closeEditResourceModal();
+                return;
+            }
+
+            const deletedResource = resourcesDB[resourceIndex];
+            resourcesDB.splice(resourceIndex, 1);
+
+            // Remover do vault se estiver presente
+            const vaultIndex = vault.indexOf(id);
+            if (vaultIndex > -1) {
+                vault.splice(vaultIndex, 1);
+            }
+
+            // Salvar em localStorage
+            saveUserResources();
+
+            // Re-renderizar
+            renderResources();
+
+            // Fechar modal e mostrar feedback
+            closeEditResourceModal();
+            showToast('🗑️ Recurso "' + deletedResource.title + '" excluído com sucesso!');
+        }
+
+        function requestSaveConfirmation(e) {
             e.preventDefault();
-            
+
+            saveConfirmCount++;
+            const saveBtn = document.querySelector('#editActionButtons button[type="submit"]');
+
+            if (saveConfirmCount === 1) {
+                saveBtn.textContent = '⚠️ Clique novamente para confirmar salvamento';
+                saveBtn.style.background = '#ffc107';
+                saveBtn.style.color = '#000';
+                showToast('Clique novamente para confirmar o salvamento');
+            } else {
+                // Executar salvamento
+                handleEditResourceConfirmed();
+            }
+        }
+
+        function handleEditResourceConfirmed() {
             const id = parseInt(document.getElementById('editResourceId').value);
             const title = document.getElementById('editResourceTitle').value.trim();
             const author = document.getElementById('editResourceAuthor').value.trim();
@@ -1526,19 +1611,19 @@
             const link = document.getElementById('editResourceLink').value.trim();
             const description = document.getElementById('editResourceDescription').value.trim();
             const isFree = document.getElementById('editResourceFree').checked;
-            
+
             if (!title || !author || !category || !language || !level || !type || !link || !description) {
                 showToast('Preencha todos os campos obrigatórios');
                 return;
             }
-            
+
             // Encontrar e atualizar recurso
             const resourceIndex = resourcesDB.findIndex(r => r.id === id);
             if (resourceIndex === -1) {
                 showToast('Recurso não encontrado');
                 return;
             }
-            
+
             resourcesDB[resourceIndex] = {
                 ...resourcesDB[resourceIndex],
                 title: title,
@@ -1551,20 +1636,20 @@
                 description: description,
                 free: isFree
             };
-            
+
             // Salvar em localStorage para persistência
             saveUserResources();
-            
+
             // Re-renderizar a grade
             renderResources();
-            
+
             // Fechar modal e mostrar feedback
             closeEditResourceModal();
-            showToast(`✅ Recurso "${title}" atualizado com sucesso!`);
+            showToast('✅ Recurso "' + title + '" atualizado com sucesso!');
         }
-        
-        // Event listener para o formulário de edição
-        document.getElementById('editResourceForm').addEventListener('submit', handleEditResource);
+
+        // Event listener para o formulário de edição com confirmação dupla
+        document.getElementById('editResourceForm').addEventListener('submit', requestSaveConfirmation);
     </script>
 </body>
 </html>
