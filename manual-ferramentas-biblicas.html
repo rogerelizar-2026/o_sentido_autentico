@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual das Ferramentas Bíblicas | O Sentido Autêntico</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+            @bottom-center {
+                content: counter(page) " / " counter(pages);
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c2416;
+            background: #faf8f3;
+            padding: 2rem;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        .cover {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #1e3a5f 0%, #102a43 100%);
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .cover h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-family: Georgia, serif;
+        }
+        
+        .cover .subtitle {
+            font-size: 1.3rem;
+            font-style: italic;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .cover-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1, h2, h3 {
+            font-family: Georgia, serif;
+            color: #1e3a5f;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 { font-size: 2rem; border-bottom: 3px solid #8b4513; padding-bottom: 0.5rem; }
+        h2 { font-size: 1.6rem; border-bottom: 2px solid #d4c5a9; padding-bottom: 0.4rem; }
+        h3 { font-size: 1.3rem; color: #8b4513; }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        .toc {
+            background: #f5e6d3;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border: 2px solid #d4c5a9;
+        }
+        
+        .toc h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc a {
+            color: #8b4513;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        
+        .toc-level-1 {
+            font-weight: 700;
+            color: #1e3a5f;
+        }
+        
+        .toc-level-2 {
+            padding-left: 1.5rem;
+            font-weight: normal;
+        }
+        
+        .feature-box {
+            background: white;
+            border: 2px solid #d4c5a9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(44, 36, 22, 0.1);
+        }
+        
+        .feature-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1e3a5f;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+        }
+        
+        .tip-box {
+            background: #e8f4e8;
+            border-left: 4px solid #2d7a2d;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .tip-box strong {
+            color: #2d7a2d;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 1rem;
+            padding-left: 2.5rem;
+            position: relative;
+        }
+        
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #8b4513;
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .keyboard-shortcut {
+            display: inline-block;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 0.2rem 0.6rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 0 #ccc;
+        }
+        
+        footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 2px solid #d4c5a9;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #5c4d3a;
+        }
+        
+        .page-number::after {
+            content: " - Página " counter(page);
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+                max-width: none;
+            }
+            
+            .cover {
+                break-after: page;
+            }
+            
+            .toc {
+                break-after: page;
+            }
+            
+            a {
+                text-decoration: none;
+                color: #2c2416;
+            }
+            
+            .feature-box {
+                break-inside: avoid;
+            }
+            
+            h1, h2, h3 {
+                break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- CAPA -->
+    <div class="cover">
+        <div class="cover-icon">📚✝️</div>
+        <h1>Manual das Ferramentas Bíblicas</h1>
+        <p class="subtitle">Guia Completo para Estudo Profundo das Línguas Originais</p>
+        <p style="margin-top: 2rem; font-size: 1.1rem;">Hebraico • Aramaico • Grego Koiné</p>
+        <p style="margin-top: 3rem; font-size: 0.9rem; opacity: 0.8;">O Sentido Autêntico</p>
+    </div>
+
+    <!-- ÍNDICE -->
+    <div class="toc">
+        <h2>📑 Índice</h2>
+        <ul>
+            <li class="toc-level-1"><a href="#introducao">1. Introdução - Bem-vindo à Mineração Bíblica!</a></li>
+            <li class="toc-level-1"><a href="#o-que-e">2. O Que É Esta Página?</a></li>
+            <li class="toc-level-1"><a href="#primeiros-passos">3. Primeiros Passos - Começando Sua Jornada</a></li>
+            <li class="toc-level-1"><a href="#funcionalidades">4. Funcionalidades - Sua Caixa de Tesouros</a></li>
+            <li class="toc-level-2"><a href="#busca">4.1. Busca Inteligente</a></li>
+            <li class="toc-level-2"><a href="#filtros">4.2. Filtros por Categoria</a></li>
+            <li class="toc-level-2"><a href="#favoritos">4.3. Sistema de Favoritos (Vault)</a></li>
+            <li class="toc-level-2"><a href="#adicionar">4.4. Adicionar Novos Recursos</a></li>
+            <li class="toc-level-2"><a href="#editar">4.5. Editar Recursos</a></li>
+            <li class="toc-level-2"><a href="#exportar">4.6. Exportar e Backup</a></li>
+            <li class="toc-level-1"><a href="#atalhos">5. Atalhos de Teclado</a></li>
+            <li class="toc-level-1"><a href="#dicas">6. Dicas de Ouro para Estudo</a></li>
+            <li class="toc-level-1"><a href="#conclusao">7. Conclusão - Boa Jornada!</a></li>
+        </ul>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <h1 id="introducao">1. Introdução - Bem-vindo à Mineração Bíblica! 🎉</h1>
+    <p>Olá, estudante das Escrituras! Seja muito bem-vindo(a) ao seu novo melhor amigo para estudos bíblicos profundos. Imagine esta página como uma <strong>caixa de ferramentas antiga</strong>, daquelas cheias de instrumentos preciosos que um ourives usaria para trabalhar metais preciosos. Só que, em vez de martelos e limas, aqui você encontra <strong>gramáticas, léxicos, dicionários e comentários</strong> que vão ajudá-lo(a) a descobrir as riquezas escondidas no Hebraico, Aramaico e Grego Koiné.</p>
+    
+    <p>Este manual foi escrito de forma <strong>simples e divertida</strong> porque acreditamos que estudar as línguas originais da Bíblia pode (e deve!) ser uma experiência emocionante, não algo complicado e chato. Vamos juntos nessa aventura?</p>
+
+    <div class="tip-box">
+        <strong>💡 Dica:</strong> Não se preocupe se você está começando agora! Esta ferramenta foi feita tanto para iniciantes quanto para estudiosos avançados.
+    </div>
+
+    <h1 id="o-que-e">2. O Que É Esta Página? 🤔</h1>
+    <p>A página <strong>"Ferramentas Bíblicas"</strong> é como uma <strong>biblioteca digital organizada</strong> especialmente para você que deseja mergulhar nas línguas originais das Escrituras. Ela reúne recursos cuidadosamente selecionados (como se fosse um garimpeiro escolhendo as melhores pepitas de ouro!) e os organiza de forma que você possa encontrá-los rapidamente quando precisar.</p>
+    
+    <p><strong>O que você vai encontrar aqui:</strong></p>
+    <ul style="margin: 1rem 0 1rem 2rem;">
+        <li>📖 Gramáticas completas de Hebraico, Aramaico e Grego</li>
+        <li>📚 Léxicos e dicionários especializados</li>
+        <li>📜 Informações sobre manuscritos antigos</li>
+        <li>🎧 Áudios para pronúncia correta</li>
+        <li>💻 Aplicativos e softwares úteis</li>
+        <li>📝 Materiais de estudo e guias práticos</li>
+    </ul>
+
+    <h1 id="primeiros-passos">3. Primeiros Passos - Começando Sua Jornada 🚀</h1>
+    <p>Quando você abre a página pela primeira vez, pode aparecer uma <strong>tela de apresentação</strong> que vai te mostrar cada parte da interface. É como ter um guia turístico te mostrando os pontos principais de uma cidade nova!</p>
+    
+    <div class="step-list">
+        <ol class="step-list">
+            <li><strong>Observe a barra lateral esquerda:</strong> Ali você encontra o menu principal com acesso rápido às funcionalidades.</li>
+            <li><strong>Veja a barra de busca no topo:</strong> É onde você digita o que está procurando (como "léxico grego" ou "gramática hebraica").</li>
+            <li><strong>Confira os botões de filtro:</strong> Eles ajudam a separar os recursos por tipo (Gramática, Léxico, etc.).</li>
+            <li><strong>Explore os cards de recursos:</strong> Cada card é como uma "ficha" de um recurso, com título, descrição e link para acessar.</li>
+        </ol>
+    </div>
+
+    <div class="tip-box">
+        <strong>💡 Dica:</strong> Pressione a tecla <span class="keyboard-shortcut">ESC</span> para sair da apresentação a qualquer momento se quiser explorar por conta própria!
+    </div>
+
+    <h1 id="funcionalidades">4. Funcionalidades - Sua Caixa de Tesouros 💎</h1>
+    <p>Agora vamos conhecer cada "ferramenta" que você tem nas mãos. Pense nelas como superpoderes para seus estudos!</p>
+
+    <div class="feature-box">
+        <div class="feature-title">
+            <span class="feature-icon">🔍</span>
+            <span id="busca">4.1. Busca Inteligente</span>
+        </div>
+        <p>A barra de busca é sua melhor amiga quando você sabe exatamente o que quer encontrar. Digite qualquer palavra-chave, nome de autor, ou termo relacionado ao recurso que procura.</p>
+        
+        <p><strong>Como usar:</strong></p>
+        <ul style="margin: 1rem 0 1rem 2rem;">
+            <li>Clique na barra de busca (ou pressione <span class="keyboard-shortcut">/</span> no teclado)</li>
+            <li>Digite sua busca (ex: "Wallace", "grego", "manuscritos")</li>
+            <li>Os resultados aparecem automaticamente enquanto você digita!</li>
+        </ul>
+        
+        <div class="tip-box">
+            <strong>🪄 Busca Mágica:</strong> Clique no ícone de varinha mágica ✨ para ativar a busca inteligente que encontra recursos relacionados mesmo se você não souber o nome exato!
+        </div>
+    </div>
+
+    <div class="feature-box">
+        <div class="feature-title">
+            <span class="feature-icon">🏷️</span>
+            <span id="filtros">4.2. Filtros por Categoria</span>
+        </div>
+        <p>Os filtros são como "separadores" que organizam sua caixa de ferramentas. Em vez de revirar tudo, você escolhe ver apenas um tipo de recurso.</p>
+        
+        <p><strong>Categorias disponíveis:</strong></p>
+        <ul style="margin: 1rem 0 1rem 2rem;">
+            <li><strong>Todos:</strong> Mostra tudo (padrão)</li>
+            <li><strong>Gramática:</strong> Livros e materiais sobre regras das línguas</li>
+            <li><strong>Léxico:</strong> Dicionários e vocabulários</li>
+            <li><strong>Manuscritologia:</strong> Estudos sobre manuscritos antigos</li>
+            <li><strong>Fonética:</strong> Materiais de pronúncia e áudio</li>
+            <li><strong>Software:</strong> Programas e aplicativos</li>
+            <li><strong>Outros:</strong> Recursos diversos</li>
+        </ul>
+        
+        <p><strong>Como usar:</strong> Basta clicar no botão da categoria desejada. Clique novamente para desmarcar!</p>
+    </div>
+
+    <div class="feature-box">
+        <div class="feature-title">
+            <span class="feature-icon">⭐</span>
+            <span id="favoritos">4.3. Sistema de Favoritos (Vault)</span>
+        </div>
+        <p>O <strong>Vault</strong> (ou "Cofre") é onde você guarda seus recursos favoritos! É como marcar páginas num livro para voltar depois rapidamente.</p>
+        
+        <p><strong>Como favoritar:</strong></p>
+        <ul style="margin: 1rem 0 1rem 2rem;">
+            <li>Clique no ícone de estrela ⭐ no canto de qualquer card</li>
+            <li>A estrela fica dourada = recurso favorito!</li>
+            <li>Clique novamente para remover dos favoritos</li>
+        </ul>
+        
+        <p><strong>Para ver seus favoritos:</strong></p>
+        <ul style="margin: 1rem 0 1rem 2rem;">
+            <li>No menu lateral, clique em "Meu Vault"</li>
+            <li>Ou use o filtro "Favoritos" na barra de filtros</li>
+        </ul>
+        
+        <div class="warning-box">
+            <strong>⚠️ Atenção:</strong> Seus favoritos ficam salvos no SEU navegador. Se limpar os dados do navegador, eles somem! Por isso, use a função de Backup (veja abaixo).
+        </div>
+    </div>
+
+    <div class="feature-box">
+        <div class="feature-title">
+            <span class="feature-icon">➕</span>
+            <span id="adicionar">4.4. Adicionar Novos Recursos</span>
+        </div>
+        <p>Encontrou um recurso incrível que não está na lista? Você pode adicioná-lo! É como contribuir com uma nova ferramenta para a comunidade.</p>
+        
+        <p><strong>Como adicionar:</strong></p>
+        <ol class="step-list">
+            <li>Clique no botão "+" ao lado da barra de busca</li>
+            <li>Preencha o formulário:
+                <ul style="margin: 0.5rem 0 0.5rem 1.5rem;">
+                    <li><strong>Título:</strong> Nome do recurso</li>
+                    <li><strong>Categoria:</strong> Tipo de recurso (Gramática, Léxico, etc.)</li>
+                    <li><strong>Autor:</strong> Quem criou</li>
+                    <li><strong>Ano:</strong> Ano de publicação</li>
+                    <li><strong>Descrição:</strong> Para que serve</li>
+                    <li><strong>URL:</strong> Link para acessar/baixar</li>
+                    <li><strong>Tags:</strong> Palavras-chave (separe por vírgulas)</li>
+                </ul>
+            </li>
+            <li>Clique em "Salvar Recurso"</li>
+            <li>Pronto! Seu recurso aparece na lista!</li>
+        </ol>
+    </div>
+
+    <div class="feature-box">
+        <div class="feature-title">
+            <span class="feature-icon">✏️</span>
+            <span id="editar">4.5. Editar Recursos</span>
+        </div>
+        <p>Errou alguma informação ao adicionar? Ou quer atualizar um dado? Sem problemas! Você pode editar qualquer recurso (principalmente os que você adicionou).</p>
+        
+        <p><strong>Como editar:</strong></p>
+        <ol class="step-list">
+            <li>Localize o recurso que quer editar</li>
+            <li>Clique no ícone de lápis ✏️ no card</li>
+            <li>Altere os campos necessários</li>
+            <li>Clique em "Salvar Edição"</li>
+        </ol>
+    </div>
+
+    <div class="feature-box">
+        <div class="feature-title">
+            <span class="feature-icon">💾</span>
+            <span id="exportar">4.6. Exportar e Backup</span>
+        </div>
+        <p>Essa é uma das funções MAIS IMPORTANTES! Fazer backup é como tirar uma foto dos seus favoritos antes de viajar. Se algo der errado, você tem uma cópia segura!</p>
+        
+        <p><strong>Backup JSON (Exportar):</strong></p>
+        <ul style="margin: 1rem 0 1rem 2rem;">
+            <li>Vai até o menu lateral</li>
+            <li>Clica em "Backup JSON (Exportar)"</li>
+            <li>Baixa um arquivo .json com todos os seus favoritos</li>
+            <li>Guarde esse arquivo num lugar seguro (Google Drive, pendrive, email, etc.)</li>
+        </ul>
+        
+        <p><strong>Restaurar Backup (Importar):</strong></p>
+        <ul style="margin: 1rem 0 1rem 2rem;">
+            <li>Vai até o menu lateral</li>
+            <li>Clica em "Backup JSON (Importar)"</li>
+            <li>Seleciona o arquivo .json que você salvou anteriormente</li>
+            <li>Seus favoritos voltam magicamente! ✨</li>
+        </ul>
+        
+        <p><strong>Exportar em PDF:</strong></p>
+        <ul style="margin: 1rem 0 1rem 2rem;">
+            <li>Menu lateral → "Meu Vault PDF"</li>
+            <li>Gera um documento PDF bonito com seus favoritos</li>
+            <li>Perfeito para imprimir ou compartilhar!</li>
+        </ul>
+        
+        <div class="tip-box">
+            <strong>💡 Dica de Ouro:</strong> Faça backup regularmente! Pelo menos uma vez por mês, ou sempre que adicionar vários recursos novos.
+        </div>
+    </div>
+
+    <h1 id="atalhos">5. Atalhos de Teclado ⌨️</h1>
+    <p>Para quem gosta de velocidade, aqui estão os atalhos que tornam a navegação mais rápida:</p>
+    
+    <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+        <thead>
+            <tr style="background: #f5e6d3;">
+                <th style="padding: 0.75rem; text-align: left; border: 1px solid #d4c5a9;">Atalho</th>
+                <th style="padding: 0.75rem; text-align: left; border: 1px solid #d4c5a9;">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 0.75rem; border: 1px solid #d4c5a9;"><span class="keyboard-shortcut">ESC</span></td>
+                <td style="padding: 0.75rem; border: 1px solid #d4c5a9;">Sair da apresentação / Fechar modais</td>
+            </tr>
+            <tr>
+                <td style="padding: 0.75rem; border: 1px solid #d4c5a9;"><span class="keyboard-shortcut">/</span></td>
+                <td style="padding: 0.75rem; border: 1px solid #d4c5a9;">Focar na barra de busca</td>
+            </tr>
+            <tr>
+                <td style="padding: 0.75rem; border: 1px solid #d4c5a9;"><span class="keyboard-shortcut">Ctrl + F</span></td>
+                <td style="padding: 0.75rem; border: 1px solid #d4c5a9;">Busca nativa do navegador na página</td>
+            </tr>
+            <tr>
+                <td style="padding: 0.75rem; border: 1px solid #d4c5a9;"><span class="keyboard-shortcut">Tab</span></td>
+                <td style="padding: 0.75rem; border: 1px solid #d4c5a9;">Navegar entre elementos focáveis</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1 id="dicas">6. Dicas de Ouro para Estudo 🏆</h1>
+    <p>Agora que você conhece a ferramenta, aqui vão algumas dicas para aproveitar ao máximo:</p>
+    
+    <div class="feature-box">
+        <h3>📌 Comece pelo Básico</h3>
+        <p>Se você é iniciante, comece favoritando gramáticas introdutórias e léxicos básicos. Não tente começar pelos livros mais avançados logo de cara!</p>
+    </div>
+    
+    <div class="feature-box">
+        <h3>📚 Crie Coleções Temáticas</h3>
+        <p>Use o sistema de tags para organizar seus recursos. Exemplo: adicione tags como "iniciante", "avancado", "texto-massoretico", "septuaginta" para encontrar facilmente depois.</p>
+    </div>
+    
+    <div class="feature-box">
+        <h3>🔄 Revise Periodicamente</h3>
+        <p>A cada poucos meses, revise seus favoritos. Remova o que não usa mais e adicione novos recursos que descobriu.</p>
+    </div>
+    
+    <div class="feature-box">
+        <h3>👥 Compartilhe!</h3>
+        <p>Exporte seu vault em PDF e compartilhe com colegas de estudo. Ensinar é uma das melhores formas de aprender!</p>
+    </div>
+    
+    <div class="feature-box">
+        <h3>🎯 Use a Busca Inteligente</h3>
+        <p>Não sabe exatamente o que procura? Use a busca mágica (ícone de varinha ✨) para descobrir recursos relacionados ao seu tema de interesse.</p>
+    </div>
+
+    <h1 id="conclusao">7. Conclusão - Boa Jornada! 🎓</h1>
+    <p>Chegamos ao fim deste manual, mas é apenas o <strong>começo da sua jornada</strong> nas línguas bíblicas! Lembre-se:</p>
+    
+    <ul style="margin: 1rem 0 1rem 2rem;">
+        <li>✅ Cada pequeno passo conta</li>
+        <li>✅ Não tenha medo de errar</li>
+        <li>✅ Use as ferramentas com sabedoria</li>
+        <li>✅ Compartilhe conhecimento</li>
+        <li>✅ E acima de tudo: divirta-se descobrindo as riquezas das Escrituras!</li>
+    </ul>
+    
+    <p style="text-align: center; margin-top: 2rem; font-size: 1.2rem; font-style: italic; color: #8b4513;">
+        "Lâmpada para os meus pés é tua palavra, e luz para os meus caminhos." <br>
+        <strong>— Salmos 119:105</strong>
+    </p>
+    
+    <footer>
+        <p><strong>Manual das Ferramentas Bíblicas</strong></p>
+        <p>O Sentido Autêntico © 2025</p>
+        <p>Desenvolvido com ❤️ para estudantes das Escrituras</p>
+        <p style="margin-top: 1rem; font-size: 0.8rem;">
+            Este manual foi gerado para impressão em formato A4.<br>
+            Para salvar como PDF: Ctrl+P (ou Cmd+P no Mac) → Destino: "Salvar como PDF"
+        </p>
+    </footer>
+
+    <script>
+        // Script para abrir links externos em nova aba
+        document.querySelectorAll('a[href^="http"]').forEach(link => {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        });
+        
+        // Mensagem de boas-vindas no console
+        console.log('%c📚 Manual das Ferramentas Bíblicas', 'font-size: 20px; font-weight: bold; color: #8b4513;');
+        console.log('%cPara imprimir este manual em PDF:', 'font-size: 14px; color: #5c4d3a;');
+        console.log('%cPressione Ctrl+P (ou Cmd+P no Mac) e selecione "Salvar como PDF"', 'font-size: 14px; color: #2c2416;');
+    </script>
+</body>
+</html>
