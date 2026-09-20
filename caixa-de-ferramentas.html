@@ -465,6 +465,36 @@
         @media (prefers-reduced-motion: reduce) {
             * { transition: none !important; animation: none !important; }
         }
+        
+        /* Botão flutuante para adicionar recurso */
+        .floating-add-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+            transition: all 0.3s;
+        }
+        
+        .floating-add-btn:hover {
+            background: var(--accent-hover);
+            transform: scale(1.1);
+        }
+        
+        .floating-add-btn.visible {
+            display: flex;
+        }
     </style>
 </head>
 <body>
@@ -499,6 +529,7 @@
                 <button class="filter-btn" data-category="app">App Mobile</button>
                 <button class="filter-btn" data-category="midia">Mídia</button>
                 <button class="filter-btn" data-category="mapas">Mapas/Diagramas</button>
+                <button class="filter-btn" data-category="texto-biblico">Texto Bíblico</button>
             </div>
             
             <div class="filters" id="languageFilters">
@@ -534,6 +565,9 @@
             <p>Tente ajustar os filtros ou termos de busca.</p>
         </div>
     </main>
+    
+    <!-- Botão flutuante para adicionar recurso -->
+    <button class="floating-add-btn" id="floatingAddBtn" title="Adicionar Recurso" aria-label="Adicionar novo recurso">+</button>
     
     <!-- Modal Vault -->
     <div class="modal-overlay" id="vaultModal">
@@ -587,6 +621,7 @@
                             <option value="app">App Mobile</option>
                             <option value="midia">Mídia</option>
                             <option value="mapas">Mapas/Diagramas</option>
+                            <option value="texto-biblico">Texto Bíblico</option>
                         </select>
                     </div>
                     <div>
@@ -623,6 +658,7 @@
                             <option value="Vídeo">Vídeo</option>
                             <option value="Curso">Curso</option>
                             <option value="Artigo">Artigo</option>
+                            <option value="Biblia+">Bíblia+</option>
                         </select>
                     </div>
                 </div>
@@ -680,6 +716,7 @@
                             <option value="app">App Mobile</option>
                             <option value="midia">Mídia</option>
                             <option value="mapas">Mapas/Diagramas</option>
+                            <option value="texto-biblico">Texto Bíblico</option>
                         </select>
                     </div>
                     <div>
@@ -716,6 +753,7 @@
                             <option value="Vídeo">Vídeo</option>
                             <option value="Curso">Curso</option>
                             <option value="Artigo">Artigo</option>
+                            <option value="Biblia+">Bíblia+</option>
                         </select>
                     </div>
                 </div>
@@ -938,6 +976,26 @@
             document.getElementById('themeToggle').addEventListener('click', toggleTheme);
             document.getElementById('externalSearchBtn').addEventListener('click', performExternalSearch);
             document.getElementById('addResourceBtn').addEventListener('click', openAddResourceModal);
+            
+            // Botão flutuante - visibilidade e ação
+            const floatingAddBtn = document.getElementById('floatingAddBtn');
+            const actionBar = document.querySelector('.action-bar');
+            
+            window.addEventListener('scroll', () => {
+                if (actionBar) {
+                    const actionBarRect = actionBar.getBoundingClientRect();
+                    const viewportHeight = window.innerHeight;
+                    
+                    // Mostra o botão flutuante quando a action bar não está mais visível
+                    if (actionBarRect.bottom < 0 || actionBarRect.top > viewportHeight) {
+                        floatingAddBtn.classList.add('visible');
+                    } else {
+                        floatingAddBtn.classList.remove('visible');
+                    }
+                }
+            });
+            
+            floatingAddBtn.addEventListener('click', openAddResourceModal);
             
             // Fechar modal ao clicar fora
             document.getElementById('vaultModal').addEventListener('click', (e) => {
