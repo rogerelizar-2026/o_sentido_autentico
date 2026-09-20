@@ -497,6 +497,7 @@
                 <button class="btn btn-secondary" id="jsonBtn">💾 Backup JSON</button>
                 <button class="btn btn-primary" id="exportVaultBtn">📤 Exportar Vault como PDF</button>
                 <button class="btn btn-primary" id="externalSearchBtn" style="background: #2563eb;">🌐 Busca Externa Inteligente</button>
+                <button class="btn btn-primary" id="addResourceBtn" style="background: #16a34a;">➕ Adicionar Recurso</button>
             </div>
         </div>
         
@@ -533,6 +534,98 @@
                 <button class="btn btn-secondary" onclick="exportVaultJSON()">💾 Backup do Vault</button>
                 <button class="btn btn-secondary" onclick="clearVault()" style="color:#c00;">🗑️ Limpar Vault</button>
             </div>
+        </div>
+    </div>
+    
+    <!-- Modal Adicionar Recurso -->
+    <div class="modal-overlay" id="addResourceModal">
+        <div class="modal">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+                <h2 style="font-family:var(--font-serif);">➕ Adicionar Novo Recurso</h2>
+                <button class="btn-icon" onclick="closeAddResourceModal()">✕</button>
+            </div>
+            <p style="color:var(--text-secondary);margin-bottom:1.5rem;font-size:0.95rem;">
+                Preencha as informações abaixo para adicionar um recurso à sua caixa de ferramentas:
+            </p>
+            <form id="addResourceForm" style="display:flex;flex-direction:column;gap:1rem;">
+                <div>
+                    <label for="resourceTitle" style="display:block;margin-bottom:0.5rem;font-weight:500;font-size:0.9rem;">Título *</label>
+                    <input type="text" id="resourceTitle" required style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-size:1rem;">
+                </div>
+                <div>
+                    <label for="resourceAuthor" style="display:block;margin-bottom:0.5rem;font-weight:500;font-size:0.9rem;">Autor/Editor *</label>
+                    <input type="text" id="resourceAuthor" required style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-size:1rem;">
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                    <div>
+                        <label for="resourceCategory" style="display:block;margin-bottom:0.5rem;font-weight:500;font-size:0.9rem;">Categoria *</label>
+                        <select id="resourceCategory" required style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-size:1rem;">
+                            <option value="">Selecione...</option>
+                            <option value="gramatica">Gramática</option>
+                            <option value="lexico">Léxico</option>
+                            <option value="manuscritologia">Manuscritologia</option>
+                            <option value="critica-textual">Crítica Textual</option>
+                            <option value="exegese">Exegese</option>
+                            <option value="software">Software</option>
+                            <option value="app">App Mobile</option>
+                            <option value="midia">Mídia</option>
+                            <option value="mapas">Mapas/Diagramas</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="resourceLanguage" style="display:block;margin-bottom:0.5rem;font-weight:500;font-size:0.9rem;">Idioma *</label>
+                        <select id="resourceLanguage" required style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-size:1rem;">
+                            <option value="">Selecione...</option>
+                            <option value="hebraico">Hebraico</option>
+                            <option value="aramaico">Aramaico</option>
+                            <option value="grego">Grego</option>
+                            <option value="todos">Todos/Tri-língue</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                    <div>
+                        <label for="resourceLevel" style="display:block;margin-bottom:0.5rem;font-weight:500;font-size:0.9rem;">Nível *</label>
+                        <select id="resourceLevel" required style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-size:1rem;">
+                            <option value="">Selecione...</option>
+                            <option value="iniciante">Iniciante</option>
+                            <option value="intermediario">Intermediário</option>
+                            <option value="avancado">Avançado</option>
+                            <option value="todos">Todos os Níveis</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="resourceType" style="display:block;margin-bottom:0.5rem;font-weight:500;font-size:0.9rem;">Tipo *</label>
+                        <select id="resourceType" required style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-size:1rem;">
+                            <option value="">Selecione...</option>
+                            <option value="Livro">Livro</option>
+                            <option value="Web App">Web App</option>
+                            <option value="App Mobile">App Mobile</option>
+                            <option value="Software">Software</option>
+                            <option value="Base de Dados">Base de Dados</option>
+                            <option value="Vídeo">Vídeo</option>
+                            <option value="Curso">Curso</option>
+                            <option value="Artigo">Artigo</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label for="resourceLink" style="display:block;margin-bottom:0.5rem;font-weight:500;font-size:0.9rem;">URL/Link *</label>
+                    <input type="url" id="resourceLink" required placeholder="https://..." style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-size:1rem;">
+                </div>
+                <div>
+                    <label for="resourceDescription" style="display:block;margin-bottom:0.5rem;font-weight:500;font-size:0.9rem;">Descrição *</label>
+                    <textarea id="resourceDescription" required rows="4" style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-size:1rem;resize:vertical;"></textarea>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <input type="checkbox" id="resourceFree" style="width:1.2rem;height:1.2rem;">
+                    <label for="resourceFree" style="font-size:0.95rem;">Recurso Gratuito</label>
+                </div>
+                <div style="margin-top:1rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
+                    <button type="submit" class="btn btn-primary" style="flex:1;justify-content:center;">💾 Salvar Recurso</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeAddResourceModal()" style="flex:1;justify-content:center;">Cancelar</button>
+                </div>
+            </form>
         </div>
     </div>
     
@@ -690,6 +783,7 @@
         // INICIALIZAÇÃO
         // ==========================================
         document.addEventListener('DOMContentLoaded', () => {
+            loadUserResources();
             initTheme();
             renderResources();
             setupEventListeners();
@@ -730,11 +824,18 @@
             document.getElementById('exportVaultBtn').addEventListener('click', exportVaultPDF);
             document.getElementById('themeToggle').addEventListener('click', toggleTheme);
             document.getElementById('externalSearchBtn').addEventListener('click', performExternalSearch);
+            document.getElementById('addResourceBtn').addEventListener('click', openAddResourceModal);
             
             // Fechar modal ao clicar fora
             document.getElementById('vaultModal').addEventListener('click', (e) => {
                 if (e.target.id === 'vaultModal') e.target.classList.remove('active');
             });
+            document.getElementById('addResourceModal').addEventListener('click', (e) => {
+                if (e.target.id === 'addResourceModal') closeAddResourceModal();
+            });
+            
+            // Form submit
+            document.getElementById('addResourceForm').addEventListener('submit', handleAddResource);
         }
         
         // ==========================================
@@ -1185,6 +1286,84 @@
             toast.textContent = msg;
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+        
+        // ==========================================
+        // ADICIONAR RECURSO
+        // ==========================================
+        function openAddResourceModal() {
+            document.getElementById('addResourceModal').classList.add('active');
+            document.getElementById('resourceTitle').focus();
+        }
+        
+        function closeAddResourceModal() {
+            document.getElementById('addResourceModal').classList.remove('active');
+            document.getElementById('addResourceForm').reset();
+        }
+        
+        function handleAddResource(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('resourceTitle').value.trim();
+            const author = document.getElementById('resourceAuthor').value.trim();
+            const category = document.getElementById('resourceCategory').value;
+            const language = document.getElementById('resourceLanguage').value;
+            const level = document.getElementById('resourceLevel').value;
+            const type = document.getElementById('resourceType').value;
+            const link = document.getElementById('resourceLink').value.trim();
+            const description = document.getElementById('resourceDescription').value.trim();
+            const isFree = document.getElementById('resourceFree').checked;
+            
+            if (!title || !author || !category || !language || !level || !type || !link || !description) {
+                showToast('Preencha todos os campos obrigatórios');
+                return;
+            }
+            
+            // Gerar novo ID único
+            const maxId = resourcesDB.reduce((max, r) => Math.max(max, r.id), 0);
+            const newId = maxId + 1;
+            
+            // Criar novo recurso
+            const newResource = {
+                id: newId,
+                title: title,
+                author: author,
+                category: category,
+                language: language,
+                level: level,
+                type: type,
+                link: link,
+                description: description,
+                free: isFree
+            };
+            
+            // Adicionar ao array principal
+            resourcesDB.push(newResource);
+            
+            // Salvar em localStorage para persistência
+            saveUserResources();
+            
+            // Re-renderizar a grade
+            renderResources();
+            
+            // Fechar modal e mostrar feedback
+            closeAddResourceModal();
+            showToast(`✅ Recurso "${title}" adicionado com sucesso!`);
+        }
+        
+        function saveUserResources() {
+            // Filtrar apenas recursos adicionados pelo usuário (IDs > 1000 ou que não estão na base original)
+            const originalIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+            const userResources = resourcesDB.filter(r => !originalIds.includes(r.id));
+            localStorage.setItem('userBiblicalResources', JSON.stringify(userResources));
+        }
+        
+        function loadUserResources() {
+            const saved = localStorage.getItem('userBiblicalResources');
+            if (saved) {
+                const userResources = JSON.parse(saved);
+                resourcesDB.push(...userResources);
+            }
         }
     </script>
 </body>
