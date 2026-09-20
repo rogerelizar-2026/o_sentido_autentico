@@ -128,11 +128,15 @@
                 </div>
 
                 <!-- Acknowledgment Checkbox -->
-                <div style="background: rgba(197, 160, 89, 0.05); border: 1px solid var(--gold); border-radius: 6px; padding: 0.75rem; margin-bottom: 0.75rem;">
+                <div style="background: rgba(197, 160, 89, 0.05); border: 1px solid var(--gold); border-radius: 6px; padding: 0.75rem; margin-bottom: 0.75rem; position: relative;">
                     <label style="display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.8rem; text-align: left; color: var(--text-primary); cursor: pointer; user-select: none;">
                         <input type="checkbox" id="welcome-disclaimer-checkbox" style="margin-top: 0.15rem; cursor: pointer;" disabled onchange="window.toggleWelcomeButton(this.checked)">
                         <span>Compreendo e aceito o propósito, as isenções de responsabilidade e as diretrizes de estudo pessoal.</span>
                     </label>
+                    <div id="disclaimer-tooltip" style="position: absolute; top: -45px; right: 0; background: var(--gold-dark); color: white; padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.75rem; max-width: 280px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 10;">
+                        Leia todo texto acima para saber o que está aceitando. 🤓
+                        <div style="position: absolute; bottom: -5px; right: 20px; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid var(--gold-dark);"></div>
+                    </div>
                 </div>
 
                 <!-- Action buttons -->

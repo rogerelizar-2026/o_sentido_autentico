@@ -1143,6 +1143,7 @@ window.toggleWelcomeButton = toggleWelcomeButton;
 function checkInstitutionsVisibility() {
     const institutionsSection = document.getElementById('institutions-section');
     const checkbox = document.getElementById('welcome-disclaimer-checkbox');
+    const tooltip = document.getElementById('disclaimer-tooltip');
     const scrollContainer = document.getElementById('welcome-scroll-container');
     
     if (!institutionsSection || !checkbox || !scrollContainer) return;
@@ -1157,6 +1158,11 @@ function checkInstitutionsVisibility() {
         checkbox.disabled = false;
         checkbox.style.cursor = 'pointer';
         checkbox.parentElement.style.cursor = 'pointer';
+        // Hide tooltip when checkbox is enabled
+        if (tooltip) tooltip.style.display = 'none';
+    } else {
+        // Show tooltip when checkbox is disabled
+        if (tooltip) tooltip.style.display = 'block';
     }
 }
 
