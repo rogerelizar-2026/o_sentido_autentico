@@ -655,6 +655,9 @@
     <span id="footerTimestamp">Setembro de 2026</span>
     <span class="dot">·</span>
     <span style="opacity:.85; font-weight: 600;">by rogerelizar@gmail.com</span>
+    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 11px; line-height: 1.6; max-width: 700px; margin-left: auto; margin-right: auto; color: var(--text-muted);">
+        <em>Este hub de recursos foi projetado para complementar, não substituir, a educação teológica acadêmica formal, a mentoria espiritual e o discipulado comunitário. Use estas ferramentas com humildade, respeito e discernimento.</em>
+    </div>
 </footer>
 
 <!-- BACKDROP & SIDEBAR -->
@@ -1425,9 +1428,10 @@
         const res = resources.find(r => r.id === id);
         if (res) {
             res.favorito = !res.favorito;
-            showToast(res.favorito ? "Adicionado aos Favoritos!" : "Removido dos Favoritos.");
+            showToast(res.favorito ? "Adicionado ao Cofre Local!" : "Removido do Cofre Local.");
             updateDashboardStats();
             filterResources();
+            renderFavorites();
         }
     }
 
@@ -2030,6 +2034,59 @@
 
         doc.save("o-sentido-autentico-ferramentas-biblicas.pdf");
         showToast("Catálogo em PDF gerado e baixado com sucesso!");
+    }
+
+    // ==========================================
+    // EXPORT VAULT/FAVORITES AS JSON (Backup)
+    // ==========================================
+    function exportJSON() {
+        const favs = resources.filter(r => r.favorito);
+        
+        if (favs.length === 0) {
+            showToast("Nenhum recurso no cofre local para exportar.");
+            return;
+        }
+        
+        // Create clean export object
+        const exportData = {
+            metadata: {
+                title: "O Sentido Autêntico — Cofre Local de Recursos",
+                curator: "Rogério Ramão Lopes",
+                exportDate: new Date().toISOString(),
+                totalResources: favs.length
+            },
+            resources: favs.map(r => ({
+                id: r.id,
+                titulo: r.titulo,
+                lingua: r.lingua,
+                nivel: r.nivel,
+                tipo: r.tipo,
+                subcategoria: r.subcategoria,
+                url: r.url,
+                descricao: r.descricao
+            }))
+        };
+        
+        // Generate date-stamped filename: Recursos.DD.MM.YYYY.json
+        const now = new Date();
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const year = now.getFullYear();
+        const filename = `Recursos.${day}.${month}.${year}.json`;
+        
+        // Create and download blob
+        const jsonString = JSON.stringify(exportData, null, 2);
+        const blob = new Blob([jsonString], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        showToast(`Backup JSON gerado: ${filename}`);
     }
 
     // ==========================================
