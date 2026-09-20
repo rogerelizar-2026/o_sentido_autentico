@@ -3,28 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ferramentas Bíblicas | O Sentido Autêntico</title>
+    <title>Hub de Recursos Bíblicos | O Sentido Autêntico</title>
     <meta name="description" content="Mineração curada de recursos para estudo do Hebraico, Aramaico e Grego Koiné. Gramáticas, léxicos, manuscritologia e muito mais.">
     
-    <!-- Chart.js and FontAwesome -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600;700&family=SBL+Hebrew&family=SBL+Greek&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 14C25 8 13 7 5 10v42c8-3 20-2 27 4 7-6 19-7 27-4V10c-8-3-20-2-27 4z' fill='%231e3a5f'/%3E%3Cpath d='M32 16c-6-5-16-6-23-3v36c7-2 17-1 23 4 6-5 16-6 23-4V13c-7-3-17-2-23 3z' fill='%23f7f1e3'/%3E%3Cpath d='M32 16v37' stroke='%23b8860b' stroke-width='2.5'/%3E%3Cpath d='M13 20c5-2 11-1 15 1M13 27c5-2 11-1 15 1M13 34c5-2 11-1 15 1M13 41c5-2 11-1 15 1' stroke='%238a7a5c' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3Cpath d='M36 21c4-2 10-3 15-1M36 28c4-2 10-3 15-1M36 35c4-2 10-3 15-1M36 42c4-2 10-3 15-1' stroke='%238a7a5c' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
-    <link rel="icon" type="image/png" sizes="192x192" href="imagens/icon-192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="imagens/icon-512.png">
-    
-    <!-- PWA Meta Tags & Manifest -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#102a43">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Ferramentas Bíblicas">
-    <link rel="apple-touch-icon" href="imagens/icon-192.png">
+    <!-- Fontes Acadêmicas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- Bibliotecas para PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -167,58 +152,6 @@
             top: 50%;
             transform: translateY(-50%);
             opacity: 0.6;
-        }
-
-        .search-actions {
-            position: absolute;
-            right: 0.75rem;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-
-        .btn-icon-only {
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            cursor: pointer;
-            padding: 0.4rem;
-            border-radius: 4px;
-            transition: all 0.2s;
-            position: relative;
-        }
-
-        .btn-icon-only:hover {
-            background: var(--highlight);
-            color: var(--accent);
-        }
-
-        /* Tooltip flutuante transparente */
-        .btn-icon-only::after {
-            content: attr(title);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 0.4rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s;
-            pointer-events: none;
-        }
-
-        .btn-icon-only:hover::after {
-            opacity: 1;
-            visibility: visible;
-            bottom: calc(100% + 5px);
         }
         
         .filters {
@@ -564,190 +497,25 @@
         }
     </style>
 </head>
-<body class="sidebar-collapsed">
-
-<!-- WELCOME MODAL OVERLAY (reutilizado do index.html) -->
-<div id="welcome-modal-overlay" class="welcome-overlay">
-    <div class="welcome-modal">
-        <div class="welcome-grid">
-            <!-- Left Side: Welcome and Signature -->
-            <div class="welcome-left">
-                <div class="welcome-header-group">
-                    <i class="fa-solid fa-toolbox welcome-modal-icon"></i>
-                    <h2>FERRAMENTAS BÍBLICAS</h2>
-                </div>
-                <p class="welcome-modal-subtitle" style="font-style: italic; color: var(--gold-dark); margin: 0.5rem 0 1.5rem 0; font-weight: 600; font-size: 1.1rem; line-height: 1.4; text-align: left;">"Mineração curada e inteligente para conectar você aos recursos mais valiosos das línguas bíblicas."</p>
-                <p class="welcome-modal-text" style="margin-bottom: 0.5rem;">
-                    Esta é a sua caixa de ferramentas especializada para estudo profundo do Hebraico, Aramaico e Grego Koiné. Aqui você encontrará recursos curados de hermenêutica, exegese e crítica textual, com capacidade de busca dinâmica, favoritismo e mineração de novos links.
-                </p>
-                <p style="text-align: right; font-style: italic; margin: 0 0 1.5rem 0; color: var(--gold-dark); font-weight: 600; font-size: 0.95rem; width: 100%;">Bem vindo(a) à sua ferramenta de mineração</p>
-                <div class="welcome-signature">
-                    <p>Idealizador e Curador do Projeto:</p>
-                    <strong>Rogério Ramão Lopes</strong>
-                    <p class="signature-email">rogerelizar@gmail.com</p>
-                </div>
-            </div>
-            
-            <!-- Right Side: Action, Encouragement, Disclaimer and Institutions -->
-            <div class="welcome-right" style="display: flex; flex-direction: column; justify-content: space-between;">
-                <div id="welcome-scroll-container" style="max-height: 280px; overflow-y: auto; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; margin-bottom: 1rem; font-size: 0.85rem; text-align: left; scroll-behavior: smooth;">
-                    
-                    <!-- Disclaimer -->
-                    <div style="margin-bottom: 1.5rem; border-top: 1px dashed var(--border-color); padding-top: 1rem;">
-                        <h4 style="font-family: 'Cinzel', serif; color: var(--gold-dark); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem;"><i class="fa-solid fa-triangle-exclamation"></i> Propósito e Isenção de Responsabilidade</h4>
-                        
-                        <p style="font-weight: 700; margin-bottom: 0.3rem; color: var(--text-primary);">Este material NÃO tem o propósito de:</p>
-                        <ul style="list-style-type: disc; margin-left: 1.25rem; margin-bottom: 0.8rem; color: var(--text-secondary); line-height: 1.4; display: flex; flex-direction: column; gap: 0.25rem;">
-                            <li>Formar hermeneutas ou exegetas profissionais</li>
-                            <li>Substituir formação acadêmica formal em teologia ou línguas bíblicas</li>
-                            <li>Fornecer certificação ou credenciamento acadêmico</li>
-                        </ul>
-                        
-                        <p style="font-weight: 700; margin-bottom: 0.3rem; color: var(--text-primary);">Este material TEM o propósito de:</p>
-                        <ul style="list-style-type: disc; margin-left: 1.25rem; margin-bottom: 0.8rem; color: var(--text-secondary); line-height: 1.4; display: flex; flex-direction: column; gap: 0.25rem;">
-                            <li>Oferecer um recurso imparcial e abrangente para mineração de ferramentas</li>
-                            <li>Apresentar diferentes métodos e abordagens de forma organizada</li>
-                            <li>Auxiliar na escolha de recursos adequados ao perfil de cada aprendiz</li>
-                            <li>Facilitar o acesso a informações sobre o estudo dessas línguas</li>
-                        </ul>
-                    </div>
-
-                    <!-- Licença e Direitos Autorais -->
-                    <div style="margin-bottom: 1.5rem; border-top: 1px dashed var(--border-color); padding-top: 1rem;">
-                        <h4 style="font-family: 'Cinzel', serif; color: var(--gold-dark); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem;"><i class="fa-solid fa-scroll"></i> Licença e Direitos Autorais</h4>
-                        <p style="color: var(--text-secondary); line-height: 1.5; margin-bottom: 0.5rem;">
-                            Este projeto foi idealizado e desenvolvido sob a curadoria teológica e acadêmica de <strong>Rogério Ramão Lopes</strong> em Setembro de 2026.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Acknowledgment Checkbox -->
-                <div style="background: rgba(197, 160, 89, 0.05); border: 1px solid var(--gold); border-radius: 6px; padding: 0.75rem; margin-bottom: 0.75rem; position: relative;">
-                    <label style="display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.8rem; text-align: left; color: var(--text-primary); cursor: pointer; user-select: none;">
-                        <input type="checkbox" id="welcome-disclaimer-checkbox" style="margin-top: 0.15rem; cursor: pointer;" disabled onchange="window.toggleWelcomeButton(this.checked)">
-                        <span>Compreendo e aceito o propósito, as isenções de responsabilidade e as diretrizes de uso.</span>
-                    </label>
-                </div>
-
-                <!-- Action buttons -->
-                <div class="welcome-actions" style="margin-top: 0;">
-                    <button class="welcome-btn" id="welcome-start-btn" onclick="window.closeWelcomeModal()" style="opacity: 0.5; pointer-events: none; width: 100%; margin-top: 0;" disabled>Acessar Ferramentas</button>
-                </div>
-            </div>
+<body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+    
+    <header>
+        <h1>Hub de Mineração de Recursos Bíblicos</h1>
+        <p class="subtitle">Curadoria acadêmica para o estudo das línguas originais da Revelação</p>
+        <div class="original-langs">
+            <span class="hebrew">בְּרֵאשִׁית בָּרָא אֱלֹהִים</span> · <span class="greek">Ἐν ἀρχῇ ἦν ὁ λόγος</span>
         </div>
-    </div>
-</div>
-<script>
-    (function() {
-        if (localStorage.getItem('welcomeModalDismissed') !== 'true') {
-            document.getElementById('welcome-modal-overlay').classList.add('show');
-        }
-    })();
-</script>
-
-<div class="wrapper">
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-        <div class="sidebar-logo" style="text-align: center; padding-bottom: 1.5rem; border-bottom: 2px solid var(--border-color);">
-            <h1 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--gold-dark); letter-spacing: 1px; margin-bottom: 0.3rem;">FERRAMENTAS BÍBLICAS</h1>
-            <p style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.3rem; line-height: 1.4;">Mineração curada e inteligente para conectar você aos recursos mais valiosos.</p>
-            <p style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 0.4rem; font-style: italic;">Por Rogério Ramão Lopes</p>
-        </div>
-
-        <!-- Language Hub Switcher - Selecione o Idioma -->
-        <div class="lang-selector-group">
-            <span class="group-title"><i class="fa-solid fa-language"></i> Selecione o Idioma</span>
-            <button class="lang-btn active" data-lang="todas" title="Todas as Línguas">
-                <i class="fa-solid fa-layer-group"></i> <span>Todas</span>
-            </button>
-            <button class="lang-btn" data-lang="hebraico" title="Língua Hebraica">
-                <i class="fa-solid fa-scroll"></i> <span>Hebraico</span>
-            </button>
-            <button class="lang-btn" data-lang="aramaico" title="Língua Aramaica">
-                <i class="fa-solid fa-scroll"></i> <span>Aramaico</span>
-            </button>
-            <button class="lang-btn" data-lang="grego" title="Língua Grega">
-                <i class="fa-solid fa-book-bible"></i> <span>Grego Koiné</span>
-            </button>
-            <a href="index.html" target="_blank" rel="noopener noreferrer" class="lang-btn nav-external" title="Portal do Estudante" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.75rem;">
-                <i class="fa-solid fa-graduation-cap"></i> <span>Portal do Estudante</span>
-            </a>
-        </div>
-  
-        <!-- Menu Navigation - Ferramentas Bíblicas -->
-        <ul class="nav-menu" id="ferramentas-menu">
-            <li class="nav-item active"><a href="#" onclick="openVaultModal()"><i class="fa-solid fa-vault"></i> Meu Vault</a></li>
-            <li class="nav-item"><a href="#" onclick="generatePDFReport()"><i class="fa-solid fa-file-pdf"></i> Relatório PDF</a></li>
-            <li class="nav-item"><a href="#" onclick="exportVaultJSON()"><i class="fa-solid fa-download"></i> Backup JSON</a></li>
-            <li class="nav-item"><a href="#" onclick="importVaultJSON()"><i class="fa-solid fa-upload"></i> Importar JSON</a></li>
-            <li class="nav-item"><a href="#" onclick="exportVaultPDF()"><i class="fa-solid fa-file-pdf"></i> Meu Vault PDF</a></li>
-            
-            <li class="nav-separator" style="border-top: 2px solid var(--border-color); margin: 0.75rem 0;"></li>
-        </ul>
-
-        <!-- Accessibility Panel (A11y) -->
-        <div class="a11y-container" style="border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
-            <span style="font-size: 0.75rem; font-weight: 700; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 0.4rem;">
-                <i class="fa-solid fa-universal-access"></i> Acessibilidade
-            </span>
-            <!-- Font Size Adjuster -->
-            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.825rem; font-weight: 600;">
-                <span>Tamanho do Texto</span>
-                <div style="display: flex; gap: 0.4rem;">
-                    <button onclick="window.adjustFontSize('decrease')" title="Diminuir texto" style="background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary); width: 28px; height: 28px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75rem;">A-</button>
-                    <button onclick="window.adjustFontSize('reset')" title="Tamanho padrão" style="background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary); width: 28px; height: 28px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75rem;"><i class="fa-solid fa-arrows-rotate"></i></button>
-                    <button onclick="window.adjustFontSize('increase')" title="Aumentar texto" style="background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary); width: 28px; height: 28px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75rem;">A+</button>
-                </div>
-            </div>
-            <!-- Dyslexia Font Toggle -->
-            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.825rem; font-weight: 600;">
-                <span>Fonte Dislexia</span>
-                <label class="theme-switch" style="position: relative; display: inline-block; width: 42px; height: 20px;">
-                    <input type="checkbox" id="dyslexia-toggle" onchange="window.toggleDyslexiaFont(this.checked)">
-                    <span class="slider" style="border-radius: 20px;"></span>
-                </label>
-            </div>
-            <!-- High Contrast Toggle -->
-            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.825rem; font-weight: 600;">
-                <span>Alto Contraste</span>
-                <label class="theme-switch" style="position: relative; display: inline-block; width: 42px; height: 20px;">
-                    <input type="checkbox" id="contrast-toggle" onchange="window.toggleHighContrast(this.checked)">
-                    <span class="slider" style="border-radius: 20px;"></span>
-                </label>
-            </div>
-            <!-- Text-to-Speech -->
-            <button onclick="window.toggleTTS()" id="tts-btn" title="Ouvir Introdução" style="background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary); padding: 0.4rem 0.75rem; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; width: 100%; transition: var(--transition);">
-                <i id="tts-icon" class="fa-solid fa-volume-high" style="color: var(--gold-dark);"></i> <span id="tts-text">Ouvir Introdução</span>
-            </button>
-        </div>
-
-        <!-- Theme Switcher -->
-        <div class="theme-toggle-container">
-            <span style="font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-moon"></i> Modo Escuro</span>
-            <label class="theme-switch">
-                <input type="checkbox" id="theme-toggle">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div id="pwa-install-container" style="display: none; margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem; text-align: center;">
-            <button id="pwa-install-btn" class="welcome-btn" style="width: 100%; font-size: 0.85rem; padding: 0.6rem 1rem;">
-                <i class="fa-solid fa-download"></i> Instalar Aplicativo
-            </button>
-        </div>
-    </aside>
-
-    <!-- CONTENT -->
-    <main class="content" id="main-content">
+    </header>
+    
+    <main id="main-content" class="container">
         <!-- Toolbar de Filtros -->
         <div class="toolbar">
             <div class="toolbar-top">
                 <div class="search-box">
                     <input type="text" id="searchInput" placeholder="Buscar recurso, autor ou palavra-chave..." aria-label="Buscar recursos">
-                    <div class="search-actions">
-                        <button class="btn-icon-only" id="smartSearchBtn" title="Busca Inteligente"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
-                        <button class="btn-icon-only" id="addResourceBtnTop" title="Adicionar Recurso"><i class="fa-solid fa-plus"></i></button>
-                    </div>
                 </div>
+                <button class="btn btn-icon" id="themeToggle" title="Alternar tema" aria-label="Alternar tema claro/escuro">🌓</button>
             </div>
             
             <div class="filters" id="categoryFilters">
@@ -764,11 +532,20 @@
                 <button class="filter-btn" data-category="texto-biblico">Texto Bíblico</button>
             </div>
             
+            <div class="filters" id="languageFilters">
+                <button class="filter-btn" data-lang="all">Todas Línguas</button>
+                <button class="filter-btn" data-lang="hebraico">Hebraico</button>
+                <button class="filter-btn" data-lang="aramaico">Aramaico</button>
+                <button class="filter-btn" data-lang="grego">Grego</button>
+            </div>
+            
             <div class="action-bar">
                 <button class="btn btn-secondary" id="vaultBtn">📚 Meu Vault <span class="vault-counter" id="vaultCounter">0</span></button>
                 <button class="btn btn-secondary" id="pdfBtn">📄 Gerar Relatório PDF</button>
                 <button class="btn btn-secondary" id="jsonBtn">💾 Backup JSON</button>
                 <button class="btn btn-primary" id="exportVaultBtn">📤 Exportar Vault como PDF</button>
+                <button class="btn btn-primary" id="externalSearchBtn" style="background: #2563eb;">🌐 Busca Externa Inteligente</button>
+                <button class="btn btn-primary" id="addResourceBtn" style="background: #16a34a;">➕ Adicionar Recurso</button>
             </div>
         </div>
         
@@ -788,18 +565,9 @@
             <p>Tente ajustar os filtros ou termos de busca.</p>
         </div>
     </main>
-</div>
-
-<!-- Floating Sidebar Toggle Button (FAB) -->
-<button id="sidebar-toggle-fab" class="sidebar-toggle-fab" onclick="window.toggleSidebar()" title="Abrir Menu" aria-label="Alternar menu lateral" aria-expanded="false">
-    <i class="fa-solid fa-bars" aria-hidden="true"></i>
-</button>
-
-<!-- Link para pular para conteúdo principal -->
-<a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
-
-<!-- Botão flutuante para adicionar recurso -->
-<button class="floating-add-btn" id="floatingAddBtn" title="Adicionar Recurso" aria-label="Adicionar novo recurso">+</button>
+    
+    <!-- Botão flutuante para adicionar recurso -->
+    <button class="floating-add-btn" id="floatingAddBtn" title="Adicionar Recurso" aria-label="Adicionar novo recurso">+</button>
     
     <!-- Modal Vault -->
     <div class="modal-overlay" id="vaultModal">
@@ -1940,90 +1708,6 @@
 
         // Event listener para o formulário de edição com confirmação dupla
         document.getElementById('editResourceForm').addEventListener('submit', requestSaveConfirmation);
-
-        // Importar JSON do Vault
-        function importVaultJSON() {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            input.onchange = function(e) {
-                const file = e.target.files[0];
-                if (!file) return;
-                
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    try {
-                        const importedVault = JSON.parse(event.target.result);
-                        if (Array.isArray(importedVault)) {
-                            vault = [...new Set([...vault, ...importedVault])];
-                            saveVault();
-                            updateVaultCounter();
-                            showToast('✅ Vault importado com sucesso!');
-                        } else {
-                            showToast('❌ Arquivo JSON inválido');
-                        }
-                    } catch (err) {
-                        showToast('❌ Erro ao importar arquivo: ' + err.message);
-                    }
-                };
-                reader.readAsText(file);
-            };
-            input.click();
-        }
-
-        // Funções de acessibilidade (referenciadas pelo sidebar)
-        window.adjustFontSize = function(action) {
-            const body = document.body;
-            const currentSize = parseFloat(getComputedStyle(body).fontSize) || 16;
-            if (action === 'increase') {
-                body.style.fontSize = (currentSize + 1) + 'px';
-            } else if (action === 'decrease') {
-                body.style.fontSize = Math.max(12, currentSize - 1) + 'px';
-            } else {
-                body.style.fontSize = '16px';
-            }
-        };
-
-        window.toggleDyslexiaFont = function(enabled) {
-            if (enabled) {
-                document.body.style.fontFamily = 'OpenDyslexic, sans-serif';
-            } else {
-                document.body.style.fontFamily = '';
-            }
-        };
-
-        window.toggleHighContrast = function(enabled) {
-            if (enabled) {
-                document.body.setAttribute('data-contrast', 'high');
-            } else {
-                document.body.removeAttribute('data-contrast');
-            }
-        };
-
-        window.toggleTTS = function() {
-            showToast('🔊 Texto para fala em desenvolvimento...');
-        };
-
-        window.closeWelcomeModal = function() {
-            const modal = document.getElementById('welcome-modal-overlay');
-            if (modal) {
-                modal.classList.remove('show');
-                localStorage.setItem('welcomeModalDismissed', 'true');
-            }
-        };
-
-        window.toggleWelcomeButton = function(checked) {
-            const btn = document.getElementById('welcome-start-btn');
-            if (btn) {
-                btn.disabled = !checked;
-                btn.style.opacity = checked ? '1' : '0.5';
-                btn.style.pointerEvents = checked ? 'auto' : 'none';
-            }
-        };
     </script>
-
-<!-- Scripts de Acessibilidade -->
-<script src="accessibility.js" defer></script>
-<script src="script.js"></script>
 </body>
 </html>
