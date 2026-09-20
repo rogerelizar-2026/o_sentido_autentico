@@ -669,7 +669,7 @@
             <button class="lang-btn" data-lang="grego" title="Língua Grega">
                 <i class="fa-solid fa-book-bible"></i> <span>Grego Koiné</span>
             </button>
-            <a href="index.html" target="_blank" rel="noopener noreferrer" class="lang-btn nav-external" title="Portal do Estudante" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.75rem;">
+            <a href="index.html" rel="noopener noreferrer" class="lang-btn nav-external" title="Portal do Estudante" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.75rem;">
                 <i class="fa-solid fa-graduation-cap"></i> <span>Portal do Estudante</span>
             </a>
         </div>
@@ -678,8 +678,8 @@
         <ul class="nav-menu" id="ferramentas-menu">
             <li class="nav-item active"><a href="#" onclick="openVaultModal()"><i class="fa-solid fa-vault"></i> Meu Vault</a></li>
             <li class="nav-item"><a href="#" onclick="generatePDFReport()"><i class="fa-solid fa-file-pdf"></i> Relatório PDF</a></li>
-            <li class="nav-item"><a href="#" onclick="exportVaultJSON()"><i class="fa-solid fa-download"></i> Backup JSON</a></li>
-            <li class="nav-item"><a href="#" onclick="importVaultJSON()"><i class="fa-solid fa-upload"></i> Importar JSON</a></li>
+            <li class="nav-item"><a href="#" onclick="exportVaultJSON()"><i class="fa-solid fa-download"></i> Backup JSON (Exportar)</a></li>
+            <li class="nav-item"><a href="#" onclick="importVaultJSON()"><i class="fa-solid fa-upload"></i> Backup JSON (Importar)</a></li>
             <li class="nav-item"><a href="#" onclick="exportVaultPDF()"><i class="fa-solid fa-file-pdf"></i> Meu Vault PDF</a></li>
             
             <li class="nav-separator" style="border-top: 2px solid var(--border-color); margin: 0.75rem 0;"></li>
@@ -765,10 +765,7 @@
             </div>
             
             <div class="action-bar">
-                <button class="btn btn-secondary" id="vaultBtn">📚 Meu Vault <span class="vault-counter" id="vaultCounter">0</span></button>
-                <button class="btn btn-secondary" id="pdfBtn">📄 Gerar Relatório PDF</button>
-                <button class="btn btn-secondary" id="jsonBtn">💾 Backup JSON</button>
-                <button class="btn btn-primary" id="exportVaultBtn">📤 Exportar Vault como PDF</button>
+                <!-- Botões removidos conforme solicitação - funcionalidades agora disponíveis no menu lateral -->
             </div>
         </div>
         
@@ -1200,11 +1197,7 @@
                 renderResources();
             });
             
-            // Ações
-            document.getElementById('vaultBtn').addEventListener('click', openVaultModal);
-            document.getElementById('pdfBtn').addEventListener('click', () => generatePDF(filteredResources, 'Relatório de Busca'));
-            document.getElementById('jsonBtn').addEventListener('click', () => exportJSON(filteredResources, 'Filtrados'));
-            document.getElementById('exportVaultBtn').addEventListener('click', exportVaultPDF);
+            // Ações - botões removidos da página, funcionalidades agora no menu lateral
             document.getElementById('themeToggle').addEventListener('click', toggleTheme);
             document.getElementById('externalSearchBtn').addEventListener('click', performExternalSearch);
             document.getElementById('addResourceBtn').addEventListener('click', openAddResourceModal);
