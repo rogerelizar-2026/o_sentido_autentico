@@ -144,7 +144,7 @@
         
         .search-box input {
             width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            padding: 0.75rem 3rem 0.75rem 2.5rem;
             border: 1px solid var(--border);
             border-radius: 8px;
             background: var(--bg-primary);
@@ -177,6 +177,8 @@
             display: flex;
             gap: 0.5rem;
             align-items: center;
+            z-index: 10;
+            pointer-events: auto;
         }
 
         .btn-icon-only {
@@ -547,7 +549,7 @@
             font-size: 2rem;
             cursor: pointer;
             box-shadow: var(--shadow-lg);
-            display: none;
+            display: flex;
             align-items: center;
             justify-content: center;
             z-index: 998;
@@ -557,10 +559,6 @@
         .floating-add-btn:hover {
             background: var(--accent-hover);
             transform: scale(1.1);
-        }
-        
-        .floating-add-btn.visible {
-            display: flex;
         }
     </style>
 </head>
@@ -1210,24 +1208,8 @@
                 smartSearchBtn.addEventListener('click', performExternalSearch);
             }
             
-            // Botão flutuante - visibilidade e ação
+            // Botão flutuante "+" já está sempre visível no canto inferior direito
             const floatingAddBtn = document.getElementById('floatingAddBtn');
-            const actionBar = document.querySelector('.action-bar');
-            
-            window.addEventListener('scroll', () => {
-                if (actionBar) {
-                    const actionBarRect = actionBar.getBoundingClientRect();
-                    const viewportHeight = window.innerHeight;
-                    
-                    // Mostra o botão flutuante quando a action bar não está mais visível
-                    if (actionBarRect.bottom < 0 || actionBarRect.top > viewportHeight) {
-                        floatingAddBtn.classList.add('visible');
-                    } else {
-                        floatingAddBtn.classList.remove('visible');
-                    }
-                }
-            });
-            
             floatingAddBtn.addEventListener('click', openAddResourceModal);
             
             // Fechar modal ao clicar fora
