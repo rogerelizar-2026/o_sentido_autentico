@@ -1276,23 +1276,33 @@ body.sidebar-collapsed .sidebar-toggle-fab {
         top: 0;
         left: 0;
         bottom: 0;
-        width: 280px;
+        width: 300px; /* Aumentado para melhor legibilidade */
+        max-width: 85vw; /* Nunca ocupa mais que 85% da viewport */
         height: 100vh;
         overflow-y: auto !important;
         z-index: 1000;
         transform: translateX(-100%);
-        margin-left: 0 !important; /* cancel margin-left collapse */
+        margin-left: 0 !important;
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         opacity: 1 !important;
         pointer-events: auto !important;
+        -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
     }
     body:not(.sidebar-collapsed) .sidebar {
         transform: translateX(0);
         box-shadow: 10px 0 30px rgba(0,0,0,0.25);
     }
     .content {
-        padding: 1.5rem;
+        padding: 1rem 0.75rem;
         margin-left: 0 !important;
+    }
+    /* Mobile FAB - maior e mais acessível */
+    .sidebar-toggle-fab {
+        width: 56px !important; /* Área de toque maior */
+        height: 56px !important;
+        font-size: 1.4rem !important;
+        top: 15px !important;
+        left: 15px !important;
     }
     /* Mobile FAB is always visible unless the drawer is open */
     body.sidebar-collapsed .sidebar-toggle-fab {
@@ -2576,14 +2586,359 @@ input:focus, select:focus, textarea:focus, button:focus, a:focus {
 }
 
 /* Advanced responsive adjustments for full mobile view */
+/* ==========================================================================
+   MOBILE OPTIMIZATION - ENHANCED FOR SMALL SCREENS (V29)
+   ========================================================================== */
 @media (max-width: 768px) {
-    .content {
-        padding: 1rem 0.5rem !important; /* Maximizes card width on mobile screen */
+    /* Otimizações gerais de toque e interação */
+    * {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
     }
+    
+    /* Sidebar otimizada para mobile */
+    .sidebar {
+        width: 300px !important;
+        max-width: 85vw !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    .sidebar-logo h1 {
+        font-size: 1.1rem !important;
+    }
+    
+    .sidebar-logo p {
+        font-size: 0.7rem !important;
+    }
+    
+    /* Botões de navegação com área de toque adequada (WCAG) */
+    .nav-item a,
+    .lang-btn {
+        min-height: 52px !important; /* Área de toque WCAG AAA */
+        padding: 1rem 1.2rem !important;
+        font-size: 1rem !important;
+        display: flex !important;
+        align-items: center !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+    }
+    
+    .nav-item a i,
+    .lang-btn i {
+        font-size: 1.2rem !important;
+        min-width: 24px !important;
+    }
+    
+    .lang-selector-group .group-title {
+        font-size: 0.75rem !important;
+        padding: 0.5rem 0 !important;
+    }
+    
+    /* Accordion methods - melhor espaçamento para toque */
+    .method__head {
+        padding: 1.1rem 1.3rem !important;
+        min-height: 60px !important;
+        font-size: 1rem !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+    }
+    
+    .method__body {
+        padding: 1.3rem !important;
+        font-size: 0.95rem !important;
+        line-height: 1.7 !important;
+    }
+    
+    .method__num {
+        font-size: 0.85rem !important;
+        padding: 0.35rem 0.65rem !important;
+    }
+    
+    /* Level cards - otimização mobile */
+    .level__head {
+        padding: 1.3rem 1.5rem !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.9rem !important;
+    }
+    
+    .level__title {
+        font-size: 1.2rem !important;
+    }
+    
+    .level__badge {
+        font-size: 0.75rem !important;
+        padding: 0.35rem 0.75rem !important;
+    }
+    
+    .objectives, .materials, .strategies {
+        padding: 1.3rem 1.5rem !important;
+    }
+    
+    .objectives ul, .materials ul, .checkpoint ul {
+        margin-left: 1.1rem !important;
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+    }
+    
+    /* Content area - maximiza espaço útil */
+    .content {
+        padding: 1rem 0.75rem !important;
+    }
+    
     .section-card {
-        padding: 1.25rem 1rem !important; /* Increases readability space inside cards */
-        margin-bottom: 1.25rem !important;
+        padding: 1.6rem 1.3rem !important;
+        margin-bottom: 1.6rem !important;
+        border-radius: 12px !important;
+    }
+    
+    .section-title {
+        font-size: 1.35rem !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.6rem !important;
+    }
+    
+    /* Header banner - ajusta para mobile */
+    .header-banner {
+        padding: 2.2rem 1.5rem !important;
+    }
+    
+    .banner-verse {
+        font-size: 1.25rem !important;
+    }
+    
+    .banner-title {
+        font-size: 1.7rem !important;
+    }
+    
+    .banner-subtitle {
+        font-size: 1rem !important;
+    }
+    
+    /* Prompt boxes - melhor legibilidade */
+    .prompt-box,
+    .prompt__body {
+        font-size: 0.9rem !important;
+        padding: 1.1rem !important;
+        max-height: 280px !important;
+        line-height: 1.6 !important;
+    }
+    
+    .copy-btn,
+    .prompt__copy {
+        min-height: 44px !important;
+        min-width: 44px !important;
+        padding: 0.6rem 0.85rem !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* Tables responsivas */
+    .table-responsive {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    table {
+        font-size: 0.9rem !important;
+        line-height: 1.5 !important;
+    }
+    
+    th, td {
+        padding: 0.85rem 0.6rem !important;
+    }
+    
+    /* Buttons - área de toque adequada */
+    button,
+    .btn,
+    .welcome-btn {
+        min-height: 52px !important;
+        padding: 1rem 1.6rem !important;
+        font-size: 1.05rem !important;
+        touch-action: manipulation !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+    }
+    
+    /* Welcome modal otimizado */
+    .welcome-modal {
+        padding: 1.6rem !important;
+        max-height: 95vh !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    .welcome-modal-icon {
+        font-size: 2.6rem !important;
+    }
+    
+    .welcome-modal h2 {
+        font-size: 1.55rem !important;
+    }
+    
+    .welcome-modal-text,
+    .welcome-modal-subtitle {
+        font-size: 1rem !important;
+        line-height: 1.7 !important;
+    }
+    
+    #welcome-scroll-container {
+        max-height: 260px !important;
+        font-size: 0.9rem !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    /* Checkbox e inputs maiores para toque */
+    input[type="checkbox"],
+    input[type="radio"] {
+        width: 22px !important;
+        height: 22px !important;
+        margin-right: 0.6rem !important;
+    }
+    
+    /* Accessibility toolbar - posicionamento mobile */
+    .accessibility-toolbar {
+        bottom: 12px !important;
+        right: 12px !important;
+        left: 12px !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        gap: 0.4rem !important;
+    }
+    
+    .a11y-btn {
+        min-width: 48px !important;
+        min-height: 48px !important;
+        padding: 0.65rem !important;
+        font-size: 1.1rem !important;
+    }
+    
+    /* Coffee card flat */
+    .coffee-card-flat {
+        padding: 1.6rem !important;
+        gap: 1.6rem !important;
+        flex-direction: column !important;
+    }
+    
+    .coffee-pix-box {
+        padding: 1.6rem !important;
+        width: 100% !important;
+    }
+    
+    /* Book covers */
+    .book-cover-img {
+        height: 65px !important;
+    }
+    
+    /* Tags menores mas legíveis */
+    .tag {
+        font-size: 0.75rem !important;
+        padding: 0.3rem 0.55rem !important;
+    }
+    
+    /* Badges */
+    .badge {
+        font-size: 0.8rem !important;
+        padding: 0.35rem 0.65rem !important;
+    }
+    
+    /* Hebrew and Greek text - ajusta para mobile */
+    .hebrew-text {
+        font-size: 1.25em !important;
+    }
+    
+    .greek-text {
+        font-size: 1.2em !important;
+    }
+    
+    /* Footer mobile */
+    footer {
+        padding: 1.6rem 1.1rem !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* Links e elementos interativos */
+    a, button, [role="button"] {
+        -webkit-tap-highlight-color: rgba(197, 160, 89, 0.3);
+    }
+}
+
+/* ==========================================================================
+   EXTRA SMALL DEVICES (< 375px) - iPhone SE, Galaxy Fold, etc.
+   ========================================================================== */
+@media (max-width: 375px) {
+    .sidebar {
+        width: 280px !important;
+        max-width: 90vw !important;
+    }
+    
+    .nav-item a,
+    .lang-btn {
+        font-size: 0.9rem !important;
+        padding: 0.8rem 1rem !important;
+        min-height: 44px !important;
+    }
+    
+    .section-card {
+        padding: 1.2rem 1rem !important;
         border-radius: 10px !important;
+    }
+    
+    .section-title {
+        font-size: 1.2rem !important;
+    }
+    
+    .banner-title {
+        font-size: 1.4rem !important;
+    }
+    
+    .banner-verse {
+        font-size: 1.1rem !important;
+    }
+    
+    .method__head {
+        font-size: 0.9rem !important;
+        padding: 0.9rem 1rem !important;
+    }
+    
+    .method__body {
+        font-size: 0.85rem !important;
+        padding: 1rem !important;
+    }
+    
+    .welcome-modal {
+        padding: 1.2rem !important;
+        width: 95% !important;
+    }
+    
+    .welcome-modal h2 {
+        font-size: 1.3rem !important;
+    }
+}
+
+/* ==========================================================================
+   LANDSCAPE MODE - Otimização para celular em modo paisagem
+   ========================================================================== */
+@media (max-width: 899px) and (orientation: landscape) {
+    .sidebar {
+        max-width: 260px !important;
+    }
+    
+    .welcome-modal {
+        max-height: 90vh !important;
+        overflow-y: auto !important;
+    }
+    
+    #welcome-scroll-container {
+        max-height: 150px !important;
+    }
+    
+    .header-banner {
+        padding: 1.5rem 1rem !important;
+    }
+    
+    .banner-title {
+        font-size: 1.4rem !important;
     }
 }
 
