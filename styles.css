@@ -956,7 +956,11 @@
 
 /* capas dos livros */
 .book-cover-img {
-    height: 70px;
+    height: auto;
+    max-height: 200px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
     border-radius: 4px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     transition: var(--transition);
