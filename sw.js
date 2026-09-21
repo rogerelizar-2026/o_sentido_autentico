@@ -1,10 +1,10 @@
-const CACHE_NAME = 'o-sentido-autentico-cache-v31';
+const CACHE_NAME = 'o-sentido-autentico-cache-v32';
 const ASSETS = [
     'index.html',
     'styles.css',
     'script.js',
     'manifest.json',
-    'ferramentas-biblicas.html',
+    'caixa-de-ferramentas.html',
     'imagens/infografico-hebraico.png',
     'imagens/infografico-grego.png',
     'imagens/infografico-gemini.png',
