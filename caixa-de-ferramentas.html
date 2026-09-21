@@ -1199,8 +1199,6 @@
             
             // Ações - botões removidos da página, funcionalidades agora no menu lateral
             document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-            document.getElementById('externalSearchBtn').addEventListener('click', performExternalSearch);
-            document.getElementById('addResourceBtn').addEventListener('click', openAddResourceModal);
             
             // Botão Busca Inteligente
             const smartSearchBtn = document.getElementById('smartSearchBtn');
@@ -1210,7 +1208,9 @@
             
             // Botão flutuante "+" já está sempre visível no canto inferior direito
             const floatingAddBtn = document.getElementById('floatingAddBtn');
-            floatingAddBtn.addEventListener('click', openAddResourceModal);
+            if (floatingAddBtn) {
+                floatingAddBtn.addEventListener('click', openAddResourceModal);
+            }
             
             // Fechar modal ao clicar fora
             document.getElementById('vaultModal').addEventListener('click', (e) => {
