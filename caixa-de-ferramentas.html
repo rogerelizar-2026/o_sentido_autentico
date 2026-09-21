@@ -1842,14 +1842,34 @@
                 const reader = new FileReader();
                 reader.onload = function(event) {
                     try {
-                        const importedVault = JSON.parse(event.target.result);
-                        if (Array.isArray(importedVault)) {
+                        const importedData = JSON.parse(event.target.result);
+                        
+                        // Suporta dois formatos:
+                        // 1. Formato antigo: array direto de IDs
+                        // 2. Formato novo: objeto com metadata e vault
+                        let importedVault = [];
+                        
+                        if (Array.isArray(importedData)) {
+                            // Formato antigo: array direto
+                            importedVault = importedData;
+                        } else if (importedData && typeof importedData === 'object') {
+                            if (Array.isArray(importedData.vault)) {
+                                // Formato novo: objeto com metadata.vault
+                                // Extrai apenas os IDs dos recursos
+                                importedVault = importedData.vault.map(r => r.id).filter(id => id);
+                            } else if (Array.isArray(importedData.resources)) {
+                                // Alternativa: objeto com resources
+                                importedVault = importedData.resources.map(r => r.id).filter(id => id);
+                            }
+                        }
+                        
+                        if (importedVault.length > 0) {
                             vault = [...new Set([...vault, ...importedVault])];
                             saveVault();
                             updateVaultCounter();
-                            showToast('✅ Vault importado com sucesso!');
+                            showToast(`✅ ${importedVault.length} recurso(s) importado(s) com sucesso!`);
                         } else {
-                            showToast('❌ Arquivo JSON inválido');
+                            showToast('❌ Arquivo JSON inválido: nenhum recurso encontrado');
                         }
                     } catch (err) {
                         showToast('❌ Erro ao importar arquivo: ' + err.message);
