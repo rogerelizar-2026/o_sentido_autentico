@@ -1,4 +1,44 @@
-```
+# Compiled and binary files
+*.pyc
+*.class
+*.o
+*.exe
+*.dll
+*.so
+*.a
+*.obj
+*.out
+
+# Dependencies
+node_modules/
+venv/
+.venv/
+__pycache__/
+dist/
+build/
+target/
+.gradle/
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# System files
+.DS_Store
+Thumbs.db
+.env
+.env.local
+*.env.*
+
+# Logs and coverage
+*.log
+coverage/
+htmlcov/
+.coverage
+
 # Compressed files
 *.zip
 *.gz
@@ -23,20 +63,6 @@
 *.tar.xz
 *.tar.zst
 
-# Image files (from arquivomorto directory)
-"arquivomorto/Anatomia_do_Estudo_B\\303\\255blico_Profundo.png"
-arquivomorto/icon-192.png
-arquivomorto/icon-512.png
-arquivomorto/infografico-gemini.png
-arquivomorto/infografico-grego.png
-arquivomorto/infografico-hebraico.png
-arquivomorto/infografico-notebook.png
-
-# Backup and archive files
-SA-Bvkp.zip
-
-# Temporary/backup files
-*.tmp
-*.bak
-*.backup
-```
+# Cache directories
+.mypy_cache/
+.pytest_cache/

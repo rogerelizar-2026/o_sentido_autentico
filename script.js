@@ -163,14 +163,24 @@ const SidebarManager = (function() {
         let body = document.body;
         
         function init() {
+            // Load saved theme from localStorage on initialization
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.setAttribute('data-theme', 'dark');
+            }
+            
             const themeToggle = document.getElementById('theme-toggle');
             if (themeToggle) {
+                // Set initial checkbox state based on saved theme
+                themeToggle.checked = savedTheme === 'dark';
+                
                 themeToggle.addEventListener('change', () => {
-                    body.toggleAttribute('data-theme', themeToggle.checked);
                     if (themeToggle.checked) {
                         body.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
                     } else {
                         body.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
                     }
                 });
             }
