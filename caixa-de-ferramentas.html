@@ -535,6 +535,13 @@
             * { transition: none !important; animation: none !important; }
         }
         
+        /* Animação pulse para destacar novo recurso */
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: var(--shadow); }
+            50% { transform: scale(1.02); box-shadow: var(--shadow-lg); }
+            100% { transform: scale(1); box-shadow: var(--shadow); }
+        }
+        
         /* Botão flutuante para adicionar recurso */
         .floating-add-btn {
             position: fixed;
@@ -546,7 +553,7 @@
             background: var(--accent);
             color: white;
             border: none;
-            font-size: 2rem;
+            font-size: 1.5rem;
             cursor: pointer;
             box-shadow: var(--shadow-lg);
             display: flex;
@@ -559,6 +566,11 @@
         .floating-add-btn:hover {
             background: var(--accent-hover);
             transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+        
+        .floating-add-btn:active {
+            transform: scale(0.95);
         }
     </style>
 </head>
@@ -744,7 +756,7 @@
                 <div class="search-box">
                     <input type="text" id="searchInput" placeholder="Buscar recurso, autor ou palavra-chave..." aria-label="Buscar recursos">
                     <div class="search-actions">
-                        <button class="btn-icon-only" id="smartSearchBtn" title="Busca Inteligente"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+                        <button class="btn-icon-only" id="smartSearchBtn" title="Busca Inteligente (Google Scholar)" aria-label="Busca Inteligente"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
                     </div>
                 </div>
             </div>
@@ -795,7 +807,7 @@
 <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
 
 <!-- Botão flutuante para adicionar recurso -->
-<button class="floating-add-btn" id="floatingAddBtn" title="Adicionar Recurso" aria-label="Adicionar novo recurso">+</button>
+<button class="floating-add-btn" id="floatingAddBtn" title="Adicionar Novo Recurso" aria-label="Adicionar novo recurso à sua coleção"><i class="fa-solid fa-plus"></i></button>
     
     <!-- Modal Vault -->
     <div class="modal-overlay" id="vaultModal">
@@ -1200,16 +1212,16 @@
             // Ações - botões removidos da página, funcionalidades agora no menu lateral
             document.getElementById('themeToggle').addEventListener('click', toggleTheme);
             
-            // Botão Busca Inteligente
+            // Botão Busca Inteligente - abre busca externa em sites acadêmicos confiáveis
             const smartSearchBtn = document.getElementById('smartSearchBtn');
             if (smartSearchBtn) {
-                smartSearchBtn.addEventListener('click', performExternalSearch);
+                smartSearchBtn.addEventListener('click', performSmartSearch);
             }
             
-            // Botão flutuante "+" já está sempre visível no canto inferior direito
+            // Botão flutuante "+" para adicionar novo recurso
             const floatingAddBtn = document.getElementById('floatingAddBtn');
             if (floatingAddBtn) {
-                floatingAddBtn.addEventListener('click', openAddResourceModal);
+                floatingAddBtn.addEventListener('click', showAddResourceModal);
             }
             
             // Fechar modal ao clicar fora
@@ -1217,22 +1229,25 @@
                 if (e.target.id === 'vaultModal') e.target.classList.remove('active');
             });
             document.getElementById('addResourceModal').addEventListener('click', (e) => {
-                if (e.target.id === 'addResourceModal') closeAddResourceModal();
+                if (e.target.id === 'addResourceModal') hideAddResourceModal();
             });
             
-            // Form submit
-            document.getElementById('addResourceForm').addEventListener('submit', handleAddResource);
+            // Form submit para adicionar recurso
+            document.getElementById('addResourceForm').addEventListener('submit', saveNewResource);
         }
         
         // ==========================================
-        // BUSCA EXTERNA INTELIGENTE
+        // BUSCA INTELIGENTE EXTERNA
         // ==========================================
-        window.performExternalSearch = function() {
+        /**
+         * Realiza busca externa em sites acadêmicos confiáveis de línguas bíblicas
+         */
+        function performSmartSearch() {
             const searchInput = document.getElementById('searchInput');
             const query = searchInput.value.trim();
             
             if (!query) {
-                showToast('Digite um termo para buscar externamente');
+                showToast('⚠️ Digite um termo para buscar externamente');
                 searchInput.focus();
                 return;
             }
@@ -1253,56 +1268,90 @@
             
             // Constrói query com filtro de domínio para resultados acadêmicos
             const siteQuery = trustedDomains.map(d => `site:${d}`).join(' OR ');
-            const fullQuery = `${query} (${siteQuery})`;
+            const academicQuery = `${query} (${siteQuery})`;
             
-            // Opções de busca
+            // Opções de busca disponíveis
             const searchOptions = [
                 {
-                    name: 'Google Acadêmico (Sites Confiáveis)',
-                    url: `https://www.google.com/search?q=${encodeURIComponent(fullQuery)}`
+                    name: '🎓 Google Acadêmico (Sites Confiáveis)',
+                    description: 'Filtra apenas sites acadêmicos selecionados',
+                    url: `https://www.google.com/search?q=${encodeURIComponent(academicQuery)}`,
+                    icon: 'fa-graduation-cap'
                 },
                 {
-                    name: 'Busca Geral no Google',
-                    url: `https://www.google.com/search?q=${encodeURIComponent(query + ' biblical hebrew greek lexicon grammar')}`
+                    name: '🔍 Google Geral',
+                    description: 'Busca ampla na web sobre línguas bíblicas',
+                    url: `https://www.google.com/search?q=${encodeURIComponent(query + ' biblical hebrew greek lexicon grammar')}`,
+                    icon: 'fa-search'
                 },
                 {
-                    name: 'DuckDuckGo (Privacidade)',
-                    url: `https://duckduckgo.com/?q=${encodeURIComponent(query + ' biblical languages')}`
+                    name: '🦆 DuckDuckGo',
+                    description: 'Busca privada sem rastreamento',
+                    url: `https://duckduckgo.com/?q=${encodeURIComponent(query + ' biblical languages')}`,
+                    icon: 'fa-user-secret'
                 },
                 {
-                    name: 'Sefaria (Textos Judaicos)',
-                    url: `https://www.sefaria.org/search?q=${encodeURIComponent(query)}&tab=text`
+                    name: '📜 Sefaria',
+                    description: 'Textos judaicos em hebraico e aramaico',
+                    url: `https://www.sefaria.org/search?q=${encodeURIComponent(query)}&tab=text`,
+                    icon: 'fa-scroll'
                 },
                 {
-                    name: 'Step Bible (Grego/Hebraico)',
-                    url: `https://www.stepbible.org/?q=${encodeURIComponent(query)}`
+                    name: '✝️ Step Bible',
+                    description: 'Ferramentas avançadas de grego e hebraico',
+                    url: `https://www.stepbible.org/?q=${encodeURIComponent(query)}`,
+                    icon: 'fa-book-bible'
                 }
             ];
             
-            // Cria modal de seleção
+            // Cria modal de seleção com design melhorado
             const modalHTML = `
-                <div class="modal-overlay active" id="searchModal">
-                    <div class="modal" style="max-width:500px;">
-                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
-                            <h2 style="font-family:var(--font-serif);">🌐 Busca Externa Inteligente</h2>
-                            <button class="btn-icon" onclick="document.getElementById('searchModal').remove()">✕</button>
+                <div class="modal-overlay active" id="smartSearchModal" role="dialog" aria-labelledby="smartSearchTitle" aria-modal="true">
+                    <div class="modal" style="max-width:550px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border);">
+                            <h2 id="smartSearchTitle" style="font-family:var(--font-serif);font-size:1.4rem;">
+                                <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--accent);"></i> 
+                                Busca Inteligente Externa
+                            </h2>
+                            <button class="btn-icon" onclick="closeSmartSearchModal()" aria-label="Fechar modal">
+                                <i class="fa-solid fa-times"></i>
+                            </button>
                         </div>
-                        <p style="color:var(--text-secondary);margin-bottom:1.5rem;font-size:0.95rem;">
-                            Termo: <strong>"${query}"</strong><br><br>
-                            Escolha onde buscar:
+                        
+                        <div style="background:var(--highlight);padding:1rem;border-radius:8px;margin-bottom:1.25rem;">
+                            <p style="color:var(--text-secondary);font-size:0.95rem;margin:0;">
+                                <strong>Termo buscado:</strong> <span style="color:var(--accent);font-weight:600;">"${escapeHtml(query)}"</span>
+                            </p>
+                        </div>
+                        
+                        <p style="color:var(--text-secondary);margin-bottom:1rem;font-size:0.9rem;">
+                            <i class="fa-regular fa-lightbulb" style="color:var(--accent);"></i> 
+                            Escolha uma das fontes abaixo para realizar sua busca:
                         </p>
-                        <div style="display:flex;flex-direction:column;gap:0.75rem;">
-                            ${searchOptions.map(opt => `
-                                <button class="btn btn-secondary" 
-                                        onclick="window.open('${opt.url}', '_blank');document.getElementById('searchModal').remove();"
-                                        style="justify-content:flex-start;text-align:left;padding:1rem;">
-                                    ${opt.name}
+                        
+                        <div style="display:flex;flex-direction:column;gap:0.6rem;">
+                            ${searchOptions.map((opt, index) => `
+                                <button class="btn btn-secondary smart-search-option" 
+                                        data-index="${index}"
+                                        style="justify-content:flex-start;text-align:left;padding:0.9rem 1rem;border-radius:8px;transition:all 0.2s;"
+                                        aria-label="${opt.name}: ${opt.description}">
+                                    <div style="display:flex;align-items:center;gap:0.75rem;width:100%;">
+                                        <i class="fa-solid ${opt.icon}" style="color:var(--accent);font-size:1.2rem;min-width:24px;"></i>
+                                        <div style="flex:1;">
+                                            <div style="font-weight:600;color:var(--text-primary);font-size:0.95rem;">${opt.name}</div>
+                                            <div style="font-size:0.8rem;color:var(--text-secondary);margin-top:0.2rem;">${opt.description}</div>
+                                        </div>
+                                        <i class="fa-solid fa-arrow-up-right-from-square" style="color:var(--text-secondary);opacity:0.5;font-size:0.85rem;"></i>
+                                    </div>
                                 </button>
                             `).join('')}
                         </div>
-                        <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);">
-                            <p style="font-size:0.8rem;color:var(--text-secondary);">
-                                💡 Dica: A primeira opção filtra resultados apenas de sites acadêmicos confiáveis.
+                        
+                        <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px dashed var(--border);">
+                            <p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.5;">
+                                <i class="fa-solid fa-circle-info" style="color:var(--accent);"></i> 
+                                <strong>Dica profissional:</strong> A primeira opção usa operadores avançados do Google para filtrar resultados 
+                                apenas dos sites acadêmicos mais confiáveis para estudo das línguas bíblicas.
                             </p>
                         </div>
                     </div>
@@ -1310,6 +1359,43 @@
             `;
             
             document.body.insertAdjacentHTML('beforeend', modalHTML);
+            
+            // Adicionar event listeners para os botões de busca
+            setTimeout(() => {
+                document.querySelectorAll('.smart-search-option').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        const option = searchOptions[index];
+                        window.open(option.url, '_blank', 'noopener,noreferrer');
+                        closeSmartSearchModal();
+                        showToast(`🔍 Abrindo busca em: ${option.name}`);
+                    });
+                });
+                
+                // Focar no primeiro botão para acessibilidade
+                const firstBtn = document.querySelector('.smart-search-option');
+                if (firstBtn) firstBtn.focus();
+            }, 50);
+        }
+        
+        /**
+         * Fecha o modal de busca inteligente
+         */
+        function closeSmartSearchModal() {
+            const modal = document.getElementById('smartSearchModal');
+            if (modal) {
+                modal.classList.remove('active');
+                setTimeout(() => modal.remove(), 200);
+            }
+        }
+        
+        /**
+         * Escapa caracteres HTML para segurança
+         */
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
         
         // ==========================================
@@ -1359,7 +1445,7 @@
             const freeTag = r.free ? '<span class="tag">🆓 Gratuito</span>' : '';
             
             return `
-                <article class="resource-card" data-id="${r.id}">
+                <article class="resource-card" data-id="${r.id}" data-resource-id="${r.id}">
                     <div class="card-header">
                         <span class="card-category">${getCategoryLabel(r.category)}</span>
                         <div style="display:flex;align-items:center;">
@@ -1688,17 +1774,30 @@
         // ==========================================
         // ADICIONAR RECURSO
         // ==========================================
-        function openAddResourceModal() {
-            document.getElementById('addResourceModal').classList.add('active');
-            document.getElementById('resourceTitle').focus();
+        /**
+         * Mostra o modal para adicionar novo recurso
+         */
+        function showAddResourceModal() {
+            const modal = document.getElementById('addResourceModal');
+            modal.classList.add('active');
+            setTimeout(() => {
+                document.getElementById('resourceTitle').focus();
+            }, 100);
         }
         
-        function closeAddResourceModal() {
-            document.getElementById('addResourceModal').classList.remove('active');
+        /**
+         * Esconde o modal de adicionar recurso
+         */
+        function hideAddResourceModal() {
+            const modal = document.getElementById('addResourceModal');
+            modal.classList.remove('active');
             document.getElementById('addResourceForm').reset();
         }
         
-        function handleAddResource(e) {
+        /**
+         * Salva um novo recurso na base de dados
+         */
+        function saveNewResource(e) {
             e.preventDefault();
             
             const title = document.getElementById('resourceTitle').value.trim();
@@ -1711,8 +1810,17 @@
             const description = document.getElementById('resourceDescription').value.trim();
             const isFree = document.getElementById('resourceFree').checked;
             
+            // Validação dos campos obrigatórios
             if (!title || !author || !category || !language || !level || !type || !link || !description) {
-                showToast('Preencha todos os campos obrigatórios');
+                showToast('⚠️ Preencha todos os campos obrigatórios (*)');
+                return;
+            }
+            
+            // Validação de URL
+            try {
+                new URL(link);
+            } catch (e) {
+                showToast('⚠️ Por favor, insira uma URL válida');
                 return;
             }
             
@@ -1720,18 +1828,20 @@
             const maxId = resourcesDB.reduce((max, r) => Math.max(max, r.id), 0);
             const newId = maxId + 1;
             
-            // Criar novo recurso
+            // Criar novo recurso com estrutura padronizada
             const newResource = {
                 id: newId,
-                title: title,
-                author: author,
+                title: sanitizeInput(title),
+                author: sanitizeInput(author),
                 category: category,
                 language: language,
                 level: level,
                 type: type,
-                link: link,
-                description: description,
-                free: isFree
+                link: sanitizeInput(link),
+                description: sanitizeInput(description),
+                free: isFree,
+                dateAdded: new Date().toISOString(),
+                isUserAdded: true
             };
             
             // Adicionar ao array principal
@@ -1744,8 +1854,26 @@
             renderResources();
             
             // Fechar modal e mostrar feedback
-            closeAddResourceModal();
-            showToast(`✅ Recurso "${title}" adicionado com sucesso!`);
+            hideAddResourceModal();
+            showToast(`✅ Recurso "${newResource.title}" adicionado com sucesso!`);
+            
+            // Scroll suave até o novo recurso
+            setTimeout(() => {
+                const newCard = document.querySelector(`[data-resource-id="${newId}"]`);
+                if (newCard) {
+                    newCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    newCard.style.animation = 'pulse 1s ease-in-out';
+                }
+            }, 300);
+        }
+        
+        /**
+         * Sanitiza input de texto para prevenir XSS
+         */
+        function sanitizeInput(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
         
         function saveUserResources() {
