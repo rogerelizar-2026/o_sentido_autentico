@@ -542,36 +542,6 @@
             100% { transform: scale(1); box-shadow: var(--shadow); }
         }
         
-        /* Botão flutuante para adicionar recurso */
-        .floating-add-btn {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--accent);
-            color: white;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: var(--shadow-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 998;
-            transition: all 0.3s;
-        }
-        
-        .floating-add-btn:hover {
-            background: var(--accent-hover);
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
-        }
-        
-        .floating-add-btn:active {
-            transform: scale(0.95);
-        }
     </style>
 </head>
 <body class="sidebar-collapsed">
@@ -756,9 +726,6 @@
             <div class="toolbar-top">
                 <div class="search-box">
                     <input type="text" id="searchInput" placeholder="Buscar recurso, autor ou palavra-chave..." aria-label="Buscar recursos">
-                    <div class="search-actions">
-                        <button class="btn-icon-only" id="smartSearchBtn" title="Busca Inteligente (Google Scholar)" aria-label="Busca Inteligente"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
-                    </div>
                 </div>
             </div>
             
@@ -806,9 +773,6 @@
 
 <!-- Link para pular para conteúdo principal -->
 <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
-
-<!-- Botão flutuante para adicionar recurso -->
-<button class="floating-add-btn" id="floatingAddBtn" title="Adicionar Novo Recurso" aria-label="Adicionar novo recurso à sua coleção"><i class="fa-solid fa-plus"></i></button>
     
     <!-- Modal Vault -->
     <div class="modal-overlay" id="vaultModal">
@@ -828,102 +792,7 @@
             </div>
         </div>
     </div>
-    
-    <!-- Modal Adicionar Recurso -->
-    <div class="modal-overlay" id="addResourceModal">
-        <div class="modal">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
-                <h2 style="font-family:var(--font-serif);">➕ Adicionar Novo Recurso</h2>
-                <button class="btn-icon" onclick="closeAddResourceModal()">✕</button>
-            </div>
-            <p style="color:var(--text-secondary);margin-bottom:1.5rem;font-size:0.95rem;">
-                Preencha as informações abaixo para adicionar um recurso à sua caixa de ferramentas:
-            </p>
-            <form id="addResourceForm" style="display:flex;flex-direction:column;gap:1rem;">
-                <div>
-                    <label for="resourceTitle" style="display:block;margin-bottom:0.5rem;font-weight:500;font-size:0.9rem;">Título *</label>
-                    <input type="text" id="resourceTitle" required style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-size:1rem;">
-                </div>
-                <div>
-                    <label for="resourceAuthor" style="display:block;margin-bottom:0.5rem;font-weight:500;font-size:0.9rem;">Autor/Editor *</label>
-                    <input type="text" id="resourceAuthor" required style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-size:1rem;">
-                </div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-                    <div>
-                        <label for="resourceCategory" style="display:block;margin-bottom:0.5rem;font-weight:500;font-size:0.9rem;">Categoria *</label>
-                        <select id="resourceCategory" required style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-size:1rem;">
-                            <option value="">Selecione...</option>
-                            <option value="gramatica">Gramática</option>
-                            <option value="lexico">Léxico</option>
-                            <option value="manuscritologia">Manuscritologia</option>
-                            <option value="critica-textual">Crítica Textual</option>
-                            <option value="exegese">Exegese</option>
-                            <option value="software">Software</option>
-                            <option value="app">App Mobile</option>
-                            <option value="midia">Mídia</option>
-                            <option value="mapas">Mapas/Diagramas</option>
-                            <option value="texto-biblico">Texto Bíblico</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="resourceLanguage" style="display:block;margin-bottom:0.5rem;font-weight:500;font-size:0.9rem;">Idioma *</label>
-                        <select id="resourceLanguage" required style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-size:1rem;">
-                            <option value="">Selecione...</option>
-                            <option value="hebraico">Hebraico</option>
-                            <option value="aramaico">Aramaico</option>
-                            <option value="grego">Grego</option>
-                            <option value="todos">Todos/Tri-língue</option>
-                        </select>
-                    </div>
-                </div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-                    <div>
-                        <label for="resourceLevel" style="display:block;margin-bottom:0.5rem;font-weight:500;font-size:0.9rem;">Nível *</label>
-                        <select id="resourceLevel" required style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-size:1rem;">
-                            <option value="">Selecione...</option>
-                            <option value="iniciante">Iniciante</option>
-                            <option value="intermediario">Intermediário</option>
-                            <option value="avancado">Avançado</option>
-                            <option value="todos">Todos os Níveis</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="resourceType" style="display:block;margin-bottom:0.5rem;font-weight:500;font-size:0.9rem;">Tipo *</label>
-                        <select id="resourceType" required style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-size:1rem;">
-                            <option value="">Selecione...</option>
-                            <option value="Livro">Livro</option>
-                            <option value="Web App">Web App</option>
-                            <option value="App Mobile">App Mobile</option>
-                            <option value="Software">Software</option>
-                            <option value="Base de Dados">Base de Dados</option>
-                            <option value="Vídeo">Vídeo</option>
-                            <option value="Curso">Curso</option>
-                            <option value="Artigo">Artigo</option>
-                            <option value="Biblia+">Bíblia+</option>
-                        </select>
-                    </div>
-                </div>
-                <div>
-                    <label for="resourceLink" style="display:block;margin-bottom:0.5rem;font-weight:500;font-size:0.9rem;">URL/Link *</label>
-                    <input type="url" id="resourceLink" required placeholder="https://..." style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-size:1rem;">
-                </div>
-                <div>
-                    <label for="resourceDescription" style="display:block;margin-bottom:0.5rem;font-weight:500;font-size:0.9rem;">Descrição *</label>
-                    <textarea id="resourceDescription" required rows="4" style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-size:1rem;resize:vertical;"></textarea>
-                </div>
-                <div style="display:flex;align-items:center;gap:0.5rem;">
-                    <input type="checkbox" id="resourceFree" style="width:1.2rem;height:1.2rem;">
-                    <label for="resourceFree" style="font-size:0.95rem;">Recurso Gratuito</label>
-                </div>
-                <div style="margin-top:1rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
-                    <button type="submit" class="btn btn-primary" style="flex:1;justify-content:center;">💾 Salvar Recurso</button>
-                    <button type="button" class="btn btn-secondary" onclick="closeAddResourceModal()" style="flex:1;justify-content:center;">Cancelar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    
-    <!-- Modal Editar Recurso -->
+
     <div class="modal-overlay" id="editResourceModal">
         <div class="modal">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
@@ -1213,190 +1082,10 @@
             // Ações - botões removidos da página, funcionalidades agora no menu lateral
             document.getElementById('themeToggle').addEventListener('click', toggleTheme);
             
-            // Botão Busca Inteligente - abre busca externa em sites acadêmicos confiáveis
-            const smartSearchBtn = document.getElementById('smartSearchBtn');
-            if (smartSearchBtn) {
-                smartSearchBtn.addEventListener('click', performSmartSearch);
-            }
-            
-            // Botão flutuante "+" para adicionar novo recurso
-            const floatingAddBtn = document.getElementById('floatingAddBtn');
-            if (floatingAddBtn) {
-                floatingAddBtn.addEventListener('click', showAddResourceModal);
-            }
-            
             // Fechar modal ao clicar fora
             document.getElementById('vaultModal').addEventListener('click', (e) => {
                 if (e.target.id === 'vaultModal') e.target.classList.remove('active');
             });
-            document.getElementById('addResourceModal').addEventListener('click', (e) => {
-                if (e.target.id === 'addResourceModal') hideAddResourceModal();
-            });
-            
-            // Form submit para adicionar recurso
-            document.getElementById('addResourceForm').addEventListener('submit', saveNewResource);
-        }
-        
-        // ==========================================
-        // BUSCA INTELIGENTE EXTERNA
-        // ==========================================
-        /**
-         * Realiza busca externa em sites acadêmicos confiáveis de línguas bíblicas
-         */
-        function performSmartSearch() {
-            const searchInput = document.getElementById('searchInput');
-            const query = searchInput.value.trim();
-            
-            if (!query) {
-                showToast('⚠️ Digite um termo para buscar externamente');
-                searchInput.focus();
-                return;
-            }
-            
-            // Domínios acadêmicos confiáveis para estudo bíblico
-            const trustedDomains = [
-                'stepbible.org',
-                'biblehub.com',
-                'sefaria.org',
-                'dailydoseofgreek.com',
-                'biblicallanguagecenter.com',
-                'textusreceptus.com',
-                'ancient-hebrew.org',
-                'blueletterbible.org',
-                'biblegateway.com',
-                'perseus.tufts.edu'
-            ];
-            
-            // Constrói query com filtro de domínio para resultados acadêmicos
-            const siteQuery = trustedDomains.map(d => `site:${d}`).join(' OR ');
-            const academicQuery = `${query} (${siteQuery})`;
-            
-            // Opções de busca disponíveis
-            const searchOptions = [
-                {
-                    name: '🎓 Google Acadêmico (Sites Confiáveis)',
-                    description: 'Filtra apenas sites acadêmicos selecionados',
-                    url: `https://www.google.com/search?q=${encodeURIComponent(academicQuery)}`,
-                    icon: 'fa-graduation-cap'
-                },
-                {
-                    name: '🔍 Google Geral',
-                    description: 'Busca ampla na web sobre línguas bíblicas',
-                    url: `https://www.google.com/search?q=${encodeURIComponent(query + ' biblical hebrew greek lexicon grammar')}`,
-                    icon: 'fa-search'
-                },
-                {
-                    name: '🦆 DuckDuckGo',
-                    description: 'Busca privada sem rastreamento',
-                    url: `https://duckduckgo.com/?q=${encodeURIComponent(query + ' biblical languages')}`,
-                    icon: 'fa-user-secret'
-                },
-                {
-                    name: '📜 Sefaria',
-                    description: 'Textos judaicos em hebraico e aramaico',
-                    url: `https://www.sefaria.org/search?q=${encodeURIComponent(query)}&tab=text`,
-                    icon: 'fa-scroll'
-                },
-                {
-                    name: '✝️ Step Bible',
-                    description: 'Ferramentas avançadas de grego e hebraico',
-                    url: `https://www.stepbible.org/?q=${encodeURIComponent(query)}`,
-                    icon: 'fa-book-bible'
-                }
-            ];
-            
-            // Cria modal de seleção com design melhorado
-            const modalHTML = `
-                <div class="modal-overlay active" id="smartSearchModal" role="dialog" aria-labelledby="smartSearchTitle" aria-modal="true">
-                    <div class="modal" style="max-width:550px;">
-                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border);">
-                            <h2 id="smartSearchTitle" style="font-family:var(--font-serif);font-size:1.4rem;">
-                                <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--accent);"></i> 
-                                Busca Inteligente Externa
-                            </h2>
-                            <button class="btn-icon" onclick="closeSmartSearchModal()" aria-label="Fechar modal">
-                                <i class="fa-solid fa-times"></i>
-                            </button>
-                        </div>
-                        
-                        <div style="background:var(--highlight);padding:1rem;border-radius:8px;margin-bottom:1.25rem;">
-                            <p style="color:var(--text-secondary);font-size:0.95rem;margin:0;">
-                                <strong>Termo buscado:</strong> <span style="color:var(--accent);font-weight:600;">"${escapeHtml(query)}"</span>
-                            </p>
-                        </div>
-                        
-                        <p style="color:var(--text-secondary);margin-bottom:1rem;font-size:0.9rem;">
-                            <i class="fa-regular fa-lightbulb" style="color:var(--accent);"></i> 
-                            Escolha uma das fontes abaixo para realizar sua busca:
-                        </p>
-                        
-                        <div style="display:flex;flex-direction:column;gap:0.6rem;">
-                            ${searchOptions.map((opt, index) => `
-                                <button class="btn btn-secondary smart-search-option" 
-                                        data-index="${index}"
-                                        style="justify-content:flex-start;text-align:left;padding:0.9rem 1rem;border-radius:8px;transition:all 0.2s;"
-                                        aria-label="${opt.name}: ${opt.description}">
-                                    <div style="display:flex;align-items:center;gap:0.75rem;width:100%;">
-                                        <i class="fa-solid ${opt.icon}" style="color:var(--accent);font-size:1.2rem;min-width:24px;"></i>
-                                        <div style="flex:1;">
-                                            <div style="font-weight:600;color:var(--text-primary);font-size:0.95rem;">${opt.name}</div>
-                                            <div style="font-size:0.8rem;color:var(--text-secondary);margin-top:0.2rem;">${opt.description}</div>
-                                        </div>
-                                        <i class="fa-solid fa-arrow-up-right-from-square" style="color:var(--text-secondary);opacity:0.5;font-size:0.85rem;"></i>
-                                    </div>
-                                </button>
-                            `).join('')}
-                        </div>
-                        
-                        <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px dashed var(--border);">
-                            <p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.5;">
-                                <i class="fa-solid fa-circle-info" style="color:var(--accent);"></i> 
-                                <strong>Dica profissional:</strong> A primeira opção usa operadores avançados do Google para filtrar resultados 
-                                apenas dos sites acadêmicos mais confiáveis para estudo das línguas bíblicas.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            document.body.insertAdjacentHTML('beforeend', modalHTML);
-            
-            // Adicionar event listeners para os botões de busca
-            setTimeout(() => {
-                document.querySelectorAll('.smart-search-option').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const index = parseInt(this.getAttribute('data-index'));
-                        const option = searchOptions[index];
-                        window.open(option.url, '_blank', 'noopener,noreferrer');
-                        closeSmartSearchModal();
-                        showToast(`🔍 Abrindo busca em: ${option.name}`);
-                    });
-                });
-                
-                // Focar no primeiro botão para acessibilidade
-                const firstBtn = document.querySelector('.smart-search-option');
-                if (firstBtn) firstBtn.focus();
-            }, 50);
-        }
-        
-        /**
-         * Fecha o modal de busca inteligente
-         */
-        function closeSmartSearchModal() {
-            const modal = document.getElementById('smartSearchModal');
-            if (modal) {
-                modal.classList.remove('active');
-                setTimeout(() => modal.remove(), 200);
-            }
-        }
-        
-        /**
-         * Escapa caracteres HTML para segurança
-         */
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
         }
         
         // ==========================================
@@ -1772,113 +1461,7 @@
             setTimeout(() => toast.classList.remove('show'), 2500);
         }
         
-        // ==========================================
-        // ADICIONAR RECURSO
-        // ==========================================
-        /**
-         * Mostra o modal para adicionar novo recurso
-         */
-        function showAddResourceModal() {
-            const modal = document.getElementById('addResourceModal');
-            modal.classList.add('active');
-            setTimeout(() => {
-                document.getElementById('resourceTitle').focus();
-            }, 100);
-        }
-        
-        /**
-         * Esconde o modal de adicionar recurso
-         */
-        function hideAddResourceModal() {
-            const modal = document.getElementById('addResourceModal');
-            modal.classList.remove('active');
-            document.getElementById('addResourceForm').reset();
-        }
-        
-        /**
-         * Salva um novo recurso na base de dados
-         */
-        function saveNewResource(e) {
-            e.preventDefault();
-            
-            const title = document.getElementById('resourceTitle').value.trim();
-            const author = document.getElementById('resourceAuthor').value.trim();
-            const category = document.getElementById('resourceCategory').value;
-            const language = document.getElementById('resourceLanguage').value;
-            const level = document.getElementById('resourceLevel').value;
-            const type = document.getElementById('resourceType').value;
-            const link = document.getElementById('resourceLink').value.trim();
-            const description = document.getElementById('resourceDescription').value.trim();
-            const isFree = document.getElementById('resourceFree').checked;
-            
-            // Validação dos campos obrigatórios
-            if (!title || !author || !category || !language || !level || !type || !link || !description) {
-                showToast('⚠️ Preencha todos os campos obrigatórios (*)');
-                return;
-            }
-            
-            // Validação de URL
-            try {
-                new URL(link);
-            } catch (e) {
-                showToast('⚠️ Por favor, insira uma URL válida');
-                return;
-            }
-            
-            // Gerar novo ID único
-            const maxId = resourcesDB.reduce((max, r) => Math.max(max, r.id), 0);
-            const newId = maxId + 1;
-            
-            // Criar novo recurso com estrutura padronizada
-            const newResource = {
-                id: newId,
-                title: sanitizeInput(title),
-                author: sanitizeInput(author),
-                category: category,
-                language: language,
-                level: level,
-                type: type,
-                link: sanitizeInput(link),
-                description: sanitizeInput(description),
-                free: isFree,
-                dateAdded: new Date().toISOString(),
-                isUserAdded: true
-            };
-            
-            // Adicionar ao array principal
-            resourcesDB.push(newResource);
-            
-            // Salvar em localStorage para persistência
-            saveUserResources();
-            
-            // Re-renderizar a grade
-            renderResources();
-            
-            // Fechar modal e mostrar feedback
-            hideAddResourceModal();
-            showToast(`✅ Recurso "${newResource.title}" adicionado com sucesso!`);
-            
-            // Scroll suave até o novo recurso
-            setTimeout(() => {
-                const newCard = document.querySelector(`[data-resource-id="${newId}"]`);
-                if (newCard) {
-                    newCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    newCard.style.animation = 'pulse 1s ease-in-out';
-                }
-            }, 300);
-        }
-        
-        /**
-         * Sanitiza input de texto para prevenir XSS
-         */
-        function sanitizeInput(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-        
         function saveUserResources() {
-            // Filtrar apenas recursos adicionados pelo usuário (IDs > 1000 ou que não estão na base original)
             const originalIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
             const userResources = resourcesDB.filter(r => !originalIds.includes(r.id));
             localStorage.setItem('userBiblicalResources', JSON.stringify(userResources));
@@ -2153,8 +1736,8 @@
             },
             {
                 element: '.search-box',
-                title: 'Busca Inteligente',
-                text: 'Digite qualquer termo para encontrar recursos. Use o ícone de varinha mágica ✨ para busca avançada!',
+                title: 'Busca',
+                text: 'Digite qualquer termo para encontrar recursos.',
                 position: 'bottom'
             },
             {
@@ -2174,12 +1757,6 @@
                 title: 'Barra de Ações',
                 text: 'Aqui estão os botões para exportar PDF, fazer backup e outras ações importantes.',
                 position: 'top'
-            },
-            {
-                element: '.floating-add-btn',
-                title: 'Adicionar Recurso',
-                text: 'Clique no botão + flutuante para adicionar novos recursos à sua coleção!',
-                position: 'left'
             }
         ];
 
