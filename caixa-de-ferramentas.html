@@ -168,60 +168,6 @@
             transform: translateY(-50%);
             opacity: 0.6;
         }
-
-        .search-actions {
-            position: absolute;
-            right: 0.75rem;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-            z-index: 10;
-            pointer-events: auto;
-        }
-
-        .btn-icon-only {
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            cursor: pointer;
-            padding: 0.4rem;
-            border-radius: 4px;
-            transition: all 0.2s;
-            position: relative;
-        }
-
-        .btn-icon-only:hover {
-            background: var(--highlight);
-            color: var(--accent);
-        }
-
-        /* Tooltip flutuante transparente */
-        .btn-icon-only::after {
-            content: attr(title);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 0.4rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s;
-            pointer-events: none;
-        }
-
-        .btn-icon-only:hover::after {
-            opacity: 1;
-            visibility: visible;
-            bottom: calc(100% + 5px);
-        }
         
         .filters {
             display: flex;
@@ -556,7 +502,7 @@
                     <i class="fa-solid fa-toolbox welcome-modal-icon"></i>
                     <h2>FERRAMENTAS BÍBLICAS</h2>
                 </div>
-                <p class="welcome-modal-subtitle" style="font-style: italic; color: var(--gold-dark); margin: 0.5rem 0 1.5rem 0; font-weight: 600; font-size: 1.1rem; line-height: 1.4; text-align: left;">"Mineração curada e inteligente para conectar você aos recursos mais valiosos das línguas bíblicas."</p>
+                <p class="welcome-modal-subtitle" style="font-style: italic; color: var(--gold-dark); margin: 0.5rem 0 1.5rem 0; font-weight: 600; font-size: 1.1rem; line-height: 1.4; text-align: left;">"Mineração curada para conectar você aos recursos mais valiosos das línguas bíblicas."</p>
                 <p class="welcome-modal-text" style="margin-bottom: 0.5rem;">
                     Esta é a sua caixa de ferramentas especializada para estudo profundo do Hebraico, Aramaico e Grego Koiné. Aqui você encontrará recursos curados de hermenêutica, exegese e crítica textual, com capacidade de busca dinâmica, favoritismo e mineração de novos links.
                 </p>
@@ -630,7 +576,7 @@
     <aside class="sidebar">
         <div class="sidebar-logo" style="text-align: center; padding-bottom: 1.5rem; border-bottom: 2px solid var(--border-color);">
             <h1 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--gold-dark); letter-spacing: 1px; margin-bottom: 0.3rem;">FERRAMENTAS BÍBLICAS</h1>
-            <p style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.3rem; line-height: 1.4;">Mineração curada e inteligente para conectar você aos recursos mais valiosos.</p>
+            <p style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.3rem; line-height: 1.4;">Mineração curada para conectar você aos recursos mais valiosos.</p>
             <p style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 0.4rem; font-style: italic;">Por Rogério Ramão Lopes</p>
         </div>
 
@@ -698,10 +644,6 @@
                     <span class="slider" style="border-radius: 20px;"></span>
                 </label>
             </div>
-            <!-- Text-to-Speech -->
-            <button onclick="window.toggleTTS()" id="tts-btn" title="Ouvir Introdução" style="background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary); padding: 0.4rem 0.75rem; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; width: 100%; transition: var(--transition);">
-                <i id="tts-icon" class="fa-solid fa-volume-high" style="color: var(--gold-dark);"></i> <span id="tts-text">Ouvir Introdução</span>
-            </button>
         </div>
 
         <!-- Theme Switcher -->
@@ -990,7 +932,7 @@
             {
                 id: 14, title: "Ginoskos - Línguas Bíblicas", author: "Ginoskos",
                 category: "app", language: "grego", level: "iniciante",
-                description: "App moderno com gramática dinâmica, SRS inteligente e vocabulário ativo. Suporta hebraico, grego, aramaico, latim e siríaco.",
+                description: "App moderno com gramática dinâmica, SRS e vocabulário ativo. Suporta hebraico, grego, aramaico, latim e siríaco.",
                 link: "https://ginoskos.com", type: "App Mobile"
             },
             {
@@ -1698,10 +1640,6 @@
             } else {
                 document.body.removeAttribute('data-contrast');
             }
-        };
-
-        window.toggleTTS = function() {
-            showToast('🔊 Texto para fala em desenvolvimento...');
         };
 
         window.closeWelcomeModal = function() {
