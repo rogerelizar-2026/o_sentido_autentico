@@ -69,6 +69,34 @@ const SidebarManager = (function() {
                 ['mousemove', 'touchstart', 'keydown', 'mousedown'].forEach(evt => {
                     window.addEventListener(evt, handleActivity, { passive: true });
                 });
+                
+                // Fecha a sidebar imediatamente ao clicar/tocar fora dela (Desktop e Mobile)
+                document.addEventListener('click', function(e) {
+                    if (!document.body.classList.contains('sidebar-collapsed')) {
+                        const isClickInsideSidebar = sidebar.contains(e.target);
+                        const isClickOnToggle = e.target.closest('.sidebar-toggle-fab');
+                        
+                        if (!isClickInsideSidebar && !isClickOnToggle) {
+                            document.body.classList.add('sidebar-collapsed');
+                            clearTimeout(sidebarTimeout);
+                        }
+                    }
+                }, { passive: true });
+                
+                // Suporte para touch em dispositivos móveis - fecha ao tocar fora
+                document.addEventListener('touchend', function(e) {
+                    if (!document.body.classList.contains('sidebar-collapsed')) {
+                        const touchTarget = e.changedTouches[0].target;
+                        const isTouchInsideSidebar = sidebar.contains(touchTarget);
+                        const isTouchOnToggle = touchTarget.closest('.sidebar-toggle-fab');
+                        
+                        if (!isTouchInsideSidebar && !isTouchOnToggle) {
+                            document.body.classList.add('sidebar-collapsed');
+                            clearTimeout(sidebarTimeout);
+                        }
+                    }
+                }, { passive: true });
+                
                 resetSidebarTimer();
             }
         };
