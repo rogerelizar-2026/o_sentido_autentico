@@ -1246,11 +1246,12 @@
         // BUSCA EXTERNA INTELIGENTE
         // ==========================================
         function performExternalSearch() {
-            const query = searchQuery.trim();
+            const searchInput = document.getElementById('searchInput');
+            const query = searchInput.value.trim();
             
             if (!query) {
                 showToast('Digite um termo para buscar externamente');
-                document.getElementById('searchInput').focus();
+                searchInput.focus();
                 return;
             }
             
@@ -2318,8 +2319,6 @@
         };
     </script>
 
-<!-- Scripts de Acessibilidade -->
-<script src="accessibility.js" defer></script>
 <script src="script.js"></script>
 </body>
 </html>
