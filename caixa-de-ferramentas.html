@@ -392,7 +392,18 @@
         }
         
         .favorite-btn:hover { background: var(--highlight); border-color: var(--accent); }
-        .favorite-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+        .favorite-btn.active { 
+            background: var(--accent); 
+            color: white; 
+            border-color: var(--accent);
+            animation: favoritePulse 0.4s ease-in-out;
+        }
+        
+        @keyframes favoritePulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
         
         .edit-btn {
             background: none;
@@ -435,6 +446,9 @@
         }
         
         .toast.show { opacity: 1; transform: translateY(0); }
+        
+        /* Melhorar feedback visual do toast */
+        .toast i { margin-right: 0.5rem; }
         
         footer {
             background: var(--bg-card);
@@ -1308,6 +1322,12 @@
             localStorage.setItem('biblicalVault', JSON.stringify(vault));
             updateVaultCounter();
             renderResources();
+            
+            // Scroll suave até o topo para garantir que o usuário veja a mudança de estado
+            const resourcesGrid = document.getElementById('resourcesGrid');
+            if (resourcesGrid) {
+                resourcesGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
         
         function updateVaultCounter() {
@@ -1554,7 +1574,16 @@
         // ==========================================
         function showToast(msg) {
             const toast = document.getElementById('toast');
-            toast.textContent = msg;
+            // Adicionar ícone baseado na mensagem
+            let icon = '★';
+            if (msg.includes('Removido')) icon = '✖';
+            else if (msg.includes('Adicionado')) icon = '✓';
+            else if (msg.includes('excluído')) icon = '🗑️';
+            else if (msg.includes('atualizado')) icon = '✓';
+            else if (msg.includes('Backup')) icon = '💾';
+            else if (msg.includes('PDF')) icon = '📄';
+            
+            toast.innerHTML = `<i>${icon}</i> ${msg}`;
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 2500);
         }
