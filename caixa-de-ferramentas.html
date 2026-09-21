@@ -533,35 +533,7 @@
             * { transition: none !important; animation: none !important; }
         }
         
-        /* Botão flutuante para adicionar recurso */
-        .floating-add-btn {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--accent);
-            color: white;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            box-shadow: var(--shadow-lg);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 998;
-            transition: all 0.3s;
-        }
-        
-        .floating-add-btn:hover {
-            background: var(--accent-hover);
-            transform: scale(1.1);
-        }
-        
-        .floating-add-btn.visible {
-            display: flex;
-        }
+        /* Botão flutuante para adicionar recurso - REMOVIDO */
     </style>
 </head>
 <body class="sidebar-collapsed">
@@ -747,7 +719,6 @@
                     <input type="text" id="searchInput" placeholder="Buscar recurso, autor ou palavra-chave..." aria-label="Buscar recursos">
                     <div class="search-actions">
                         <button class="btn-icon-only" id="smartSearchBtn" title="Busca Inteligente"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
-                        <button class="btn-icon-only" id="addResourceBtnTop" title="Adicionar Recurso"><i class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
             </div>
@@ -789,16 +760,8 @@
     </main>
 </div>
 
-<!-- Floating Sidebar Toggle Button (FAB) -->
-<button id="sidebar-toggle-fab" class="sidebar-toggle-fab" onclick="window.toggleSidebar()" title="Abrir Menu" aria-label="Alternar menu lateral" aria-expanded="false">
-    <i class="fa-solid fa-bars" aria-hidden="true"></i>
-</button>
-
 <!-- Link para pular para conteúdo principal -->
 <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
-
-<!-- Botão flutuante para adicionar recurso -->
-<button class="floating-add-btn" id="floatingAddBtn" title="Adicionar Recurso" aria-label="Adicionar novo recurso">+</button>
     
     <!-- Modal Vault -->
     <div class="modal-overlay" id="vaultModal">
@@ -1205,25 +1168,11 @@
             document.getElementById('externalSearchBtn').addEventListener('click', performExternalSearch);
             document.getElementById('addResourceBtn').addEventListener('click', openAddResourceModal);
             
-            // Botão flutuante - visibilidade e ação
-            const floatingAddBtn = document.getElementById('floatingAddBtn');
-            const actionBar = document.querySelector('.action-bar');
-            
-            window.addEventListener('scroll', () => {
-                if (actionBar) {
-                    const actionBarRect = actionBar.getBoundingClientRect();
-                    const viewportHeight = window.innerHeight;
-                    
-                    // Mostra o botão flutuante quando a action bar não está mais visível
-                    if (actionBarRect.bottom < 0 || actionBarRect.top > viewportHeight) {
-                        floatingAddBtn.classList.add('visible');
-                    } else {
-                        floatingAddBtn.classList.remove('visible');
-                    }
-                }
-            });
-            
-            floatingAddBtn.addEventListener('click', openAddResourceModal);
+            // Botão Busca Inteligente
+            const smartSearchBtn = document.getElementById('smartSearchBtn');
+            if (smartSearchBtn) {
+                smartSearchBtn.addEventListener('click', performExternalSearch);
+            }
             
             // Fechar modal ao clicar fora
             document.getElementById('vaultModal').addEventListener('click', (e) => {
@@ -2057,12 +2006,6 @@
                 title: 'Barra de Ações',
                 text: 'Aqui estão os botões para exportar PDF, fazer backup e outras ações importantes.',
                 position: 'top'
-            },
-            {
-                element: '.floating-add-btn',
-                title: 'Adicionar Recurso',
-                text: 'Clique no botão + flutuante para adicionar novos recursos à sua coleção!',
-                position: 'left'
             }
         ];
 
