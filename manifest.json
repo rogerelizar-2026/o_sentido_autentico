@@ -1,0 +1,25 @@
+{
+  "name": "O Sentido Autêntico",
+  "short_name": "O Sentido Autêntico",
+  "description": "Tecnologia e profundidade histórica para conectar você ao sopro original de Deus. Curadoria por Rogério Ramão Lopes.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#fbfaf7",
+  "theme_color": "#102a43",
+  "orientation": "any",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "imagens/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "imagens/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
