@@ -1,0 +1,466 @@
+{
+  "schemaVersion": 1,
+  "generated": "2026-09-23",
+  "aviso": "Todos os campos eficiencia (0–10), complexidade (1–10) e tempoMedioSemanas são ESTIMATIVAS EDITORIAIS deste projeto para fins comparativos didáticos. Não são resultados de pesquisa, estatísticas oficiais nem endossos. Vigência desta rodada de estimativas: setembro de 2026. Critério de eficiência: potência relativa para construir reconhecimento morfológico e leitura de texto autêntico em 6–12 meses de estudo regular (30–60 min/dia), conforme julgamento editorial do curador do projeto.",
+  "critérios": {
+    "eficiencia": "Potência relativa (0–10) para desenvolver leitura de texto autêntico com apoio de gramática em 6–12 meses de prática regular — estimativa editorial.",
+    "complexidade": "Carga de configuração, materiais ou mediação necessária (1–10) — estimativa editorial.",
+    "tempoMedioSemanas": "Semanas até retornos práticos percebíveis na leitura — estimativa editorial.",
+    "ranking": "Ordenação por eficiência (desc); empates decididos por menor tempo médio; métodos com mesma família não recebem desempate artificial."
+  },
+  "metodos": [
+    {
+      "id": "gramatica-traducao",
+      "nome": "Gramática–Tradução",
+      "foco": [
+        "regras",
+        "análise",
+        "tradução"
+      ],
+      "categoria": "professor",
+      "eficiencia": 5.5,
+      "complexidade": 3,
+      "tempoMedioSemanas": 16,
+      "hibrido": false,
+      "descricao": "Explicação explícita de paradigmas e regras seguida de exercícios de tradução e análise de frases. Base histórica do ensino de línguas clássicas.",
+      "aplicacaoHebraico": "Útil para tabelas de conjugação e estado construto; arrisca virar memorização isolada do texto.",
+      "aplicacaoGrego": "Base clássica para declinações e tempos verbais; complementa mal a leitura contínua se usada sozinha."
+    },
+    {
+      "id": "leitura-direta",
+      "nome": "Leitura Direta do Texto",
+      "foco": [
+        "texto autêntico",
+        "compreensão",
+        "contexto"
+      ],
+      "categoria": "texto",
+      "eficiencia": 8.5,
+      "complexidade": 4,
+      "tempoMedioSemanas": 10,
+      "hibrido": true,
+      "descricao": "Entrar cedo no texto bíblico com apoio de gramática pontual, inferindo sentido pelo contexto antes de consultar a tabela.",
+      "aplicacaoHebraico": "Começar em Gn 1–3 com dicionário interlinear à mão consolida niqqud e vocabulário de alta frequência.",
+      "aplicacaoGrego": "Períodos curtos do Novo Testamento com parsing guiado aceleram o reconhecimento de casos."
+    },
+    {
+      "id": "metodo-direto",
+      "nome": "Método Direto",
+      "foco": [
+        "imersão",
+        "oralidade",
+        "sem tradução"
+      ],
+      "categoria": "professor",
+      "eficiencia": 6,
+      "complexidade": 6,
+      "tempoMedioSemanas": 14,
+      "hibrido": false,
+      "descricao": "A língua-alvo é única via de comunicação em sala; objetos, imagens e ação substituem a tradução para a língua materna.",
+      "aplicacaoHebraico": "Difícil sem falantes nativos, mas útil em aulas com ações e vocabulário visual.",
+      "aplicacaoGrego": "Boa para rotinas de sala; limitada para autodidata sem professor treinado."
+    },
+    {
+      "id": "audio-lingual",
+      "nome": "Áudio-Lingual",
+      "foco": [
+        "padrões",
+        "repetição",
+        "diálogo"
+      ],
+      "categoria": "professor",
+      "eficiencia": 5,
+      "complexidade": 5,
+      "tempoMedioSemanas": 15,
+      "hibrido": false,
+      "descricao": "Drill estrutural, memorização de diálogos e correção imediata, baseado em condicionamento comportamental.",
+      "aplicacaoHebraico": "Útil para paradigmas Qal em drill curto; pouco diz sobre texto literário longo.",
+      "aplicacaoGrego": "Ajuda a fixar formas irregulares; não desenvolve sintaxe exegética sozinha."
+    },
+    {
+      "id": "abordagem-comunicativa",
+      "nome": "Abordagem Comunicativa",
+      "foco": [
+        "comunicação",
+        "tarefas",
+        "fluência"
+      ],
+      "categoria": "aluno",
+      "eficiencia": 6.5,
+      "complexidade": 6,
+      "tempoMedioSemanas": 13,
+      "hibrido": false,
+      "descricao": "Aprender para cumprir tarefas comunicativas reais; erro tolerado quando o sentido passa.",
+      "aplicacaoHebraico": "Adaptada: explicar um versículo com palavras hebraicas simples em grupo de estudo.",
+      "aplicacaoGrego": "Funciona em grupos de tradução colaborativa; exige material bem preparado."
+    },
+    {
+      "id": "tpr",
+      "nome": "TPR — Resposta Física Total",
+      "foco": [
+        "ações",
+        "memória motiva",
+        "compreensão"
+      ],
+      "categoria": "aluno",
+      "eficiencia": 6.5,
+      "complexidade": 4,
+      "tempoMedioSemanas": 12,
+      "hibrido": true,
+      "descricao": "Comandos e ações físicas criam rotas de memória para vocabulário e estruturas simples.",
+      "aplicacaoHebraico": "Base do curso Aleph with Beth: gestos para verbos e substantivos em Gn 1.",
+      "aplicacaoGrego": "Menos natural no grego textual, mas eficaz para verbos de ação e vocabulário do dia a dia do texto."
+    },
+    {
+      "id": "abordagem-natural",
+      "nome": "Abordagem Natural",
+      "foco": [
+        "entrada",
+        "baixo afeto",
+        "pré-produção"
+      ],
+      "categoria": "aluno",
+      "eficiencia": 7,
+      "complexidade": 5,
+      "tempoMedioSemanas": 12,
+      "hibrido": true,
+      "descricao": "Foco na compreensão antes da fala; produção surge quando o aprendiz se sente pronto, com ansiedade reduzida.",
+      "aplicacaoHebraico": "Ouvir e ler muito antes de exigir paradigmas perfeitos reduz a ansiedade do niqqud.",
+      "aplicacaoGrego": "Permite acumular padrões gregos por exposição antes de drills de parsing."
+    },
+    {
+      "id": "entrada-compreensivel",
+      "nome": "Entrada Compreensível (i+1)",
+      "foco": [
+        "insumo",
+        "compreensão",
+        "monitor"
+      ],
+      "categoria": "texto",
+      "eficiencia": 8,
+      "complexidade": 4,
+      "tempoMedioSemanas": 11,
+      "hibrido": true,
+      "descricao": "Exposição massiva a material ligeiramente acima do nível atual, compreensível pelo contexto; a regra consciente entra depois.",
+      "aplicacaoHebraico": "Leitura repetida de passagens curtas com glossário lateral; gramática como nota de rodapé.",
+      "aplicacaoGrego": "Releitura de perícopes conhecidas em grego com tradução à mão à vista."
+    },
+    {
+      "id": "via-tarefas",
+      "nome": "Ensino por Tarefas",
+      "foco": [
+        "produto",
+        "colaboração",
+        "resultado"
+      ],
+      "categoria": "aluno",
+      "eficiencia": 6.5,
+      "complexidade": 6,
+      "tempoMedioSemanas": 13,
+      "hibrido": false,
+      "descricao": "A tarefa real (resumir, comparar traduções, montar um aparato) organiza a aprendizagem; a forma vem a serviço do fim.",
+      "aplicacaoHebraico": "Tarefa: comparar duas traduções de Gn 1 no MT e apontar diferenças de vocabulário.",
+      "aplicacaoGrego": "Tarefa: preparar uma nota exegética curta de um parágrafo paulino."
+    },
+    {
+      "id": "ensino-conteudo",
+      "nome": "Ensino Baseado em Conteúdo",
+      "foco": [
+        "conteúdo",
+        "investigação",
+        "integração"
+      ],
+      "categoria": "texto",
+      "eficiencia": 7.5,
+      "complexidade": 6,
+      "tempoMedioSemanas": 12,
+      "hibrido": true,
+      "descricao": "Aprender a língua enquanto se estuda o assunto (ex.: Segundo Templo, teologia paulina); a língua é meio, não fim.",
+      "aplicacaoHebraico": "Estudar Gn 1 em hebraico enquanto se discute cosmogonia bíblica.",
+      "aplicacaoGrego": "Leitura dos Sinóticos em grego como aula de teologia e língua ao mesmo tempo."
+    },
+    {
+      "id": "via-silenciosa",
+      "nome": "Via Silenciosa (Gattegno)",
+      "foco": [
+        "autonomia",
+        "cores",
+        "descoberta"
+      ],
+      "categoria": "aluno",
+      "eficiencia": 5.5,
+      "complexidade": 7,
+      "tempoMedioSemanas": 14,
+      "hibrido": false,
+      "descricao": "O professor fala pouco; o aluno manipula materiais e descobre padrões por tentativa orientada.",
+      "aplicacaoHebraico": "Manipular fichas de raízes e padrões verbais antes de ouvir a explicação.",
+      "aplicacaoGrego": "Mapear casos com cores na frase antes de ler a definição do manual."
+    },
+    {
+      "id": "aprendizagem-comunidade",
+      "nome": "Aprendizagem em Comunidade (CLL)",
+      "foco": [
+        "afeto",
+        "grupo",
+        "segurança"
+      ],
+      "categoria": "aluno",
+      "eficiencia": 5.5,
+      "complexidade": 6,
+      "tempoMedioSemanas": 15,
+      "hibrido": false,
+      "descricao": "Grupo pequeno com 'conselheiro' de língua; reduz a ansiedade e coloca a relação antes da performance.",
+      "aplicacaoHebraico": "Grupos de estudo bíblico onde um membro mais avançado media o texto.",
+      "aplicacaoGrego": "Círculos de tradução com mediação de um professor periodicamente."
+    },
+    {
+      "id": "suggestopedia",
+      "nome": "Suggestopedia (Lozanov)",
+      "foco": [
+        "ambiente",
+        "música",
+        "memorização"
+      ],
+      "categoria": "professor",
+      "eficiencia": 5,
+      "complexidade": 7,
+      "tempoMedioSemanas": 14,
+      "hibrido": false,
+      "descricao": "Ambiente relaxado, música de fundo e sugestões pedagógicas para aumentar a retenção de listas e diálogos.",
+      "aplicacaoHebraico": "Listas de vocabulário em sessões relaxadas; evidências mistas, usar com moderação.",
+      "aplicacaoGrego": "Revisão leve de paradigmas antes de dormir; não substitui análise sintática."
+    },
+    {
+      "id": "assimilacao-intuitiva",
+      "nome": "Assimilação Intuitiva (Assimil)",
+      "foco": [
+        "diálogos",
+        "intuição",
+        "cadência diária"
+      ],
+      "categoria": "texto",
+      "eficiencia": 7.5,
+      "complexidade": 3,
+      "tempoMedioSemanas": 12,
+      "hibrido": true,
+      "descricao": "Lições curtas diárias com diálogo, explicação leve e exercícios; a compreensão cresce por exposição progressiva.",
+      "aplicacaoHebraico": "Adaptar o formato Assimil a lições de 15 min sobre passagens do AT.",
+      "aplicacaoGrego": "Funciona bem com lições baseadas em versículos reais do NT."
+    },
+    {
+      "id": "repeticao-espacada",
+      "nome": "Repetição Espaçada (SRS/Anki)",
+      "foco": [
+        "vocabulário",
+        "intervalos",
+        "memória de longo prazo"
+      ],
+      "categoria": "aluno",
+      "eficiencia": 8.5,
+      "complexidade": 3,
+      "tempoMedioSemanas": 8,
+      "hibrido": true,
+      "descricao": "Revisão em intervalos crescentes otimiza a retenção de vocabulário e formas irregulares com tempo curto diário.",
+      "aplicacaoHebraico": "Cartas com a raiz, niqqud e glossa; revisar subidas irregulares separadamente.",
+      "aplicacaoGrego": "Cartas de parsing: forma → tempo/pessoa/voz; e cartas de sentido dos casos."
+    },
+    {
+      "id": "leitura-extensiva",
+      "nome": "Leitura Extensiva",
+      "foco": [
+        "volume",
+        "prazer",
+        "fluência"
+      ],
+      "categoria": "texto",
+      "eficiencia": 8,
+      "complexidade": 4,
+      "tempoMedioSemanas": 10,
+      "hibrido": true,
+      "descricao": "Ler muito, com facilidade e sem dicionário a cada palavra; o objetivo é o sentido, não o exame gramatical.",
+      "aplicacaoHebraico": "Salmos e Gênesis em leitura contínua com interlinear só quando travar.",
+      "aplicacaoGrego": "Evangelhos em leitura corrida; marcar só os pontos de dúvida real."
+    },
+    {
+      "id": "leitura-estreita",
+      "nome": "Leitura Estreita (Narrow Reading)",
+      "foco": [
+        "mesmo autor",
+        "recorrências",
+        "padrões"
+      ],
+      "categoria": "texto",
+      "eficiencia": 7.5,
+      "complexidade": 3,
+      "tempoMedioSemanas": 9,
+      "hibrido": true,
+      "descricao": "Ler vários textos do mesmo autor ou gênero para que vocabulário e estruturas se repitam e fixem.",
+      "aplicacaoHebraico": "Todo o livro de Gênesis, depois Êxodo, mantendo glossário de raízes recorrentes.",
+      "aplicacaoGrego": "Uma epístola inteira (ex.: Filipenses) antes de saltar de autor."
+    },
+    {
+      "id": "ditado",
+      "nome": "Ditado e Dictogloss",
+      "foco": [
+        "escuta",
+        "produção",
+        "reconstrução"
+      ],
+      "categoria": "professor",
+      "eficiencia": 6,
+      "complexidade": 4,
+      "tempoMedioSemanas": 13,
+      "hibrido": false,
+      "descricao": "Ouvir e transcrever; depois, reconstruir o texto em grupo a partir de notas — treina forma e sentido juntos.",
+      "aplicacaoHebraico": "Ditado de versículos curtos com niqqud ditado ou omitido por etapa.",
+      "aplicacaoGrego": "Dictogloss de um versículo paulino: ouvir, anotar, reconstruir em grego simples."
+    },
+    {
+      "id": "traducao-inversa",
+      "nome": "Tradução Inversa (Back-Translation)",
+      "foco": [
+        "produção",
+        "estruturas",
+        "conferência"
+      ],
+      "categoria": "aluno",
+      "eficiencia": 6.5,
+      "complexidade": 4,
+      "tempoMedioSemanas": 12,
+      "hibrido": false,
+      "descricao": "Escrever em língua-alvo e voltar à materna revela estruturas internalizadas e lacunas de repertório.",
+      "aplicacaoHebraico": "Escrever um resumo em hebraico simples e voltar ao português para conferir o sentido.",
+      "aplicacaoGrego": "Traduzir de volta um período grego que você próprio compôs a partir do português."
+    },
+    {
+      "id": "sombreamento",
+      "nome": "Sombreamento (Shadowing)",
+      "foco": [
+        "pronúncia",
+        "ritmo",
+        "escuta ativa"
+      ],
+      "categoria": "aluno",
+      "eficiencia": 6,
+      "complexidade": 3,
+      "tempoMedioSemanas": 11,
+      "hibrido": false,
+      "descricao": "Repetir em tempo real uma gravação clara, imitando ritmo e entonação; fortalece o processamento auditivo.",
+      "aplicacaoHebraico": "Acompannar leituras em hebraico bíblico gravadas (reconstrução moderna é opcional e deve ser rotulada).",
+      "aplicacaoGrego": "Shadowing de gravações do NT em grego koiné; útil para o ritmo das cláusulas."
+    },
+    {
+      "id": "metodo-chave",
+      "nome": "Método da Palavra-Chave (Mnemônicas)",
+      "foco": [
+        "memória",
+        "imagética",
+        "vocabulário"
+      ],
+      "categoria": "aluno",
+      "eficiencia": 6,
+      "complexidade": 3,
+      "tempoMedioSemanas": 9,
+      "hibrido": false,
+      "descricao": "Associação imagética entre a forma estrangeira e uma palavra da língua materna para travar o significado inicial.",
+      "aplicacaoHebraico": "Ligar raízes a imagens fortes até a associação direta tomar o lugar da ponte.",
+      "aplicacaoGrego": "Cognatos gregos em português ('batismo', 'agape') como ponte inicial de vocabulário."
+    },
+    {
+      "id": "analise-morfologica",
+      "nome": "Drill de Análise Morfológica",
+      "foco": [
+        "parsing",
+        "paradigmas",
+        "precisão"
+      ],
+      "categoria": "professor",
+      "eficiencia": 8,
+      "complexidade": 4,
+      "tempoMedioSemanas": 9,
+      "hibrido": true,
+      "descricao": "Classificar rapidamente forma → raiz, tema, pessoa, tempo/aspecto, estado; base do parsing reverso e do ditado técnico.",
+      "aplicacaoHebraico": "Tabelas de Qal perfeito/imperfeito em drill de 5 min por dia + raízes dobradas e fracas.",
+      "aplicacaoGrego": "Declinações e vozes verbais em drill cronometrado; depois aplicar ao texto real."
+    },
+    {
+      "id": "descoberta-indutiva",
+      "nome": "Descoberta Indutiva",
+      "foco": [
+        "padrões",
+        "pergunta",
+        "generalização"
+      ],
+      "categoria": "aluno",
+      "eficiencia": 7.5,
+      "complexidade": 5,
+      "tempoMedioSemanas": 11,
+      "hibrido": true,
+      "descricao": "O aprendiz observa ocorrências, formula a regra e só depois confere com o manual — fixa melhor o que se descobre.",
+      "aplicacaoHebraico": "Colecionar formas de estado construto em Gn e formular a regra antes de ler Ross.",
+      "aplicacaoGrego": "Reunir ocorrências do artigo τό antes de ler a seção de Wallace; conferir a hipótese."
+    },
+    {
+      "id": "coaching-linguistico",
+      "nome": "Coaching Linguístico / Mentoria",
+      "foco": [
+        "metacognição",
+        "plano",
+        "accountability"
+      ],
+      "categoria": "aluno",
+      "eficiencia": 8,
+      "complexidade": 5,
+      "tempoMedioSemanas": 8,
+      "hibrido": true,
+      "descricao": "Sessões regulares com mentor (professor ou grupo avançado) que ajustam plano, corrigem rumo e cobram consistência.",
+      "aplicacaoHebraico": "Encontro quinzenal para revisar checkpoints do nível e dúvidas de texto.",
+      "aplicacaoGrego": "Mentoria para revisar notas exegéticas e evitar generalizações precipitadas."
+    },
+    {
+      "id": "imersao",
+      "nome": "Imersão Total (ambiente)",
+      "foco": [
+        "exposição",
+        "rotina",
+        "vivência"
+      ],
+      "categoria": "texto",
+      "eficiencia": 7,
+      "complexidade": 8,
+      "tempoMedioSemanas": 14,
+      "hibrido": false,
+      "descricao": "Viver cercado pela língua: rotinas, rótulos, leitura e conversão do cotidiano para o alvo — máxima exposição, alta exigência logística.",
+      "aplicacaoHebraico": "Sem ambiente de falantes de hebraico bíblico, imersão viável é textual: rótulos, rotinas e leituras diárias no texto.",
+      "aplicacaoGrego": "Imersão textual com NT aberto, interfaces de estudo e cadernos todos em grego."
+    }
+  ],
+  "gruposDidaticos": {
+    "professor": "Centradas no professor",
+    "aluno": "Centradas no aluno",
+    "texto": "Centradas no texto"
+  },
+  "hibridoComponentes": [
+    "leitura-direta",
+    "repeticao-espacada",
+    "analise-morfologica",
+    "coaching-linguistico",
+    "entrada-compreensivel",
+    "leitura-extensiva",
+    "descoberta-indutiva",
+    "assimilacao-intuitiva",
+    "tpr",
+    "abordagem-natural",
+    "ensino-conteudo",
+    "leitura-estreita"
+  ],
+  "tradicionalComponentes": [
+    "gramatica-traducao",
+    "audio-lingual",
+    "metodo-direto",
+    "suggestopedia",
+    "via-silenciosa",
+    "aprendizagem-comunidade"
+  ],
+  "dataEstimativas": "2026-09"
+}

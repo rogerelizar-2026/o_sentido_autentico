@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="Mapa de aceleração do grego koiné em cinco níveis: Fundação, Básico, Intermediário, Avançado e Fluência, com os marcos de cada fase e o símbolo cristão ΙΧΘΥΣ.">
+  <rect width="960" height="540" fill="#FBFAF7"/>
+  <rect width="960" height="84" fill="#0F3731"/>
+  <text x="40" y="40" font-family="Georgia,serif" font-size="26" font-weight="700" fill="#C5A059">Mapa de Aceleração — Grego Koiné</text>
+  <text x="40" y="66" font-family="Arial,sans-serif" font-size="14" fill="#F3EFE6">Grego koiné — rota de 5 níveis (30–60 min/dia) · Rega/Mounce para morfologia · Wallace para sintaxe</text>
+
+  <!-- Símbolo ΙΧΘΥΣ (peixe cristão), marca da página de grego -->
+  <g transform="translate(772 10) scale(0.55)" fill="none" stroke="#C5A059" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 60 C 78 20, 168 20, 208 60"/>
+    <path d="M22 60 C 78 100, 168 100, 208 60"/>
+    <path d="M208 60 L 282 22"/>
+    <path d="M208 60 L 282 98"/>
+    <text x="115" y="77" text-anchor="middle" font-size="42" font-weight="700" font-family="Georgia,serif" fill="#C5A059" stroke="none" textLength="118" lengthAdjust="spacingAndGlyphs">ΙΧΘΥΣ</text>
+  </g>
+
+  <rect x="40" y="160" width="160" height="240" rx="14" fill="#FFFFFF" stroke="#0F3731" stroke-width="3"/>
+  <rect x="40" y="160" width="160" height="54" rx="14" fill="#0F3731"/>
+  <rect x="40" y="200" width="160" height="14" fill="#0F3731"/>
+  <text x="120" y="193" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700" fill="#FBFAF7">1 · Fundação</text>
+  <text x="120" y="244" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700" fill="#1A2530">Semanas 1–8</text>
+  <foreignObject x="52" y="260" width="136" height="120">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial,sans-serif;font-size:13px;line-height:1.45;color:#1A2530;text-align:center">Alfabeto · pronúncia · acentuação · frases simples</div>
+  </foreignObject>  <path d="M200 280 l18 0 m-6 -6 l6 6 l-6 6" stroke="#C5A059" stroke-width="3" fill="none"/>
+  <rect x="218" y="160" width="160" height="240" rx="14" fill="#FFFFFF" stroke="#102A43" stroke-width="3"/>
+  <rect x="218" y="160" width="160" height="54" rx="14" fill="#102A43"/>
+  <rect x="218" y="200" width="160" height="14" fill="#102A43"/>
+  <text x="298" y="193" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700" fill="#FBFAF7">2 · Básico</text>
+  <text x="298" y="244" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700" fill="#1A2530">Semanas 9–20</text>
+  <foreignObject x="230" y="260" width="136" height="120">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial,sans-serif;font-size:13px;line-height:1.45;color:#1A2530;text-align:center">Declinações · artigo · presente · João 1</div>
+  </foreignObject>  <path d="M378 280 l18 0 m-6 -6 l6 6 l-6 6" stroke="#C5A059" stroke-width="3" fill="none"/>
+  <rect x="396" y="160" width="160" height="240" rx="14" fill="#FFFFFF" stroke="#7B1D22" stroke-width="3"/>
+  <rect x="396" y="160" width="160" height="54" rx="14" fill="#7B1D22"/>
+  <rect x="396" y="200" width="160" height="14" fill="#7B1D22"/>
+  <text x="476" y="193" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700" fill="#FBFAF7">3 · Intermediário</text>
+  <text x="476" y="244" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700" fill="#1A2530">Semanas 21–36</text>
+  <foreignObject x="408" y="260" width="136" height="120">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial,sans-serif;font-size:13px;line-height:1.45;color:#1A2530;text-align:center">Aspecto/tempo · partículas (δέ, γάρ) · Filipenses</div>
+  </foreignObject>  <path d="M556 280 l18 0 m-6 -6 l6 6 l-6 6" stroke="#C5A059" stroke-width="3" fill="none"/>
+  <rect x="574" y="160" width="160" height="240" rx="14" fill="#FFFFFF" stroke="#C5A059" stroke-width="3"/>
+  <rect x="574" y="160" width="160" height="54" rx="14" fill="#C5A059"/>
+  <rect x="574" y="200" width="160" height="14" fill="#C5A059"/>
+  <text x="654" y="193" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700" fill="#FBFAF7">4 · Avançado</text>
+  <text x="654" y="244" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700" fill="#1A2530">Semanas 37–56</text>
+  <foreignObject x="586" y="260" width="136" height="120">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial,sans-serif;font-size:13px;line-height:1.45;color:#1A2530;text-align:center">Wallace · BDAG · NA28 · LXX</div>
+  </foreignObject>  <path d="M734 280 l18 0 m-6 -6 l6 6 l-6 6" stroke="#C5A059" stroke-width="3" fill="none"/>
+  <rect x="752" y="160" width="160" height="240" rx="14" fill="#FFFFFF" stroke="#4A5568" stroke-width="3"/>
+  <rect x="752" y="160" width="160" height="54" rx="14" fill="#4A5568"/>
+  <rect x="752" y="200" width="160" height="14" fill="#4A5568"/>
+  <text x="832" y="193" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700" fill="#FBFAF7">5 · Fluência</text>
+  <text x="832" y="244" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700" fill="#1A2530">Manutenção</text>
+  <foreignObject x="764" y="260" width="136" height="120">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial,sans-serif;font-size:13px;line-height:1.45;color:#1A2530;text-align:center">Leitura semanal · Anki enxuto · mentoria</div>
+  </foreignObject>
+  <text x="40" y="470" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#0F3731">Método vencedor (integração Rega/Mounce + Wallace):</text>
+  <text x="40" y="494" font-family="Arial,sans-serif" font-size="14" fill="#1A2530">Traduzir com Rega/Mounce → parsing completo → consultar Wallace na seção do fenômeno → nota exegética de 3–5 linhas.</text>
+  <text x="40" y="522" font-family="Arial,sans-serif" font-size="12" fill="#4A5568">Estimativa editorial de setembro de 2026 — não é cronograma oficial de editoras. O Sentido Autêntico · Rogério Ramão Lopes</text>
+</svg>

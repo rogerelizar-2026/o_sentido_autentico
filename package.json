@@ -1,0 +1,33 @@
+{
+  "name": "o-sentido-autentico",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "test:a11y": "playwright test -g axe",
+    "test:pwa": "playwright test -g PWA",
+    "serve": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "screenshots": "node tests/screenshots.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "CC-BY-NC-SA-4.0",
+  "description": "Portal educacional pt-BR para estudo de hebraico bíblico, aramaico bíblico e grego koiné",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
+    "@playwright/test": "^1.49.1",
+    "axe-core": "^4.10.2",
+    "playwright": "^1.49.1",
+    "serve": "^14.2.4"
+  },
+  "private": true,
+  "homepage": "https://rogerelizar-2026.github.io/AutenticSense-Free/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rogerelizar-2026/AutenticSense-Free.git"
+  }
+}

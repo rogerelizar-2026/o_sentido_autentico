@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Base path do GitHub Pages do projeto: /AutenticSense-Free/ (repositório rogerelizar-2026/AutenticSense-Free) -->
+  <url>
+    <loc>https://rogerelizar-2026.github.io/AutenticSense-Free/index.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://rogerelizar-2026.github.io/AutenticSense-Free/hebraico-aramaico.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rogerelizar-2026.github.io/AutenticSense-Free/grego-koine.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rogerelizar-2026.github.io/AutenticSense-Free/caixa-de-ferramentas.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>

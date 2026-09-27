@@ -1,0 +1,204 @@
+/* ==========================================================================
+   O Sentido Autêntico — Design tokens (Delivery 1)
+   Paleta, espaçamento (escala 4/8), tipografia, raios, elevação, interação.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Cores — papel / superfícies */
+  --osa-paper: #FBFAF7;
+  --osa-soft: #F3EFE6;
+  --osa-surface: #FFFFFF;
+  --osa-surface-raised: #FFFFFF;
+
+  /* Texto */
+  --osa-ink: #1A2530;
+  --osa-ink-secondary: #4A5568;
+  --osa-ink-muted: #5B6577;
+
+  /* Marca */
+  --osa-gold: #C5A059;
+  /* Variante escura do ouro, verificada para texto sobre papel (contraste ≥ 4.5:1) */
+  --osa-gold-ink: #7A5C1E;
+  --osa-gold-ink-hover: #5E4715;
+  --osa-gold-soft: #F5EBD8;
+
+  /* Destinos */
+  --osa-portal-green: #0F3731;
+  --osa-portal-green-soft: #E3EDEA;
+  --osa-hebrew-navy: #102A43;
+  --osa-hebrew-navy-soft: #E4ECF4;
+  --osa-greek-burgundy: #7B1D22;
+  --osa-greek-burgundy-soft: #F6E7E7;
+
+  /* Semântica */
+  --osa-success: #1F6B3A;
+  --osa-success-soft: #E5F3EA;
+  --osa-danger: #A12622;
+  --osa-danger-soft: #FBEAEA;
+  --osa-warning: #8A5A00;
+  --osa-warning-soft: #FCF3DF;
+  --osa-info: #0F4C81;
+  --osa-info-soft: #E7F0F9;
+
+  /* Borda e foco */
+  --osa-border: #E4DFD3;
+  --osa-border-strong: #C9C2B2;
+  --osa-focus: #0F4C81;
+  --osa-focus-ring: 0 0 0 3px rgba(15, 76, 129, 0.45);
+
+  /* Escala de espaçamento (4/8) */
+  --osa-space-1: 0.25rem;  /* 4 */
+  --osa-space-2: 0.5rem;   /* 8 */
+  --osa-space-3: 0.75rem;  /* 12 */
+  --osa-space-4: 1rem;     /* 16 */
+  --osa-space-5: 1.5rem;   /* 24 */
+  --osa-space-6: 2rem;     /* 32 */
+  --osa-space-7: 3rem;     /* 48 */
+  --osa-space-8: 4rem;     /* 64 */
+
+  /* Tipografia */
+  --osa-font-display: "Cinzel", "Times New Roman", serif;
+  --osa-font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --osa-font-serif: "Noto Serif", "Georgia", serif;
+  --osa-font-hebrew: "Noto Serif Hebrew", "Times New Roman", serif;
+  --osa-font-dyslexic: "OpenDyslexic", "Inter", sans-serif;
+
+  --osa-text-xs: 0.8125rem;   /* 13 */
+  --osa-text-sm: 0.9375rem;   /* 15 */
+  --osa-text-base: 1.0625rem; /* 17 — faixa 16–18 */
+  --osa-text-lg: 1.1875rem;   /* 19 */
+  --osa-text-xl: 1.375rem;    /* 22 */
+  --osa-text-2xl: 1.625rem;   /* 26 */
+  --osa-text-3xl: 2rem;       /* 32 */
+  --osa-text-4xl: 2.5rem;     /* 40 */
+
+  --osa-leading-body: 1.7;
+  --osa-leading-heading: 1.25;
+  --osa-measure: 72ch;
+
+  /* Raios */
+  --osa-radius-sm: 8px;
+  --osa-radius-md: 12px;
+  --osa-radius-lg: 16px;
+  --osa-radius-pill: 999px;
+
+  /* Elevação (modesta) */
+  --osa-shadow-1: 0 1px 2px rgba(26, 37, 48, 0.06);
+  --osa-shadow-2: 0 2px 8px rgba(26, 37, 48, 0.08);
+  --osa-shadow-3: 0 8px 24px rgba(26, 37, 48, 0.12);
+
+  /* Interação */
+  --osa-tap-min: 44px;
+  --osa-tap-prefer: 48px;
+  --osa-transition-fast: 120ms ease;
+  --osa-transition: 180ms ease;
+
+  /* Layout */
+  --osa-header-h: 56px;
+  --osa-bottomnav-h: 60px;
+  --osa-sidebar-w: 280px;
+  --osa-content-max: 760px;
+  --osa-wide-max: 1120px;
+  --osa-z-header: 40;
+  --osa-z-drawer: 60;
+  --osa-z-dialog: 80;
+  --osa-z-toast: 90;
+}
+
+/* Tema escuro — contraste AA verificado para corpo e ouro */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --osa-paper: #12171D;
+  --osa-soft: #1A212A;
+  --osa-surface: #1E2630;
+  --osa-surface-raised: #242E3A;
+
+  --osa-ink: #EEF1F5;
+  --osa-ink-secondary: #B7C0CE;
+  --osa-ink-muted: #9AA6B6;
+
+  --osa-gold: #C5A059;
+  --osa-gold-ink: #E3C489;
+  --osa-gold-ink-hover: #F0D6A4;
+  --osa-gold-soft: #3A3222;
+
+  --osa-portal-green: #7FCBB8;
+  --osa-portal-green-soft: #16302B;
+  --osa-hebrew-navy: #9EC5E8;
+  --osa-hebrew-navy-soft: #152437;
+  --osa-greek-burgundy: #E8A0A4;
+  --osa-greek-burgundy-soft: #33181B;
+
+  --osa-success: #7DCE96;
+  --osa-success-soft: #14301E;
+  --osa-danger: #F0A09B;
+  --osa-danger-soft: #3A1A19;
+  --osa-warning: #E8C07A;
+  --osa-warning-soft: #33270F;
+  --osa-info: #8FC3EA;
+  --osa-info-soft: #13283A;
+
+  --osa-border: #333E4C;
+  --osa-border-strong: #4A5666;
+  --osa-focus: #8FC3EA;
+  --osa-focus-ring: 0 0 0 3px rgba(143, 195, 234, 0.5);
+
+  --osa-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --osa-shadow-2: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --osa-shadow-3: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Alto contraste (alternativa do usuário) */
+[data-contrast="high"] {
+  --osa-paper: #FFFFFF;
+  --osa-soft: #F2F2F2;
+  --osa-surface: #FFFFFF;
+  --osa-ink: #000000;
+  --osa-ink-secondary: #1A1A1A;
+  --osa-ink-muted: #333333;
+  --osa-border: #000000;
+  --osa-border-strong: #000000;
+  --osa-focus: #000000;
+  --osa-gold-ink: #4A3500;
+  --osa-focus-ring: 0 0 0 3px #000000;
+}
+
+[data-contrast="high"][data-theme="dark"] {
+  --osa-paper: #000000;
+  --osa-soft: #0A0A0A;
+  --osa-surface: #101010;
+  --osa-ink: #FFFFFF;
+  --osa-ink-secondary: #EEEEEE;
+  --osa-ink-muted: #DDDDDD;
+  --osa-border: #FFFFFF;
+  --osa-border-strong: #FFFFFF;
+  --osa-focus: #FFFFFF;
+  --osa-gold-ink: #FFD98A;
+  --osa-focus-ring: 0 0 0 3px #FFFFFF;
+}
+
+/* Dislexia: fonte OpenDyslexic (OFL) quando ativa */
+[data-dyslexia="on"] body,
+[data-dyslexia="on"] input,
+[data-dyslexia="on"] textarea,
+[data-dyslexia="on"] select,
+[data-dyslexia="on"] button {
+  font-family: var(--osa-font-dyslexic), var(--osa-font-body);
+}
+
+/* Preferência por movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --osa-transition-fast: 0.01ms;
+    --osa-transition: 0.01ms;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

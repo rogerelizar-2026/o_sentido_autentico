@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="Guia: Metodologia com Notebook Gemini">
+  <rect width="960" height="540" fill="#FBFAF7"/>
+  <rect x="0" y="0" width="960" height="72" fill="#0F3731"/>
+  <text x="40" y="34" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#C5A059">O SENTIDO AUTÊNTICO</text>
+  <text x="40" y="58" font-family="Arial, sans-serif" font-size="15" fill="#FBFAF7">Guia: Metodologia com Notebook Gemini</text>
+  <text x="920" y="44" text-anchor="end" font-family="Arial, sans-serif" font-size="13" fill="#F3EFE6">IA para prática — não para leitura</text>
+  <line x1="40" y1="96" x2="920" y2="96" stroke="#C5A059" stroke-width="2"/>
+  <text x="60" y="140" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">Regra 1</text>
+<text x="72" y="170" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">A IA auxilia a prática; NUNCA substitui a leitura do texto original</text>
+<text x="60" y="200" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">Regra 2</text>
+<text x="72" y="230" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Explicações de IA não são scholarship autoritativo — valide em gramáticas e com mentores</text>
+<text x="60" y="260" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">Regra 3</text>
+<text x="72" y="290" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Não cite IA como fonte acadêmica em trabalhos</text>
+<text x="60" y="320" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">Fluxo A — Ditado e parsing reverso</text>
+<text x="72" y="350" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">IA dita formas; você escreve raiz, pessoa, tempo; confira em Ross/Rega</text>
+<text x="60" y="390" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">Fluxo B — Morfologia e desvios</text>
+<text x="72" y="420" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Liste irregulares e peça exercícios de classificação cronometrados</text>
+<text x="60" y="450" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">Fluxo C — Co-mentoria exegética</text>
+<text x="72" y="480" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Hipóteses sintáticas levantadas; confirmação no texto, léxico e mentor</text>
+  <text x="40" y="516" font-family="Arial, sans-serif" font-size="12" fill="#4A5568">Material de estudo pessoal · Curadoria: Rogério Ramão Lopes · rogerelizar@gmail.com · CC BY-NC-SA 4.0 (sujeito à revisão de direitos do proprietário)</text>
+</svg>
