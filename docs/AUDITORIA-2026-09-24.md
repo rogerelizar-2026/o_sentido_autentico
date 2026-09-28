@@ -24,7 +24,7 @@
 | Licença | **Conforme** | CC BY-NC-SA 4.0 nas 6 páginas; **0** ocorrências de "Todos os direitos reservados." em HTML/JS/JSON/CSS |
 | Hiperlinks externos | **Corrigido em parte** | ETCBC corrigido para `/bhsa/` (200); **resta decidir o substituto do Bible Atlas** (domínio sem DNS); 3 não verificáveis, 4 com bloqueio anti-robô |
 | Âncoras internas | **Corrigido** | `#cat-colecao` → `#panel-colecao` (gerador + regeneração) e o painel abre em modo coleção; 6 páginas com **0 âncoras quebradas** e teste de regressão |
-| SEO / dados estruturados | **Corrigido** | `og:url` absoluto nas 4 páginas de conteúdo — `https://rogerelizar-2026.github.io/AutenticSense-Free/` — sincronizado com `sitemap.xml` e `package.json`; páginas de apoio com `robots noindex` |
+| SEO / dados estruturados | **Corrigido** | `og:url` absoluto nas 4 páginas de conteúdo — `https://rogerelizar-2026.github.io/o_sentido_autentico/` — sincronizado com `sitemap.xml` e `package.json`; páginas de apoio com `robots noindex` |
 | Estrutura de títulos | **Corrigido** | títulos de nível e de gráfico em `h3`: nenhum salto em 4 páginas, com teste de regressão |
 | Fontes de escrita original | **Corrigido** | Hebraico: niqqud + cantilação completos. Grego politônico: `noto-serif-greek-ext-400.woff2` com **233/256** do bloco — cobre **100% dos caracteres usados** |
 
@@ -144,10 +144,10 @@ Itens que **não são defeito confirmado**, mas exigem decisão, verificação m
 
 ### N5 — Lacunas de SEO
 
-- `og:url` **ausente nas 6 páginas** (as demais tags Open Graph existem) — compartilhamento social fica sem URL canônica declarada. **Status: corrigido** nas 4 páginas de conteúdo, agora com a URL real do projeto (`https://rogerelizar-2026.github.io/AutenticSense-Free/`); `offline.html` e `404.html` não têm Open Graph por serem páginas de apoio.
+- `og:url` **ausente nas 6 páginas** (as demais tags Open Graph existem) — compartilhamento social fica sem URL canônica declarada. **Status: corrigido** nas 4 páginas de conteúdo, agora com a URL real do projeto (`https://rogerelizar-2026.github.io/o_sentido_autentico/`); `offline.html` e `404.html` não têm Open Graph por serem páginas de apoio.
 - `rel="canonical"` **presente em 4 de 6** páginas: falta em `offline.html` e `404.html`. **Decisão tomada:** em vez de canônico, essas duas receberam `robots noindex` (o `404` já tinha) — é o tratamento correto para páginas de apoio, e elas seguem fora do `sitemap.xml`.
 - `sitemap.xml` com 4 URLs — coerente com o que deve ser indexado.
-- **Atualização (24/09/2026):** o curador criou o repositório `rogerelizar-2026/AutenticSense-Free` e a base real `https://rogerelizar-2026.github.io/AutenticSense-Free/` foi preenchida em `og:url`, `sitemap.xml` e `package.json.homepage`; um teste automatizado falha se os três saírem de sincronia. Os `canonical` seguem relativos (`./pagina.html`) e acompanham qualquer base.
+- **Atualização (24/09/2026):** o curador criou o repositório `rogerelizar-2026/o_sentido_autentico` e a base real `https://rogerelizar-2026.github.io/o_sentido_autentico/` foi preenchida em `og:url`, `sitemap.xml` e `package.json.homepage`; um teste automatizado falha se os três saírem de sincronia. Os `canonical` seguem relativos (`./pagina.html`) e acompanham qualquer base.
 
 ### N6 — Saltos de nível em títulos (h2 → h4)
 

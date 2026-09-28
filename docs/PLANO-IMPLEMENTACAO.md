@@ -1,7 +1,7 @@
 # O Sentido Autêntico — Plano de implementação (resumo do proprietário)
 
 **Versão:** 1.0.0 · **Data:** 23/09/2026 · **Curadoria:** Rogério Ramão Lopes  
-**Arquitetura:** site 100% estático (HTML/CSS/ES modules), publicado no GitHub Pages em `/AutenticSense-Free/`.
+**Arquitetura:** site 100% estático (HTML/CSS/ES modules), publicado no GitHub Pages em `/o_sentido_autentico/`.
 
 ## 1. Objetivo
 
@@ -58,13 +58,13 @@ npm test
 npm run screenshots
 ```
 
-## 5. Deploy GitHub Pages (subdiretório `/AutenticSense-Free/`)
+## 5. Deploy GitHub Pages (subdiretório `/o_sentido_autentico/`)
 
-1. Publicar a raiz deste projeto no repositório `rogerelizar-2026/AutenticSense-Free` (já criado, vazio).
+1. Publicar a raiz deste projeto no repositório `rogerelizar-2026/o_sentido_autentico` (já criado, vazio).
 2. Settings → Pages → Branch `main` / root (ou workflow estático).
-3. O site fica em `https://rogerelizar-2026.github.io/AutenticSense-Free/`.
+3. O site fica em `https://rogerelizar-2026.github.io/o_sentido_autentico/`.
 4. Todos os recursos usam **caminhos relativos** (`./css/…`, `./js/…`) — não há necessidade de `<base href>`; `start_url`/`scope` do manifest são `./`.
-5. `sitemap.xml`, `og:url` e `package.json` já usam a base real (`https://rogerelizar-2026.github.io/AutenticSense-Free/`); revisar se o repositório for renomeado.
+5. `sitemap.xml`, `og:url` e `package.json` já usam a base real (`https://rogerelizar-2026.github.io/o_sentido_autentico/`); revisar se o repositório for renomeado.
 6. HTTPS é obrigatório para service worker.
 
 ## 6. Decisões técnicas deliberadas
@@ -124,7 +124,7 @@ Rodada executada sobre o relatório `docs/AUDITORIA-2026-09-24.md`, apenas nos i
 | N1 | Âncora `#cat-colecao` quebrada (2× + gerador) | `#panel-colecao` em `tools/build_pages.py` e regeneração; o painel abre em modo coleção por deep link (`js/catalog.js`) | teste *'"Minha coleção" leva ao painel existente'* (painel visível, aba selecionada, alvo no visor) |
 | N2 | `https://etcbc.github.io/` → 404 | `https://etcbc.github.io/bhsa/` (200) no catálogo e na lista de recursos | `grep` + teste de referências internas |
 | N4 | Grego politônico sem glifos | `noto-serif-greek-ext-400.woff2` (233/256, cobre 100% do usado) declarado para `U+1F00-1FFF`; `unicode-range` da face grega corrigido para `U+0370-03FF` (o arquivo não tinha o bloco estendido); precache 45 → 46 URLs | teste de proveniência por métricas + `verify-portatil` |
-| N5 | `og:url` ausente; páginas de apoio indexáveis | `og:url` absoluto nas 4 páginas de conteúdo (`https://rogerelizar-2026.github.io/AutenticSense-Free/`, sincronizado com `sitemap.xml` e `package.json`) e `robots noindex,follow` em `offline.html` (o `404.html` já tinha `noindex`) | teste *'og:url absoluto e coerente com sitemap e package.json'* |
+| N5 | `og:url` ausente; páginas de apoio indexáveis | `og:url` absoluto nas 4 páginas de conteúdo (`https://rogerelizar-2026.github.io/o_sentido_autentico/`, sincronizado com `sitemap.xml` e `package.json`) e `robots noindex,follow` em `offline.html` (o `404.html` já tinha `noindex`) | teste *'og:url absoluto e coerente com sitemap e package.json'* |
 | N6 | Saltos h2→h4 | títulos de nível e de gráfico passam a `h3` com classe visual equivalente | teste *'hierarquia de títulos sem saltos de nível'* |
 | A3 | 17 links de título com 23 px | `.osa-resource__title a` com `min-height: 24px` | teste *'links de título do catálogo têm alvo de toque de 24px'* |
 | region | `#tts-note` fora de landmark | `<aside class="osa-tts-note">`, margem zerada | teste *'aviso da leitura em voz alta fica dentro de um landmark'* + axe |

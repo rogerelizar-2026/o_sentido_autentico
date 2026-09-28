@@ -16,7 +16,7 @@
 | # | Pergunta | Decisão | Aplicação |
 |---|---|---|---|
 | 1 | Direitos × CC | **Manter Creative Commons** | UI: CC **BY-NC-SA 4.0** é a licença vigente (23/09/2026). Frase “Todos os direitos reservados.” **removida** da seção “Licença e Direitos Autorais” (rodapés + diálogo de termos) por direção do curador. |
-| 2 | URLs canônicas | **Placeholder até 23/09; preenchidas em 24/09** | O curador informou o repositório `rogerelizar-2026/AutenticSense-Free`; `og:url`, `sitemap.xml` e `package.json.homepage` passaram a usar `https://rogerelizar-2026.github.io/AutenticSense-Free/`. Os `canonical` seguem relativos e acompanham qualquer base. |
+| 2 | URLs canônicas | **Placeholder até 23/09; preenchidas em 24/09** | O curador informou o repositório `rogerelizar-2026/o_sentido_autentico`; `og:url`, `sitemap.xml` e `package.json.homepage` passaram a usar `https://rogerelizar-2026.github.io/o_sentido_autentico/`. Os `canonical` seguem relativos e acompanham qualquer base. |
 | 3 | Capas de livros | **Usar capas oficiais** | Substituídas por imagens reais em `covers/` (Rega=Vida Nova, Mounce=Editora Vida, Wallace=Open Library). Ross: capa oficial da edição em inglês (Open Library/Baker) + legenda honesta — arte da edição Vida não localizada online em 23/09/2026 (substituir se o curador enviar). Proveniência: `covers/FONTES.md`. |
 | 4 | Links de compra/loja | **Manter como na especificação** | Sem alteração (Apêndice B). |
 | 5 | Instituições | **Manter “Recomendadas” sem convênio** | Sem alteração; aviso de não-endosso já presente. |
@@ -49,4 +49,4 @@ Capas de livros: direitos das editoras/autores (uso de identificação editorial
 
 ## 5. PWA em HTTP local
 
-Service worker exige contexto seguro: `https://` ou `localhost`/`127.0.0.1`. GitHub Pages (HTTPS) é o alvo de produção, em `/AutenticSense-Free/`.
+Service worker exige contexto seguro: `https://` ou `localhost`/`127.0.0.1`. GitHub Pages (HTTPS) é o alvo de produção, em `/o_sentido_autentico/`.

@@ -30,8 +30,8 @@ pessoa: a autenticação acontece na sua máquina ou no próprio site do GitHub.
 2. Menu **File → Add local repository…** e aponte para a pasta
    `O-Sentido-Autentico-repositorio` que você baixou.
    - Se ele avisar que não é um repositório Git, clique em **"create a repository"**.
-   - O repositório já existe: **rogerelizar-2026/AutenticSense-Free**. Se for publicar por este caminho,
-     configure o remote para `https://github.com/rogerelizar-2026/AutenticSense-Free.git`. Deixe a opção de `README`
+   - O repositório já existe: **rogerelizar-2026/o_sentido_autentico**. Se for publicar por este caminho,
+     configure o remote para `https://github.com/rogerelizar-2026/o_sentido_autentico.git`. Deixe a opção de `README`
      **desmarcada** — o projeto já tem um.
 3. Confira a lista de arquivos na aba **Changes** (não deve aparecer
    `node_modules`, `dist-usb` nem `*.zip`) e escreva a mensagem do primeiro
@@ -50,7 +50,7 @@ git add -A
 git commit -m "Publica o portal O Sentido Autêntico — 1ª versão"
 
 # crie o repositório vazio no GitHub (sem README/gitignore) e então:
-git remote add origin https://github.com/rogerelizar-2026/AutenticSense-Free.git
+git remote add origin https://github.com/rogerelizar-2026/o_sentido_autentico.git
 git push -u origin main
 ```
 
@@ -63,7 +63,7 @@ imprime os comandos do `remote`/`push` já com o seu usuário preenchido:
 
 ## Caminho C — Enviar pelo navegador (sem instalar nada)
 
-1. O repositório **AutenticSense-Free** já está criado e vazio — abra-o em github.com.
+1. O repositório **o_sentido_autentico** já está criado e vazio — abra-o em github.com.
 2. Na página do repositório, clique em **uploading an existing file**.
 3. Arraste **o conteúdo** da pasta (não a pasta em si) e clique em **Commit changes**.
    - O envio aceita até 100 arquivos por vez; o repositório tem **123 arquivos**.
@@ -83,12 +83,12 @@ imprime os comandos do `remote`/`push` já com o seu usuário preenchido:
 2. Em **Source**, escolha **GitHub Actions** (não "Deploy from a branch").
 3. Volte em **Actions** e acompanhe o workflow *Publicar no GitHub Pages*.
    Ao terminar, o endereço aparece em **Settings → Pages**:
-   `https://rogerelizar-2026.github.io/AutenticSense-Free/`.
+   `https://rogerelizar-2026.github.io/o_sentido_autentico/`.
 
 ### Antes de divulgar o endereço
 
 - **URLs absolutas já preenchidas** (24/09/2026) com o endereço real —
-  `https://rogerelizar-2026.github.io/AutenticSense-Free/` — em `og:url` (quatro páginas de conteúdo), `sitemap.xml` e
+  `https://rogerelizar-2026.github.io/o_sentido_autentico/` — em `og:url` (quatro páginas de conteúdo), `sitemap.xml` e
   `package.json` (`homepage`). Os `<link rel="canonical">` são relativos
   (`./pagina.html`) e acompanham qualquer endereço automaticamente. Um teste
   automatizado falha se os três saírem de sincronia.

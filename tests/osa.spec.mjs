@@ -1344,3 +1344,33 @@ test.describe('Regressões da auditoria (24/09/2026)', () => {
     for (const h of alturas) expect(h).toBeGreaterThanOrEqual(23.9);
   });
 });
+
+test.describe('Guia integrado — regressões 1.2.0', () => {
+  test('carrega sem erros, usa ativos externos e conclusão é explícita', async ({ page }) => {
+    const errors=[]; page.on('pageerror', e=>errors.push(e.message));
+    await page.goto(BASE + '/guia-exegese.html');
+    await expect(page.locator('main h1')).toHaveCount(1);
+    await expect(page.locator('#m1 .module-complete')).toBeVisible();
+    expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('osa:exegese:state')||'{}').done?.m1||false)).toBe(false);
+    await page.click('#m1 .module-complete');
+    expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('osa:exegese:state')).done.m1)).toBe(true);
+    expect(errors).toEqual([]);
+  });
+  test('abas respondem ao teclado e expõem ARIA', async ({ page }) => {
+    await page.goto(BASE + '/guia-exegese.html#m5');
+    const first=page.locator('#langTabs [role="tab"]').first();
+    await expect(first).toHaveAttribute('aria-selected', /true|false/);
+    await first.focus(); await page.keyboard.press('ArrowRight');
+    await expect(page.locator('#langTabs [role="tab"]:focus')).toHaveCount(1);
+  });
+  test('não tem overflow horizontal crítico em 320 px', async ({ page }) => {
+    await page.setViewportSize({width:320,height:700}); await page.goto(BASE+'/guia-exegese.html');
+    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
+    expect(overflow).toBeLessThanOrEqual(2);
+  });
+  test('metadados e links institucionais usam produção/HTTPS', async ({ page }) => {
+    await page.goto(BASE+'/guia-exegese.html');
+    await expect(page.locator('a[href="https://aibreb.org.br/instituicoes_seminarios.html"]')).toHaveCount(1);
+    await expect(page.locator('a[href^="http:"]')).toHaveCount(0);
+  });
+});

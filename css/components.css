@@ -278,7 +278,7 @@
   left: 0; right: 0; bottom: 0;
   z-index: var(--osa-z-header);
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   background: var(--osa-surface);
   border-top: 1px solid var(--osa-border);
   padding-bottom: env(safe-area-inset-bottom, 0px);
