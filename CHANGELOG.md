@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.1 — 2026-09-27
+
+### Identidade visual
+- Guia de Exegese alinhado ao design system do Portal do Estudante.
+- Unificadas tipografia, paleta, ícones, favicon, cabeçalho, sidebar, cartões e navegação inferior.
+- Preservada a organização didática e o progresso específico do Guia.
+- Cache PWA atualizado para entregar os novos estilos.
+
+
 ## 1.2.0 — 2026-09-27
 
 ### Corrigido
