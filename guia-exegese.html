@@ -1,50 +1,43 @@
 <!doctype html>
 <html lang="pt-BR" data-theme="light">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Guia integrado de exegese bíblica: do estabelecimento do texto à aplicação responsável.">
-<meta name="theme-color" content="#174f57">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Guia de Exegese">
-<link rel="manifest" href="./manifest.webmanifest">
-<link rel="icon" type="image/svg+xml" href="./icons/favicon.svg">
-<link rel="icon" type="image/png" href="./icons/favicon-48.png">
-<link rel="apple-touch-icon" href="./icons/icon-192.png">
-<link rel="canonical" href="https://rogerelizar-2026.github.io/o_sentido_autentico/guia-exegese.html">
-<meta name="author" content="Rogério Ramão Lopes">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="pt_BR">
-<meta property="og:title" content="Guia Integrado de Exegese Bíblica — O Sentido Autêntico">
-<meta property="og:description" content="Do texto à aplicação responsável.">
-<meta property="og:url" content="https://rogerelizar-2026.github.io/o_sentido_autentico/guia-exegese.html">
-<meta property="og:image" content="https://rogerelizar-2026.github.io/o_sentido_autentico/social-guia.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Guia Integrado de Exegese Bíblica">
-<meta name="twitter:description" content="Do texto à aplicação responsável.">
-<meta name="twitter:image" content="https://rogerelizar-2026.github.io/o_sentido_autentico/social-guia.png">
-<title>Guia Integrado de Exegese Bíblica — O Sentido Autêntico</title>
-<link rel="preload" href="./fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="./fonts/inter-latin-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="./css/main.css">
-<link rel="stylesheet" href="./css/guia-exegese.css">
-<script>
-  /* Bootstrap de tema sem flash (inline, síncrono) */
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <title>Guia Integrado de Exegese Bíblica — O Sentido Autêntico</title>
+    <meta name="description" content="Guia integrado de hermenêutica e exegese bíblica: do estabelecimento do texto à aplicação responsável. Um guia com base em obras reconhecidas e confiáveis para uma abordagem histórico-gramatical das Escrituras.">
+    <meta name="theme-color" content="#0F3731"> 
+    <meta name="author" content="Rogério Ramão Lopes">
+    <link rel="canonical" href="https://rogerelizar-2026.github.io/o_sentido_autentico/index.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="Guia Integrado de Exegese Bíblica — O Sentido Autêntico">
+    <meta property="og:description" content="Do texto à aplicação responsável.">
+    <meta property="og:url" content="https://rogerelizar-2026.github.io/o_sentido_autentico/guia-exegese.html">
+   <meta name="twitter:card" content="summary">
+   <link rel="manifest" href="./manifest.webmanifest">
+   <link rel="icon" href="./icons/favicon.svg" type="image/svg+xml">
+   <link rel="icon" href="./icons/favicon-48.png" type="image/png">
+   <link rel="apple-touch-icon" href="./icons/icon-192.png">
+   <link rel="preload" href="./fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+   <link rel="preload" href="./fonts/inter-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+   <link rel="stylesheet" href="./css/main.css">
+  
+   <script>
+    /* Bootstrap de tema sem flash (inline, síncrono) */
   try {
-    var t = localStorage.getItem('osa:theme') || localStorage.getItem('theme');
-    if (t !== 'light' && t !== 'dark') {
-      t = 'light'; /* padrão do site é tema claro */
-    }
-    document.documentElement.dataset.theme = t;
-    document.documentElement.style.colorScheme = t;
-    var a11y = JSON.parse(localStorage.getItem('osa:a11y:prefs') || '{}');
-    if (a11y.dyslexia) document.documentElement.dataset.dyslexia = 'on';
-    if (a11y.highContrast) document.documentElement.dataset.contrast = 'high';
-    if (a11y.fontScale) document.documentElement.dataset.fontScale = String(a11y.fontScale);
-  } catch (e) {}
-</script>
+    try {
+      var t = localStorage.getItem('osa:theme') || localStorage.getItem('theme');
+      if (t !== 'light' && t !== 'dark') {
+        t = 'light'; /* padrão do site é tema claro */
+      }
+      document.documentElement.dataset.theme = t;
+      document.documentElement.style.colorScheme = t;
+      var a11y = JSON.parse(localStorage.getItem('osa:a11y:prefs') || '{}');
+      if (a11y.dyslexia) document.documentElement.dataset.dyslexia = 'on';
+      if (a11y.highContrast) document.documentElement.dataset.contrast = 'high';
+      if (a11y.fontScale && a11y.fontScale !== 1) document.documentElement.style.fontSize = (16 * a11y.fontScale) + 'px';
+    } catch (e) {}
+  </script>
 </head>
 <body data-page="guia-exegese">
 <a class="osa-skip" href="#main">Pular para o conteúdo principal</a>
