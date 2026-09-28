@@ -84,6 +84,32 @@
     <span class="osa-brand__text">O Sentido Autêntico</span>
   </a>
 </header>
+
+<!-- Botão redondo de acessibilidade (padrão do portal index.html — substitui as barras de acessibilidade) -->
+<div class="osa-a11y-fab-wrap">
+  <button class="osa-a11y-fab__btn" id="a11y-fab" type="button" aria-expanded="false" aria-controls="a11y-panel" aria-label="Abrir opções de acessibilidade" title="Acessibilidade">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <circle cx="12" cy="5" r="2"/>
+      <path d="M5 9h14"/>
+      <path d="M12 9v5"/>
+      <path d="M8.5 21 12 14l3.5 7"/>
+      <path d="M7 12h10"/>
+    </svg>
+  </button>
+  <div class="osa-a11y-panel" id="a11y-panel" role="group" aria-label="Opções de acessibilidade" hidden>
+    <button id="theme-toggle" type="button" aria-label="Alternar para tema escuro" data-theme-icon title="Alternar tema claro/escuro">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-theme-icon-svg><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+    </button>
+    <button type="button" data-a11y="font-decrease" aria-label="Diminuir tamanho da fonte" title="Diminuir fonte">A−</button>
+    <button type="button" data-a11y="font-increase" aria-label="Aumentar tamanho da fonte" title="Aumentar fonte">A+</button>
+    <button type="button" data-a11y="font-reset" aria-label="Redefinir tamanho da fonte" title="Redefinir fonte">A·</button>
+    <button type="button" data-a11y="dyslexia" aria-pressed="false" aria-label="Ativar ou desativar fonte para dislexia" title="Fonte dislexia">Ad</button>
+    <button type="button" data-a11y="contrast" aria-pressed="false" aria-label="Ativar ou desativar alto contraste" title="Alto contraste">◐</button>
+    <button type="button" data-tts="start" aria-pressed="false" aria-label="Ler página em voz alta" title="Ler em voz alta">▶</button>
+    <button type="button" data-tts="stop" disabled aria-label="Parar leitura em voz alta" title="Parar leitura">■</button>
+  </div>
+</div>
+
 <main id="main" class="osa-main" tabindex="-1">
 <section class="hero" id="inicio" data-title="Início">
  <div class="hero-inner">
