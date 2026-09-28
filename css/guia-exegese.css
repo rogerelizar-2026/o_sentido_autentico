@@ -47,3 +47,17 @@ body{background:var(--osa-paper);color:var(--osa-ink);font-family:var(--osa-font
 .guide-bottomnav{display:none}.mobile-menu{border-color:var(--osa-border);background:var(--osa-surface);border-radius:var(--osa-radius-lg)}
 @media(max-width:780px){.topbar.osa-header{height:var(--osa-header-h);padding:0 var(--osa-space-3)}.guide-header-label{display:none}.layout{margin-top:var(--osa-header-h)}.content{padding:0 var(--osa-space-4) calc(var(--osa-bottomnav-h) + 48px)}.hero{margin:0;padding:var(--osa-space-6) 0}.hero h1{font-size:2.25rem}.guide-bottomnav{display:grid}.mobile-menu{bottom:calc(var(--osa-bottomnav-h) + 14px)}}
 @media(max-width:420px){.topbar .osa-brand__text{max-width:42vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.content{padding-left:var(--osa-space-3);padding-right:var(--osa-space-3)}.hero h1{font-size:2rem}}
+
+/* Ajustes finais de paridade com index.html */
+.serif,h1,h2,h3,.card h3,.flow-step b,.quote{font-family:var(--osa-font-body)}
+.topbar.osa-header{position:sticky;top:0;transform:none!important;min-height:var(--osa-header-h);height:auto;padding:var(--osa-space-2) var(--osa-space-3);padding-top:calc(var(--osa-space-2) + env(safe-area-inset-top,0px))}
+.layout{margin-top:0;transition:grid-template-columns var(--osa-transition)}
+.hero h1{font-family:var(--osa-font-body);font-size:clamp(1.6rem,4vw,2.4rem);font-weight:650;line-height:var(--osa-leading-heading);letter-spacing:0}
+.guide-subtitle{font-size:var(--osa-text-lg)!important;color:var(--osa-ink-secondary)!important;margin-top:-.25rem;margin-bottom:var(--osa-space-3)}
+.osa-install-menu{width:100%;justify-content:center}
+body.guide-sidebar-collapsed .layout{grid-template-columns:0 minmax(0,1fr) 230px}
+body.guide-sidebar-collapsed .guide-sidebar{visibility:hidden;overflow:hidden;padding-left:0;padding-right:0;border:0}
+.guide-sidebar{transition:visibility var(--osa-transition),padding var(--osa-transition)}
+@media(max-width:1180px) and (min-width:781px){body.guide-sidebar-collapsed .layout{grid-template-columns:0 minmax(0,1fr)}}
+@media(max-width:780px){.topbar.osa-header{min-height:var(--osa-header-h);height:auto}.layout,body.guide-sidebar-collapsed .layout{display:block;margin-top:0}.hero h1{font-size:clamp(1.6rem,8vw,2.4rem)}}
+@media(max-width:780px){.osa-bottomnav{display:grid}}

@@ -75,15 +75,16 @@ function initResume() {
 /** Botão do rodapé "PWA instalável" → diálogo com as instruções de uso offline. */
 function initPwaHelp() {
   const dlg = document.getElementById('dialog-pwa');
-  const abrir = document.querySelector('[data-pwa-help]');
-  if (!dlg || !abrir) return;
-  if (!abrir.dataset.osaBound) {
+  const botoes = document.querySelectorAll('[data-pwa-help]');
+  if (!dlg || !botoes.length) return;
+  botoes.forEach((abrir) => {
+    if (abrir.dataset.osaBound) return;
     abrir.dataset.osaBound = '1';
     abrir.addEventListener('click', () => {
       if (typeof dlg.showModal === 'function') dlg.showModal();
       else dlg.setAttribute('open', '');
     });
-  }
+  });
   dlg.querySelectorAll('[data-pwa-close]').forEach((b) => {
     if (b.dataset.osaBound) return;
     b.dataset.osaBound = '1';
