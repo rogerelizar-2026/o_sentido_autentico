@@ -1,5 +1,6 @@
 import { initPWA } from './pwa.js';
 import { initA11yToolbar, initTTS } from './a11y.js';
+import { initTheme } from './theme.js';
 const modules=[['m1','Fundamentos'],['m2','Falácias'],['m3','Crítica textual'],['m4','Contexto e gênero'],['m5','Línguas e sintaxe'],['m6','Diagramação'],['m7','Formas especiais'],['m8','Argumento e discurso'],['m9','Síntese exegética'],['m10','Aplicação'],['m11','Laboratório']];
 const state=JSON.parse(localStorage.getItem('osa:exegese:state')||'{}'); state.done=state.done||{}; state.checks=state.checks||{};
 const save=()=>localStorage.setItem('osa:exegese:state',JSON.stringify(state));
@@ -25,9 +26,8 @@ document.querySelectorAll('#langTabs .tab-btn').forEach(b=>b.onclick=()=>openTab
 // tabs do módulo de argumento e discurso
 function openDiscTab(name){document.querySelectorAll('#discourseTabs [data-disc-tab]').forEach(b=>b.classList.toggle('active',b.dataset.discTab===name));document.querySelectorAll('#discourseTabs [data-disc-panel]').forEach(p=>p.classList.toggle('active',p.dataset.discPanel===name))}
 document.querySelectorAll('#discourseTabs [data-disc-tab]').forEach(b=>b.onclick=()=>openDiscTab(b.dataset.discTab));
-// theme/font
-const root=document.documentElement;const portalTheme=localStorage.getItem('osa:theme');root.dataset.theme=state.theme||portalTheme||'light';document.querySelector('#themeBtn').onclick=()=>{state.theme=root.dataset.theme==='light'?'dark':'light';root.dataset.theme=state.theme;localStorage.setItem('osa:theme',state.theme);save()};
-const sizes=[16,17,18.5,20];let si=state.fontIndex||1;root.style.setProperty('--body-size',sizes[si]+'px');document.querySelector('#fontBtn').onclick=()=>{si=(si+1)%sizes.length;state.fontIndex=si;root.style.setProperty('--body-size',sizes[si]+'px');save()};
+// tema: implementação única do portal (botão #theme-toggle no painel de acessibilidade)
+initTheme();
 // instalação PWA
 let deferredInstall=null;const installOverlay=document.querySelector('#installOverlay'),installContent=document.querySelector('#installContent');
 const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);const isStandalone=window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
