@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.2 — 2026-09-28
+
+### Navegação e unidade visual
+- Removidos indicadores “Destino”, rótulo e busca do header do Guia, botões de ação do hero e botões “X” das gavetas.
+- Header, sidebar, FAB de acessibilidade e tipografia do Guia alinhados ao Portal.
+- “Instalar como App” adicionado às barras laterais desktop e mobile.
+- Navegação inferior móvel sincronizada com o padrão do Portal em todas as páginas.
+- Guia passa a usar menu lateral com auto-ocultação após 4 segundos.
+
+
 ## 1.2.1 — 2026-09-27
 
 ### Identidade visual

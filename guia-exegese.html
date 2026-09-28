@@ -54,10 +54,8 @@
     <img class="osa-brand__mark" src="./icons/osa-mark.svg" alt="" width="28" height="28">
     <span class="osa-brand__text">O Sentido Autêntico</span>
   </a>
-  <span class="guide-header-label" aria-current="page">Guia de Exegese</span>
   <div class="top-spacer"></div>
   <div class="progress-mini" aria-label="Progresso dos módulos"><i id="progressBar"></i></div>
-  <button class="osa-icon-btn" id="searchBtn" type="button" aria-label="Pesquisar no guia" title="Pesquisar">⌕</button>
 </header>
 
 <!-- Botão redondo de acessibilidade (padrão do portal index.html — substitui as barras de acessibilidade) -->
@@ -90,6 +88,7 @@
   <nav id="sideNav"></nav>
   <div class="side-tools">
     <div class="nav-title">Atalhos</div>
+    <button class="nav-link guide-install" type="button" data-install-action><span class="num">⇩</span>Instalar como App</button>
     <button class="nav-link" data-jump="m5"><span class="num">א</span>Línguas bíblicas</button>
     <button class="nav-link" data-jump="m6"><span class="num">⌁</span>Diagramação</button>
     <button class="nav-link" data-jump="m11"><span class="num">✓</span>Ferramentas</button>
@@ -100,11 +99,11 @@
 <section class="hero" id="inicio" data-title="Início">
  <div class="hero-inner">
   <div class="osa-page-heading"><svg class="osa-page-heading__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10 5 7.5 4.5 4 4.5v13c3.5 0 6 .5 8 2 2-1.5 4.5-2 8-2v-13c-3.5 0-6 .5-8 2z"/><path d="M12 6.5v13"/></svg><p class="osa-page-heading__name">Guia Integrado de Exegese</p></div>
-  <h1>Do texto à aplicação responsável.</h1>
+  <h1>Guia Integrado de Exegese</h1>
+  <p class="guide-subtitle">Do texto à aplicação responsável.</p>
   <small class="byline">by rogerelizar</small>
   <small class="edition">Edição • Setembro de 2026</small>
   <p>Um percurso para compreender antes de concluir, demonstrar antes de afirmar e aplicar sem violentar o texto.</p>
-  <div class="actions"><a class="btn ghost" href="./index.html">← Portal</a><button class="btn primary" data-jump="m1">Iniciar percurso →</button><button class="btn ghost" data-jump="m11">Consultar ferramentas</button><button class="btn ghost" data-install-action>⇩ Instalar como app</button></div>
  </div>
 </section>
 <section aria-label="Perspectiva editorial"><div class="callout"><div class="sym">✦</div><div><strong>Perspectiva e transparência</strong><br>Este projeto é produzido a partir de uma perspectiva cristã evangélica confessional. Procura distinguir dados textuais, decisões metodológicas, avaliações do curador e convicções teológicas. Consulte a <a href="./docs/POLITICA-EDITORIAL.md">política editorial e de correções</a>.</div></div></section>
@@ -496,13 +495,28 @@ CLÍMAX — conclusão principal
 <aside class="toc" aria-label="Nesta página"><div class="nav-title">Nesta página</div><div id="tocLinks"></div><div class="mini-card"><b>Princípio de leitura</b><br><span style="color:var(--muted)">Contexto controla o sentido; evidência controla a certeza.</span></div></aside>
 </div>
 
-<nav class="osa-bottomnav guide-bottomnav" aria-label="Navegação principal">
-<a href="./index.html"><span class="osa-bottomnav__icon" aria-hidden="true">⌂</span>Início</a>
-<a href="./hebraico-aramaico.html"><span class="osa-bottomnav__icon" aria-hidden="true">א</span>Hebraico</a>
-<a href="./grego-koine.html"><span class="osa-bottomnav__icon" aria-hidden="true">α</span>Grego</a>
-<a href="./guia-exegese.html" aria-current="page"><span class="osa-bottomnav__icon" aria-hidden="true">▤</span>Exegese</a>
-<a href="./caixa-de-ferramentas.html"><span class="osa-bottomnav__icon" aria-hidden="true">⌕</span>Recursos</a>
-</nav>
+<nav class="osa-bottomnav" aria-label="Navegação principal">
+    <a href="./index.html" data-nav-file="index.html">
+      <span class="osa-bottomnav__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5V21H3z"/></svg></span>
+      Início
+    </a>
+    <a href="./hebraico-aramaico.html" data-nav-file="hebraico-aramaico.html">
+      <span class="osa-bottomnav__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" role="img" focusable="false"><text x="12" y="12" text-anchor="middle" dominant-baseline="central" font-size="23" font-weight="700" font-family="'Noto Serif Hebrew', 'Times New Roman', serif">א</text></svg></span>
+      Hebraico
+    </a>
+    <a href="./grego-koine.html" data-nav-file="grego-koine.html">
+      <span class="osa-bottomnav__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" role="img" focusable="false"><text x="12" y="12" text-anchor="middle" dominant-baseline="central" font-size="23" font-weight="700" font-family="'Noto Serif', 'Times New Roman', serif">α</text></svg></span>
+      Grego
+    </a>
+    <a href="./guia-exegese.html" data-nav-file="guia-exegese.html" aria-current="page">
+      <span class="osa-bottomnav__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5.5c3.2-.8 5.8-.2 8 1.7 2.2-1.9 4.8-2.5 8-1.7v13c-3.2-.8-5.8-.2-8 1.7-2.2-1.9-4.8-2.5-8-1.7z"/><path d="M12 7.2v13"/></svg></span>
+      Exegese
+    </a>
+    <a href="./caixa-de-ferramentas.html" data-nav-file="caixa-de-ferramentas.html">
+      <span class="osa-bottomnav__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><g transform="translate(12 12) scale(1.28) translate(-12 -12)"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2z"/></g></svg></span>
+      Ferramentas
+    </a>
+  </nav>
 <div class="mobile-menu" id="mobileMenu" aria-label="Menu móvel"></div>
 <div class="search-overlay" id="installOverlay" role="dialog" aria-modal="true" aria-labelledby="installTitle">
  <div class="search-box">

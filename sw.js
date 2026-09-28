@@ -11,7 +11,7 @@
  * (osa-core-… e osa-runtime-…); apaga apenas caches desta aplicação.
  * ========================================================================== */
 
-const VERSION = 'v1.2.1';
+const VERSION = 'v1.2.2';
 const PREFIX = 'osa';
 const CORE_CACHE = `${PREFIX}-core-${VERSION}`;
 const RUNTIME_CACHE = `${PREFIX}-runtime-${VERSION}`;
