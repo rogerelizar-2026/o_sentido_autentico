@@ -13,6 +13,7 @@
 <link rel="icon" type="image/svg+xml" href="./icons/favicon.svg">
 <link rel="apple-touch-icon" href="./icons/icon-192.png">
 <link rel="canonical" href="https://rogerelizar-2026.github.io/o_sentido_autentico/guia-exegese.html">
+<meta name="author" content="Rogério Ramão Lopes">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="Guia Integrado de Exegese Bíblica — O Sentido Autêntico">
@@ -24,7 +25,25 @@
 <meta name="twitter:description" content="Do texto à aplicação responsável.">
 <meta name="twitter:image" content="https://rogerelizar-2026.github.io/o_sentido_autentico/social-guia.png">
 <title>Guia Integrado de Exegese Bíblica — O Sentido Autêntico</title>
+<link rel="preload" href="./fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./fonts/inter-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="./css/main.css">
 <link rel="stylesheet" href="./css/guia-exegese.css">
+<script>
+  /* Bootstrap de tema sem flash (inline, síncrono) */
+  try {
+    var t = localStorage.getItem('osa:theme') || localStorage.getItem('theme');
+    if (t !== 'light' && t !== 'dark') {
+      t = 'light'; /* padrão do site é tema claro */
+    }
+    document.documentElement.dataset.theme = t;
+    document.documentElement.style.colorScheme = t;
+    var a11y = JSON.parse(localStorage.getItem('osa:a11y:prefs') || '{}');
+    if (a11y.dyslexia) document.documentElement.dataset.dyslexia = 'on';
+    if (a11y.highContrast) document.documentElement.dataset.contrast = 'high';
+    if (a11y.fontScale) document.documentElement.dataset.fontScale = String(a11y.fontScale);
+  } catch (e) {}
+</script>
 </head>
 <body data-page="guia-exegese">
 <a class="skip" href="#main">Pular para o conteúdo</a>
@@ -33,10 +52,33 @@
   <a class="brand" href="./index.html" title="Voltar ao portal O Sentido Autêntico">O Sentido Autêntico · <b>Exegese</b></a>
   <div class="top-spacer"></div>
   <div class="progress-mini" aria-label="Progresso"><i id="progressBar"></i></div>
-  <button class="icon-btn" id="fontBtn" aria-label="Ajustar tamanho do texto">Aᴀ</button>
-  <button class="icon-btn" id="themeBtn" aria-label="Alternar tema">◐</button>
   <button class="icon-btn" id="searchBtn" aria-label="Pesquisar">⌕</button>
 </header>
+
+<!-- Botão redondo de acessibilidade (padrão do portal index.html — substitui as barras de acessibilidade) -->
+<div class="osa-a11y-fab-wrap">
+  <button class="osa-a11y-fab__btn" id="a11y-fab" type="button" aria-expanded="false" aria-controls="a11y-panel" aria-label="Abrir opções de acessibilidade" title="Acessibilidade">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <circle cx="12" cy="5" r="2"/>
+      <path d="M5 9h14"/>
+      <path d="M12 9v5"/>
+      <path d="M8.5 21 12 14l3.5 7"/>
+      <path d="M7 12h10"/>
+    </svg>
+  </button>
+  <div class="osa-a11y-panel" id="a11y-panel" role="group" aria-label="Opções de acessibilidade" hidden>
+    <button id="theme-toggle" type="button" aria-label="Alternar para tema escuro" data-theme-icon title="Alternar tema claro/escuro">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-theme-icon-svg><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+    </button>
+    <button type="button" data-a11y="font-decrease" aria-label="Diminuir tamanho da fonte" title="Diminuir fonte">A−</button>
+    <button type="button" data-a11y="font-increase" aria-label="Aumentar tamanho da fonte" title="Aumentar fonte">A+</button>
+    <button type="button" data-a11y="font-reset" aria-label="Redefinir tamanho da fonte" title="Redefinir fonte">A·</button>
+    <button type="button" data-a11y="dyslexia" aria-pressed="false" aria-label="Ativar ou desativar fonte para dislexia" title="Fonte dislexia">Ad</button>
+    <button type="button" data-a11y="contrast" aria-pressed="false" aria-label="Ativar ou desativar alto contraste" title="Alto contraste">◐</button>
+    <button type="button" data-tts="start" aria-pressed="false" aria-label="Ler página em voz alta" title="Ler em voz alta">▶</button>
+    <button type="button" data-tts="stop" disabled aria-label="Parar leitura em voz alta" title="Parar leitura">■</button>
+  </div>
+</div>
 <div class="layout">
 <aside class="sidebar" aria-label="Jornada exegética">
   <div class="nav-title">O Sentido Autêntico</div><a class="nav-link" href="./index.html"><span class="num">⌂</span>Portal do Estudante</a><a class="nav-link" href="./hebraico-aramaico.html"><span class="num">א</span>Hebraico e Aramaico</a><a class="nav-link" href="./grego-koine.html"><span class="num">α</span>Grego Koiné</a><div class="nav-title" style="margin-top:18px">Percurso formativo</div>
@@ -381,7 +423,7 @@ CLÍMAX — conclusão principal
  <div class="section-kicker"><span class="module-no">9</span> Integração</div>
  <h2>Converta observações em uma hipótese explicativa.</h2>
  <p class="lead">A síntese precisa explicar os dados principais, a progressão do argumento e a resposta esperada dos destinatários.</p>
- <div class="diagram"><div style="text-align:center;font-family:Georgia,serif;font-size:1.15rem;line-height:2.2"><b style="color:var(--petrol)">TEXTO</b> + CONTEXTO + GRAMÁTICA + GÊNERO + ARGUMENTO + CÂNON<br><span style="color:var(--terra)">− FALÁCIAS</span><br><span style="font-size:1.6rem;color:var(--gold)">= SÍNTESE EXEGÉTICA</span></div></div>
+ <div class="diagram"><div style="text-align:center;font-family:'Noto Serif',Georgia,serif;font-size:1.15rem;line-height:2.2"><b style="color:var(--petrol)">TEXTO</b> + CONTEXTO + GRAMÁTICA + GÊNERO + ARGUMENTO + CÂNON<br><span style="color:var(--terra)">− FALÁCIAS</span><br><span style="font-size:1.6rem;color:var(--gold)">= SÍNTESE EXEGÉTICA</span></div></div>
  <div class="goal"><b>Complete:</b> “Por meio desta unidade, o autor procurou comunicar aos destinatários que…”</div>
  <div class="grid"><div class="card"><h3>Ideia principal</h3><p>Uma frase que abrange a predicação central e sua finalidade.</p></div><div class="card"><h3>Estrutura</h3><p>Como causas, propósitos, condições e explicações sustentam a ideia.</p></div><div class="card"><h3>Alternativas</h3><p>Que outras leituras explicam os dados e por que uma é preferível?</p></div><div class="card"><h3>Confiança</h3><p>Certo, provável, possível ou especulativo.</p></div></div>
 </section>
@@ -458,9 +500,7 @@ CLÍMAX — conclusão principal
  </div>
 </div>
 <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Pesquisar no guia"><div class="search-box"><div style="display:flex;gap:8px"><input id="searchInput" type="search" placeholder="Busque por particípio, falácia, contexto…" aria-label="Termo de pesquisa"><button class="icon-btn" id="closeSearch" aria-label="Fechar">×</button></div><div id="searchResults"></div></div></div>
-<div class="guide-a11y" aria-label="Acessibilidade">
-<button type="button" data-a11y="font-decrease" aria-label="Diminuir fonte">A−</button><button type="button" data-a11y="font-reset" aria-label="Redefinir fonte">A</button><button type="button" data-a11y="font-increase" aria-label="Aumentar fonte">A+</button><button type="button" data-a11y="dyslexia" aria-pressed="false">Dislexia</button><button type="button" data-a11y="contrast" aria-pressed="false">Contraste</button><button type="button" data-tts="start">Ouvir</button><button type="button" data-tts="stop">Parar</button><span id="tts-status" class="sr-only" aria-live="polite"></span>
-</div>
+<p id="tts-status" class="sr-only" role="status" aria-live="polite"></p>
 <div class="guide-update" id="update-bar" data-visible="false" role="status"><span>Nova versão disponível.</span><button type="button" data-pwa-update>Atualizar</button><button type="button" data-pwa-dismiss>Agora não</button></div>
 <script type="module" src="./js/guia-exegese.js"></script>
 </body>
