@@ -42,12 +42,12 @@ Guia completo: [`docs/PUBLICAR-GITHUB.md`](docs/PUBLICAR-GITHUB.md) — três ca
 
 O repositório já traz `LICENSE` (CC BY-NC-SA 4.0, texto oficial), `.gitignore`, `.nojekyll` e o workflow `.github/workflows/pages.yml`, que publica o site a cada push na `main` (Settings → Pages → Source: *GitHub Actions*).
 
-## Deploy (GitHub Pages, subdiretório `/AutenticSense-Free/`)
+## Deploy (GitHub Pages, subdiretório `/o_sentido_autentico/`)
 
 1. Publique a **raiz** do repositório no GitHub.
 2. Pages → branch `main` (root).
-3. As URLs absolutas (`og:url`, `sitemap.xml`, `homepage`) já apontam para `https://rogerelizar-2026.github.io/AutenticSense-Free/`.
-4. Todos os caminhos são relativos — funciona sob `/AutenticSense-Free/` sem `<base>`.
+3. As URLs absolutas (`og:url`, `sitemap.xml`, `homepage`) já apontam para `https://rogerelizar-2026.github.io/o_sentido_autentico/`.
+4. Todos os caminhos são relativos — funciona sob `/o_sentido_autentico/` sem `<base>`.
 
 ## Estrutura
 
@@ -70,3 +70,8 @@ Sem contas e sem nuvem: favoritos, recursos criados por você, preferências e p
 ## Licença
 
 Texto completo no rodapé do site e no diálogo de termos. **Decisão do curador (23/09/2026):** Creative Commons **BY-NC-SA 4.0** é a licença vigente; a frase “Todos os direitos reservados.” não aparece mais na seção de licença.
+
+
+## Guia Integrado de Exegese
+
+O portal inclui `guia-exegese.html`, um percurso do estabelecimento do texto à aplicação responsável. A página integra crítica textual, contexto, línguas bíblicas, sintaxe, diagramação, argumento, discurso e aplicação. Ela utiliza o mesmo manifesto e Service Worker do portal e fica disponível offline após a primeira visita/atualização do PWA.

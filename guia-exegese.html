@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Guia integrado de exegese bíblica: do estabelecimento do texto à aplicação responsável.">
+<meta name="theme-color" content="#174f57">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Guia de Exegese">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="./icons/favicon.svg">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<link rel="canonical" href="https://rogerelizar-2026.github.io/o_sentido_autentico/guia-exegese.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Guia Integrado de Exegese Bíblica — O Sentido Autêntico">
+<meta property="og:description" content="Do texto à aplicação responsável.">
+<meta property="og:url" content="https://rogerelizar-2026.github.io/o_sentido_autentico/guia-exegese.html">
+<meta property="og:image" content="https://rogerelizar-2026.github.io/o_sentido_autentico/social-guia.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Guia Integrado de Exegese Bíblica">
+<meta name="twitter:description" content="Do texto à aplicação responsável.">
+<meta name="twitter:image" content="https://rogerelizar-2026.github.io/o_sentido_autentico/social-guia.png">
+<title>Guia Integrado de Exegese Bíblica — O Sentido Autêntico</title>
+<link rel="stylesheet" href="./css/guia-exegese.css">
+</head>
+<body data-page="guia-exegese">
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<header class="topbar">
+  <button class="icon-btn" id="menuBtn" aria-label="Abrir jornada">☰</button>
+  <a class="brand" href="./index.html" title="Voltar ao portal O Sentido Autêntico">O Sentido Autêntico · <b>Exegese</b></a>
+  <div class="top-spacer"></div>
+  <div class="progress-mini" aria-label="Progresso"><i id="progressBar"></i></div>
+  <button class="icon-btn" id="fontBtn" aria-label="Ajustar tamanho do texto">Aᴀ</button>
+  <button class="icon-btn" id="themeBtn" aria-label="Alternar tema">◐</button>
+  <button class="icon-btn" id="searchBtn" aria-label="Pesquisar">⌕</button>
+</header>
+<div class="layout">
+<aside class="sidebar" aria-label="Jornada exegética">
+  <div class="nav-title">O Sentido Autêntico</div><a class="nav-link" href="./index.html"><span class="num">⌂</span>Portal do Estudante</a><a class="nav-link" href="./hebraico-aramaico.html"><span class="num">א</span>Hebraico e Aramaico</a><a class="nav-link" href="./grego-koine.html"><span class="num">α</span>Grego Koiné</a><div class="nav-title" style="margin-top:18px">Percurso formativo</div>
+  <nav id="sideNav"></nav>
+  <div class="side-tools">
+    <div class="nav-title">Atalhos</div>
+    <button class="nav-link" data-jump="m5"><span class="num">א</span>Línguas bíblicas</button>
+    <button class="nav-link" data-jump="m6"><span class="num">⌁</span>Diagramação</button>
+    <button class="nav-link" data-jump="m11"><span class="num">✓</span>Ferramentas</button>
+  </div>
+</aside>
+<main id="main">
+<div class="content">
+<section class="hero" id="inicio" data-title="Início">
+ <div class="hero-inner">
+  <div class="eyebrow hero-brand">Guia Integrado</div>
+  <h1>Do texto à aplicação responsável.</h1>
+  <small class="byline">by rogerelizar</small>
+  <small class="edition">Edição • Setembro de 2026</small>
+  <p>Um percurso para compreender antes de concluir, demonstrar antes de afirmar e aplicar sem violentar o texto.</p>
+  <div class="actions"><a class="btn ghost" href="./index.html">← Portal</a><button class="btn primary" data-jump="m1">Iniciar percurso →</button><button class="btn ghost" data-jump="m11">Consultar ferramentas</button><button class="btn ghost" data-install-action>⇩ Instalar como app</button></div>
+ </div>
+</section>
+<section aria-label="Perspectiva editorial"><div class="callout"><div class="sym">✦</div><div><strong>Perspectiva e transparência</strong><br>Este projeto é produzido a partir de uma perspectiva cristã evangélica confessional. Procura distinguir dados textuais, decisões metodológicas, avaliações do curador e convicções teológicas. Consulte a <a href="./docs/POLITICA-EDITORIAL.md">política editorial e de correções</a>.</div></div></section>
+<section id="introducao" aria-labelledby="intro-title" style="padding:42px 0 18px">
+ <div class="section-kicker">Introdução</div><h2 id="intro-title" class="serif">Estudo sério requer formação, comunidade e acompanhamento.</h2>
+ <p class="lead">Este guia organiza conceitos, procedimentos e ferramentas para apoiar a leitura responsável das Escrituras. Ele não substitui uma formação teológica estruturada: o estudo dos idiomas bíblicos, da hermenêutica e da exegese é melhor desenvolvido com currículo progressivo, avaliação, pesquisa bibliográfica e acompanhamento de professores e mentores. Seguem duas recomendações do curador, escolhidas por sua orientação confessional, seriedade didática e experiência pessoal de formação:</p>
+ <div class="callout"><div class="sym">ℹ</div><div><strong>Natureza da formação</strong><br>Cursos livres, formação eclesiástica e graduação reconhecida seguem critérios diferentes. Consulte o e-MEC para cursos superiores e confirme diretamente com cada instituição a natureza da certificação. A listagem da AIBREB indica referência denominacional, não credenciamento governamental automático.</div></div>
+ <div class="grid">
+  <article class="card"><span class="tag">Formação acadêmica</span><h3>Faculdade Batista Logos</h3><p>Instituição em que o idealizador deste guia estudou Grego Bíblico e Exegese do Novo Testamento.</p><p><a href="https://faculdadebatistalogos.edu.br" target="_blank" rel="noopener noreferrer">faculdadebatistalogos.edu.br ↗</a></p></article>
+  <article class="card"><span class="tag">Diretório de instituições</span><h3>AIBREB — Seminários</h3><p>Consulte a AIBREB para encontrar seminários e faculdades de teologia e verificar opções adequadas à sua formação.</p><p><a href="https://aibreb.org.br/instituicoes_seminarios.html" target="_blank" rel="noopener noreferrer">Diretório oficial AIBREB ↗</a></p></article>
+ </div>
+ <div class="callout"><div class="sym">✦</div><div><strong>Como usar este material</strong><br>Empregue-o como mapa de estudos, instrumento de revisão e apoio para análise. Confirme decisões nas obras completas, discuta interpretações com docentes e colegas e mantenha suas conclusões proporcionais às evidências.</div></div>
+</section>
+<section aria-labelledby="mapa-title">
+ <div class="section-kicker">Visão geral</div><h2 id="mapa-title" class="serif">A jornada exegética</h2>
+ <p class="lead">O guia apresenta uma sequência didática, mas a investigação real é iterativa: novas observações lexicais, textuais, históricas e teológicas frequentemente exigem retorno e revisão de etapas anteriores. Use-o como curso sequencial ou ambiente de consulta.</p>
+ <div class="flow" aria-label="Fluxo do processo exegético">
+  <div class="flow-step"><b>Preparar</b><small>pressupostos</small></div><span class="arrow">→</span>
+  <div class="flow-step"><b>Estabelecer</b><small>o texto</small></div><span class="arrow">→</span>
+  <div class="flow-step"><b>Contextualizar</b><small>mundo e gênero</small></div><span class="arrow">→</span>
+  <div class="flow-step"><b>Analisar</b><small>línguas e sintaxe</small></div><span class="arrow">→</span>
+  <div class="flow-step"><b>Integrar</b><small>argumento e cânon</small></div><span class="arrow">→</span>
+  <div class="flow-step"><b>Aplicar</b><small>com responsabilidade</small></div>
+ </div>
+ <div class="grid three">
+  <div class="card"><span class="tag">Modo jornada</span><h3>Aprenda em sequência</h3><p>De fundamentos e crítica textual até síntese e aplicação.</p></div>
+  <div class="card"><span class="tag">Modo consulta</span><h3>Resolva uma questão</h3><p>Vá direto a idiomas, diagramas, falácias ou checklists.</p></div>
+  <div class="card"><span class="tag">Princípio</span><h3>Certeza proporcional</h3><p>Diferencie o certo, o provável, o possível e o especulativo.</p></div>
+ </div>
+</section>
+
+<section class="module" id="m1" data-title="Fundamentos">
+ <div class="section-kicker"><span class="module-no">1</span> Fundamentos • Roy B. Zuck</div>
+ <h2>O que significa interpretar?</h2>
+ <p class="lead">Interpretar é buscar a intenção comunicativa historicamente acessível por meio do texto, respeitando seus meios humanos de comunicação e sua natureza como Escritura.</p>
+ <div class="goal"><b>Pergunta orientadora:</b> O que o autor comunicou aos destinatários por meio deste texto?</div>
+ <div class="grid">
+  <div class="card"><h3>Bíblia humana e divina</h3><p>A inspiração não elimina idioma, gênero, contexto, estilo ou circunstância. Esses meios participam da comunicação.</p></div>
+  <div class="card"><h3>Três movimentos</h3><p><b>Observação:</b> o que está presente? <b>Interpretação:</b> o que comunica? <b>Aplicação:</b> como orienta hoje?</p></div>
+  <div class="card"><h3>Distâncias</h3><p>Temporal, cultural, histórica, geográfica, linguística e literária.</p></div>
+  <div class="card"><h3>Postura</h3><p>Reverência e obediência não substituem método; método não substitui humildade e disposição para revisão.</p></div>
+ </div>
+ <div class="quote">“A autoridade do texto não equivale à infalibilidade do intérprete.”</div>
+ <div class="accordion">
+  <div class="acc"><button class="acc-btn">História da interpretação <span>+</span></button><div class="acc-body">A história registra contribuições e erros: tradição judaica, pais da Igreja, alegorização, Idade Média, Reforma e abordagens modernas. Tradições devem ser ouvidas e testadas pelo texto.</div></div>
+  <div class="acc"><button class="acc-btn">Interpretação normal e literalismo <span>+</span></button><div class="acc-body">Leitura normal reconhece o sentido pretendido, inclusive metáforas e hipérboles. Literalismo ignora o modo pelo qual o gênero e as figuras comunicam.</div></div>
+  <div class="acc"><button class="acc-btn">Iluminação e estudo <span>+</span></button><div class="acc-body">A ação do Espírito não concede automaticamente competência linguística nem valida sentidos privados sem apoio textual.</div></div>
+ </div>
+</section>
+
+<section class="module" id="m2" data-title="Falácias">
+ <div class="section-kicker"><span class="module-no">2</span> Integridade • D. A. Carson</div>
+ <h2>Conheça as armadilhas antes de usar as ferramentas.</h2>
+ <p class="lead">Argumentos podem soar técnicos e ainda assim falhar. O intérprete responsável torna explícito o caminho entre dado, inferência e conclusão.</p>
+ <div class="grid">
+  <div class="card"><span class="tag warn">Vocabulário</span><h3>Raiz não é sentido</h3><p>Etimologia, sentidos posteriores e todas as acepções do léxico não devem ser importados para uma ocorrência.</p></div>
+  <div class="card"><span class="tag warn">Gramática</span><h3>Forma não é fórmula</h3><p>Aoristo, voz média, artigo ou caso não produzem conclusões teológicas automáticas.</p></div>
+  <div class="card"><span class="tag warn">Lógica</span><h3>Possível não é provável</h3><p>Evite falso dilema, evidência seletiva, non sequitur, falsa analogia e apelo indevido à autoridade.</p></div>
+  <div class="card"><span class="tag warn">História</span><h3>Hipótese não é fato</h3><p>Reconstruções históricas e motivações precisam de evidência independente.</p></div>
+ </div>
+ <div class="callout"><div class="sym">⚠</div><div><strong>Uso retórico do original</strong><br>Não diga apenas “o grego diz”. Mostre a construção, as opções, as razões e o grau de certeza.</div></div>
+ <h3 class="serif">Escala de confiança</h3>
+ <div class="flow"><div class="flow-step"><b>Certo</b><small>exigido pelos dados</small></div><div class="flow-step"><b>Provável</b><small>melhor explicação</small></div><div class="flow-step"><b>Possível</b><small>permitido</small></div><div class="flow-step"><b>Especulativo</b><small>dados insuficientes</small></div></div>
+</section>
+
+<section class="module" id="m3" data-title="Crítica textual">
+ <div class="section-kicker"><span class="module-no">3</span> Estabelecimento do texto • Wilson Paroschi</div>
+ <h2>Qual forma do texto será interpretada?</h2>
+ <p class="lead">Variantes surgiram durante a transmissão manuscrita. A crítica textual avalia testemunhos e probabilidades para recuperar a forma mais antiga alcançável.</p>
+ <div class="diagram" role="img" aria-label="Processo de decisão em crítica textual">
+  <svg viewBox="0 0 760 250"><defs><link rel="stylesheet" href="./css/guia-exegese.css"></defs>
+   <rect class="bx" x="285" y="10" width="190" height="52" rx="14"/><text class="tx" x="380" y="34" text-anchor="middle">Passagem com variantes</text>
+   <path class="ln" d="M380 62v32M380 94H185M380 94H575M185 94v20M575 94v20"/>
+   <rect class="bx" x="70" y="114" width="230" height="75" rx="14"/><text class="tx" x="185" y="140" text-anchor="middle">Evidência externa</text><text class="sm" x="185" y="163" text-anchor="middle">data • qualidade • distribuição</text>
+   <rect class="bx" x="460" y="114" width="230" height="75" rx="14"/><text class="tx" x="575" y="140" text-anchor="middle">Evidência interna</text><text class="sm" x="575" y="163" text-anchor="middle">transcricional • intrínseca</text>
+   <path class="ln" d="M185 189v25h195M575 189v25H380"/><rect class="bx" x="290" y="204" width="180" height="40" rx="12"/><text class="tx" x="380" y="229" text-anchor="middle">Decisão revisável</text>
+  </svg>
+ </div>
+ <div class="grid three">
+  <div class="card"><h3>Testemunhos</h3><p>Papiros, unciais, minúsculos, lecionários, versões e citações patrísticas.</p></div>
+  <div class="card"><h3>Variantes</h3><p>Omissão, adição, substituição, transposição; alterações acidentais ou intencionais.</p></div>
+  <div class="card"><h3>Aparato</h3><p>Localize a variante, separe leituras, associe testemunhos e consulte a legenda da edição.</p></div>
+ </div>
+ <div class="callout"><div class="sym">ℹ</div><div><strong>Edições</strong><br>Paroschi explica principalmente NA26 e UBS3. Em NA28 e UBS5, confirme símbolos e critérios na introdução editorial. Para atualização, consulte também a Editio Critica Maior (ECM) quando aplicável e introduções ao Coherence-Based Genealogical Method (CBGM), sem tratá-lo como solução automática. Distinga “texto original”, “texto inicial” e “forma mais antiga recuperável” conforme o escopo adotado.</div></div>
+</section>
+
+<section class="module" id="m4" data-title="Contexto e gênero">
+ <div class="section-kicker"><span class="module-no">4</span> Contexto • Roy B. Zuck</div>
+ <h2>Reconstrua o mundo e reconheça o gênero.</h2>
+ <p class="lead">O contexto impede que palavras e costumes sejam arrancados do ambiente em que comunicavam.</p>
+ <div class="grid">
+  <div class="card"><h3>História</h3><p>Autor, destinatários, data, ocasião, relações políticas e situação religiosa.</p></div>
+  <div class="card"><h3>Cultura</h3><p>Família, economia, instituições, costumes, objetos, honra, vergonha e práticas comunitárias.</p></div>
+  <div class="card"><h3>Literatura</h3><p>Parágrafo, livro, estrutura, argumento, repetição, contraste e gênero.</p></div>
+  <div class="card"><h3>Geografia</h3><p>Lugar, rotas, relevo e distâncias apenas quando esclarecem o texto.</p></div>
+ </div>
+ <div class="goal"><b>Pergunta de controle:</b> esta informação contextual explica um dado textual ou apenas torna o estudo mais curioso?</div>
+ <div class="accordion">
+  <div class="acc"><button class="acc-btn">Narrativa <span>+</span></button><div class="acc-body">Nem toda ação relatada é aprovada. Observe enredo, caracterização, ponto de vista, conflito e resolução.</div></div>
+  <div class="acc"><button class="acc-btn">Poesia e sabedoria <span>+</span></button><div class="acc-body">Paralelismo, imagens e condensação são centrais. Provérbios são máximas gerais, não promessas sem exceções.</div></div>
+  <div class="acc"><button class="acc-btn">Cartas e discurso <span>+</span></button><div class="acc-body">Acompanhe a progressão argumentativa e a situação que motivou a comunicação.</div></div>
+ </div>
+</section>
+
+<section class="module" id="m5" data-title="Línguas e sintaxe">
+ <div class="section-kicker"><span class="module-no">5</span> Línguas bíblicas • Ross, Rega–Bergmann e Wallace</div>
+ <h2>Da forma linguística ao argumento.</h2>
+ <p class="lead">Hebraico e grego não revelam códigos secretos. Eles permitem examinar relações, ambiguidades e escolhas que toda tradução precisa interpretar.</p>
+ <div class="goal"><b>Pergunta orientadora:</b> como esta forma contribui para o sentido da passagem em seu contexto?</div>
+ <h3 class="serif">Quatro níveis que não devem ser confundidos</h3>
+ <div class="flow"><div class="flow-step"><b>Morfologia</b><small>que forma?</small></div><span class="arrow">→</span><div class="flow-step"><b>Sintaxe</b><small>que função?</small></div><span class="arrow">→</span><div class="flow-step"><b>Semântica</b><small>que sentido aqui?</small></div><span class="arrow">→</span><div class="flow-step"><b>Exegese</b><small>que papel no argumento?</small></div></div>
+ <div class="callout"><div class="sym">✦</div><div><strong>Ganho real</strong><br>O original torna o estudo mais verificável e menos dependente de uma única tradução; não torna o intérprete infalível.</div></div>
+
+ <div class="lang-gateway">
+  <article class="lang-card hebrew"><span class="tag he">Antigo Testamento</span><div class="sample" lang="he" dir="rtl">בְּרֵאשִׁית</div><h3>Trilha do hebraico</h3><p>Ross conduz de sinais e sons a morfologia, sintaxe e leitura de textos.</p><button class="btn" data-tab-target="hebraico">Explorar hebraico</button></article>
+  <div class="bridge" aria-hidden="true">⇄</div>
+  <article class="lang-card greek"><span class="tag gr">Novo Testamento</span><div class="sample" lang="grc">Ἐν ἀρχῇ</div><h3>Trilha do grego</h3><p>Rega forma a base; Wallace leva da morfologia à sintaxe exegética.</p><button class="btn" data-tab-target="grego">Explorar grego</button></article>
+ </div>
+
+ <div class="tabs" id="langTabs">
+  <div class="tablist" role="tablist"><button class="tab-btn active" data-tab="visao">Visão integrada</button><button class="tab-btn" data-tab="hebraico">Hebraico • Ross</button><button class="tab-btn" data-tab="grego">Grego • Rega</button><button class="tab-btn" data-tab="wallace">Grego • Wallace</button><button class="tab-btn" data-tab="pinto">Sintaxe • Pinto–Dias</button><button class="tab-btn" data-tab="lab">Laboratório</button></div>
+  <div class="tabpanel active" data-panel="visao">
+   <div class="book-row">
+    <article class="book"><img src="./covers/capa-ross.png" alt="Capa de Gramática do Hebraico Bíblico, de Allen P. Ross"><div><h3>Allen P. Ross</h3><p>Sinais → formas → sintaxe → texto.</p></div></article>
+    <article class="book"><img src="./covers/capa-rega.png" alt="Capa de Noções do Grego Bíblico, de Rega e Bergmann"><div><h3>Rega–Bergmann</h3><p>Leitura → morfologia → uso instrumental.</p></div></article>
+    <article class="book"><img src="./covers/capa-wallace.png" alt="Capa de Gramática Grega, de Daniel B. Wallace"><div><h3>Daniel B. Wallace</h3><p>Sintaxe → categorias → decisão exegética.</p></div></article>
+    <article class="book"><img src="./covers/capa-pinto-dias.jpg" alt="Capa de Fundamentos para Exegese do Novo Testamento, de Carlos Osvaldo Cardoso Pinto e Marcelo Dias"><div><h3>Pinto–Dias</h3><p>Sintaxe grega → estrutura da oração → diagramação exegética.</p></div></article>
+   </div>
+   <div class="grid"><div class="card"><h3>O que ambos exigem</h3><p>Leitura, vocabulário, morfologia, sintaxe, contexto, discurso, prática e revisão.</p></div><div class="card"><h3>O que não transferir</h3><p>Não imponha o sistema temporal português ao hebraico nem categorias gregas diretamente ao hebraico.</p></div></div>
+  </div>
+  <div class="tabpanel" data-panel="hebraico">
+   <span class="tag he">Ross</span><h3 class="serif">Hebraico: da escrita à narrativa</h3>
+   <div class="steps">
+    <div class="step"><div><h3>Sinais e sons</h3><p>Alfabeto, vogais massoréticas, sílabas, shewa, acentos, guturais e letras quiescentes. A transliteração é ponte, não destino.</p></div></div>
+    <div class="step"><div><h3>Sistema nominal</h3><p>Gênero, número, artigo, adjetivos, pronomes, preposições, sufixos e cadeia construta.</p></div></div>
+    <div class="step"><div><h3>Sistema verbal</h3><p>Raiz, perfeito e imperfeito, formas não finitas, Qal, Nifal, Piel, Pual, Hitpael, Hifil, Hofal e verbos fracos.</p></div></div>
+    <div class="step"><div><h3>Sintaxe e discurso</h3><p>Orações nominais e verbais, ordem, waw, sequência narrativa, primeiro plano e pano de fundo.</p></div></div>
+   </div>
+   <div class="callout"><div class="sym">⚠</div><div><strong>Não mecanize os troncos</strong><br>“Causativo”, “intensivo” e “reflexivo” são orientações iniciais; o valor depende do verbo e do contexto.</div></div>
+  </div>
+  <div class="tabpanel" data-panel="grego">
+   <span class="tag gr">Rega–Bergmann</span><h3 class="serif">Grego fundamental: aprender a reconhecer</h3>
+   <div class="grid"><div class="card"><h3>Leitura</h3><p>Alfabeto, pronúncia, sílabas, acentos, espíritos e sinais.</p></div><div class="card"><h3>Sistema nominal</h3><p>Casos, declinações, artigo, adjetivos, pronomes e preposições.</p></div><div class="card"><h3>Sistema verbal</h3><p>Tempos/aspectos, vozes, modos, verbos contraídos e em -μι.</p></div><div class="card"><h3>Formas não finitas</h3><p>Particípios, infinitivos, sujeito acusativo e condicionais.</p></div></div>
+   <div class="callout"><div class="sym">⚠</div><div><strong>Tempo não é fórmula</strong><br>Aoristo não significa automaticamente “uma vez por todas”; presente não garante ação contínua.</div></div>
+  </div>
+  <div class="tabpanel" data-panel="wallace">
+   <span class="tag gr">Nível intermediário</span><h3 class="serif">Wallace: aprender a avaliar</h3><p>Pressupõe morfologia básica. Sua pergunta não é apenas “que forma?”, mas “que função exerce aqui e que diferença faz?”.</p>
+   <div class="grid three"><div class="card"><h3>Formas nominais</h3><p>Casos, artigo, adjetivos, pronomes e preposições.</p></div><div class="card"><h3>Formas verbais</h3><p>Pessoa, número, voz, modo, tempo/aspecto, infinitivo e particípio.</p></div><div class="card"><h3>Orações</h3><p>Causa, propósito, resultado, condição, concessão, comparação e volição.</p></div></div>
+   <div class="goal"><b>Procedimento:</b> definição → chave de identificação → categoria próxima → exemplos → contexto → grau de confiança.</div>
+  </div>
+  <div class="tabpanel" data-panel="pinto">
+   <span class="tag gr">Sintaxe e exegese</span><h3 class="serif">Pinto–Dias: fundamentos para a exegese do NT</h3>
+   <p>O manual funciona como ponte entre a gramática grega e a exposição do texto. Ele organiza a sintaxe das classes de palavras e propõe a diagramação como instrumento para visualizar regência, dependência e hierarquia.</p>
+   <div class="grid">
+    <div class="card"><h3>Sistema nominal</h3><p>Casos, artigo, adjetivos, pronomes e preposições são estudados conforme sua função na oração, não apenas como paradigmas.</p></div>
+    <div class="card"><h3>Sistema verbal</h3><p>Tempo/aspecto, voz, modo, infinitivos e particípios são relacionados à predicação e à progressão do pensamento.</p></div>
+    <div class="card"><h3>Relações entre orações</h3><p>Coordenação, relativas, substantivas, temporais, causais, finais, consecutivas, condicionais e concessivas.</p></div>
+    <div class="card"><h3>Diagramação exegética</h3><p>Identificar núcleos, ligar modificadores e explicitar as relações lógico-semânticas antes de formular a síntese.</p></div>
+   </div>
+   <div class="goal"><b>Ponte metodológica:</b> morfologia → função sintática → estrutura diagramada → valor contextual → conclusão exegética.</div>
+   <div class="callout"><div class="sym">ℹ</div><div><strong>Uso complementar</strong><br>Wallace aprofunda categorias sintáticas; Pinto–Dias ajuda a reuni-las numa leitura estrutural da passagem; LaSor oferece uma convenção visual especialmente simples para diagramar.</div></div>
+  </div>
+  <div class="tabpanel" data-panel="lab">
+   <h3 class="serif">Laboratório linguístico</h3>
+   <div class="steps"><div class="step"><div><h3>Leia e delimite</h3><p>Use a edição crítica e marque a unidade.</p></div></div><div class="step"><div><h3>Identifique</h3><p>Verbos, formas nominais, conectores e formas não finitas.</p></div></div><div class="step"><div><h3>Relacione</h3><p>Orações, regência, concordância, ordem e escopo.</p></div></div><div class="step"><div><h3>Teste</h3><p>Compare categorias, traduções e alternativas.</p></div></div><div class="step"><div><h3>Explique</h3><p>Tradução de trabalho, impacto exegético e grau de certeza.</p></div></div></div>
+  </div>
+ </div>
+ <h3 class="serif">Competências do módulo</h3>
+ <div class="skill"><span>Leitura</span><div class="bar"><i style="width:74%"></i></div></div><div class="skill"><span>Morfologia</span><div class="bar"><i style="width:84%"></i></div></div><div class="skill"><span>Sintaxe</span><div class="bar"><i style="width:92%"></i></div></div><div class="skill"><span>Discurso</span><div class="bar"><i style="width:68%"></i></div></div>
+</section>
+
+<section class="module" id="m6" data-title="Diagramação">
+ <div class="section-kicker"><span class="module-no">6</span> Diagramação • LaSor + Pinto–Dias</div>
+ <h2>Represente visualmente as relações.</h2>
+ <p class="lead">O Módulo 5 identifica formas e funções; este módulo, apoiado no sistema simples de LaSor e na proposta sintático-exegética de Pinto–Dias, torna a hipótese estrutural visível, comparável e revisável.</p>
+ <div class="grid">
+  <div class="card"><span class="tag">LaSor</span><h3>Convenção visual</h3><p>Verbo no centro, linha principal para a predicação e linhas distintas para modificadores, coordenação e subordinação.</p></div>
+  <div class="card"><span class="tag gr">Pinto–Dias</span><h3>Finalidade exegética</h3><p>A diagramação reúne as funções sintáticas e evidencia o fluxo lógico da passagem, servindo de ponte para a interpretação e a exposição.</p></div>
+ </div>
+ <div class="diagram"><pre style="font:16px/1.8 'Noto Serif',Georgia,serif;margin:0;min-width:580px;color:var(--ink)">ὁ μαθητής | ἐπίστευσεν
+               / εἰς τὸν κύριον
+             │
+             └── ἀκούσας | τὸν λόγον
+
+sujeito     | VERBO PRINCIPAL
+                 / complemento preposicional
+               │
+               └── particípio adverbial | objeto</pre></div>
+ <div class="grid"><div class="card"><h3>Linha principal</h3><p>Sujeito, verbo, objeto e predicativo formam o esqueleto.</p></div><div class="card"><h3>Dependências</h3><p>Modificadores ficam sob o termo governante; coordenação e subordinação recebem ligações distintas.</p></div><div class="card"><h3>Formas não finitas</h3><p>Particípios e infinitivos aparecem ligados à função que exercem.</p></div><div class="card"><h3>Alternativas</h3><p>Quando houver ambiguidade, desenhe duas análises e compare seu poder explicativo.</p></div></div>
+ <div class="accordion">
+  <div class="acc"><button class="acc-btn">1. Encontre a predicação nuclear <span>+</span></button><div class="acc-body">Localize cada verbo finito, identifique a oração principal e disponha sujeito, verbo e complementos nucleares. Comece pela estrutura mínima antes de acrescentar detalhes.</div></div>
+  <div class="acc"><button class="acc-btn">2. Organize o sistema nominal <span>+</span></button><div class="acc-body">Agrupe artigo, substantivo, adjetivo e particípio concordante; ligue genitivos, dativos, apostos e locuções ao termo exato de que dependem.</div></div>
+  <div class="acc"><button class="acc-btn">3. Resolva particípios e infinitivos <span>+</span></button><div class="acc-body">Determine se o particípio é adjetival, substantivado, circunstancial ou complementar. Verifique se o infinitivo ocupa função nominal, complementa um verbo ou introduz relação circunstancial.</div></div>
+  <div class="acc"><button class="acc-btn">4. Classifique as relações entre orações <span>+</span></button><div class="acc-body">Diferencie coordenação e subordinação; identifique relações relativas, substantivas, causais, temporais, finais, consecutivas, condicionais, concessivas e comparativas.</div></div>
+  <div class="acc"><button class="acc-btn">5. Acrescente o valor lógico-semântico <span>+</span></button><div class="acc-body">Depois de representar a dependência sintática, registre causa, propósito, condição, contraste, explicação ou resultado. Não determine a relação apenas por uma conjunção isolada.</div></div>
+  <div class="acc"><button class="acc-btn">6. Converta estrutura em exegese <span>+</span></button><div class="acc-body">Resuma a predicação central, mostre como as subordinadas a sustentam, compare diagramas alternativos e formule a contribuição do período para o argumento do livro.</div></div>
+ </div>
+ <div class="callout"><div class="sym">⚠</div><div><strong>Limite do diagrama</strong><br>Ele representa uma análise da sintaxe; não substitui crítica textual, léxico, contexto histórico, gênero, análise discursiva ou teologia bíblica.</div></div>
+ <h3 class="serif">Processo em seis etapas</h3>
+ <div class="flow"><div class="flow-step"><b>1</b><small>verbos</small></div><div class="flow-step"><b>2</b><small>orações</small></div><div class="flow-step"><b>3</b><small>núcleos</small></div><div class="flow-step"><b>4</b><small>modificadores</small></div><div class="flow-step"><b>5</b><small>conectores</small></div><div class="flow-step"><b>6</b><small>síntese</small></div></div>
+</section>
+
+<section class="module" id="m7" data-title="Formas especiais">
+ <div class="section-kicker"><span class="module-no">7</span> Literatura especial • Roy B. Zuck</div>
+ <h2>Respeite o modo como o texto comunica.</h2>
+ <div class="accordion">
+  <div class="acc"><button class="acc-btn">Figuras de linguagem <span>+</span></button><div class="acc-body"><b>Reconheça:</b> metáfora, comparação, metonímia, sinédoque, hipérbole, ironia e antropomorfismo. Leitura normal inclui linguagem figurada; não a transforma em literalismo.</div></div>
+  <div class="acc"><button class="acc-btn">Tipos e símbolos <span>+</span></button><div class="acc-body">Exija correspondência histórica e controle canônico. Tipologia não é licença para atribuir sentido a cada detalhe.</div></div>
+  <div class="acc"><button class="acc-btn">Parábolas e alegorias <span>+</span></button><div class="acc-body">Identifique ocasião, ouvintes, reação e ponto central. Respeite correspondências dadas pelo texto; evite alegorização livre.</div></div>
+  <div class="acc"><button class="acc-btn">Profecia e apocalíptica <span>+</span></button><div class="acc-body">Comece no contexto do profeta, reconheça poesia e símbolos, acompanhe o desenvolvimento canônico e evite cronologias que o texto não fornece.</div></div>
+  <div class="acc"><button class="acc-btn">Antigo Testamento no Novo <span>+</span></button><div class="acc-body">Compare contexto original e uso posterior: citação, alusão, tipologia, analogia, princípio ou cumprimento.</div></div>
+ </div>
+</section>
+
+<section class="module" id="m8" data-title="Argumento e discurso">
+ <div class="section-kicker"><span class="module-no">8</span> Argumento e discurso</div>
+ <h2>Da oração ao movimento do texto.</h2>
+ <p class="lead">No Módulo 6, analisamos relações dentro das orações. Agora observaremos como orações e proposições formam parágrafos, argumentos, cenas e unidades discursivas.</p>
+ <div class="goal"><b>Pergunta orientadora:</b> como cada afirmação contribui para a progressão e a finalidade da passagem?</div>
+
+ <h3 class="serif">A mudança de escala</h3>
+ <div class="flow" aria-label="Progressão das unidades linguísticas">
+  <div class="flow-step"><b>Palavras</b><small>formas</small></div><span class="arrow">→</span>
+  <div class="flow-step"><b>Sintagmas</b><small>grupos</small></div><span class="arrow">→</span>
+  <div class="flow-step"><b>Orações</b><small>predicações</small></div><span class="arrow">→</span>
+  <div class="flow-step"><b>Proposições</b><small>afirmações</small></div><span class="arrow">→</span>
+  <div class="flow-step"><b>Parágrafos</b><small>movimentos</small></div><span class="arrow">→</span>
+  <div class="flow-step"><b>Discurso</b><small>finalidade</small></div>
+ </div>
+ <div class="callout"><div class="sym">ℹ</div><div><strong>Continuidade metodológica</strong><br>A sintaxe pergunta “o que depende de quê?”. A análise proposicional pergunta “como uma afirmação sustenta outra?”. A análise discursiva pergunta “como a passagem progride e que função exerce no livro?”.</div></div>
+
+ <div class="tabs" id="discourseTabs">
+  <div class="tablist" role="tablist">
+   <button class="tab-btn active" data-disc-tab="blocos">Blocos</button>
+   <button class="tab-btn" data-disc-tab="proposicoes">Fluxo proposicional</button>
+   <button class="tab-btn" data-disc-tab="colons">Colons</button>
+   <button class="tab-btn" data-disc-tab="discurso">Análise discursiva</button>
+   <button class="tab-btn" data-disc-tab="generos">Por gênero</button>
+  </div>
+  <div class="tabpanel active" data-disc-panel="blocos">
+   <span class="tag">Essencial</span><h3 class="serif">Diagramação por blocos</h3>
+   <p>O texto integral é dividido em unidades de sentido. A proposição dominante permanece à esquerda; explicações e subordinadas recebem recuo. Rótulos podem indicar causa, propósito, condição ou contraste.</p>
+   <div class="diagram"><pre style="font:16px/1.75 'Noto Serif',Georgia,serif;margin:0;min-width:520px;color:var(--ink)">AFIRMAÇÃO     Deus deu o Filho
+
+CAUSA             porque amou o mundo
+
+PROPÓSITO          para que todo aquele que crê
+                       não pereça,
+                       mas tenha vida eterna.</pre></div>
+   <div class="grid"><div class="card"><h3>Vantagens</h3><p>Simples, legível, preserva o texto e funciona bem em mobile, aulas e exposição.</p></div><div class="card"><h3>Limites</h3><p>Mostra menos detalhes morfológicos e pode ocultar as razões que sustentam cada recuo.</p></div></div>
+  </div>
+  <div class="tabpanel" data-disc-panel="proposicoes">
+   <span class="tag">Intermediário</span><h3 class="serif">Fluxo proposicional</h3>
+   <p>Cada predicação é tratada como proposição. Depois, explicitam-se as relações lógicas: fundamento, causa, explicação, propósito, resultado, condição, concessão, meio, contraste ou inferência.</p>
+   <div class="diagram" role="img" aria-label="Exemplo de fluxo proposicional">
+    <svg viewBox="0 0 760 275"><defs><link rel="stylesheet" href="./css/guia-exegese.css"></defs>
+     <rect class="pb" x="270" y="10" width="220" height="54" rx="14"/><text class="pt" x="380" y="35" text-anchor="middle">Deus amou o mundo</text>
+     <path class="pl" d="M380 64v47"/><text class="ps" x="392" y="92">fundamento</text>
+     <rect class="pb" x="270" y="111" width="220" height="54" rx="14"/><text class="pt" x="380" y="136" text-anchor="middle">Deus deu o Filho</text>
+     <path class="pl" d="M380 165v47"/><text class="ps" x="392" y="193">propósito</text>
+     <rect class="pb" x="70" y="212" width="265" height="54" rx="14"/><text class="pt" x="202" y="237" text-anchor="middle">o crente não perece</text>
+     <rect class="pb" x="425" y="212" width="265" height="54" rx="14"/><text class="pt" x="557" y="237" text-anchor="middle">o crente recebe vida</text>
+     <path class="pl" d="M380 203H202v9M380 203H557v9"/>
+    </svg>
+   </div>
+   <div class="grid"><div class="card"><h3>Vantagens</h3><p>Revela premissas, conclusões e a proposição dominante; excelente para epístolas e discursos.</p></div><div class="card"><h3>Limites</h3><p>A classificação já interpreta o texto e pode dar precisão artificial a relações realmente ambíguas.</p></div></div>
+  </div>
+  <div class="tabpanel" data-disc-panel="colons">
+   <span class="tag">Intermediário</span><h3 class="serif">Análise por colons</h3>
+   <p>O texto é dividido em unidades informacionais ou retóricas, frequentemente uma predicação ou expansão por linha. O método preserva ritmo, paralelismo e encaixamento.</p>
+   <div class="diagram"><pre style="font:17px/1.85 'Noto Serif',Georgia,serif;margin:0;min-width:520px;color:var(--ink)">Paulo,
+    servo de Cristo Jesus,
+    chamado para ser apóstolo,
+    separado para o evangelho de Deus,
+        que ele prometeu anteriormente…</pre></div>
+   <div class="grid"><div class="card"><h3>Vantagens</h3><p>Ajuda na leitura pública, retórica, poesia e períodos extensos.</p></div><div class="card"><h3>Limites</h3><p>A segmentação pode ser discutível e não substitui a classificação sintática.</p></div></div>
+  </div>
+  <div class="tabpanel" data-disc-panel="discurso">
+   <span class="tag">Intermediário–avançado</span><h3 class="serif">Análise discursiva</h3>
+   <p>Trabalha com parágrafos, episódios, seções e livros. Observa tópico, foco, coesão, progressão, primeiro plano, pano de fundo, mudanças de participante e clímax.</p>
+   <div class="diagram"><pre style="font:16px/1.8 system-ui;margin:0;min-width:540px;color:var(--ink)">ABERTURA — apresentação do problema
+└── DESENVOLVIMENTO
+    ├── argumento 1
+    │   ├── afirmação
+    │   └── fundamento
+    ├── argumento 2
+    │   ├── objeção
+    │   └── resposta
+    └── argumento 3
+        └── progressão
+CLÍMAX — conclusão principal
+└── ENCERRAMENTO — implicação/exortação</pre></div>
+   <div class="grid"><div class="card"><h3>Vantagens</h3><p>Preserva a visão do todo e mostra a função do parágrafo dentro do livro.</p></div><div class="card"><h3>Limites</h3><p>Há diferentes escolas; estruturas elegantes, como quiasmos, podem ser impostas sem controle.</p></div></div>
+  </div>
+  <div class="tabpanel" data-disc-panel="generos">
+   <h3 class="serif">Método prioritário segundo o gênero</h3>
+   <div class="grid">
+    <div class="card"><h3>Epístola</h3><p><b>Blocos + fluxo proposicional.</b> Use linhas nas orações sintaticamente difíceis.</p></div>
+    <div class="card"><h3>Narrativa</h3><p><b>Blocos + análise discursiva.</b> Observe cenas, participantes, primeiro plano e clímax.</p></div>
+    <div class="card"><h3>Poesia e sabedoria</h3><p><b>Colons + paralelismo.</b> Examine correspondência, contraste e intensificação.</p></div>
+    <div class="card"><h3>Profecia</h3><p><b>Blocos + discurso.</b> Diferencie situação histórica, oráculos e progressão.</p></div>
+    <div class="card"><h3>Parábola</h3><p><b>Estrutura narrativa.</b> Situação, tensão, reversão e resposta esperada.</p></div>
+    <div class="card"><h3>Apocalíptica</h3><p><b>Unidades + progressão discursiva.</b> Preserve ciclos, cenas e função dos símbolos.</p></div>
+   </div>
+  </div>
+ </div>
+
+ <h3 class="serif">Procedimento recomendado</h3>
+ <div class="steps">
+  <div class="step"><div><h3>Delimite as proposições</h3><p>Use os verbos e conectores, sem fragmentar excessivamente a unidade.</p></div></div>
+  <div class="step"><div><h3>Encontre a afirmação dominante</h3><p>Pergunte qual predicação sustenta o movimento central do parágrafo.</p></div></div>
+  <div class="step"><div><h3>Classifique as relações</h3><p>Fundamento, causa, explicação, propósito, resultado, condição, contraste ou inferência.</p></div></div>
+  <div class="step"><div><h3>Agrupe em movimentos</h3><p>Observe abertura, desenvolvimento, transição, clímax e encerramento.</p></div></div>
+  <div class="step"><div><h3>Teste pelo gênero e contexto</h3><p>Uma estrutura deve explicar o texto, não apenas produzir um desenho simétrico.</p></div></div>
+  <div class="step"><div><h3>Prepare a síntese</h3><p>Expresse como cada unidade serve à intenção comunicativa da passagem.</p></div></div>
+ </div>
+
+ <div class="callout"><div class="sym">⚠</div><div><strong>Não tente usar todos os métodos em toda passagem.</strong><br>Use blocos como visualização básica; acrescente fluxo proposicional em argumentos e análise discursiva em unidades maiores. Reserve árvores de constituintes, dependências e <i>arcing</i> detalhado para o laboratório avançado.</div></div>
+</section>
+
+<section class="module" id="m9" data-title="Síntese exegética">
+ <div class="section-kicker"><span class="module-no">9</span> Integração</div>
+ <h2>Converta observações em uma hipótese explicativa.</h2>
+ <p class="lead">A síntese precisa explicar os dados principais, a progressão do argumento e a resposta esperada dos destinatários.</p>
+ <div class="diagram"><div style="text-align:center;font-family:Georgia,serif;font-size:1.15rem;line-height:2.2"><b style="color:var(--petrol)">TEXTO</b> + CONTEXTO + GRAMÁTICA + GÊNERO + ARGUMENTO + CÂNON<br><span style="color:var(--terra)">− FALÁCIAS</span><br><span style="font-size:1.6rem;color:var(--gold)">= SÍNTESE EXEGÉTICA</span></div></div>
+ <div class="goal"><b>Complete:</b> “Por meio desta unidade, o autor procurou comunicar aos destinatários que…”</div>
+ <div class="grid"><div class="card"><h3>Ideia principal</h3><p>Uma frase que abrange a predicação central e sua finalidade.</p></div><div class="card"><h3>Estrutura</h3><p>Como causas, propósitos, condições e explicações sustentam a ideia.</p></div><div class="card"><h3>Alternativas</h3><p>Que outras leituras explicam os dados e por que uma é preferível?</p></div><div class="card"><h3>Confiança</h3><p>Certo, provável, possível ou especulativo.</p></div></div>
+</section>
+
+<section class="module" id="m10" data-title="Aplicação">
+ <div class="section-kicker"><span class="module-no">10</span> Aplicação responsável</div>
+ <h2>Faça a ponte sem mover o texto.</h2>
+ <p class="lead">A aplicação nasce do significado, passa por um princípio legítimo e considera semelhanças e diferenças entre os contextos.</p>
+ <div class="flow"><div class="flow-step"><b>Sentido</b><small>contexto original</small></div><span class="arrow">→</span><div class="flow-step"><b>Princípio</b><small>teológico/moral</small></div><span class="arrow">→</span><div class="flow-step"><b>Ponte</b><small>contextos comparados</small></div><span class="arrow">→</span><div class="flow-step"><b>Aplicação</b><small>específica e fiel</small></div></div>
+ <div class="callout"><div class="sym">⚠</div><div><strong>Não confunda</strong><br>Uma aplicação pode ser verdadeira e pastoralmente útil sem ser o significado específico da passagem. Declare de onde ela deriva.</div></div>
+ <div class="checklist" data-check-group="aplicacao"><label class="check"><input type="checkbox"> Declarei o significado original antes da aplicação.</label><label class="check"><input type="checkbox"> Identifiquei o princípio sem apagar a forma histórica.</label><label class="check"><input type="checkbox"> Comparei diferenças e semelhanças entre os contextos.</label><label class="check"><input type="checkbox"> Distingui mandamento bíblico de sugestão pastoral.</label></div>
+</section>
+
+<section class="module" id="m11" data-title="Laboratório">
+ <div class="section-kicker"><span class="module-no">11</span> Laboratório e ferramentas</div>
+ <h2>Leve o método para a passagem.</h2>
+ <p class="lead">Use os atalhos como fichas de trabalho. Seu estado é salvo localmente neste navegador.</p>
+ <div class="tools-grid">
+  <button class="tool" data-tool="textual"><b>Crítica textual</b><small>leituras, testemunhos e decisão</small></button>
+  <button class="tool" data-tool="contexto"><b>Contexto</b><small>história, cultura e gênero</small></button>
+  <button class="tool" data-tool="lingua"><b>Análise linguística</b><small>forma, função, sentido e discurso</small></button>
+  <button class="tool" data-tool="falacias"><b>Verificador de falácias</b><small>vocabulário, gramática e lógica</small></button>
+  <button class="tool" data-tool="diagrama"><b>Diagramação</b><small>núcleos e dependências</small></button>
+  <button class="tool" data-tool="discurso"><b>Argumento e discurso</b><small>blocos, proposições e progressão</small></button>
+  <button class="tool" data-tool="avancado"><b>Visualização avançada</b><small>constituintes, dependências e arcing</small></button>
+  <button class="tool" data-tool="sintese"><b>Síntese e aplicação</b><small>ideia principal e ponte</small></button>
+ </div>
+ <div id="toolArea" class="card" style="margin-top:18px" aria-live="polite"><h3>Selecione uma ferramenta</h3><p>Uma ficha de trabalho aparecerá aqui.</p></div>
+ <h3 class="serif" style="margin-top:34px">Checklist mestre</h3>
+ <div class="checklist" data-check-group="mestre">
+  <label class="check"><input type="checkbox"> Estabeleci a leitura textual utilizada.</label>
+  <label class="check"><input type="checkbox"> Delimitei a unidade e seu gênero.</label>
+  <label class="check"><input type="checkbox"> Reconstruí apenas o contexto relevante.</label>
+  <label class="check"><input type="checkbox"> Diferenciei morfologia, sintaxe, semântica e exegese.</label>
+  <label class="check"><input type="checkbox"> Testei interpretações alternativas e evidência contrária.</label>
+  <label class="check"><input type="checkbox"> Formulei a intenção comunicativa e o grau de certeza.</label>
+  <label class="check"><input type="checkbox"> A aplicação deriva do sentido e respeita os dois contextos.</label>
+ </div>
+</section>
+
+<section class="module" id="biblioteca" data-title="Biblioteca">
+ <div class="section-kicker">Biblioteca integrada</div><h2>As obras por trás do percurso</h2>
+ <p class="lead">Referências centrais que orientam a arquitetura e os conteúdos do guia. Os dados devem ser conferidos no exemplar efetivamente utilizado, pois reimpressões e novas edições podem apresentar diferenças.</p>
+ <div class="callout"><div class="sym">ℹ</div><div><strong>Disponibilidade bibliográfica</strong><br>Segundo consulta a catálogos em setembro de 2026, as obras de Wilson Paroschi e William Sanford LaSor citadas neste guia não estavam em circulação regular; a disponibilidade pode mudar e exemplares usados podem existir. Permanecem relevantes para compreender o desenvolvimento da disciplina, mas devem ser complementadas por títulos equivalentes e mais recentes disponíveis nas editoras indicadas. Em assuntos como crítica textual e linguística grega, confira sempre a data da edição e sua interação com a pesquisa atual.</div></div>
+ <div class="grid">
+  <div class="card"><span class="tag">Hermenêutica</span><h3>Roy B. Zuck</h3><p><i>A interpretação bíblica: meios de descobrir a verdade da Bíblia.</i> Tradução de Cesar de F. A. Bueno Vieira. São Paulo: Vida Nova, 1994.</p><p>Fundamentos, história da interpretação, contexto cultural, gramática, gênero, figuras, tipologia, parábolas, profecia, uso do AT no NT e aplicação.</p></div>
+  <div class="card"><span class="tag warn">Falácias exegéticas</span><h3>D. A. Carson</h3><p><i>Os perigos da interpretação bíblica: a exegese e suas falácias.</i> São Paulo: Vida Nova, 2001. ISBN 978-85-275-0055-5.</p><p>Falácias vocabulares, gramaticais, lógicas, históricas e de pressupostos.</p></div>
+  <div class="card"><span class="tag">Crítica textual</span><h3>Wilson Paroschi</h3><p><i>Crítica textual do Novo Testamento.</i> 2. ed. São Paulo: Vida Nova, 1999. ISBN 978-85-275-0181-1.</p><p>Manuscritos, história do texto, variantes, evidência externa e interna e leitura dos aparatos Nestle-Aland e UBS.</p><p class="availability"><span class="tag warn">Fora de catálogo</span> Situação consultada em setembro de 2026: obra fora de circulação regular; a disponibilidade pode mudar e exemplares usados podem existir. Para estudo atual, consulte no catálogo da editora citada obras equivalentes de crítica textual, com bibliografia, dados manuscritos e aparatos atualizados.</p></div>
+  <div class="card"><span class="tag gr">Sintaxe e diagramação</span><h3>William Sanford LaSor</h3><p><i>Gramática sintática do grego do Novo Testamento.</i> Tradução de Rubens Paes. 2. ed. São Paulo: Vida Nova, 1998.</p><p>Verbo como centro da oração, modificadores, períodos compostos e sistema de diagramação sintática.</p><p class="availability"><span class="tag warn">Fora de catálogo</span> Situação consultada em setembro de 2026: obra fora de circulação regular; a disponibilidade pode mudar e exemplares usados podem existir. A editora citada oferece alternativas de qualidade em gramática e sintaxe do grego do Novo Testamento, com tratamento e bibliografia mais recentes.</p></div>
+  <div class="card"><span class="tag gr">Sintaxe exegética</span><h3>Carlos Osvaldo Cardoso Pinto e Marcelo Dias</h3><p><i>Fundamentos para exegese do Novo Testamento: manual de sintaxe grega.</i> 2. ed. rev. e ampl. São Paulo: Vida Nova. ISBN 978-85-275-0990-9.</p><p>Sintaxe das classes de palavras, relações entre orações e diagramação aplicada à exegese.</p></div>
+  <div class="card"><span class="tag he">Hebraico bíblico</span><h3>Allen P. Ross</h3><p><i>Gramática do hebraico bíblico.</i> Tradução de Gordon Chown. 2. ed. São Paulo: Vida, 2008. ISBN 978-85-383-0082-3.</p><p>Alfabeto, vocalização, morfologia nominal e verbal, verbos fracos, sintaxe e leitura de textos.</p></div>
+  <div class="card"><span class="tag gr">Grego fundamental</span><h3>Lourenço Stelio Rega e Johannes Bergmann</h3><p><i>Noções do grego bíblico: gramática fundamental.</i> São Paulo: Vida Nova, 2004. ISBN 978-85-275-0314-3.</p><p>Curso progressivo de alfabeto, declinações, sistema verbal, particípios, infinitivos, condicionais e uso instrumental do grego.</p></div>
+  <div class="card"><span class="tag gr">Grego intermediário</span><h3>Daniel B. Wallace</h3><p><i>Gramática grega: uma sintaxe exegética do Novo Testamento.</i> Tradução de Roque Nascimento Albuquerque. São Paulo: Editora Batista Regular, 2009. 823 p. ISBN 978-85-7414-023-0.</p><p>Casos, artigo, formas nominais e verbais, orações, categorias sintáticas e implicações exegéticas.</p></div>
+ </div>
+</section>
+<footer class="footer">
+ <p><b>Idealizador e Curador do Projeto:</b></p>
+ <p><b>Rogério Ramão Lopes</b> — <a href="mailto:rogerelizar@gmail.com">rogerelizar@gmail.com</a></p>
+ <p>Este material não tem propósito de formar hermeneutas ou exegetas, não substitui formação acadêmica, mas exige acompanhamento de professores e mentores.</p>
+ <p><b>Sugestões e contribuições são bem-vindas.</b><br>Escreva para <a href="mailto:rogerelizar@gmail.com?subject=guia_exegese2026">rogerelizar@gmail.com</a> com o assunto <code>guia_exegese2026</code>.</p>
+ <p>Material de estudo derivado de sínteses preparadas em análises e direcionamento do autor. Consulte sempre as obras completas e as introduções das edições críticas utilizadas.</p>
+</footer>
+</div>
+</main>
+<aside class="toc" aria-label="Nesta página"><div class="nav-title">Nesta página</div><div id="tocLinks"></div><div class="mini-card"><b>Princípio de leitura</b><br><span style="color:var(--muted)">Contexto controla o sentido; evidência controla a certeza.</span></div></aside>
+</div>
+
+<nav class="bottom-nav" aria-label="Navegação móvel"><button data-mobile="home"><b>⌂</b>Início</button><button data-mobile="journey"><b>☷</b>Jornada</button><button data-mobile="languages"><b>א α</b>Idiomas</button><button data-mobile="tools"><b>✓</b>Ferramentas</button><button data-mobile="search"><b>⌕</b>Buscar</button></nav>
+<div class="mobile-menu" id="mobileMenu" aria-label="Menu móvel"></div>
+<div class="search-overlay" id="installOverlay" role="dialog" aria-modal="true" aria-labelledby="installTitle">
+ <div class="search-box">
+  <div style="display:flex;align-items:center;gap:12px"><img src="./icons/icon-192.png" alt="" width="64" height="64" style="border-radius:14px"><div><h2 id="installTitle" class="serif" style="margin:0">Instalar o Guia</h2><small style="color:var(--muted)">Acesso rápido e funcionamento offline</small></div><button class="icon-btn" id="closeInstall" aria-label="Fechar" style="margin-left:auto">×</button></div>
+  <div id="installContent" style="margin-top:18px"></div>
+ </div>
+</div>
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Pesquisar no guia"><div class="search-box"><div style="display:flex;gap:8px"><input id="searchInput" type="search" placeholder="Busque por particípio, falácia, contexto…" aria-label="Termo de pesquisa"><button class="icon-btn" id="closeSearch" aria-label="Fechar">×</button></div><div id="searchResults"></div></div></div>
+<div class="guide-a11y" aria-label="Acessibilidade">
+<button type="button" data-a11y="font-decrease" aria-label="Diminuir fonte">A−</button><button type="button" data-a11y="font-reset" aria-label="Redefinir fonte">A</button><button type="button" data-a11y="font-increase" aria-label="Aumentar fonte">A+</button><button type="button" data-a11y="dyslexia" aria-pressed="false">Dislexia</button><button type="button" data-a11y="contrast" aria-pressed="false">Contraste</button><button type="button" data-tts="start">Ouvir</button><button type="button" data-tts="stop">Parar</button><span id="tts-status" class="sr-only" aria-live="polite"></span>
+</div>
+<div class="guide-update" id="update-bar" data-visible="false" role="status"><span>Nova versão disponível.</span><button type="button" data-pwa-update>Atualizar</button><button type="button" data-pwa-dismiss>Agora não</button></div>
+<script type="module" src="./js/guia-exegese.js"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
   "name": "o-sentido-autentico",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "main": "index.js",
   "directories": {
     "doc": "docs",
@@ -11,12 +11,14 @@
     "test:a11y": "playwright test -g axe",
     "test:pwa": "playwright test -g PWA",
     "serve": "python3 -m http.server 4173 --bind 127.0.0.1",
-    "screenshots": "node tests/screenshots.mjs"
+    "screenshots": "node tests/screenshots.mjs",
+    "test:links": "python3 tests/check_links.py",
+    "audit:release": "node tests/audit.mjs && python3 tests/check_links.py"
   },
   "keywords": [],
   "author": "",
   "license": "CC-BY-NC-SA-4.0",
-  "description": "Portal educacional pt-BR para estudo de hebraico bíblico, aramaico bíblico e grego koiné",
+  "description": "Portal educacional pt-BR para línguas bíblicas, ferramentas e guia integrado de exegese",
   "devDependencies": {
     "@axe-core/playwright": "^4.10.1",
     "@playwright/test": "^1.49.1",
@@ -25,9 +27,9 @@
     "serve": "^14.2.4"
   },
   "private": true,
-  "homepage": "https://rogerelizar-2026.github.io/AutenticSense-Free/",
+  "homepage": "https://rogerelizar-2026.github.io/o_sentido_autentico/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rogerelizar-2026/AutenticSense-Free.git"
+    "url": "https://github.com/rogerelizar-2026/o_sentido_autentico.git"
   }
 }

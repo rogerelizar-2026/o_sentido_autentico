@@ -1,7 +1,7 @@
 {
   "name": "O Sentido Autêntico — Estudo das Línguas Bíblicas",
   "short_name": "Sentido Autêntico",
-  "description": "Portal educacional em pt-BR para hebraico bíblico, aramaico e grego koiné — funciona offline após a primeira visita (PWA instalável).",
+  "description": "Portal educacional em pt-BR para línguas bíblicas, ferramentas e exegese responsável — funciona offline após a primeira visita.",
   "id": "./",
   "lang": "pt-BR",
   "dir": "ltr",
@@ -42,6 +42,11 @@
     }
   ],
   "shortcuts": [
+    {
+      "name": "Guia Integrado de Exegese",
+      "short_name": "Guia de Exegese",
+      "url": "./guia-exegese.html"
+    },
     {
       "name": "Caixa de Ferramentas",
       "url": "./caixa-de-ferramentas.html"

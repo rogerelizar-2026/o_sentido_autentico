@@ -11,7 +11,7 @@
  * (osa-core-… e osa-runtime-…); apaga apenas caches desta aplicação.
  * ========================================================================== */
 
-const VERSION = 'v1.0.0';
+const VERSION = 'v1.2.0';
 const PREFIX = 'osa';
 const CORE_CACHE = `${PREFIX}-core-${VERSION}`;
 const RUNTIME_CACHE = `${PREFIX}-runtime-${VERSION}`;
@@ -23,6 +23,7 @@ const CORE_ASSETS = [
   './hebraico-aramaico.html',
   './grego-koine.html',
   './caixa-de-ferramentas.html',
+  './guia-exegese.html',
   './offline.html',
   './manifest.webmanifest',
   './css/tokens.css',
@@ -30,7 +31,9 @@ const CORE_ASSETS = [
   './css/base.css',
   './css/components.css',
   './css/main.css',
+  './css/guia-exegese.css',
   './js/main.js',
+  './js/guia-exegese.js',
   './js/theme.js',
   './js/storage.js',
   './js/sidebar.js',
@@ -45,6 +48,8 @@ const CORE_ASSETS = [
   './data/recursos.json',
   './data/metodos.json',
   './icons/osa-mark.svg',
+  './social-guia.svg',
+  './social-guia.png',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './fonts/inter-latin-400.woff2',
@@ -57,6 +62,7 @@ const CORE_ASSETS = [
   './covers/mounce-fundamentos-grego.jpg',
   './covers/wallace-syntax.jpg',
   './covers/ross-introducing-hebrew.jpg',
+  './covers/capa-pinto-dias.jpg',
   './downloads/mapa-aceleracao.svg',
   './downloads/mapa-aceleracao-grego.svg',
   './icons/favicon.svg',
