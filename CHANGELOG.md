@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.3 — 2026-09-28
+
+### Paridade visual do Guia
+- `guia-exegese.html` migrado para o mesmo shell, header, sidebar e drawer de `index.html`.
+- FAB de acessibilidade passa a usar exclusivamente o posicionamento e estilo do design system.
+- Removidos integralmente a busca do Guia e o índice lateral direito “Nesta página”.
+- O princípio do minicard foi incorporado à seção “A jornada exegética”.
+- Menu do Guia agora reutiliza `sidebar.js`, inclusive auto-ocultação e comportamento por teclado.
+
+
 ## 1.2.2 — 2026-09-28
 
 ### Navegação e unidade visual

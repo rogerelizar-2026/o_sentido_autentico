@@ -48,43 +48,9 @@
 </head>
 <body data-page="guia-exegese">
 <a class="osa-skip" href="#main">Pular para o conteúdo principal</a>
-<header class="topbar osa-header">
-  <button class="osa-icon-btn menu-toggle" id="menuBtn" type="button" aria-label="Abrir menu de navegação" aria-controls="mobileMenu" aria-expanded="false">☰</button>
-  <a class="osa-brand" href="./index.html" title="Voltar ao portal O Sentido Autêntico">
-    <img class="osa-brand__mark" src="./icons/osa-mark.svg" alt="" width="28" height="28">
-    <span class="osa-brand__text">O Sentido Autêntico</span>
-  </a>
-  <div class="top-spacer"></div>
-  <div class="progress-mini" aria-label="Progresso dos módulos"><i id="progressBar"></i></div>
-</header>
-
-<!-- Botão redondo de acessibilidade (padrão do portal index.html — substitui as barras de acessibilidade) -->
-<div class="osa-a11y-fab-wrap">
-  <button class="osa-a11y-fab__btn" id="a11y-fab" type="button" aria-expanded="false" aria-controls="a11y-panel" aria-label="Abrir opções de acessibilidade" title="Acessibilidade">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-      <circle cx="12" cy="5" r="2"/>
-      <path d="M5 9h14"/>
-      <path d="M12 9v5"/>
-      <path d="M8.5 21 12 14l3.5 7"/>
-      <path d="M7 12h10"/>
-    </svg>
-  </button>
-  <div class="osa-a11y-panel" id="a11y-panel" role="group" aria-label="Opções de acessibilidade" hidden>
-    <button id="theme-toggle" type="button" aria-label="Alternar para tema escuro" data-theme-icon title="Alternar tema claro/escuro">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-theme-icon-svg><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
-    </button>
-    <button type="button" data-a11y="font-decrease" aria-label="Diminuir tamanho da fonte" title="Diminuir fonte">A−</button>
-    <button type="button" data-a11y="font-increase" aria-label="Aumentar tamanho da fonte" title="Aumentar fonte">A+</button>
-    <button type="button" data-a11y="font-reset" aria-label="Redefinir tamanho da fonte" title="Redefinir fonte">A·</button>
-    <button type="button" data-a11y="dyslexia" aria-pressed="false" aria-label="Ativar ou desativar fonte para dislexia" title="Fonte dislexia">Ad</button>
-    <button type="button" data-a11y="contrast" aria-pressed="false" aria-label="Ativar ou desativar alto contraste" title="Alto contraste">◐</button>
-    <button type="button" data-tts="start" aria-pressed="false" aria-label="Ler página em voz alta" title="Ler em voz alta">▶</button>
-    <button type="button" data-tts="stop" disabled aria-label="Parar leitura em voz alta" title="Parar leitura">■</button>
-  </div>
-</div>
-<div class="layout">
-<aside class="sidebar guide-sidebar" aria-label="Navegação do site e jornada exegética">
-  <p class="guide-sidebar-brand">O Sentido Autêntico</p><nav class="guide-global-nav" aria-label="Seções principais"><a href="./index.html">Portal do Estudante</a><a href="./hebraico-aramaico.html">Hebraico e Aramaico</a><a href="./grego-koine.html">Grego Koiné</a><a href="./guia-exegese.html" aria-current="page">Guia de Exegese</a><a href="./caixa-de-ferramentas.html">Ferramentas Bíblicas</a></nav><hr class="guide-divider"><div class="nav-title">Percurso formativo</div>
+<div class="osa-shell guide-shell" data-sidebar="open">
+<aside class="osa-sidebar guide-sidebar" id="osa-sidebar" aria-label="Navegação do site">
+  <p class="small guide-sidebar-brand">O Sentido Autêntico</p><nav class="osa-sidebar-nav guide-global-nav" aria-label="Seções principais"><a href="./index.html">Portal do Estudante</a><a href="./hebraico-aramaico.html">Hebraico e Aramaico</a><a href="./grego-koine.html">Grego Koiné</a><a href="./guia-exegese.html" aria-current="page">Guia de Exegese</a><a href="./caixa-de-ferramentas.html">Ferramentas Bíblicas</a></nav><hr class="guide-divider"><div class="nav-title">Percurso formativo</div>
   <nav id="sideNav"></nav>
   <div class="side-tools">
     <div class="nav-title">Atalhos</div>
@@ -94,8 +60,15 @@
     <button class="nav-link" data-jump="m11"><span class="num">✓</span>Ferramentas</button>
   </div>
 </aside>
-<main id="main">
-<div class="content">
+<div class="guide-page-column">
+<header class="osa-header">
+  <button class="osa-icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menu de navegação" aria-controls="osa-drawer" aria-expanded="false">☰</button>
+  <a class="osa-brand" href="./index.html">
+    <img class="osa-brand__mark" src="./icons/osa-mark.svg" alt="" width="28" height="28">
+    <span class="osa-brand__text">O Sentido Autêntico</span>
+  </a>
+</header>
+<main id="main" class="osa-main" tabindex="-1">
 <section class="hero" id="inicio" data-title="Início">
  <div class="hero-inner">
   <div class="osa-page-heading"><svg class="osa-page-heading__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10 5 7.5 4.5 4 4.5v13c3.5 0 6 .5 8 2 2-1.5 4.5-2 8-2v-13c-3.5 0-6 .5-8 2z"/><path d="M12 6.5v13"/></svg><p class="osa-page-heading__name">Guia Integrado de Exegese</p></div>
@@ -119,6 +92,7 @@
 <section aria-labelledby="mapa-title">
  <div class="section-kicker">Visão geral</div><h2 id="mapa-title" class="serif">A jornada exegética</h2>
  <p class="lead">O guia apresenta uma sequência didática, mas a investigação real é iterativa: novas observações lexicais, textuais, históricas e teológicas frequentemente exigem retorno e revisão de etapas anteriores. Use-o como curso sequencial ou ambiente de consulta.</p>
+ <div class="goal"><b>Princípio de leitura:</b> contexto controla o sentido; evidência controla a certeza.</div>
  <div class="flow" aria-label="Fluxo do processo exegético">
   <div class="flow-step"><b>Preparar</b><small>pressupostos</small></div><span class="arrow">→</span>
   <div class="flow-step"><b>Estabelecer</b><small>o texto</small></div><span class="arrow">→</span>
@@ -490,9 +464,37 @@ CLÍMAX — conclusão principal
  <p><b>Sugestões e contribuições são bem-vindas.</b><br>Escreva para <a href="mailto:rogerelizar@gmail.com?subject=guia_exegese2026">rogerelizar@gmail.com</a> com o assunto <code>guia_exegese2026</code>.</p>
  <p>Material de estudo derivado de sínteses preparadas em análises e direcionamento do autor. Consulte sempre as obras completas e as introduções das edições críticas utilizadas.</p>
 </footer>
-</div>
 </main>
-<aside class="toc" aria-label="Nesta página"><div class="nav-title">Nesta página</div><div id="tocLinks"></div><div class="mini-card"><b>Princípio de leitura</b><br><span style="color:var(--muted)">Contexto controla o sentido; evidência controla a certeza.</span></div></aside>
+</div>
+</div>
+<div class="osa-backdrop" id="osa-backdrop" data-open="false" aria-hidden="true"></div>
+<nav class="osa-drawer" id="osa-drawer" aria-label="Menu" data-open="false">
+  <p class="small guide-sidebar-brand">O Sentido Autêntico</p>
+  <div class="osa-sidebar-nav" id="mobileMenu"></div>
+</nav>
+<!-- Botão redondo de acessibilidade (padrão do portal index.html — substitui as barras de acessibilidade) -->
+<div class="osa-a11y-fab-wrap">
+  <button class="osa-a11y-fab__btn" id="a11y-fab" type="button" aria-expanded="false" aria-controls="a11y-panel" aria-label="Abrir opções de acessibilidade" title="Acessibilidade">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <circle cx="12" cy="5" r="2"/>
+      <path d="M5 9h14"/>
+      <path d="M12 9v5"/>
+      <path d="M8.5 21 12 14l3.5 7"/>
+      <path d="M7 12h10"/>
+    </svg>
+  </button>
+  <div class="osa-a11y-panel" id="a11y-panel" role="group" aria-label="Opções de acessibilidade" hidden>
+    <button id="theme-toggle" type="button" aria-label="Alternar para tema escuro" data-theme-icon title="Alternar tema claro/escuro">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-theme-icon-svg><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+    </button>
+    <button type="button" data-a11y="font-decrease" aria-label="Diminuir tamanho da fonte" title="Diminuir fonte">A−</button>
+    <button type="button" data-a11y="font-increase" aria-label="Aumentar tamanho da fonte" title="Aumentar fonte">A+</button>
+    <button type="button" data-a11y="font-reset" aria-label="Redefinir tamanho da fonte" title="Redefinir fonte">A·</button>
+    <button type="button" data-a11y="dyslexia" aria-pressed="false" aria-label="Ativar ou desativar fonte para dislexia" title="Fonte dislexia">Ad</button>
+    <button type="button" data-a11y="contrast" aria-pressed="false" aria-label="Ativar ou desativar alto contraste" title="Alto contraste">◐</button>
+    <button type="button" data-tts="start" aria-pressed="false" aria-label="Ler página em voz alta" title="Ler em voz alta">▶</button>
+    <button type="button" data-tts="stop" disabled aria-label="Parar leitura em voz alta" title="Parar leitura">■</button>
+  </div>
 </div>
 
 <nav class="osa-bottomnav" aria-label="Navegação principal">
@@ -517,14 +519,12 @@ CLÍMAX — conclusão principal
       Ferramentas
     </a>
   </nav>
-<div class="mobile-menu" id="mobileMenu" aria-label="Menu móvel"></div>
 <div class="search-overlay" id="installOverlay" role="dialog" aria-modal="true" aria-labelledby="installTitle">
  <div class="search-box">
   <div style="display:flex;align-items:center;gap:12px"><img src="./icons/icon-192.png" alt="" width="64" height="64" style="border-radius:14px"><div><h2 id="installTitle" class="serif" style="margin:0">Instalar o Guia</h2><small style="color:var(--muted)">Acesso rápido e funcionamento offline</small></div><button class="icon-btn" id="closeInstall" aria-label="Fechar" style="margin-left:auto">×</button></div>
   <div id="installContent" style="margin-top:18px"></div>
  </div>
 </div>
-<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Pesquisar no guia"><div class="search-box"><div style="display:flex;gap:8px"><input id="searchInput" type="search" placeholder="Busque por particípio, falácia, contexto…" aria-label="Termo de pesquisa"><button class="icon-btn" id="closeSearch" aria-label="Fechar">×</button></div><div id="searchResults"></div></div></div>
 <p id="tts-status" class="sr-only" role="status" aria-live="polite"></p>
 <div class="guide-update" id="update-bar" data-visible="false" role="status"><span>Nova versão disponível.</span><button type="button" data-pwa-update>Atualizar</button><button type="button" data-pwa-dismiss>Agora não</button></div>
 <script type="module" src="./js/guia-exegese.js"></script>
