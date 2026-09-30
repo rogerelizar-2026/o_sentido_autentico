@@ -1,0 +1,33 @@
+{
+  "medido_em": "2026-09-23",
+  "ambiente": "Chromium 1xx headless via Playwright, servidor local python http.server, sem rede externa, cache frio",
+  "orccamentos": {
+    "js_inicial_gzip_B": {
+      "valor": 22567,
+      "limite_100kB": 102400,
+      "ok": true
+    },
+    "css_critico_gzip_B": {
+      "valor": 9907,
+      "limite_40kB": 40960,
+      "ok": true
+    },
+    "fonts_criticas_B": 48116,
+    "lazy_charts_js_gzip_B": 5150,
+    "html_paginas_gzip_B": 39618,
+    "data_json_gzip_B": 8203
+  },
+  "por_arquivo_js_gzip": {
+    "js/main.js": 1716,
+    "js/theme.js": 1218,
+    "js/storage.js": 3599,
+    "js/sidebar.js": 1311,
+    "js/onboarding.js": 1704,
+    "js/nav.js": 1997,
+    "js/ui.js": 1358,
+    "js/a11y.js": 1566,
+    "js/catalog.js": 6505,
+    "js/pwa.js": 1330,
+    "js/export.js": 263
+  }
+}

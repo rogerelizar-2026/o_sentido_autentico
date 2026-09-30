@@ -1,0 +1,561 @@
+{
+  "axe": {
+    "index.html [light]": [
+      {
+        "id": "region",
+        "impacto": "moderate",
+        "nos": 1,
+        "ajuda": "All page content should be contained by landmarks"
+      }
+    ],
+    "index.html [dark]": [
+      {
+        "id": "region",
+        "impacto": "moderate",
+        "nos": 1,
+        "ajuda": "All page content should be contained by landmarks"
+      }
+    ],
+    "hebraico-aramaico.html [light]": [
+      {
+        "id": "heading-order",
+        "impacto": "moderate",
+        "nos": 2,
+        "ajuda": "Heading levels should only increase by one"
+      },
+      {
+        "id": "region",
+        "impacto": "moderate",
+        "nos": 1,
+        "ajuda": "All page content should be contained by landmarks"
+      }
+    ],
+    "hebraico-aramaico.html [dark]": [
+      {
+        "id": "heading-order",
+        "impacto": "moderate",
+        "nos": 2,
+        "ajuda": "Heading levels should only increase by one"
+      },
+      {
+        "id": "region",
+        "impacto": "moderate",
+        "nos": 1,
+        "ajuda": "All page content should be contained by landmarks"
+      }
+    ],
+    "grego-koine.html [light]": [
+      {
+        "id": "heading-order",
+        "impacto": "moderate",
+        "nos": 2,
+        "ajuda": "Heading levels should only increase by one"
+      },
+      {
+        "id": "region",
+        "impacto": "moderate",
+        "nos": 1,
+        "ajuda": "All page content should be contained by landmarks"
+      }
+    ],
+    "grego-koine.html [dark]": [
+      {
+        "id": "heading-order",
+        "impacto": "moderate",
+        "nos": 2,
+        "ajuda": "Heading levels should only increase by one"
+      },
+      {
+        "id": "region",
+        "impacto": "moderate",
+        "nos": 1,
+        "ajuda": "All page content should be contained by landmarks"
+      }
+    ],
+    "caixa-de-ferramentas.html [light]": [
+      {
+        "id": "region",
+        "impacto": "moderate",
+        "nos": 1,
+        "ajuda": "All page content should be contained by landmarks"
+      }
+    ],
+    "caixa-de-ferramentas.html [dark]": [
+      {
+        "id": "region",
+        "impacto": "moderate",
+        "nos": 1,
+        "ajuda": "All page content should be contained by landmarks"
+      }
+    ],
+    "offline.html [light]": [],
+    "offline.html [dark]": []
+  },
+  "overflow": {
+    "index.html": {
+      "320": {
+        "scrollW": 320,
+        "clientW": 320,
+        "culpados": []
+      },
+      "360": {
+        "scrollW": 360,
+        "clientW": 360,
+        "culpados": []
+      },
+      "390": {
+        "scrollW": 390,
+        "clientW": 390,
+        "culpados": []
+      },
+      "430": {
+        "scrollW": 430,
+        "clientW": 430,
+        "culpados": []
+      },
+      "768": {
+        "scrollW": 768,
+        "clientW": 768,
+        "culpados": []
+      },
+      "1024": {
+        "scrollW": 1024,
+        "clientW": 1024,
+        "culpados": []
+      },
+      "1440": {
+        "scrollW": 1440,
+        "clientW": 1440,
+        "culpados": []
+      }
+    },
+    "hebraico-aramaico.html": {
+      "320": {
+        "scrollW": 320,
+        "clientW": 320,
+        "culpados": []
+      },
+      "360": {
+        "scrollW": 360,
+        "clientW": 360,
+        "culpados": []
+      },
+      "390": {
+        "scrollW": 390,
+        "clientW": 390,
+        "culpados": []
+      },
+      "430": {
+        "scrollW": 430,
+        "clientW": 430,
+        "culpados": []
+      },
+      "768": {
+        "scrollW": 768,
+        "clientW": 768,
+        "culpados": []
+      },
+      "1024": {
+        "scrollW": 1024,
+        "clientW": 1024,
+        "culpados": []
+      },
+      "1440": {
+        "scrollW": 1440,
+        "clientW": 1440,
+        "culpados": []
+      }
+    },
+    "caixa-de-ferramentas.html": {
+      "320": {
+        "scrollW": 320,
+        "clientW": 320,
+        "culpados": []
+      },
+      "360": {
+        "scrollW": 360,
+        "clientW": 360,
+        "culpados": []
+      },
+      "390": {
+        "scrollW": 390,
+        "clientW": 390,
+        "culpados": []
+      },
+      "430": {
+        "scrollW": 430,
+        "clientW": 430,
+        "culpados": []
+      },
+      "768": {
+        "scrollW": 768,
+        "clientW": 768,
+        "culpados": []
+      },
+      "1024": {
+        "scrollW": 1024,
+        "clientW": 1024,
+        "culpados": []
+      },
+      "1440": {
+        "scrollW": 1440,
+        "clientW": 1440,
+        "culpados": []
+      }
+    }
+  },
+  "toques": {
+    "index.html": [
+      {
+        "el": "a",
+        "w": 176,
+        "h": 20,
+        "texto": "Caixa de Ferramentas"
+      },
+      {
+        "el": "a",
+        "w": 82,
+        "h": 20,
+        "texto": "Sofia App"
+      },
+      {
+        "el": "a",
+        "w": 79,
+        "h": 20,
+        "texto": "Ginoskos"
+      },
+      {
+        "el": "a",
+        "w": 149,
+        "h": 20,
+        "texto": "Global Bible Tools"
+      },
+      {
+        "el": "a",
+        "w": 154,
+        "h": 19,
+        "texto": "Caixa de Ferramentas"
+      },
+      {
+        "el": "a",
+        "w": 149,
+        "h": 19,
+        "texto": "Hebraico e Aramaico"
+      },
+      {
+        "el": "a",
+        "w": 88,
+        "h": 19,
+        "texto": "Grego Koiné"
+      },
+      {
+        "el": "a",
+        "w": 207,
+        "h": 19,
+        "texto": "faculdadebatistalogos.edu.br"
+      },
+      {
+        "el": "a",
+        "w": 84,
+        "h": 19,
+        "texto": "isbc.com.br"
+      },
+      {
+        "el": "a",
+        "w": 120,
+        "h": 19,
+        "texto": "sbrscuritiba.com"
+      },
+      {
+        "el": "a",
+        "w": 92,
+        "h": 19,
+        "texto": "aibreb.org.br"
+      },
+      {
+        "el": "a",
+        "w": 165,
+        "h": 19,
+        "texto": "rogerelizar@gmail.com"
+      }
+    ],
+    "caixa-de-ferramentas.html": [
+      {
+        "el": "input#filter-fav",
+        "w": 22,
+        "h": 22,
+        "texto": ""
+      },
+      {
+        "el": "a",
+        "w": 230,
+        "h": 23,
+        "texto": "Noções do Grego Bíblico"
+      },
+      {
+        "el": "a",
+        "w": 281,
+        "h": 23,
+        "texto": "Gramática do Hebraico Bíblico"
+      },
+      {
+        "el": "a",
+        "w": 91,
+        "h": 23,
+        "texto": "Sofia App"
+      },
+      {
+        "el": "a",
+        "w": 93,
+        "h": 23,
+        "texto": "Step Bible"
+      },
+      {
+        "el": "a",
+        "w": 189,
+        "h": 23,
+        "texto": "Bible Hub Interlinear"
+      },
+      {
+        "el": "a",
+        "w": 257,
+        "h": 23,
+        "texto": "ETCBC - Eep Talstra Centre"
+      },
+      {
+        "el": "a",
+        "w": 221,
+        "h": 23,
+        "texto": "Nestle-Aland 28 (NA28)"
+      },
+      {
+        "el": "a",
+        "w": 170,
+        "h": 23,
+        "texto": "Septuaginta (LXX)"
+      },
+      {
+        "el": "a",
+        "w": 184,
+        "h": 23,
+        "texto": "Daily Dose of Greek"
+      },
+      {
+        "el": "a",
+        "w": 147,
+        "h": 23,
+        "texto": "Aleph with Beth"
+      },
+      {
+        "el": "a",
+        "w": 198,
+        "h": 23,
+        "texto": "Logos Bible Software"
+      },
+      {
+        "el": "a",
+        "w": 253,
+        "h": 23,
+        "texto": "Accordance Bible Software"
+      },
+      {
+        "el": "a",
+        "w": 259,
+        "h": 23,
+        "texto": "Ginoskos - Línguas Bíblicas"
+      },
+      {
+        "el": "a",
+        "w": 167,
+        "h": 23,
+        "texto": "Global Bible Tools"
+      },
+      {
+        "el": "a",
+        "w": 291,
+        "h": 23,
+        "texto": "Dead Sea Scrolls Digital Libra"
+      },
+      {
+        "el": "a",
+        "w": 168,
+        "h": 23,
+        "texto": "Bible Atlas - Carta"
+      },
+      {
+        "el": "a",
+        "w": 104,
+        "h": 23,
+        "texto": "Sefaria.org"
+      },
+      {
+        "el": "a",
+        "w": 165,
+        "h": 19,
+        "texto": "rogerelizar@gmail.com"
+      }
+    ]
+  },
+  "contraste": [
+    {
+      "rot": "corpo (p)",
+      "fg": "rgb(183, 192, 206)",
+      "bg": "rgb(26,33,42)",
+      "razao": 8.84,
+      "fonte": "15px"
+    },
+    {
+      "rot": "métrica rótulo",
+      "fg": "rgb(154, 166, 182)",
+      "bg": "rgb(30,38,48)",
+      "razao": 6.18,
+      "fonte": "11.52px"
+    },
+    {
+      "rot": "tag de foco",
+      "fg": "rgb(183, 192, 206)",
+      "bg": "rgb(26,33,42)",
+      "razao": 8.84,
+      "fonte": "13px"
+    },
+    {
+      "rot": "badge híbrido",
+      "fg": "rgb(227, 196, 137)",
+      "bg": "rgb(58,50,34)",
+      "razao": 7.55,
+      "fonte": "13px"
+    },
+    {
+      "rot": "aplicação ao idioma",
+      "fg": "rgb(238, 241, 245)",
+      "bg": "rgb(197,160,89)",
+      "razao": 2.17,
+      "fonte": "15px"
+    },
+    {
+      "rot": "barra (fundo)",
+      "fg": "rgb(238, 241, 245)",
+      "bg": "rgb(255,255,255)",
+      "razao": 1.13,
+      "fonte": "15px"
+    },
+    {
+      "rot": "rodapé pequeno",
+      "fg": "rgb(154, 166, 182)",
+      "bg": "rgb(26,33,42)",
+      "razao": 6.57,
+      "fonte": "15px"
+    },
+    {
+      "rot": "texto muted",
+      "fg": "rgb(154, 166, 182)",
+      "bg": "rgb(18,23,29)",
+      "razao": 7.29,
+      "fonte": "15px"
+    },
+    {
+      "rot": "nome do método",
+      "fg": "rgb(238, 241, 245)",
+      "bg": "rgb(30,38,48)",
+      "razao": 13.48,
+      "fonte": "19px"
+    },
+    {
+      "rot": "contador",
+      "fg": "rgb(183, 192, 206)",
+      "bg": "rgb(18,23,29)",
+      "razao": 9.82,
+      "fonte": "17px"
+    }
+  ],
+  "estrutura": {
+    "index.html": {
+      "h1": 1,
+      "total": 31,
+      "saltos": []
+    },
+    "hebraico-aramaico.html": {
+      "h1": 1,
+      "total": 58,
+      "saltos": [
+        "2→4: “Complexidade × tempo até retornos práticos”",
+        "2→4: “Fundação”"
+      ]
+    },
+    "grego-koine.html": {
+      "h1": 1,
+      "total": 58,
+      "saltos": [
+        "2→4: “Complexidade × tempo até retornos práticos”",
+        "2→4: “Fundação”"
+      ]
+    },
+    "caixa-de-ferramentas.html": {
+      "h1": 1,
+      "total": 35,
+      "saltos": []
+    },
+    "offline.html": {
+      "h1": 1,
+      "total": 1,
+      "saltos": []
+    }
+  },
+  "print": {
+    "tabelaAberta": false,
+    "drawer": false,
+    "fab": false,
+    "bottomnav": false,
+    "linksComHref": false,
+    "barras": 75
+  },
+  "foco": [
+    {
+      "el": "a.osa-skip",
+      "outline": "solid 2px rgb(15, 76, 129)",
+      "boxShadow": "none"
+    },
+    {
+      "el": "a",
+      "outline": "solid 2px rgb(15, 76, 129)",
+      "boxShadow": "none"
+    },
+    {
+      "el": "a",
+      "outline": "solid 2px rgb(15, 76, 129)",
+      "boxShadow": "none"
+    },
+    {
+      "el": "a",
+      "outline": "solid 2px rgb(15, 76, 129)",
+      "boxShadow": "none"
+    },
+    {
+      "el": "a",
+      "outline": "solid 2px rgb(15, 76, 129)",
+      "boxShadow": "none"
+    },
+    {
+      "el": "a",
+      "outline": "solid 2px rgb(15, 76, 129)",
+      "boxShadow": "none"
+    },
+    {
+      "el": "a",
+      "outline": "solid 2px rgb(15, 76, 129)",
+      "boxShadow": "none"
+    },
+    {
+      "el": "a",
+      "outline": "solid 2px rgb(15, 76, 129)",
+      "boxShadow": "none"
+    }
+  ],
+  "console": {},
+  "zoom": {
+    "scrollW": 390,
+    "clientW": 390,
+    "fonteRaiz": "25.6px",
+    "cartoes": 20
+  }
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="Guia: Hebraico e Aramaico">
+  <rect width="960" height="540" fill="#FBFAF7"/>
+  <rect x="0" y="0" width="960" height="72" fill="#0F3731"/>
+  <text x="40" y="34" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#C5A059">O SENTIDO AUTÊNTICO</text>
+  <text x="40" y="58" font-family="Arial, sans-serif" font-size="15" fill="#FBFAF7">Guia: Hebraico e Aramaico</text>
+  <text x="920" y="44" text-anchor="end" font-family="Arial, sans-serif" font-size="13" fill="#F3EFE6">5 níveis · 30–60 min/dia</text>
+  <line x1="40" y1="96" x2="920" y2="96" stroke="#C5A059" stroke-width="2"/>
+  <text x="60" y="140" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">1. Fundação (semanas 1–8)</text>
+<text x="72" y="170" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Alfabeto, niqqud e pronúncia; leitura de Gn 1 em hebraico</text>
+<text x="72" y="196" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Anki diário com raízes de alta frequência</text>
+<text x="60" y="210" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">2. Básico (semanas 9–20)</text>
+<text x="72" y="240" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Substantivos, Qal perfeito/imperfeito, estado construto</text>
+<text x="72" y="266" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Ross como gramática de apoio; interlinear só ao travar</text>
+<text x="60" y="280" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">3. Intermediário (semanas 21–36)</text>
+<text x="72" y="310" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Stems verbais, sintaxe básica e leitura de aramaico bíblico</text>
+<text x="72" y="336" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Leituras: Dt 2:25; Jr 10:11; Et 3:15–4:8 (referências de leitura)</text>
+<text x="60" y="350" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">4. Avançado (semanas 37–56)</text>
+<text x="72" y="380" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Leitura extensiva e exercícios de exegese com checkpoints</text>
+<text x="60" y="410" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">5. Fluência (manutenção)</text>
+<text x="72" y="440" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Rotina semanal: leitura, revisão e mentoria textual</text>
+<text x="60" y="470" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">Método vencedor</text>
+<text x="72" y="500" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Integração híbrida: leitura direta + gramática ativa + Anki + coaching textual</text>
+  <text x="40" y="516" font-family="Arial, sans-serif" font-size="12" fill="#4A5568">Material de estudo pessoal · Curadoria: Rogério Ramão Lopes · rogerelizar@gmail.com · CC BY-NC-SA 4.0 (sujeito à revisão de direitos do proprietário)</text>
+</svg>

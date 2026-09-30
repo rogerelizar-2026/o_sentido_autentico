@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="Guia: Ferramentas Digitais">
+  <rect width="960" height="540" fill="#FBFAF7"/>
+  <rect x="0" y="0" width="960" height="72" fill="#0F3731"/>
+  <text x="40" y="34" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#C5A059">O SENTIDO AUTÊNTICO</text>
+  <text x="40" y="58" font-family="Arial, sans-serif" font-size="15" fill="#FBFAF7">Guia: Ferramentas Digitais</text>
+  <text x="920" y="44" text-anchor="end" font-family="Arial, sans-serif" font-size="13" fill="#F3EFE6">Catálogo, favoritos e exportação</text>
+  <line x1="40" y1="96" x2="920" y2="96" stroke="#C5A059" stroke-width="2"/>
+  <text x="60" y="140" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">Busca e filtros</text>
+<text x="72" y="170" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Busca sem acento em título/autor/descrição; chips de categoria; idioma e nível</text>
+<text x="60" y="210" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">Favoritos e coleção</text>
+<text x="72" y="240" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Estrela nos cartões; “Minha coleção” reúne favoritos e recursos criados por você</text>
+<text x="60" y="280" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">Privacidade</text>
+<text x="72" y="310" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Dados apenas NESTE dispositivo (localStorage). Sem contas, sem nuvem, sem sync</text>
+<text x="60" y="350" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">Exportar / importar JSON</text>
+<text x="72" y="380" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Arquivo versionado (schema osa-colecao), limite 512 KB, política de duplicatas</text>
+<text x="60" y="420" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">Descoberta externa</text>
+<text x="72" y="450" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Botões só ABREM páginas de busca (Google, DuckDuckGo, STEP Bible) em nova aba</text>
+<text x="60" y="470" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#0F3731">Apps recomendados sem anúncios</text>
+<text x="72" y="500" font-family="Arial, sans-serif" font-size="16" fill="#1A2530">Sofia App · Global Bible Tools · Ginoskos</text>
+  <text x="40" y="516" font-family="Arial, sans-serif" font-size="12" fill="#4A5568">Material de estudo pessoal · Curadoria: Rogério Ramão Lopes · rogerelizar@gmail.com · CC BY-NC-SA 4.0 (sujeito à revisão de direitos do proprietário)</text>
+</svg>
