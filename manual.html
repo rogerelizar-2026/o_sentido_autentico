@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manual do Usuário · AutenticSense — O Sentido Autêntico</title>
+<style>
+  :root{--gold:#C5A059;--gold-ink:#7A5C1E;--green:#0F3731;--ink:#1A2530;--mut:#64748B;--soft:#F3EFE6;--bord:#E4DFD3;--paper:#FBFAF7}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.7;color:var(--ink);background:var(--paper)}
+  .wrap{max-width:46rem;margin:0 auto;padding:0 1.2rem 4rem}
+  header.cab{background:var(--green);color:#fff;padding:2.6rem 0 2rem;margin-bottom:2rem}
+  header.cab .wrap{display:flex;gap:1rem;align-items:center}
+  header.cab img{width:64px;height:64px;border-radius:16px}
+  header.cab h1{margin:0;font-size:1.65rem;font-family:Georgia,serif;line-height:1.2}
+  header.cab p{margin:.3rem 0 0;opacity:.85;font-size:.95rem}
+  h2{font-family:Georgia,serif;color:var(--green);border-bottom:2px solid var(--bord);padding-bottom:.3rem;margin:2.6rem 0 .8rem;font-size:1.4rem}
+  h2 .num{background:var(--green);color:#fff;border-radius:8px;padding:0 .4rem;margin-right:.5rem;font-size:.95rem}
+  h3{margin:1.6rem 0 .4rem;font-size:1.05rem}
+  p,li{font-size:1rem}
+  ul,ol{padding-left:1.4rem}
+  li+li{margin-top:.35rem}
+  code{font-family:ui-monospace,Consolas,monospace;background:var(--soft);border:1px solid var(--bord);border-radius:5px;padding:.05em .4em;font-size:.92em;white-space:nowrap}
+  .box{border:1px solid var(--bord);border-left:5px solid var(--gold);background:#fff;border-radius:10px;padding:.9rem 1.2rem;margin:1.2rem 0}
+  .box.ok{border-left-color:#1F7A4D}
+  .box.warn{border-left-color:#A62639;background:#FDF6F0}
+  .box b.t{display:block;color:var(--gold-ink);margin-bottom:.2rem}
+  .steps{counter-reset:s;list-style:none;padding:0}
+  .steps>li{counter-increment:s;display:grid;grid-template-columns:auto 1fr;gap:.8rem;background:#fff;border:1px solid var(--bord);border-radius:10px;padding:.85rem 1rem;margin:.6rem 0}
+  .steps>li::before{content:counter(s);background:var(--gold);color:#1A2530;font-weight:700;width:2rem;height:2rem;border-radius:50%;display:grid;place-items:center;margin-top:.1rem}
+  table{border-collapse:collapse;width:100%;margin:1rem 0;background:#fff;border:1px solid var(--bord);border-radius:10px;overflow:hidden}
+  th,td{padding:.55rem .8rem;text-align:left;border-bottom:1px solid var(--bord);font-size:.95rem;vertical-align:top}
+  th{background:var(--soft);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+  .kbd{border:1px solid var(--bord);border-bottom-width:2px;border-radius:6px;padding:.05em .45em;background:#fff;font-family:inherit;font-size:.9em;box-shadow:0 1px 0 rgba(0,0,0,.06)}
+  footer.rod{margin-top:3rem;border-top:1px solid var(--bord);padding-top:1rem;color:var(--mut);font-size:.85rem}
+  .toc{columns:2;column-gap:2rem;background:#fff;border:1px solid var(--bord);border-radius:10px;padding:1rem 1.4rem}
+  .toc a{color:var(--gold-ink)}
+  figure{margin:1.4rem 0;text-align:center}
+  figure img{max-width:100%;border:1px solid var(--bord);border-radius:10px}
+  figcaption{font-size:.85rem;color:var(--mut);margin-top:.4rem}
+  @media print{header.cab{-webkit-print-color-adjust:exact;print-color-adjust:exact}h2{break-after:avoid}.box,figure,li{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="cab">
+  <div class="wrap">
+    <img src="assets/icons/icon-192.png" alt="Ícone do AutenticSense">
+    <div>
+      <h1>Manual do Usuário<br>AutenticSense — O Sentido Autêntico</h1>
+      <p>Versão 2.0 · Guia em linguagem simples, sem conhecimento técnico necessário</p>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<div class="box ok">
+  <b class="t">✔ Resumo de 30 segundos</b>
+  O AutenticSense é um <b>programa de estudo das línguas bíblicas</b> (hebraico, aramaico e grego) que funciona <b>sem internet</b>. Para usar, você só precisa de <b>duas coisas que fará uma única vez</b>: descompactar a pasta e clicar duas vezes no arquivo de instalação do seu sistema. Este manual acompanha você em cada clique.
+</div>
+
+<h2 id="sumario">📋 Sumário</h2>
+<nav class="toc">
+  <p><a href="#sec1">1. O que veio no pacote</a><br>
+  <a href="#sec2">2. Jeito mais fácil: arquivo único</a><br>
+  <a href="#sec3">3. Instalação no Windows</a><br>
+  <a href="#sec4">4. Instalação no Mac</a><br>
+  <a href="#sec5">5. Instalação no Linux</a><br>
+  <a href="#sec6">6. Instalar como aplicativo</a><br>
+  <a href="#sec7">7. Conhecendo o portal</a><br>
+  <a href="#sec8">8. Acessibilidade (botão dourado)</a><br>
+  <a href="#sec9">9. Perguntas frequentes</a><br>
+  <a href="#sec10">10. Solução de problemas</a><br>
+  <a href="#sec11">11. Palavras técnicas explicadas</a></p>
+</nav>
+
+<h2 id="sec1"><span class="num">1</span>O que veio no pacote</h2>
+<p>Ao descompactar o arquivo <code>AutenticSense-v2.0.zip</code>, você verá uma pasta com estes itens principais:</p>
+<table>
+  <tr><th style="width:42%">Arquivo</th><th>Para que serve</th></tr>
+  <tr><td><code>index.html</code></td><td>O portal completo (o “programa” em si).</td></tr>
+  <tr><td><code>INSTALAR-WINDOWS.bat</code></td><td>Iniciar no <b>Windows</b> com duplo clique.</td></tr>
+  <tr><td><code>INSTALAR-MAC-LINUX.command</code></td><td>Iniciar no <b>Mac</b> ou <b>Linux</b> com duplo clique.</td></tr>
+  <tr><td><code>servidor.py</code> e <code>servidor.js</code></td><td>O “motorzinho” que os instaladores acionam. Você não precisa mexer neles.</td></tr>
+  <tr><td><code>abrir-sem-servidor.html</code></td><td>Versão de <b>arquivo único</b>: abre direto com dois cliques, sem instalar nada.</td></tr>
+  <tr><td><code>manual.html</code> / <code>Manual-do-Usuario.pdf</code></td><td>Este manual (na tela e para imprimir).</td></tr>
+  <tr><td>Pastas <code>css</code>, <code>js</code>, <code>assets</code></td><td>Visual, cérebro e imagens do portal. Não apague.</td></tr>
+</table>
+<div class="box warn"><b class="t">⚠ Regra de ouro</b> Nunca mova o <code>index.html</code> para fora da pasta. Ele precisa das pastas ao lado para funcionar — é como tirar o motor do carro: a carcaça até abre, mas não sai do lugar.</div>
+
+<h2 id="sec2"><span class="num">2</span>🚀 Jeito mais fácil: o arquivo único (2 cliques)</h2>
+<p>Quer só dar uma olhada agora, sem instalar nada?</p>
+<ol class="steps">
+  <li><div>Dê <b>duplo clique</b> no arquivo <code>abrir-sem-servidor.html</code>.</div></li>
+  <li><div>Ele abre no seu navegador (Chrome, Edge, Firefox ou Safari) como qualquer página.</div></li>
+  <li><div><b>Pronto!</b> Navegue à vontade — até sem internet.</div></li>
+</ol>
+<div class="box"><b class="t">ℹ Limitação dessa versão</b> O modo arquivo único não permite o botão <b>“Instalar”</b> como aplicativo nem o aviso de “offline” no canto superior. Para a experiência completa, use a instalação das próximas seções — leva 5 minutos, uma única vez.</div>
+
+<h2 id="sec3"><span class="num">3</span>🪟 Instalação no Windows</h2>
+<h3>Passo 1 — Instale o Python (uma vez só, é gratuito)</h3>
+<ol class="steps">
+  <li><div>Acesse <code>python.org/downloads</code> e clique no botão amarelo <b>Download Python</b>.</div></li>
+  <li><div>Abra o instalador baixado e <b>marque a caixinha “Add python.exe to PATH”</b> (é a parte mais importante!).</div></li>
+  <li><div>Clique em <b>Install Now</b> e aguarde terminar.</div></li>
+</ol>
+<h3>Passo 2 — Descompacte a pasta</h3>
+<ol class="steps">
+  <li><div>Clique com o <b>botão direito</b> no arquivo <code>AutenticSense-v2.0.zip</code>.</div></li>
+  <li><div>Escolha <b>“Extrair Tudo…”</b> e confirme.</div></li>
+</ol>
+<h3>Passo 3 — Inicie o portal</h3>
+<ol class="steps">
+  <li><div>Entre na pasta extraída e dê <b>duplo clique</b> em <code>INSTALAR-WINDOWS.bat</code>.</div></li>
+  <li><div>Abrirá uma janelinha preta (o servidor local) e, em seguida, o navegador entra na página <code>http://localhost:8080</code> automaticamente.</div></li>
+  <li><div><b>Use normalmente.</b> Enquanto estiver estudando, deixe a janelinha preta aberta (pode minimizar).</div></li>
+  <li><div>Para encerrar: simplesmente <b>feche a janelinha preta</b>.</div></li>
+</ol>
+<div class="box ok"><b class="t">✔ Da próxima vez</b> Não precisa instalar nada de novo: é só dar duplo clique no mesmo <code>INSTALAR-WINDOWS.bat</code>.</div>
+<div class="box warn"><b class="t">⚠ Se o Windows mostrar “proteção do SmartScreen”</b> clique em <b>“Mais informações”</b> → <b>“Executar assim mesmo”</b>. O aviso aparece só porque o arquivo é novo na sua máquina; o conteúdo é seguro e offline.</div>
+
+<h2 id="sec4"><span class="num">4</span>🍎 Instalação no Mac</h2>
+<ol class="steps">
+  <li><div>Instale o Python 3 gratuito em <code>python.org/downloads</code> (botão amarelo, instalação padrão — uma vez só).</div></li>
+  <li><div>Dê duplo clique no <code>.zip</code> para descompactar.</div></li>
+  <li><div>Dê duplo clique em <code>INSTALAR-MAC-LINUX.command</code>.</div></li>
+  <li><div>Se o Mac avisar <i>“desenvolvedor não identificado”</i>: clique com o <b>botão direito</b> no arquivo → <b>Abrir</b> → <b>Abrir</b> novamente. Só precisa fazer isso uma vez.</div></li>
+  <li><div>O Terminal abre e o navegador entra em <code>http://localhost:8080</code>. Para encerrar, feche o Terminal.</div></li>
+</ol>
+
+<h2 id="sec5"><span class="num">5</span>🐧 Instalação no Linux</h2>
+<p>O Python 3 já vem instalado na maioria das distribuições (Ubuntu, Mint, Fedora…). Então:</p>
+<ol class="steps">
+  <li><div>Descompacte o <code>.zip</code> onde preferir.</div></li>
+  <li><div>Dê duplo clique em <code>INSTALAR-MAC-LINUX.command</code> — <b>ou</b>, se preferir o Terminal, rode dentro da pasta: <code>./INSTALAR-MAC-LINUX.command</code>.</div></li>
+  <li><div>Se o sistema pedir permissão de execução: botão direito → <b>Propriedades</b> → <b>Permissões</b> → marque <b>“Permitir execução como programa”</b>.</div></li>
+  <li><div>O navegador abre em <code>http://localhost:8080</code>. Feche a janela do Terminal para encerrar.</div></li>
+</ol>
+
+<h2 id="sec6"><span class="num">6</span>📲 Instalar como aplicativo (recomendado!)</h2>
+<p>Com o portal aberto (pelo servidor local), você pode “cravar” o AutenticSense na tela inicial — ele vira um aplicativo de verdade, com ícone próprio, e <b>funciona 100% sem internet</b> a partir daí, mesmo depois de desligar o servidor.</p>
+<h3>No computador (Chrome/Edge)</h3>
+<p>Clique no botão <span class="kbd">↓ Instalar</span> no topo da página (ou no ícone de instalação da barra de endereços) → <b>Instalar</b>.</p>
+<h3>No Android (Chrome)</h3>
+<p>Abra o endereço do portal → toque nos <b>três pontinhos ⋮</b> → <b>“Instalar aplicativo”</b> ou <b>“Adicionar à tela inicial”</b>.</p>
+<h3>No iPhone/iPad (Safari)</h3>
+<p>Abra o endereço do portal → toque em <b>Compartilhar</b> (quadrado com seta) → <b>“Adicionar à Tela de Início”</b> → <b>Adicionar</b>.</p>
+<div class="box"><b class="t">💡 No celular, onde fica o endereço do portal?</b> O portal roda no seu computador. Para abri-lo no celular, os dois precisam estar no mesmo Wi-Fi: no computador, anote o endereço mostrado na janelinha do servidor (por exemplo <code>http://localhost:8080</code> não funciona no celular — use o endereço de rede indicado junto, algo como <code>http://192.168.0.10:8080</code>).</div>
+
+<h2 id="sec7"><span class="num">7</span>🗺️ Conhecendo o portal em 3 minutos</h2>
+<table>
+  <tr><th>Tela</th><th>O que você encontra</th></tr>
+  <tr><td><b>Início</b></td><td>Visão geral e os caminhos de estudo.</td></tr>
+  <tr><td><b>Rota</b></td><td>O plano completo: 5 níveis do alfabeto à exegese, 60 min/dia, cronograma e infográficos.</td></tr>
+  <tr><td><b>Hebraico / Aramaico / Grego</b></td><td>Alfabetos, sons e leitura guiada de Gênesis 1.1, Daniel 5.25 e João 1.1 — toque em cada palavra original para ver a análise.</td></tr>
+  <tr><td><b>Ferramentas</b></td><td>Interlinear e transliteradores — experimente digitar <code>shalom</code> em hebraico: שלום.</td></tr>
+  <tr><td><b>Livros</b></td><td>A estante recomendada (Ross, Rega, Mounce, Wallace, Carson…) por nível.</td></tr>
+  <tr><td><b>Exegese</b></td><td>O método de interpretação em 7 passos.</td></tr>
+  <tr><td><b>Sobre</b></td><td>Propósitos, tecnologia, instituições e instalação.</td></tr>
+</table>
+<p><b>Três gestos que você usará sempre:</b> ① menu sanduíche no canto superior (em telas menores); ② o <b>botão redondo dourado</b> no canto inferior direito (acessibilidade); ③ os cartões coloridos na página inicial, que levam a cada trilha.</p>
+
+<h2 id="sec8"><span class="num">8</span>♿ Acessibilidade: o botão dourado</h2>
+<p>O círculo dourado no canto inferior direito abre a central de acessibilidade. Cada opção é salva no seu aparelho:</p>
+<ul>
+  <li><b>A− / A+</b> — aumenta ou diminui o tamanho de todas as letras.</li>
+  <li><b>Tema escuro</b> — fundo escuro, confortável à noite.</li>
+  <li><b>Alto contraste</b> — bordas e letras mais fortes.</li>
+  <li><b>Fonte para dislexia</b> — mais espaçamento entre letras e palavras.</li>
+  <li><b>Ouvir página</b> — o portal lê o conteúdo em voz alta (funciona melhor no Chrome/Edge com vozes em português).</li>
+  <li><b>Reduzir animações</b> — desliga movimentos da tela.</li>
+</ul>
+
+<h2 id="sec9"><span class="num">9</span>❓ Perguntas frequentes</h2>
+<p><b>Preciso de internet para estudar?</b><br>Não. Depois da primeira abertura (via servidor ou após instalar como app), tudo fica guardado no seu aparelho.</p>
+<p><b>O portal cobra algo ou mostra anúncios?</b><br>Nunca. É gratuito, sem cadastro, sem anúncios e sem rastreamento.</p>
+<p><b>Meus textos digitados nas ferramentas vão para algum lugar?</b><br>Não. Transliteração e interlinear acontecem dentro do seu navegador.</p>
+<p><b>Como desinstalo?</b><br>Apague a pasta descompactada. Se instalou como aplicativo, remova-o como qualquer outro app (ícone → desinstalar).</p>
+<p><b>O conteúdo pode ser usado em aulas?</b><br>Sim, livremente, com atribuição (licença Creative Commons no conteúdo e MIT no código).</p>
+
+<h2 id="sec10"><span class="num">10</span>🔧 Solução de problemas</h2>
+<table>
+  <tr><th style="width:45%">Sintoma</th><th>Solução</th></tr>
+  <tr><td>Cliquei no instalador e uma janela piscou e sumiu</td><td>Provavelmente falta o Python. Instale-o (seção do seu sistema) marcando “Add python.exe to PATH”.</td></tr>
+  <tr><td>O navegador não abriu sozinho</td><td>Digite manualmente na barra de endereços: <code>http://localhost:8080</code></td></tr>
+  <tr><td>“Porta em uso” ou endereço 8081, 8082…</td><td>Normal: outro programa estava na 8080. Use o endereço exibido na janela do servidor.</td></tr>
+  <tr><td>Página em branco ou versão antiga aparecendo</td><td>Atualize com <span class="kbd">Ctrl</span>+<span class="kbd">F5</span> (Mac: <span class="kbd">⌘</span>+<span class="kbd">Shift</span>+<span class="kbd">R</span>) — isso limpa a memória temporária da página.</td></tr>
+  <tr><td>Antivírus/firewall perguntou sobre o servidor</td><td>Autorize <b>somente rede local</b>: é o próprio portal falando com o seu navegador, sem internet.</td></tr>
+  <tr><td>Letras hebraicas aparecem como quadradinhos</td><td>Abra uma vez com internet para baixar as fontes embutidas, ou reinstale o app; as fontes ficam gravadas depois.</td></tr>
+</table>
+
+<h2 id="sec11"><span class="num">11</span>💬 Palavras técnicas explicadas de forma simples</h2>
+<ul>
+  <li><b>Descompactar / extrair</b> — transformar o arquivo <code>.zip</code> em uma pasta normal com os arquivos dentro.</li>
+  <li><b>Servidor local</b> — um programa pequeno rodando só no seu computador, que “serve” as páginas para o seu navegador. Não é internet!</li>
+  <li><b>localhost:8080</b> — o endereço do seu próprio computador (a “casa” do portal na máquina).</li>
+  <li><b>PWA / “instalar como app”</b> — tecnologia que permite instalar um site como se fosse aplicativo, funcionando offline.</li>
+  <li><b>Cache</b> — memória temporária que o navegador usa para guardar o portal e abrir mais rápido.</li>
+</ul>
+
+<h2>📜 Créditos e licenças</h2>
+<p>Conteúdo educacional sob licença Creative Commons (uso livre com atribuição) · código-fonte sob licença MIT · Textos bíblicos de referência: tradição massorética (BHS/BHQ) e texto grego crítico (NA28/UBS5) · Capas de livros exibidas apenas para fins educacionais, direitos reservados às editoras.</p>
+
+<footer class="rod">
+  <p><b>AutenticSense — O Sentido Autêntico</b> · v2.0 · Manual do Usuário<br>
+  Imprima este arquivo para ter o guia sempre à mão (Ctrl+P → Salvar como PDF também funciona).</p>
+</footer>
+
+</div>
+</body>
+</html>

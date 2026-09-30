@@ -1,0 +1,205 @@
+/* ==========================================================================
+   AutenticSense — Base (css/base.css)
+   Reset suave, tipografia editorial, modos de acessibilidade.
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-size: calc(100% * var(--osa-fs-scale, 1));
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--osa-font-ui);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--osa-ink);
+  background: var(--osa-paper);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--osa-font-serif);
+  font-weight: 700;
+  line-height: 1.22;
+  color: var(--osa-ink);
+  margin: 1.6em 0 0.55em;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(1.9rem, 1.4rem + 2.4vw, 2.9rem); margin-top: 0.2em; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.45rem, 1.2rem + 1.2vw, 2rem); border-bottom: 2px solid var(--osa-border); padding-bottom: 0.3em; }
+h2 .mark { color: var(--osa-gold); }
+h3 { font-size: 1.28rem; }
+h4 { font-size: 1.08rem; font-family: var(--osa-font-ui); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--osa-ink-muted); }
+
+p { margin: 0 0 1em; }
+ul, ol { margin: 0 0 1em; padding-inline-start: 1.4em; }
+li + li { margin-top: 0.3em; }
+strong { font-weight: 700; }
+
+a {
+  color: var(--osa-gold-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--osa-gold);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  border-radius: 4px;
+}
+a:hover { color: var(--osa-gold-ink-hover); text-decoration-thickness: 2px; }
+
+main a:focus-visible,
+header a:focus-visible,
+footer a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--osa-focus);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+::selection { background: var(--osa-gold-soft); color: var(--osa-ink); }
+
+img, svg { max-width: 100%; }
+svg.icon { width: 1.25em; height: 1.25em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+hr { border: none; border-top: 1px solid var(--osa-border); margin: 2rem 0; }
+
+code, kbd, samp {
+  font-family: var(--osa-font-mono);
+  font-size: 0.92em;
+  background: var(--osa-soft);
+  border: 1px solid var(--osa-border);
+  border-radius: 6px;
+  padding: 0.1em 0.4em;
+}
+
+table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+caption { text-align: start; font-weight: 600; padding: 0.5rem 0; color: var(--osa-ink-secondary); }
+th, td { padding: 0.55rem 0.75rem; text-align: start; border-bottom: 1px solid var(--osa-border); vertical-align: top; }
+thead th { background: var(--osa-soft); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--osa-ink-secondary); }
+tbody tr:hover td { background: var(--osa-soft); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--osa-border); border-radius: var(--osa-radius-md); background: var(--osa-surface); }
+
+details { border: 1px solid var(--osa-border); border-radius: var(--osa-radius-md); background: var(--osa-surface); padding: 0.2rem 1rem; margin-bottom: 0.75rem; }
+details summary { cursor: pointer; font-weight: 600; padding: 0.75rem 0; list-style: none; display: flex; align-items: center; gap: 0.5rem; }
+details summary::before { content: "▸"; color: var(--osa-gold-ink); transition: transform var(--osa-speed); }
+details[open] summary::before { transform: rotate(90deg); }
+details > *:last-child { margin-bottom: 0.9rem; }
+
+/* --------------------------------------------------------------------------
+   Línguas bíblicas: renderização Unicode nativa de alta legibilidade
+   -------------------------------------------------------------------------- */
+.hebrew, .aramaic {
+  font-family: var(--osa-font-hebrew);
+  direction: rtl;
+  unicode-bidi: isolate;
+  font-size: 1.45em;
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+}
+.greek {
+  font-family: var(--osa-font-serif);
+  font-size: 1.25em;
+  line-height: 1.8;
+  unicode-bidi: isolate;
+}
+.translit { font-style: italic; color: var(--osa-ink-secondary); }
+
+.verse {
+  margin: 1.5rem 0;
+  padding: 1.1rem 1.4rem;
+  background: var(--osa-surface);
+  border: 1px solid var(--osa-border);
+  border-inline-start: 4px solid var(--osa-gold);
+  border-radius: var(--osa-radius-md);
+  box-shadow: var(--osa-shadow-1);
+}
+.verse p { margin-bottom: 0.5rem; }
+.verse cite { display: block; font-style: normal; font-size: 0.85rem; color: var(--osa-ink-muted); font-family: var(--osa-font-ui); }
+
+/* --------------------------------------------------------------------------
+   Utilitários
+   -------------------------------------------------------------------------- */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip: rect(0 0 0 0); clip-path: inset(50%);
+  overflow: hidden; white-space: nowrap;
+}
+
+.skip-link {
+  position: fixed;
+  inset-block-start: 0.5rem;
+  inset-inline-start: 0.5rem;
+  z-index: 100;
+  transform: translateY(-250%);
+  background: var(--osa-portal-green);
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--osa-radius-md);
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform var(--osa-speed);
+}
+[data-theme="dark"] .skip-link { color: #0B2E28; }
+.skip-link:focus { transform: none; }
+
+.muted { color: var(--osa-ink-muted); }
+.small { font-size: 0.88rem; }
+.center { text-align: center; }
+
+/* --------------------------------------------------------------------------
+   Modos de acessibilidade (ativação pela barra FAB)
+   -------------------------------------------------------------------------- */
+
+/* Fonte amigável à dislexia (stack local + espaçamentos terapêuticos) */
+[data-font="dyslexic"] body,
+[data-font="dyslexic"] input,
+[data-font="dyslexic"] textarea,
+[data-font="dyslexic"] button,
+[data-font="dyslexic"] select {
+  font-family: "Atkinson Hyperlegible", "OpenDyslexic", "Open Dyslexic", Verdana, Tahoma, sans-serif;
+  letter-spacing: 0.035em;
+  word-spacing: 0.18em;
+  line-height: 1.9;
+}
+[data-font="dyslexic"] h1, [data-font="dyslexic"] h2, [data-font="dyslexic"] h3 { font-family: inherit; letter-spacing: 0.02em; }
+
+/* Alto contraste */
+[data-contrast="high"] :root, [data-contrast="high"] body { --osa-fs-scale: var(--osa-fs-scale); }
+[data-contrast="high"] body { --osa-ink: #000; --osa-ink-secondary: #1c1c1c; }
+[data-theme="dark"][data-contrast="high"] body { --osa-ink: #fff; --osa-ink-secondary: #fff; }
+[data-contrast="high"] a { text-decoration-thickness: 2px; }
+[data-contrast="high"] .card,
+[data-contrast="high"] .tool-panel,
+[data-contrast="high"] .verse,
+[data-contrast="high"] .il-detail,
+[data-contrast="high"] .table-wrap { border-width: 2px; }
+
+/* Movimento reduzido */
+[data-motion="reduce"] *, [data-motion="reduce"] *::before, [data-motion="reduce"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="padrao"]) * { scroll-behavior: auto; }
+}
+
+/* Impressão amigável */
+@media print {
+  .site-header, .site-footer, .fab, .fab-panel, .backdrop, .drawer, .skip-link, .btn { display: none !important; }
+  body { background: #fff; color: #000; }
+  .verse, .card, details { break-inside: avoid; }
+}

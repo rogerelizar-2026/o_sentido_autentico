@@ -1,0 +1,35 @@
+###############################################################################
+##  AUTENTICSENSE — O SENTIDO AUTÊNTICO  ·  v2.0
+##  Guia rápido de 30 segundos (o manual completo está no PDF anexo)
+###############################################################################
+
+O QUE É ISTO?
+  Um portal/aplicativo para estudar as línguas originais da Bíblia
+  (hebraico, aramaico e grego koiné), com ferramentas e livros de referência.
+  Funciona SEM INTERNET, sem cadastro e sem custo.
+
+COMO COMEÇAR (escolha UMA opção)
+------------------------------------------------------------------------------
+  A) SEM INSTALAR NADA (teste rápido)
+     → Dê duplo clique em:  abrir-sem-servidor.html
+
+  B) INSTALAÇÃO COMPLETA (recomendada, uma única vez)
+     1. Instale o Python 3 gratuito em  https://www.python.org/downloads/
+        (no Windows, marque a caixa "Add python.exe to PATH")
+     2. Windows  → duplo clique em  INSTALAR-WINDOWS.bat
+        Mac/Linux → duplo clique em  INSTALAR-MAC-LINUX.command
+     3. O navegador abre sozinho em  http://localhost:8080
+     4. (Opcional) Clique em "Instalar" no topo da página para
+        transformar em aplicativo com ícone próprio.
+
+MANUAL COMPLETO
+  → Manual-do-Usuario.pdf   (para imprimir)
+  → manual.html             (abre no navegador)
+
+PRECISA DE AJUDA?
+  → Seção "Solução de problemas" no manual (página do capítulo 10).
+
+LICENÇAS
+  Conteúdo educacional: Creative Commons (uso livre com atribuição).
+  Código-fonte: MIT. Capas de livros: direitos reservados às editoras.
+###############################################################################

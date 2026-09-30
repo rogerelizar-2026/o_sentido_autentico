@@ -1,0 +1,259 @@
+/* ==========================================================================
+   AutenticSense — Layout (css/layout.css)
+   Header glass, drawer auto-ocultável, hero, grids, rodapé, FAB.
+   ========================================================================== */
+
+/* ---------- Cabeçalho ---------- */
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--osa-z-header);
+  background: var(--osa-glass-bg);
+  -webkit-backdrop-filter: var(--osa-glass-blur);
+  backdrop-filter: var(--osa-glass-blur);
+  border-bottom: 1px solid var(--osa-glass-border);
+}
+.header-inner {
+  max-width: var(--osa-container);
+  margin-inline: auto;
+  min-height: var(--osa-header-h);
+  padding: 0.35rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--osa-ink); margin-inline-end: auto; }
+.brand-mark { width: 42px; height: 42px; flex: none; border-radius: 12px; box-shadow: var(--osa-shadow-1); }
+.brand-text { display: flex; flex-direction: column; line-height: 1.12; }
+.brand-text strong { font-family: var(--osa-font-serif); font-size: 1.08rem; letter-spacing: 0.01em; }
+.brand-text small { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--osa-gold-ink); font-weight: 700; }
+
+.nav-top { display: none; align-items: center; gap: 0.15rem; }
+.nav-top a {
+  text-decoration: none;
+  color: var(--osa-ink-secondary);
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  min-height: var(--osa-tap-min);
+  display: inline-flex;
+  align-items: center;
+}
+.nav-top a:hover { background: var(--osa-soft); color: var(--osa-ink); }
+.nav-top a[aria-current="page"] { background: var(--osa-gold-soft); color: var(--osa-gold-ink); }
+
+.header-actions { display: flex; align-items: center; gap: 0.4rem; }
+.net-badge {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-size: 0.75rem; font-weight: 700;
+  color: var(--osa-ok); background: var(--osa-ok-soft);
+  padding: 0.25rem 0.65rem; border-radius: 999px;
+}
+.net-badge.is-off { color: var(--osa-gold-ink); background: var(--osa-gold-soft); }
+.net-badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+
+/* Botões de ícone */
+.btn-icon {
+  display: inline-grid; place-items: center;
+  min-width: var(--osa-tap-min); min-height: var(--osa-tap-min);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--osa-ink-secondary);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background var(--osa-speed), color var(--osa-speed), transform var(--osa-speed);
+}
+.btn-icon:hover { background: var(--osa-soft); color: var(--osa-ink); }
+.btn-icon:active { transform: scale(0.94); }
+.btn-icon[aria-pressed="true"] { background: var(--osa-gold-soft); color: var(--osa-gold-ink); }
+
+/* ---------- Menu de navegação (drawer auto-ocultável) ---------- */
+.backdrop {
+  position: fixed; inset: 0;
+  z-index: var(--osa-z-backdrop);
+  background: rgba(26, 37, 48, 0.45);
+  -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+  opacity: 0; transition: opacity var(--osa-speed);
+}
+.backdrop.is-open { opacity: 1; }
+
+.drawer {
+  position: fixed;
+  inset-block: 0; inset-inline-start: 0;
+  z-index: var(--osa-z-drawer);
+  width: min(22rem, 90vw);
+  background: var(--osa-surface);
+  border-inline-end: 1px solid var(--osa-border);
+  box-shadow: var(--osa-shadow-3);
+  transform: translateX(-104%);
+  transition: transform 0.28s cubic-bezier(0.32, 0.72, 0.35, 1);
+  display: flex; flex-direction: column;
+}
+.drawer.is-open { transform: none; }
+
+.drawer-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--osa-border);
+}
+.drawer-head .drawer-title { font-family: var(--osa-font-serif); font-weight: 700; }
+
+.nav-drawer { list-style: none; margin: 0; padding: 0.75rem; overflow-y: auto; }
+.nav-drawer a {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.7rem 0.85rem;
+  min-height: var(--osa-tap-min);
+  text-decoration: none;
+  color: var(--osa-ink-secondary);
+  border-radius: var(--osa-radius-md);
+  border-inline-start: 3px solid transparent;
+  margin-bottom: 0.2rem;
+}
+.nav-drawer a:hover { background: var(--osa-soft); color: var(--osa-ink); }
+.nav-drawer a[aria-current="page"] {
+  background: var(--osa-gold-soft);
+  color: var(--osa-gold-ink);
+  border-inline-start-color: var(--osa-gold);
+  font-weight: 700;
+}
+.nav-drawer .nav-desc { display: block; font-size: 0.75rem; font-weight: 400; color: var(--osa-ink-muted); }
+
+.drawer-foot {
+  margin-top: auto;
+  padding: 0.9rem 1.2rem;
+  border-top: 1px solid var(--osa-border);
+  font-size: 0.8rem;
+  color: var(--osa-ink-muted);
+}
+
+/* ---------- Estrutura principal ---------- */
+.site-main { flex: 1 0 auto; }
+.container { max-width: var(--osa-container); margin-inline: auto; padding-inline: 1rem; }
+@media (min-width: 40rem) { .container { padding-inline: 1.5rem; } }
+
+.section { padding-block: 2.25rem; }
+
+.page-head { padding: 2.75rem 0 0.5rem; }
+.page-head .eyebrow {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--osa-gold-ink);
+  background: var(--osa-gold-soft);
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  margin-bottom: 0.8rem;
+}
+.page-head .lede { max-width: 66ch; font-size: 1.13rem; color: var(--osa-ink-secondary); margin-top: 0.75rem; }
+
+.breadcrumb { font-size: 0.85rem; color: var(--osa-ink-muted); margin-bottom: 0.4rem; }
+.breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0; margin: 0; }
+.breadcrumb li { display: flex; align-items: center; gap: 0.4rem; margin: 0; }
+.breadcrumb li + li::before { content: "›"; color: var(--osa-ink-muted); }
+.breadcrumb a { text-decoration: none; color: var(--osa-ink-muted); }
+.breadcrumb a:hover { color: var(--osa-gold-ink); text-decoration: underline; }
+.breadcrumb [aria-current] { color: var(--osa-ink); font-weight: 600; }
+
+/* ---------- Hero ---------- */
+.hero { padding: 4.5rem 0 3rem; position: relative; overflow: clip; }
+.hero::before {
+  content: "";
+  position: absolute; inset: -30% -10% auto -10%;
+  height: 130%;
+  background:
+    radial-gradient(ellipse 42rem 16rem at 18% 0%, var(--osa-gold-glow), transparent 65%),
+    radial-gradient(ellipse 36rem 15rem at 85% 8%, var(--osa-gold-glow), transparent 60%);
+  pointer-events: none;
+}
+.hero-inner { position: relative; text-align: center; max-width: 56rem; margin-inline: auto; }
+.hero h1 { margin: 0.4em 0 0.35em; }
+.hero h1 .accent { color: var(--osa-gold-ink); position: relative; white-space: nowrap; }
+.hero h1 .accent::after {
+  content: ""; position: absolute; inset-inline: 0; inset-block-end: 0.08em;
+  height: 0.32em; background: var(--osa-gold-glow); z-index: -1; border-radius: 4px;
+}
+.hero .lede { font-size: 1.18rem; color: var(--osa-ink-secondary); max-width: 60ch; margin-inline: auto; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-top: 1.6rem; }
+.hero-script {
+  margin-top: 2.2rem;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 1.4rem 2.4rem;
+  color: var(--osa-ink-muted); font-size: 0.95rem;
+}
+.hero-script span { display: inline-flex; align-items: center; gap: 0.45rem; }
+
+/* ---------- Grids ---------- */
+.grid { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17.5rem), 1fr)); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+
+/* ---------- Rodapé ---------- */
+.site-footer {
+  flex-shrink: 0;
+  margin-top: 3.5rem;
+  border-top: 1px solid var(--osa-border);
+  background: var(--osa-soft);
+}
+.footer-inner { padding: 2.5rem 0 1.5rem; display: grid; gap: 2rem; grid-template-columns: 1fr; }
+@media (min-width: 48rem) { .footer-inner { grid-template-columns: 1.4fr 1fr 1fr; } }
+.footer-title { font-family: var(--osa-font-serif); font-weight: 700; font-size: 1.05rem; margin-bottom: 0.5rem; }
+.footer-col h3 { font-family: var(--osa-font-ui); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--osa-ink-muted); margin: 0 0 0.7rem; border: none; padding: 0; }
+.footer-col ul { list-style: none; padding: 0; margin: 0; }
+.footer-col li { margin: 0.35rem 0; }
+.footer-col a { color: var(--osa-ink-secondary); text-decoration: none; }
+.footer-col a:hover { color: var(--osa-gold-ink); text-decoration: underline; }
+.footer-legal {
+  border-top: 1px solid var(--osa-border);
+  padding: 1rem 0 1.4rem;
+  font-size: 0.8rem;
+  color: var(--osa-ink-muted);
+  display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; justify-content: space-between;
+}
+
+/* ---------- FAB de acessibilidade ---------- */
+.fab {
+  position: fixed;
+  inset-inline-end: 1.25rem;
+  inset-block-end: 1.25rem;
+  z-index: var(--osa-z-fab);
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  border: none;
+  background: var(--osa-gold);
+  color: #1A2530;
+  display: grid; place-items: center;
+  cursor: pointer;
+  box-shadow: var(--osa-shadow-3);
+  transition: transform var(--osa-speed), box-shadow var(--osa-speed);
+}
+.fab:hover { transform: translateY(-2px) scale(1.04); }
+.fab[aria-expanded="true"] { background: var(--osa-gold-ink); color: #fff; }
+
+.fab-panel {
+  position: fixed;
+  inset-inline-end: 1.25rem;
+  inset-block-end: 5.75rem;
+  z-index: var(--osa-z-fab);
+  width: min(21rem, calc(100vw - 2.5rem));
+  max-height: min(70vh, 34rem);
+  overflow-y: auto;
+  background: var(--osa-surface-raised);
+  border: 1px solid var(--osa-border);
+  border-radius: var(--osa-radius-lg);
+  box-shadow: var(--osa-shadow-3);
+  padding: 1rem 1.1rem;
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+  pointer-events: none;
+  transition: opacity var(--osa-speed), transform var(--osa-speed);
+}
+.fab-panel.is-open { opacity: 1; transform: none; pointer-events: auto; }
+.fab-panel h2 { font-family: var(--osa-font-ui); font-size: 0.95rem; margin: 0 0 0.75rem; border: none; padding: 0; }
+.a11y-group { margin-bottom: 0.9rem; }
+.a11y-group > span { display: block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--osa-ink-muted); margin-bottom: 0.4rem; }
+.a11y-row { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+
+@media (min-width: 72rem) {
+  .nav-top { display: flex; }
+  .nav-toggle { display: none; }
+}

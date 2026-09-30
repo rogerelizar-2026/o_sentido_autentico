@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light" data-contrast="normal" data-font="padrao" data-motion="padrao">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>AutenticSense · O Sentido Autêntico — Línguas Bíblicas</title>
+  <meta name="description" content="Portal educacional offline de línguas bíblicas: Hebraico, Aramaico e Grego Koiné. Alfabetos, ferramentas interlineares e exegese integrada com acessibilidade total em português (pt-BR).">
+  <meta name="keywords" content="hebraico bíblico, aramaico bíblico, grego koiné, exegese bíblica, interlinear, línguas originais da Bíblia, estudo bíblico">
+  <meta name="author" content="AutenticSense — O Sentido Autêntico">
+  <meta name="robots" content="index, follow">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0F3731">
+  <link rel="canonical" href="https://autenticsense.example.com/">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="AutenticSense · O Sentido Autêntico">
+  <meta property="og:description" content="Hebraico, Aramaico e Grego Koiné com ferramentas interlineares e exegese integrada — 100% offline e acessível.">
+  <meta property="og:url" content="https://autenticsense.example.com/">
+  <meta property="og:image" content="assets/icons/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+  <link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="AutenticSense">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/content.css">
+
+  <!-- Dados estruturados (SEO/GEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AutenticSense",
+    "alternateName": "O Sentido Autêntico",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Qualquer (PWA multiplataforma)",
+    "inLanguage": "pt-BR",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
+    "description": "Portal educacional offline-first para o estudo das línguas bíblicas originais (Hebraico, Aramaico e Grego Koiné), com ferramentas interlineares e método exegético integrado, com acessibilidade WCAG 2.2.",
+    "featureList": "Alfabeto hebraico e aramaico; Alfabeto grego; Analisador interlinear; Transliteradores; Exegese em 7 passos; Funciona offline; Leitura em voz alta; Modo dislexia; Alto contraste; Tema escuro",
+    "teaches": ["Hebraico Bíblico", "Aramaico Bíblico", "Grego Koiné", "Exegese Bíblica"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "pt-BR",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "O que é o AutenticSense?",
+        "acceptedAnswer": { "@type": "Answer", "text": "AutenticSense (O Sentido Autêntico) é um portal educacional gratuito e offline-first (PWA) para estudar a Bíblia nas línguas originais — Hebraico, Aramaico e Grego Koiné — com ferramentas interativas e exegese integrada, todo em português." }
+      },
+      {
+        "@type": "Question",
+        "name": "O AutenticSense funciona sem internet?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sim. Após a primeira visita, todas as páginas, fontes e ferramentas ficam armazenadas no dispositivo por meio de um Service Worker dedicado, e o app pode ser instalado na tela inicial." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quais línguas bíblicas são ensinadas?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Hebraico Bíblico (com leitura de Gênesis 1.1), Aramaico Bíblico (com leitura de Daniel 5.25) e Grego Koiné (com análise palavra a palavra de João 1.1), além de um método exegético integrado em sete passos." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quais ferramentas o portal oferece?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Analisador interlinear palavra a palavra com morfologia e glosas, e transliteradores de hebraico e de grego — tudo processado localmente, sem envio de dados." }
+      }
+    ]
+  }
+  </script>
+  <script type="module" src="./js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <button id="navToggle" class="btn-icon nav-toggle" type="button"
+              aria-expanded="false" aria-controls="drawer" aria-label="Abrir menu de navegação">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+
+      <a class="brand" href="#/" aria-label="AutenticSense — página inicial">
+        <svg class="brand-mark" viewBox="0 0 48 48" role="img" aria-hidden="true">
+          <rect width="48" height="48" rx="12" fill="#0F3731"/>
+          <text x="24" y="30" text-anchor="middle" font-family="serif" font-size="19" fill="#C5A059" font-weight="700">אΑ</text>
+          <path d="M10 36h28" stroke="#C5A059" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-text">
+          <strong>AutenticSense</strong>
+          <small>O Sentido Autêntico</small>
+        </span>
+      </a>
+
+      <nav class="nav-top" id="navTop" aria-label="Navegação principal"></nav>
+
+      <div class="header-actions">
+        <span id="netBadge" class="net-badge" role="status" hidden>offline</span>
+        <button id="themeToggle" class="btn-icon" type="button" aria-pressed="false" aria-label="Alternar entre tema claro e escuro">
+          <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M21.5 12h-2.4M4.9 12H2.5M18.7 5.3l-1.7 1.7M7 17l-1.7 1.7M18.7 18.7 17 17M7 7 5.3 5.3"/>
+          </svg>
+        </button>
+        <button id="installBtn" class="btn btn-gold btn-sm" type="button" hidden>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16"/></svg>
+          Instalar
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="backdrop" id="backdrop" hidden></div>
+
+  <aside id="drawer" class="drawer" aria-label="Menu de navegação" hidden>
+    <div class="drawer-head">
+      <span class="drawer-title">Navegação</span>
+      <button id="drawerClose" class="btn-icon" type="button" aria-label="Fechar menu de navegação">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <nav aria-label="Navegação lateral">
+      <ul class="nav-drawer" id="navDrawerList"></ul>
+    </nav>
+    <div class="drawer-foot">
+      <p><strong>AutenticSense</strong> · PWA educacional</p>
+      <p class="small">Funciona offline após a primeira visita. Nenhum dado pessoal é coletado.</p>
+    </div>
+  </aside>
+
+  <main id="conteudo" class="site-main" tabindex="-1">
+    <div id="app" class="app-view"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <p class="footer-title">AutenticSense · O Sentido Autêntico</p>
+          <p class="small">Portal educacional dedicado ao estudo das línguas bíblicas originais — Hebraico, Aramaico e Grego Koiné — com ferramentas interativas e exegese integrada, diretamente no seu navegador.</p>
+          <p class="chip-row" aria-label="Características">
+            <span class="chip chip-ok">100% offline</span>
+            <span class="chip chip-ok">Acessível (WCAG 2.2)</span>
+            <span class="chip chip-ok">Sem rastreamento</span>
+            <span class="chip chip-ok">Open source</span>
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3>Módulos</h3>
+          <ul>
+            <li><a href="#/hebraico">Hebraico Bíblico</a></li>
+            <li><a href="#/aramaico">Aramaico Bíblico</a></li>
+            <li><a href="#/grego">Grego Koiné</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Ferramentas</h3>
+          <ul>
+            <li><a href="#/ferramentas">Analisador interlinear</a></li>
+            <li><a href="#/ferramentas">Transliteradores</a></li>
+            <li><a href="#/exegese">Método exegético</a></li>
+            <li><a href="#/sobre">Sobre o projeto</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <span>© <span id="year">2026</span> AutenticSense. Conteúdo educacional em pt-BR.</span>
+        <span>Feito com tecnologias abertas: HTML5 · CSS3 · JavaScript ES6.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Barra flutuante de acessibilidade (montada por js/a11y.js) -->
+  <div id="a11yRoot"></div>
+
+  <!-- Anúncios para leitores de tela -->
+  <div id="liveRegion" class="sr-only" aria-live="polite" role="status"></div>
+  <div id="liveAlert" class="sr-only" aria-live="assertive" role="alert"></div>
+
+  <noscript>
+    <div class="container section">
+      <h1>AutenticSense</h1>
+      <p>Este portal interativo requer JavaScript para navegação entre os módulos. Ative o JavaScript para acessar os conteúdos de Hebraico, Aramaico, Grego Koiné, ferramentas e exegese.</p>
+    </div>
+  </noscript>
+</body>
+</html>

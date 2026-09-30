@@ -1,0 +1,124 @@
+/* ==========================================================================
+   AutenticSense — Design Tokens (css/tokens.css)
+   Identidade visual: manuscritos, pedra gravada e editorial moderno.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Superfícies & Papel */
+  --osa-paper: #FBFAF7;
+  --osa-soft: #F3EFE6;
+  --osa-surface: #FFFFFF;
+  --osa-surface-raised: #FFFFFF;
+  --osa-surface-dim: #EDE8DE;
+  --osa-border: #E4DFD3;
+  --osa-border-strong: #D6CDB6;
+
+  /* Tinta & Tipografia */
+  --osa-ink: #1A2530;
+  --osa-ink-secondary: #4A5568;
+  --osa-ink-muted: #64748B;
+  --osa-ink-light: #FFFFFF;
+
+  /* Ouro institucional */
+  --osa-gold: #C5A059;
+  --osa-gold-ink: #7A5C1E;
+  --osa-gold-ink-hover: #5E4715;
+  --osa-gold-soft: #F5EBD8;
+  --osa-gold-glow: rgba(197, 160, 89, 0.25);
+
+  /* Tematização por módulo linguístico */
+  --osa-portal-green: #0F3731;
+  --osa-portal-green-soft: #E3EDEA;
+  --osa-hebrew-navy: #102A43;
+  --osa-hebrew-navy-soft: #E4ECF4;
+  --osa-aramaic-ochre: #8C4B16;
+  --osa-aramaic-ochre-soft: #F6EADD;
+  --osa-greek-burgundy: #7B1D22;
+  --osa-greek-burgundy-soft: #F6E7E7;
+
+  /* Feedback */
+  --osa-danger: #A62639;
+  --osa-danger-soft: #FBEAEA;
+  --osa-ok: #1F7A4D;
+  --osa-ok-soft: #E4F3EB;
+  --osa-info: #214E8F;
+  --osa-info-soft: #E7EFF9;
+
+  /* Vidro & Elevação */
+  --osa-glass-bg: rgba(251, 250, 247, 0.88);
+  --osa-glass-border: rgba(228, 223, 211, 0.8);
+  --osa-glass-blur: blur(12px);
+  --osa-shadow-1: 0 1px 3px rgba(26, 37, 48, 0.06);
+  --osa-shadow-2: 0 4px 12px rgba(26, 37, 48, 0.08);
+  --osa-shadow-3: 0 12px 32px rgba(26, 37, 48, 0.14);
+  --osa-radius-sm: 8px;
+  --osa-radius-md: 12px;
+  --osa-radius-lg: 16px;
+  --osa-tap-min: 44px;
+
+  /* Tipografia */
+  --osa-font-ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --osa-font-serif: "Noto Serif", "PT Serif", Georgia, "Times New Roman", serif;
+  --osa-font-hebrew: "Noto Serif Hebrew", "SBL Hebrew", "Ezra SIL", "Times New Roman", serif;
+  --osa-font-mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas, "Liberation Mono", monospace;
+  --osa-fs-scale: 1;
+
+  /* Métricas */
+  --osa-container: 72rem;
+  --osa-header-h: 64px;
+  --osa-focus: #7A5C1E;
+  --osa-speed: 220ms;
+
+  /* Camadas */
+  --osa-z-header: 50;
+  --osa-z-backdrop: 70;
+  --osa-z-drawer: 80;
+  --osa-z-fab: 90;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --osa-paper: #11171D;
+  --osa-soft: #18222B;
+  --osa-surface: #1E2936;
+  --osa-surface-raised: #263342;
+  --osa-surface-dim: #131B23;
+  --osa-border: #2D3D4E;
+  --osa-border-strong: #3D5165;
+  --osa-ink: #F1F5F9;
+  --osa-ink-secondary: #CBD5E1;
+  --osa-ink-muted: #94A3B8;
+  --osa-gold: #D4B579;
+  --osa-gold-ink: #E2C58A;
+  --osa-gold-ink-hover: #EFD9AC;
+  --osa-gold-soft: #3A3323;
+  --osa-gold-glow: rgba(212, 181, 121, 0.18);
+  --osa-portal-green: #6EE7B7;
+  --osa-portal-green-soft: #17352E;
+  --osa-hebrew-navy: #93C5FD;
+  --osa-hebrew-navy-soft: #1B2B40;
+  --osa-aramaic-ochre: #E0A56B;
+  --osa-aramaic-ochre-soft: #3A2B1B;
+  --osa-greek-burgundy: #FCA5A5;
+  --osa-greek-burgundy-soft: #3A2224;
+  --osa-danger: #F18A9B;
+  --osa-danger-soft: #3E2229;
+  --osa-ok: #7BD6A4;
+  --osa-ok-soft: #17352A;
+  --osa-info: #9BBEF0;
+  --osa-info-soft: #1B2A3E;
+  --osa-glass-bg: rgba(17, 23, 29, 0.88);
+  --osa-glass-border: rgba(45, 61, 78, 0.85);
+  --osa-shadow-1: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --osa-shadow-2: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --osa-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --osa-focus: #E2C58A;
+}
+
+/* Alto contraste (WCAG): bordas e links mais assertivos */
+[data-contrast="high"] {
+  --osa-border: currentColor;
+  --osa-border-strong: currentColor;
+}

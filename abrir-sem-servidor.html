@@ -1,0 +1,3964 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light" data-contrast="normal" data-font="padrao" data-motion="padrao">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>AutenticSense · O Sentido Autêntico — Línguas Bíblicas</title>
+  <meta name="description" content="Portal educacional offline de línguas bíblicas: Hebraico, Aramaico e Grego Koiné. Alfabetos, ferramentas interlineares e exegese integrada com acessibilidade total em português (pt-BR).">
+  <meta name="keywords" content="hebraico bíblico, aramaico bíblico, grego koiné, exegese bíblica, interlinear, línguas originais da Bíblia, estudo bíblico">
+  <meta name="author" content="AutenticSense — O Sentido Autêntico">
+  <meta name="robots" content="index, follow">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0F3731">
+  <link rel="canonical" href="https://autenticsense.example.com/">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="AutenticSense · O Sentido Autêntico">
+  <meta property="og:description" content="Hebraico, Aramaico e Grego Koiné com ferramentas interlineares e exegese integrada — 100% offline e acessível.">
+  <meta property="og:url" content="https://autenticsense.example.com/">
+  <meta property="og:image" content="assets/icons/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+  <link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="AutenticSense">
+
+  <!-- Estilos -->
+
+  <!-- Dados estruturados (SEO/GEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AutenticSense",
+    "alternateName": "O Sentido Autêntico",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Qualquer (PWA multiplataforma)",
+    "inLanguage": "pt-BR",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
+    "description": "Portal educacional offline-first para o estudo das línguas bíblicas originais (Hebraico, Aramaico e Grego Koiné), com ferramentas interlineares e método exegético integrado, com acessibilidade WCAG 2.2.",
+    "featureList": "Alfabeto hebraico e aramaico; Alfabeto grego; Analisador interlinear; Transliteradores; Exegese em 7 passos; Funciona offline; Leitura em voz alta; Modo dislexia; Alto contraste; Tema escuro",
+    "teaches": ["Hebraico Bíblico", "Aramaico Bíblico", "Grego Koiné", "Exegese Bíblica"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "pt-BR",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "O que é o AutenticSense?",
+        "acceptedAnswer": { "@type": "Answer", "text": "AutenticSense (O Sentido Autêntico) é um portal educacional gratuito e offline-first (PWA) para estudar a Bíblia nas línguas originais — Hebraico, Aramaico e Grego Koiné — com ferramentas interativas e exegese integrada, todo em português." }
+      },
+      {
+        "@type": "Question",
+        "name": "O AutenticSense funciona sem internet?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sim. Após a primeira visita, todas as páginas, fontes e ferramentas ficam armazenadas no dispositivo por meio de um Service Worker dedicado, e o app pode ser instalado na tela inicial." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quais línguas bíblicas são ensinadas?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Hebraico Bíblico (com leitura de Gênesis 1.1), Aramaico Bíblico (com leitura de Daniel 5.25) e Grego Koiné (com análise palavra a palavra de João 1.1), além de um método exegético integrado em sete passos." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quais ferramentas o portal oferece?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Analisador interlinear palavra a palavra com morfologia e glosas, e transliteradores de hebraico e de grego — tudo processado localmente, sem envio de dados." }
+      }
+    ]
+  }
+  </script>
+<style>
+/* ===== css/tokens.css ===== */
+/* ==========================================================================
+   AutenticSense — Design Tokens (css/tokens.css)
+   Identidade visual: manuscritos, pedra gravada e editorial moderno.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Superfícies & Papel */
+  --osa-paper: #FBFAF7;
+  --osa-soft: #F3EFE6;
+  --osa-surface: #FFFFFF;
+  --osa-surface-raised: #FFFFFF;
+  --osa-surface-dim: #EDE8DE;
+  --osa-border: #E4DFD3;
+  --osa-border-strong: #D6CDB6;
+
+  /* Tinta & Tipografia */
+  --osa-ink: #1A2530;
+  --osa-ink-secondary: #4A5568;
+  --osa-ink-muted: #64748B;
+  --osa-ink-light: #FFFFFF;
+
+  /* Ouro institucional */
+  --osa-gold: #C5A059;
+  --osa-gold-ink: #7A5C1E;
+  --osa-gold-ink-hover: #5E4715;
+  --osa-gold-soft: #F5EBD8;
+  --osa-gold-glow: rgba(197, 160, 89, 0.25);
+
+  /* Tematização por módulo linguístico */
+  --osa-portal-green: #0F3731;
+  --osa-portal-green-soft: #E3EDEA;
+  --osa-hebrew-navy: #102A43;
+  --osa-hebrew-navy-soft: #E4ECF4;
+  --osa-aramaic-ochre: #8C4B16;
+  --osa-aramaic-ochre-soft: #F6EADD;
+  --osa-greek-burgundy: #7B1D22;
+  --osa-greek-burgundy-soft: #F6E7E7;
+
+  /* Feedback */
+  --osa-danger: #A62639;
+  --osa-danger-soft: #FBEAEA;
+  --osa-ok: #1F7A4D;
+  --osa-ok-soft: #E4F3EB;
+  --osa-info: #214E8F;
+  --osa-info-soft: #E7EFF9;
+
+  /* Vidro & Elevação */
+  --osa-glass-bg: rgba(251, 250, 247, 0.88);
+  --osa-glass-border: rgba(228, 223, 211, 0.8);
+  --osa-glass-blur: blur(12px);
+  --osa-shadow-1: 0 1px 3px rgba(26, 37, 48, 0.06);
+  --osa-shadow-2: 0 4px 12px rgba(26, 37, 48, 0.08);
+  --osa-shadow-3: 0 12px 32px rgba(26, 37, 48, 0.14);
+  --osa-radius-sm: 8px;
+  --osa-radius-md: 12px;
+  --osa-radius-lg: 16px;
+  --osa-tap-min: 44px;
+
+  /* Tipografia */
+  --osa-font-ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --osa-font-serif: "Noto Serif", "PT Serif", Georgia, "Times New Roman", serif;
+  --osa-font-hebrew: "Noto Serif Hebrew", "SBL Hebrew", "Ezra SIL", "Times New Roman", serif;
+  --osa-font-mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas, "Liberation Mono", monospace;
+  --osa-fs-scale: 1;
+
+  /* Métricas */
+  --osa-container: 72rem;
+  --osa-header-h: 64px;
+  --osa-focus: #7A5C1E;
+  --osa-speed: 220ms;
+
+  /* Camadas */
+  --osa-z-header: 50;
+  --osa-z-backdrop: 70;
+  --osa-z-drawer: 80;
+  --osa-z-fab: 90;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --osa-paper: #11171D;
+  --osa-soft: #18222B;
+  --osa-surface: #1E2936;
+  --osa-surface-raised: #263342;
+  --osa-surface-dim: #131B23;
+  --osa-border: #2D3D4E;
+  --osa-border-strong: #3D5165;
+  --osa-ink: #F1F5F9;
+  --osa-ink-secondary: #CBD5E1;
+  --osa-ink-muted: #94A3B8;
+  --osa-gold: #D4B579;
+  --osa-gold-ink: #E2C58A;
+  --osa-gold-ink-hover: #EFD9AC;
+  --osa-gold-soft: #3A3323;
+  --osa-gold-glow: rgba(212, 181, 121, 0.18);
+  --osa-portal-green: #6EE7B7;
+  --osa-portal-green-soft: #17352E;
+  --osa-hebrew-navy: #93C5FD;
+  --osa-hebrew-navy-soft: #1B2B40;
+  --osa-aramaic-ochre: #E0A56B;
+  --osa-aramaic-ochre-soft: #3A2B1B;
+  --osa-greek-burgundy: #FCA5A5;
+  --osa-greek-burgundy-soft: #3A2224;
+  --osa-danger: #F18A9B;
+  --osa-danger-soft: #3E2229;
+  --osa-ok: #7BD6A4;
+  --osa-ok-soft: #17352A;
+  --osa-info: #9BBEF0;
+  --osa-info-soft: #1B2A3E;
+  --osa-glass-bg: rgba(17, 23, 29, 0.88);
+  --osa-glass-border: rgba(45, 61, 78, 0.85);
+  --osa-shadow-1: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --osa-shadow-2: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --osa-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --osa-focus: #E2C58A;
+}
+
+/* Alto contraste (WCAG): bordas e links mais assertivos */
+[data-contrast="high"] {
+  --osa-border: currentColor;
+  --osa-border-strong: currentColor;
+}
+
+
+/* ===== css/fonts.css ===== */
+/* ==========================================================================
+   AutenticSense — Fontes locais (gerado por fetch-fonts.py)
+   Auto-hospedado para garantir funcionamento 100% offline.
+   ========================================================================== */
+
+/* noto-serif-hebrew · hebrew · normal 400 (17 KB) */
+@font-face {
+  font-family: 'Noto Serif Hebrew';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-hebrew-hebrew-normal-400.woff2') format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+
+/* noto-serif-hebrew · latin · normal 400 (28 KB) */
+@font-face {
+  font-family: 'Noto Serif Hebrew';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-hebrew-latin-normal-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* noto-serif-hebrew · hebrew · normal 600 (17 KB) */
+@font-face {
+  font-family: 'Noto Serif Hebrew';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-hebrew-hebrew-normal-600.woff2') format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+
+/* noto-serif-hebrew · latin · normal 600 (28 KB) */
+@font-face {
+  font-family: 'Noto Serif Hebrew';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-hebrew-latin-normal-600.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* noto-serif-hebrew · hebrew · normal 700 (17 KB) */
+@font-face {
+  font-family: 'Noto Serif Hebrew';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-hebrew-hebrew-normal-700.woff2') format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+
+/* noto-serif-hebrew · latin · normal 700 (28 KB) */
+@font-face {
+  font-family: 'Noto Serif Hebrew';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-hebrew-latin-normal-700.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* noto-serif · greek-ext · italic 400 (5 KB) */
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-greek-ext-italic-400.woff2') format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+
+/* noto-serif · greek · italic 400 (9 KB) */
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-greek-italic-400.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+
+/* noto-serif · latin-ext · italic 400 (65 KB) */
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-latin-ext-italic-400.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* noto-serif · latin · italic 400 (15 KB) */
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-latin-italic-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* noto-serif · greek-ext · normal 400 (12 KB) */
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-greek-ext-normal-400.woff2') format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+
+/* noto-serif · greek · normal 400 (27 KB) */
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-greek-normal-400.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+
+/* noto-serif · latin-ext · normal 400 (182 KB) */
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-latin-ext-normal-400.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* noto-serif · latin · normal 400 (35 KB) */
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-latin-normal-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* noto-serif · greek-ext · normal 600 (12 KB) */
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-greek-ext-normal-600.woff2') format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+
+/* noto-serif · greek · normal 600 (27 KB) */
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-greek-normal-600.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+
+/* noto-serif · latin-ext · normal 600 (182 KB) */
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-latin-ext-normal-600.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* noto-serif · latin · normal 600 (35 KB) */
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-latin-normal-600.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* noto-serif · greek-ext · normal 700 (12 KB) */
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-greek-ext-normal-700.woff2') format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+
+/* noto-serif · greek · normal 700 (27 KB) */
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-greek-normal-700.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+
+/* noto-serif · latin-ext · normal 700 (182 KB) */
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-latin-ext-normal-700.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* noto-serif · latin · normal 700 (35 KB) */
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/noto-serif-latin-normal-700.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+/* ===== css/base.css ===== */
+/* ==========================================================================
+   AutenticSense — Base (css/base.css)
+   Reset suave, tipografia editorial, modos de acessibilidade.
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-size: calc(100% * var(--osa-fs-scale, 1));
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--osa-font-ui);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--osa-ink);
+  background: var(--osa-paper);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--osa-font-serif);
+  font-weight: 700;
+  line-height: 1.22;
+  color: var(--osa-ink);
+  margin: 1.6em 0 0.55em;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(1.9rem, 1.4rem + 2.4vw, 2.9rem); margin-top: 0.2em; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.45rem, 1.2rem + 1.2vw, 2rem); border-bottom: 2px solid var(--osa-border); padding-bottom: 0.3em; }
+h2 .mark { color: var(--osa-gold); }
+h3 { font-size: 1.28rem; }
+h4 { font-size: 1.08rem; font-family: var(--osa-font-ui); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--osa-ink-muted); }
+
+p { margin: 0 0 1em; }
+ul, ol { margin: 0 0 1em; padding-inline-start: 1.4em; }
+li + li { margin-top: 0.3em; }
+strong { font-weight: 700; }
+
+a {
+  color: var(--osa-gold-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--osa-gold);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  border-radius: 4px;
+}
+a:hover { color: var(--osa-gold-ink-hover); text-decoration-thickness: 2px; }
+
+main a:focus-visible,
+header a:focus-visible,
+footer a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--osa-focus);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+::selection { background: var(--osa-gold-soft); color: var(--osa-ink); }
+
+img, svg { max-width: 100%; }
+svg.icon { width: 1.25em; height: 1.25em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+hr { border: none; border-top: 1px solid var(--osa-border); margin: 2rem 0; }
+
+code, kbd, samp {
+  font-family: var(--osa-font-mono);
+  font-size: 0.92em;
+  background: var(--osa-soft);
+  border: 1px solid var(--osa-border);
+  border-radius: 6px;
+  padding: 0.1em 0.4em;
+}
+
+table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+caption { text-align: start; font-weight: 600; padding: 0.5rem 0; color: var(--osa-ink-secondary); }
+th, td { padding: 0.55rem 0.75rem; text-align: start; border-bottom: 1px solid var(--osa-border); vertical-align: top; }
+thead th { background: var(--osa-soft); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--osa-ink-secondary); }
+tbody tr:hover td { background: var(--osa-soft); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--osa-border); border-radius: var(--osa-radius-md); background: var(--osa-surface); }
+
+details { border: 1px solid var(--osa-border); border-radius: var(--osa-radius-md); background: var(--osa-surface); padding: 0.2rem 1rem; margin-bottom: 0.75rem; }
+details summary { cursor: pointer; font-weight: 600; padding: 0.75rem 0; list-style: none; display: flex; align-items: center; gap: 0.5rem; }
+details summary::before { content: "▸"; color: var(--osa-gold-ink); transition: transform var(--osa-speed); }
+details[open] summary::before { transform: rotate(90deg); }
+details > *:last-child { margin-bottom: 0.9rem; }
+
+/* --------------------------------------------------------------------------
+   Línguas bíblicas: renderização Unicode nativa de alta legibilidade
+   -------------------------------------------------------------------------- */
+.hebrew, .aramaic {
+  font-family: var(--osa-font-hebrew);
+  direction: rtl;
+  unicode-bidi: isolate;
+  font-size: 1.45em;
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+}
+.greek {
+  font-family: var(--osa-font-serif);
+  font-size: 1.25em;
+  line-height: 1.8;
+  unicode-bidi: isolate;
+}
+.translit { font-style: italic; color: var(--osa-ink-secondary); }
+
+.verse {
+  margin: 1.5rem 0;
+  padding: 1.1rem 1.4rem;
+  background: var(--osa-surface);
+  border: 1px solid var(--osa-border);
+  border-inline-start: 4px solid var(--osa-gold);
+  border-radius: var(--osa-radius-md);
+  box-shadow: var(--osa-shadow-1);
+}
+.verse p { margin-bottom: 0.5rem; }
+.verse cite { display: block; font-style: normal; font-size: 0.85rem; color: var(--osa-ink-muted); font-family: var(--osa-font-ui); }
+
+/* --------------------------------------------------------------------------
+   Utilitários
+   -------------------------------------------------------------------------- */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip: rect(0 0 0 0); clip-path: inset(50%);
+  overflow: hidden; white-space: nowrap;
+}
+
+.skip-link {
+  position: fixed;
+  inset-block-start: 0.5rem;
+  inset-inline-start: 0.5rem;
+  z-index: 100;
+  transform: translateY(-250%);
+  background: var(--osa-portal-green);
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--osa-radius-md);
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform var(--osa-speed);
+}
+[data-theme="dark"] .skip-link { color: #0B2E28; }
+.skip-link:focus { transform: none; }
+
+.muted { color: var(--osa-ink-muted); }
+.small { font-size: 0.88rem; }
+.center { text-align: center; }
+
+/* --------------------------------------------------------------------------
+   Modos de acessibilidade (ativação pela barra FAB)
+   -------------------------------------------------------------------------- */
+
+/* Fonte amigável à dislexia (stack local + espaçamentos terapêuticos) */
+[data-font="dyslexic"] body,
+[data-font="dyslexic"] input,
+[data-font="dyslexic"] textarea,
+[data-font="dyslexic"] button,
+[data-font="dyslexic"] select {
+  font-family: "Atkinson Hyperlegible", "OpenDyslexic", "Open Dyslexic", Verdana, Tahoma, sans-serif;
+  letter-spacing: 0.035em;
+  word-spacing: 0.18em;
+  line-height: 1.9;
+}
+[data-font="dyslexic"] h1, [data-font="dyslexic"] h2, [data-font="dyslexic"] h3 { font-family: inherit; letter-spacing: 0.02em; }
+
+/* Alto contraste */
+[data-contrast="high"] :root, [data-contrast="high"] body { --osa-fs-scale: var(--osa-fs-scale); }
+[data-contrast="high"] body { --osa-ink: #000; --osa-ink-secondary: #1c1c1c; }
+[data-theme="dark"][data-contrast="high"] body { --osa-ink: #fff; --osa-ink-secondary: #fff; }
+[data-contrast="high"] a { text-decoration-thickness: 2px; }
+[data-contrast="high"] .card,
+[data-contrast="high"] .tool-panel,
+[data-contrast="high"] .verse,
+[data-contrast="high"] .il-detail,
+[data-contrast="high"] .table-wrap { border-width: 2px; }
+
+/* Movimento reduzido */
+[data-motion="reduce"] *, [data-motion="reduce"] *::before, [data-motion="reduce"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="padrao"]) * { scroll-behavior: auto; }
+}
+
+/* Impressão amigável */
+@media print {
+  .site-header, .site-footer, .fab, .fab-panel, .backdrop, .drawer, .skip-link, .btn { display: none !important; }
+  body { background: #fff; color: #000; }
+  .verse, .card, details { break-inside: avoid; }
+}
+
+
+/* ===== css/layout.css ===== */
+/* ==========================================================================
+   AutenticSense — Layout (css/layout.css)
+   Header glass, drawer auto-ocultável, hero, grids, rodapé, FAB.
+   ========================================================================== */
+
+/* ---------- Cabeçalho ---------- */
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--osa-z-header);
+  background: var(--osa-glass-bg);
+  -webkit-backdrop-filter: var(--osa-glass-blur);
+  backdrop-filter: var(--osa-glass-blur);
+  border-bottom: 1px solid var(--osa-glass-border);
+}
+.header-inner {
+  max-width: var(--osa-container);
+  margin-inline: auto;
+  min-height: var(--osa-header-h);
+  padding: 0.35rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--osa-ink); margin-inline-end: auto; }
+.brand-mark { width: 42px; height: 42px; flex: none; border-radius: 12px; box-shadow: var(--osa-shadow-1); }
+.brand-text { display: flex; flex-direction: column; line-height: 1.12; }
+.brand-text strong { font-family: var(--osa-font-serif); font-size: 1.08rem; letter-spacing: 0.01em; }
+.brand-text small { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--osa-gold-ink); font-weight: 700; }
+
+.nav-top { display: none; align-items: center; gap: 0.15rem; }
+.nav-top a {
+  text-decoration: none;
+  color: var(--osa-ink-secondary);
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  min-height: var(--osa-tap-min);
+  display: inline-flex;
+  align-items: center;
+}
+.nav-top a:hover { background: var(--osa-soft); color: var(--osa-ink); }
+.nav-top a[aria-current="page"] { background: var(--osa-gold-soft); color: var(--osa-gold-ink); }
+
+.header-actions { display: flex; align-items: center; gap: 0.4rem; }
+.net-badge {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-size: 0.75rem; font-weight: 700;
+  color: var(--osa-ok); background: var(--osa-ok-soft);
+  padding: 0.25rem 0.65rem; border-radius: 999px;
+}
+.net-badge.is-off { color: var(--osa-gold-ink); background: var(--osa-gold-soft); }
+.net-badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+
+/* Botões de ícone */
+.btn-icon {
+  display: inline-grid; place-items: center;
+  min-width: var(--osa-tap-min); min-height: var(--osa-tap-min);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--osa-ink-secondary);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background var(--osa-speed), color var(--osa-speed), transform var(--osa-speed);
+}
+.btn-icon:hover { background: var(--osa-soft); color: var(--osa-ink); }
+.btn-icon:active { transform: scale(0.94); }
+.btn-icon[aria-pressed="true"] { background: var(--osa-gold-soft); color: var(--osa-gold-ink); }
+
+/* ---------- Menu de navegação (drawer auto-ocultável) ---------- */
+.backdrop {
+  position: fixed; inset: 0;
+  z-index: var(--osa-z-backdrop);
+  background: rgba(26, 37, 48, 0.45);
+  -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+  opacity: 0; transition: opacity var(--osa-speed);
+}
+.backdrop.is-open { opacity: 1; }
+
+.drawer {
+  position: fixed;
+  inset-block: 0; inset-inline-start: 0;
+  z-index: var(--osa-z-drawer);
+  width: min(22rem, 90vw);
+  background: var(--osa-surface);
+  border-inline-end: 1px solid var(--osa-border);
+  box-shadow: var(--osa-shadow-3);
+  transform: translateX(-104%);
+  transition: transform 0.28s cubic-bezier(0.32, 0.72, 0.35, 1);
+  display: flex; flex-direction: column;
+}
+.drawer.is-open { transform: none; }
+
+.drawer-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--osa-border);
+}
+.drawer-head .drawer-title { font-family: var(--osa-font-serif); font-weight: 700; }
+
+.nav-drawer { list-style: none; margin: 0; padding: 0.75rem; overflow-y: auto; }
+.nav-drawer a {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.7rem 0.85rem;
+  min-height: var(--osa-tap-min);
+  text-decoration: none;
+  color: var(--osa-ink-secondary);
+  border-radius: var(--osa-radius-md);
+  border-inline-start: 3px solid transparent;
+  margin-bottom: 0.2rem;
+}
+.nav-drawer a:hover { background: var(--osa-soft); color: var(--osa-ink); }
+.nav-drawer a[aria-current="page"] {
+  background: var(--osa-gold-soft);
+  color: var(--osa-gold-ink);
+  border-inline-start-color: var(--osa-gold);
+  font-weight: 700;
+}
+.nav-drawer .nav-desc { display: block; font-size: 0.75rem; font-weight: 400; color: var(--osa-ink-muted); }
+
+.drawer-foot {
+  margin-top: auto;
+  padding: 0.9rem 1.2rem;
+  border-top: 1px solid var(--osa-border);
+  font-size: 0.8rem;
+  color: var(--osa-ink-muted);
+}
+
+/* ---------- Estrutura principal ---------- */
+.site-main { flex: 1 0 auto; }
+.container { max-width: var(--osa-container); margin-inline: auto; padding-inline: 1rem; }
+@media (min-width: 40rem) { .container { padding-inline: 1.5rem; } }
+
+.section { padding-block: 2.25rem; }
+
+.page-head { padding: 2.75rem 0 0.5rem; }
+.page-head .eyebrow {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--osa-gold-ink);
+  background: var(--osa-gold-soft);
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  margin-bottom: 0.8rem;
+}
+.page-head .lede { max-width: 66ch; font-size: 1.13rem; color: var(--osa-ink-secondary); margin-top: 0.75rem; }
+
+.breadcrumb { font-size: 0.85rem; color: var(--osa-ink-muted); margin-bottom: 0.4rem; }
+.breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0; margin: 0; }
+.breadcrumb li { display: flex; align-items: center; gap: 0.4rem; margin: 0; }
+.breadcrumb li + li::before { content: "›"; color: var(--osa-ink-muted); }
+.breadcrumb a { text-decoration: none; color: var(--osa-ink-muted); }
+.breadcrumb a:hover { color: var(--osa-gold-ink); text-decoration: underline; }
+.breadcrumb [aria-current] { color: var(--osa-ink); font-weight: 600; }
+
+/* ---------- Hero ---------- */
+.hero { padding: 4.5rem 0 3rem; position: relative; overflow: clip; }
+.hero::before {
+  content: "";
+  position: absolute; inset: -30% -10% auto -10%;
+  height: 130%;
+  background:
+    radial-gradient(ellipse 42rem 16rem at 18% 0%, var(--osa-gold-glow), transparent 65%),
+    radial-gradient(ellipse 36rem 15rem at 85% 8%, var(--osa-gold-glow), transparent 60%);
+  pointer-events: none;
+}
+.hero-inner { position: relative; text-align: center; max-width: 56rem; margin-inline: auto; }
+.hero h1 { margin: 0.4em 0 0.35em; }
+.hero h1 .accent { color: var(--osa-gold-ink); position: relative; white-space: nowrap; }
+.hero h1 .accent::after {
+  content: ""; position: absolute; inset-inline: 0; inset-block-end: 0.08em;
+  height: 0.32em; background: var(--osa-gold-glow); z-index: -1; border-radius: 4px;
+}
+.hero .lede { font-size: 1.18rem; color: var(--osa-ink-secondary); max-width: 60ch; margin-inline: auto; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-top: 1.6rem; }
+.hero-script {
+  margin-top: 2.2rem;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 1.4rem 2.4rem;
+  color: var(--osa-ink-muted); font-size: 0.95rem;
+}
+.hero-script span { display: inline-flex; align-items: center; gap: 0.45rem; }
+
+/* ---------- Grids ---------- */
+.grid { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17.5rem), 1fr)); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+
+/* ---------- Rodapé ---------- */
+.site-footer {
+  flex-shrink: 0;
+  margin-top: 3.5rem;
+  border-top: 1px solid var(--osa-border);
+  background: var(--osa-soft);
+}
+.footer-inner { padding: 2.5rem 0 1.5rem; display: grid; gap: 2rem; grid-template-columns: 1fr; }
+@media (min-width: 48rem) { .footer-inner { grid-template-columns: 1.4fr 1fr 1fr; } }
+.footer-title { font-family: var(--osa-font-serif); font-weight: 700; font-size: 1.05rem; margin-bottom: 0.5rem; }
+.footer-col h3 { font-family: var(--osa-font-ui); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--osa-ink-muted); margin: 0 0 0.7rem; border: none; padding: 0; }
+.footer-col ul { list-style: none; padding: 0; margin: 0; }
+.footer-col li { margin: 0.35rem 0; }
+.footer-col a { color: var(--osa-ink-secondary); text-decoration: none; }
+.footer-col a:hover { color: var(--osa-gold-ink); text-decoration: underline; }
+.footer-legal {
+  border-top: 1px solid var(--osa-border);
+  padding: 1rem 0 1.4rem;
+  font-size: 0.8rem;
+  color: var(--osa-ink-muted);
+  display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; justify-content: space-between;
+}
+
+/* ---------- FAB de acessibilidade ---------- */
+.fab {
+  position: fixed;
+  inset-inline-end: 1.25rem;
+  inset-block-end: 1.25rem;
+  z-index: var(--osa-z-fab);
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  border: none;
+  background: var(--osa-gold);
+  color: #1A2530;
+  display: grid; place-items: center;
+  cursor: pointer;
+  box-shadow: var(--osa-shadow-3);
+  transition: transform var(--osa-speed), box-shadow var(--osa-speed);
+}
+.fab:hover { transform: translateY(-2px) scale(1.04); }
+.fab[aria-expanded="true"] { background: var(--osa-gold-ink); color: #fff; }
+
+.fab-panel {
+  position: fixed;
+  inset-inline-end: 1.25rem;
+  inset-block-end: 5.75rem;
+  z-index: var(--osa-z-fab);
+  width: min(21rem, calc(100vw - 2.5rem));
+  max-height: min(70vh, 34rem);
+  overflow-y: auto;
+  background: var(--osa-surface-raised);
+  border: 1px solid var(--osa-border);
+  border-radius: var(--osa-radius-lg);
+  box-shadow: var(--osa-shadow-3);
+  padding: 1rem 1.1rem;
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+  pointer-events: none;
+  transition: opacity var(--osa-speed), transform var(--osa-speed);
+}
+.fab-panel.is-open { opacity: 1; transform: none; pointer-events: auto; }
+.fab-panel h2 { font-family: var(--osa-font-ui); font-size: 0.95rem; margin: 0 0 0.75rem; border: none; padding: 0; }
+.a11y-group { margin-bottom: 0.9rem; }
+.a11y-group > span { display: block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--osa-ink-muted); margin-bottom: 0.4rem; }
+.a11y-row { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+
+@media (min-width: 72rem) {
+  .nav-top { display: flex; }
+  .nav-toggle { display: none; }
+}
+
+
+/* ===== css/components.css ===== */
+/* ==========================================================================
+   AutenticSense — Componentes (css/components.css)
+   Botões, cards temáticos, tabelas de alfabetos, interlinear, abas,
+   formulários de ferramentas, passos, glossário, callouts.
+   ========================================================================== */
+
+/* ---------- Botões ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  min-height: var(--osa-tap-min);
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font: inherit; font-weight: 600; font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--osa-speed), box-shadow var(--osa-speed), background var(--osa-speed), color var(--osa-speed);
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-gold { background: var(--osa-gold); color: #1A2530; box-shadow: var(--osa-shadow-1); }
+.btn-gold:hover { background: var(--osa-gold-ink); color: #fff; box-shadow: var(--osa-shadow-2); }
+
+.btn-outline { background: transparent; color: var(--osa-ink); border-color: var(--osa-border-strong); }
+.btn-outline:hover { border-color: var(--osa-gold); color: var(--osa-gold-ink); background: var(--osa-gold-soft); }
+
+.btn-ghost { background: transparent; color: var(--osa-gold-ink); }
+.btn-ghost:hover { background: var(--osa-gold-soft); }
+
+.btn-sm { min-height: 36px; padding: 0.3rem 0.85rem; font-size: 0.85rem; }
+
+/* ---------- Chips e etiquetas ---------- */
+.chip {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.8rem; font-weight: 600;
+  padding: 0.28rem 0.75rem;
+  border-radius: 999px;
+  background: var(--osa-soft);
+  color: var(--osa-ink-secondary);
+  border: 1px solid var(--osa-border);
+}
+.chip-gold { background: var(--osa-gold-soft); color: var(--osa-gold-ink); border-color: transparent; }
+.chip-ok { background: var(--osa-ok-soft); color: var(--osa-ok); border-color: transparent; }
+.chip-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--osa-surface);
+  border: 1px solid var(--osa-border);
+  border-radius: var(--osa-radius-lg);
+  padding: 1.4rem 1.5rem;
+  box-shadow: var(--osa-shadow-1);
+  transition: transform var(--osa-speed), box-shadow var(--osa-speed), border-color var(--osa-speed);
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+a.card { text-decoration: none; color: var(--osa-ink); }
+.card:hover { transform: translateY(-3px); box-shadow: var(--osa-shadow-2); border-color: var(--osa-border-strong); }
+.card-icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  display: grid; place-items: center;
+  font-size: 1.35rem; margin-bottom: 0.35rem;
+  background: var(--osa-soft); color: var(--osa-ink);
+}
+.card h3 { margin: 0; border: none; padding: 0; font-size: 1.2rem; }
+.card p { color: var(--osa-ink-secondary); font-size: 0.95rem; margin: 0; }
+.card .card-link {
+  margin-top: auto; padding-top: 0.6rem;
+  font-weight: 700; font-size: 0.9rem; color: var(--module-color, var(--osa-gold-ink));
+  display: inline-flex; align-items: center; gap: 0.35rem;
+}
+.card .card-link::after { content: "→"; transition: transform var(--osa-speed); }
+a.card:hover .card-link::after { transform: translateX(4px); }
+
+/* Tematização por módulo linguístico */
+.module--portal  { --module-color: var(--osa-portal-green); --module-soft: var(--osa-portal-green-soft); }
+.module--hebrew  { --module-color: var(--osa-hebrew-navy); --module-soft: var(--osa-hebrew-navy-soft); }
+.module--aramaic { --module-color: var(--osa-aramaic-ochre); --module-soft: var(--osa-aramaic-ochre-soft); }
+.module--greek   { --module-color: var(--osa-greek-burgundy); --module-soft: var(--osa-greek-burgundy-soft); }
+.module--portal .card-icon, .module--hebrew .card-icon, .module--aramaic .card-icon, .module--greek .card-icon {
+  background: var(--module-soft); color: var(--module-color);
+}
+.card[class*="module--"] { border-top: 3px solid var(--module-color); }
+
+.section-title { margin-bottom: 0.3rem; }
+.section-kicker { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--osa-gold-ink); margin: 0 0 0.35rem; }
+.section-sub { color: var(--osa-ink-secondary); max-width: 64ch; margin-top: 0.25rem; }
+
+/* ---------- Faixas de estatísticas ---------- */
+.stat-strip {
+  display: grid; gap: 1px;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  background: var(--osa-border);
+  border: 1px solid var(--osa-border);
+  border-radius: var(--osa-radius-lg);
+  overflow: hidden;
+  margin-top: 2rem;
+}
+.stat { background: var(--osa-surface); padding: 1.1rem 0.9rem; text-align: center; }
+.stat b { display: block; font-family: var(--osa-font-serif); font-size: 1.6rem; color: var(--osa-gold-ink); line-height: 1.1; }
+.stat span { font-size: 0.82rem; color: var(--osa-ink-muted); }
+
+/* ---------- Tabelas de alfabetos ---------- */
+.alpha-table td.letter, .alpha-table th.letter { text-align: center; }
+.alpha-table .glyph { font-size: 1.7rem; line-height: 1.3; display: block; }
+.alpha-table .sub { display: block; font-size: 0.78rem; color: var(--osa-ink-muted); font-family: var(--osa-font-ui); }
+.alpha-table .tr { font-weight: 700; color: var(--osa-gold-ink); }
+
+/* ---------- Versículo interlinear ---------- */
+.interlinear-block {
+  background: var(--osa-surface);
+  border: 1px solid var(--osa-border);
+  border-radius: var(--osa-radius-lg);
+  padding: 1.2rem 1.4rem;
+  margin: 1.25rem 0;
+  box-shadow: var(--osa-shadow-1);
+}
+.interlinear-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-bottom: 0.9rem; }
+.interlinear-head .ref { font-weight: 700; font-family: var(--osa-font-serif); }
+.interlinear-head .spacer { flex: 1; }
+.interlinear { display: flex; flex-wrap: wrap; column-gap: 0.45rem; row-gap: 1.4rem; }
+.interlinear[dir="rtl"] { flex-direction: row-reverse; justify-content: flex-end; }
+.il-word {
+  background: none; border: none; cursor: pointer;
+  font: inherit; color: inherit; border-radius: 8px;
+  padding: 0.1rem 0.25rem;
+  display: inline-flex; flex-direction: column; align-items: center; gap: 0.15rem;
+  min-width: var(--osa-tap-min);
+}
+.il-word:hover { background: var(--osa-gold-soft); }
+.il-word[aria-expanded="true"] { background: var(--osa-gold-soft); outline: 2px solid var(--osa-gold); }
+.il-w { font-size: 1.5rem; line-height: 1.5; }
+.hebrew .il-w, .aramaic .il-w { font-family: var(--osa-font-hebrew); }
+.greek .il-w { font-family: var(--osa-font-serif); }
+.il-tr { font-size: 0.72rem; font-style: italic; color: var(--osa-ink-muted); font-family: var(--osa-font-ui); direction: ltr; }
+
+.il-detail {
+  margin-top: 1.1rem;
+  border-top: 1px dashed var(--osa-border-strong);
+  padding-top: 1rem;
+  display: none;
+}
+.il-detail.is-open { display: block; }
+.il-card { display: grid; gap: 0.45rem; }
+.il-card .il-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.7rem; direction: ltr; }
+.il-card .il-lemma { font-size: 1.4rem; }
+.il-card .il-gloss { font-family: var(--osa-font-serif); font-size: 1.1rem; font-weight: 700; color: var(--osa-gold-ink); }
+.il-card .il-morph { font-size: 0.9rem; color: var(--osa-ink-secondary); }
+.il-note { margin-top: 0.9rem; font-size: 0.85rem; color: var(--osa-ink-muted); }
+
+/* ---------- Abas (ferramentas) ---------- */
+.tablist {
+  display: flex; flex-wrap: wrap; gap: 0.35rem;
+  border-bottom: 1px solid var(--osa-border);
+  margin-bottom: 1.4rem;
+}
+.tablist [role="tab"] {
+  font: inherit; font-weight: 600; font-size: 0.92rem;
+  background: none; border: none; cursor: pointer;
+  color: var(--osa-ink-secondary);
+  padding: 0.65rem 1rem;
+  min-height: var(--osa-tap-min);
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+  border-radius: 8px 8px 0 0;
+  display: inline-flex; align-items: center; gap: 0.45rem;
+}
+.tablist [role="tab"]:hover { color: var(--osa-ink); background: var(--osa-soft); }
+.tablist [role="tab"][aria-selected="true"] {
+  color: var(--osa-gold-ink);
+  border-bottom-color: var(--osa-gold);
+  background: var(--osa-gold-soft);
+}
+.tabpanel[hidden] { display: none; }
+
+/* ---------- Ferramentas: formulários e saídas ---------- */
+.tool-panel {
+  background: var(--osa-surface);
+  border: 1px solid var(--osa-border);
+  border-radius: var(--osa-radius-lg);
+  padding: 1.3rem 1.4rem;
+  box-shadow: var(--osa-shadow-1);
+}
+.tool-grid { display: grid; gap: 1.2rem; grid-template-columns: 1fr; }
+@media (min-width: 52rem) { .tool-grid { grid-template-columns: 1fr 1fr; } }
+
+.field label { display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.35rem; }
+.field textarea, .field input[type="text"] {
+  width: 100%;
+  font: inherit;
+  color: var(--osa-ink);
+  background: var(--osa-paper);
+  border: 1px solid var(--osa-border-strong);
+  border-radius: var(--osa-radius-md);
+  padding: 0.7rem 0.9rem;
+  min-height: var(--osa-tap-min);
+}
+.field textarea { min-height: 6.5rem; resize: vertical; line-height: 1.9; }
+.field textarea.script { font-family: var(--osa-font-hebrew); font-size: 1.5rem; direction: rtl; }
+.field textarea.greek-input { font-family: var(--osa-font-serif); font-size: 1.3rem; }
+.field .hint { font-size: 0.8rem; color: var(--osa-ink-muted); margin-top: 0.35rem; }
+
+.output {
+  background: var(--osa-soft);
+  border: 1px dashed var(--osa-border-strong);
+  border-radius: var(--osa-radius-md);
+  padding: 0.9rem 1rem;
+  min-height: 4.2rem;
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;
+}
+.output[aria-busy="false"]:empty::before { content: "O resultado aparece aqui…"; color: var(--osa-ink-muted); font-size: 0.92rem; }
+.output-legend { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--osa-ink-muted); margin-bottom: 0.35rem; }
+
+
+/* ---------- Passos (método exegético) ---------- */
+.steps { list-style: none; counter-reset: osa-step; padding: 0; margin: 1.5rem 0; display: grid; gap: 0.9rem; }
+.steps > li {
+  counter-increment: osa-step;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  background: var(--osa-surface);
+  border: 1px solid var(--osa-border);
+  border-radius: var(--osa-radius-md);
+  padding: 1.1rem 1.2rem;
+  box-shadow: var(--osa-shadow-1);
+}
+.steps > li::before {
+  content: counter(osa-step, decimal-leading-zero);
+  font-family: var(--osa-font-serif);
+  font-size: 1.35rem; font-weight: 700;
+  color: var(--osa-gold-ink);
+  background: var(--osa-gold-soft);
+  width: 2.8rem; height: 2.8rem;
+  display: grid; place-items: center;
+  border-radius: 50%;
+}
+.steps h3 { margin: 0 0 0.3rem; border: none; padding: 0; font-size: 1.1rem; }
+.steps p { margin: 0; color: var(--osa-ink-secondary); font-size: 0.95rem; }
+
+/* ---------- Callouts ---------- */
+.callout {
+  border-radius: var(--osa-radius-md);
+  border: 1px solid var(--osa-border);
+  border-inline-start: 4px solid var(--osa-info);
+  background: var(--osa-info-soft);
+  padding: 1rem 1.2rem;
+  margin: 1.4rem 0;
+  font-size: 0.95rem;
+}
+.callout--gold { border-inline-start-color: var(--osa-gold); background: var(--osa-gold-soft); }
+.callout--ok { border-inline-start-color: var(--osa-ok); background: var(--osa-ok-soft); }
+.callout--danger { border-inline-start-color: var(--osa-danger); background: var(--osa-danger-soft); }
+.callout .callout-title { font-weight: 700; display: block; margin-bottom: 0.25rem; }
+
+/* ---------- Glossário ---------- */
+.glossary { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); margin: 1.2rem 0; }
+.glossary .g-term {
+  background: var(--osa-surface);
+  border: 1px solid var(--osa-border);
+  border-radius: var(--osa-radius-md);
+  padding: 0.9rem 1.1rem;
+}
+.glossary dt { font-weight: 700; color: var(--osa-gold-ink); font-family: var(--osa-font-serif); font-size: 1.05rem; }
+.glossary dd { margin: 0.25rem 0 0; font-size: 0.9rem; color: var(--osa-ink-secondary); }
+
+/* ---------- CTA final ---------- */
+.cta-band {
+  margin-top: 3rem;
+  background: var(--osa-portal-green);
+  color: #EAF4F0;
+  border-radius: var(--osa-radius-lg);
+  padding: 2.4rem 1.8rem;
+  text-align: center;
+}
+[data-theme="dark"] .cta-band { background: var(--osa-portal-green-soft); color: var(--osa-ink); border: 1px solid var(--osa-border); }
+.cta-band h2 { color: inherit; border: none; padding: 0; margin-top: 0; }
+.cta-band p { max-width: 56ch; margin-inline: auto; opacity: 0.92; }
+.cta-band .btn { margin-top: 0.6rem; }
+
+/* ---------- Lista de verificação ---------- */
+.check-list { list-style: none; padding: 0; display: grid; gap: 0.55rem; }
+.check-list li { display: flex; gap: 0.6rem; align-items: flex-start; margin: 0; }
+.check-list li::before { content: "✓"; color: var(--osa-ok); font-weight: 800; flex: none; margin-top: 0.1em; }
+
+
+/* ===== css/content.css ===== */
+/* ==========================================================================
+   AutenticSense — Componentes de conteúdo (css/content.css)
+   Livros de referência, infográficos, plano diário, instituições, apps.
+   ========================================================================== */
+
+/* ---------- Livros de referência ---------- */
+.book-grid {
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 13.5rem), 1fr));
+  margin-top: 1.2rem;
+}
+.book-card {
+  background: var(--osa-surface);
+  border: 1px solid var(--osa-border);
+  border-radius: var(--osa-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--osa-shadow-1);
+  display: flex; flex-direction: column;
+  transition: transform var(--osa-speed), box-shadow var(--osa-speed);
+}
+.book-card:hover { transform: translateY(-3px); box-shadow: var(--osa-shadow-2); }
+.book-cover {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+  background: var(--osa-surface-dim);
+}
+.book-info { padding: 0.9rem 1rem 1.1rem; display: flex; flex-direction: column; gap: 0.35rem; }
+.book-info h4 { margin: 0; font-family: var(--osa-font-serif); font-size: 1rem; line-height: 1.3; text-transform: none; letter-spacing: 0; color: var(--osa-ink); }
+.book-sub { font-size: 0.82rem; color: var(--osa-ink-muted); margin: 0; font-style: italic; }
+.book-autor { font-size: 0.85rem; font-weight: 600; color: var(--osa-gold-ink); margin: 0; }
+.book-foco { font-size: 0.85rem; color: var(--osa-ink-secondary); margin: 0; }
+
+/* Faixa de minicapas (exegese) */
+.book-strip { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 1.2rem; }
+.book-strip a {
+  display: flex; align-items: center; gap: 0.8rem;
+  text-decoration: none; color: var(--osa-ink);
+  background: var(--osa-surface);
+  border: 1px solid var(--osa-border);
+  border-radius: var(--osa-radius-md);
+  padding: 0.6rem 0.9rem 0.6rem 0.6rem;
+  box-shadow: var(--osa-shadow-1);
+  transition: transform var(--osa-speed), border-color var(--osa-speed);
+  max-width: 22rem;
+}
+.book-strip a:hover { transform: translateY(-2px); border-color: var(--osa-gold); }
+.book-strip img { width: 52px; border-radius: 6px; aspect-ratio: 2/3; object-fit: cover; }
+.book-strip b { display: block; font-size: 0.88rem; line-height: 1.3; }
+.book-strip span { font-size: 0.8rem; color: var(--osa-ink-muted); }
+
+/* ---------- Infográficos ---------- */
+.info-figure {
+  margin: 1.6rem auto 0;
+  max-width: 50rem;
+  background: var(--osa-surface);
+  border: 1px solid var(--osa-border);
+  border-radius: var(--osa-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--osa-shadow-2);
+}
+.info-figure img { width: 100%; display: block; }
+.info-figure figcaption {
+  padding: 0.8rem 1.1rem;
+  font-size: 0.88rem;
+  color: var(--osa-ink-secondary);
+  border-top: 1px solid var(--osa-border);
+  background: var(--osa-soft);
+}
+.info-grid {
+  display: grid; gap: 1.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  align-items: start;
+}
+.info-grid .info-figure { margin-top: 1.6rem; max-width: none; }
+
+/* ---------- Plano diário ---------- */
+.plan-grid {
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+}
+.plan-card {
+  background: var(--osa-surface);
+  border: 1px solid var(--osa-border);
+  border-radius: var(--osa-radius-lg);
+  padding: 1.2rem 1.3rem;
+  box-shadow: var(--osa-shadow-1);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "ico t min" "ico d d";
+  column-gap: 0.9rem; row-gap: 0.2rem;
+  align-items: start;
+}
+.plan-card .plan-ico {
+  grid-area: ico;
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border-radius: 12px;
+  background: var(--osa-gold-soft);
+  color: var(--osa-gold-ink);
+}
+.plan-card strong { grid-area: t; font-size: 1rem; align-self: center; }
+.plan-card .plan-min {
+  grid-area: min;
+  font-family: var(--osa-font-serif); font-weight: 700;
+  color: var(--osa-gold-ink); background: var(--osa-gold-soft);
+  border-radius: 999px; padding: 0.25rem 0.7rem; font-size: 0.9rem;
+}
+.plan-card p { grid-area: d; margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--osa-ink-secondary); }
+
+/* ---------- Apps e instituições ---------- */
+.app-grid {
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  margin-top: 1.2rem;
+}
+.app-card {
+  background: var(--osa-surface);
+  border: 1px solid var(--osa-border);
+  border-radius: var(--osa-radius-md);
+  padding: 1rem 1.1rem;
+  box-shadow: var(--osa-shadow-1);
+}
+.app-card h4 { margin: 0 0 0.3rem; color: var(--osa-ink); text-transform: none; letter-spacing: 0; font-size: 1rem; }
+.app-card p { margin: 0; font-size: 0.9rem; color: var(--osa-ink-secondary); }
+.app-card .app-tag { color: var(--osa-gold-ink); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* ---------- Citação destaque ---------- */
+.quote-band {
+  margin: 2rem 0;
+  padding: 1.6rem 2rem;
+  font-family: var(--osa-font-serif);
+  font-size: clamp(1.2rem, 1rem + 1vw, 1.55rem);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--osa-ink);
+  border-inline-start: 5px solid var(--osa-gold);
+  background: var(--osa-gold-soft);
+  border-radius: 0 var(--osa-radius-lg) var(--osa-radius-lg) 0;
+}
+.quote-band footer {
+  margin-top: 0.6rem;
+  font-family: var(--osa-font-ui); font-style: normal;
+  font-size: 0.82rem; color: var(--osa-ink-muted);
+}
+
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <button id="navToggle" class="btn-icon nav-toggle" type="button"
+              aria-expanded="false" aria-controls="drawer" aria-label="Abrir menu de navegação">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+
+      <a class="brand" href="#/" aria-label="AutenticSense — página inicial">
+        <svg class="brand-mark" viewBox="0 0 48 48" role="img" aria-hidden="true">
+          <rect width="48" height="48" rx="12" fill="#0F3731"/>
+          <text x="24" y="30" text-anchor="middle" font-family="serif" font-size="19" fill="#C5A059" font-weight="700">אΑ</text>
+          <path d="M10 36h28" stroke="#C5A059" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-text">
+          <strong>AutenticSense</strong>
+          <small>O Sentido Autêntico</small>
+        </span>
+      </a>
+
+      <nav class="nav-top" id="navTop" aria-label="Navegação principal"></nav>
+
+      <div class="header-actions">
+        <span id="netBadge" class="net-badge" role="status" hidden>offline</span>
+        <button id="themeToggle" class="btn-icon" type="button" aria-pressed="false" aria-label="Alternar entre tema claro e escuro">
+          <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M21.5 12h-2.4M4.9 12H2.5M18.7 5.3l-1.7 1.7M7 17l-1.7 1.7M18.7 18.7 17 17M7 7 5.3 5.3"/>
+          </svg>
+        </button>
+        <button id="installBtn" class="btn btn-gold btn-sm" type="button" hidden>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16"/></svg>
+          Instalar
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="backdrop" id="backdrop" hidden></div>
+
+  <aside id="drawer" class="drawer" aria-label="Menu de navegação" hidden>
+    <div class="drawer-head">
+      <span class="drawer-title">Navegação</span>
+      <button id="drawerClose" class="btn-icon" type="button" aria-label="Fechar menu de navegação">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <nav aria-label="Navegação lateral">
+      <ul class="nav-drawer" id="navDrawerList"></ul>
+    </nav>
+    <div class="drawer-foot">
+      <p><strong>AutenticSense</strong> · PWA educacional</p>
+      <p class="small">Funciona offline após a primeira visita. Nenhum dado pessoal é coletado.</p>
+    </div>
+  </aside>
+
+  <main id="conteudo" class="site-main" tabindex="-1">
+    <div id="app" class="app-view"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <p class="footer-title">AutenticSense · O Sentido Autêntico</p>
+          <p class="small">Portal educacional dedicado ao estudo das línguas bíblicas originais — Hebraico, Aramaico e Grego Koiné — com ferramentas interativas e exegese integrada, diretamente no seu navegador.</p>
+          <p class="chip-row" aria-label="Características">
+            <span class="chip chip-ok">100% offline</span>
+            <span class="chip chip-ok">Acessível (WCAG 2.2)</span>
+            <span class="chip chip-ok">Sem rastreamento</span>
+            <span class="chip chip-ok">Open source</span>
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3>Módulos</h3>
+          <ul>
+            <li><a href="#/hebraico">Hebraico Bíblico</a></li>
+            <li><a href="#/aramaico">Aramaico Bíblico</a></li>
+            <li><a href="#/grego">Grego Koiné</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Ferramentas</h3>
+          <ul>
+            <li><a href="#/ferramentas">Analisador interlinear</a></li>
+            <li><a href="#/ferramentas">Transliteradores</a></li>
+            <li><a href="#/exegese">Método exegético</a></li>
+            <li><a href="#/sobre">Sobre o projeto</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <span>© <span id="year">2026</span> AutenticSense. Conteúdo educacional em pt-BR.</span>
+        <span>Feito com tecnologias abertas: HTML5 · CSS3 · JavaScript ES6.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Barra flutuante de acessibilidade (montada por js/a11y.js) -->
+  <div id="a11yRoot"></div>
+
+  <!-- Anúncios para leitores de tela -->
+  <div id="liveRegion" class="sr-only" aria-live="polite" role="status"></div>
+  <div id="liveAlert" class="sr-only" aria-live="assertive" role="alert"></div>
+
+  <noscript>
+    <div class="container section">
+      <h1>AutenticSense</h1>
+      <p>Este portal interativo requer JavaScript para navegação entre os módulos. Ative o JavaScript para acessar os conteúdos de Hebraico, Aramaico, Grego Koiné, ferramentas e exegese.</p>
+    </div>
+  </noscript>
+
+<script>
+/* ===== AutenticSense · bundle standalone (gerado automaticamente) ===== */
+(() => {
+  // js/router.js
+  function initRouter({ routes: routes2, root, onRoute }) {
+    const table = new Map(routes2.map((r) => [r.path, r]));
+    const notFound = table.get("*");
+    function currentRoute() {
+      const raw = location.hash.replace(/^#/, "") || "/";
+      const [path] = raw.split("?");
+      return { route: table.get(path) || notFound, path };
+    }
+    async function render() {
+      const { route, path } = currentRoute();
+      if (!route) return;
+      try {
+        root.innerHTML = await route.view.render({ path });
+        if (typeof route.view.mount === "function") {
+          await route.view.mount(root, { path });
+        }
+      } catch (err) {
+        console.error("[router] falha ao renderizar", path, err);
+        root.innerHTML = '<div class="container section"><h1>Erro inesperado</h1><p>Não foi possível carregar esta página. Tente voltar ao <a href="#/">início</a>.</p></div>';
+      }
+      if (typeof onRoute === "function") onRoute(route, path);
+    }
+    window.addEventListener("hashchange", render);
+    render();
+  }
+
+  // js/tts.js
+  var state = { speaking: false, listeners: /* @__PURE__ */ new Set() };
+  var voices = [];
+  var ptVoice = null;
+  function pickVoice() {
+    if (!("speechSynthesis" in window)) return;
+    voices = window.speechSynthesis.getVoices();
+    ptVoice = voices.find((v) => /pt[-_]BR/i.test(v.lang)) || voices.find((v) => /^pt/i.test(v.lang)) || null;
+  }
+  if ("speechSynthesis" in window) {
+    pickVoice();
+    window.speechSynthesis.addEventListener("voiceschanged", pickVoice);
+  }
+  function setState(on) {
+    state.speaking = on;
+    state.listeners.forEach((cb) => cb(on));
+  }
+  function splitIntoChunks(text, max = 240) {
+    const sentences = text.replace(/\s+/g, " ").match(/[^.!?;:…]+[.!?;:…]*\s*/g) || [text];
+    const chunks = [];
+    let buf = "";
+    for (const s of sentences) {
+      if ((buf + s).length > max && buf) {
+        chunks.push(buf.trim());
+        buf = s;
+      } else buf += s;
+    }
+    if (buf.trim()) chunks.push(buf.trim());
+    return chunks;
+  }
+  var tts = {
+    get supported() {
+      return "speechSynthesis" in window;
+    },
+    get speaking() {
+      return state.speaking;
+    },
+    onState(cb) {
+      state.listeners.add(cb);
+      return () => state.listeners.delete(cb);
+    },
+    speak(text, { lang = "pt-BR", rate = 0.96 } = {}) {
+      if (!this.supported || !text) return false;
+      this.stop();
+      const chunks = splitIntoChunks(String(text));
+      let done = 0;
+      setState(true);
+      for (const chunk of chunks) {
+        const u = new SpeechSynthesisUtterance(chunk);
+        u.lang = lang;
+        if (ptVoice && lang === "pt-BR") u.voice = ptVoice;
+        u.rate = rate;
+        u.pitch = 1;
+        u.onend = u.onerror = () => {
+          if (++done >= chunks.length) setState(false);
+        };
+        window.speechSynthesis.speak(u);
+      }
+      return true;
+    },
+    stop() {
+      if (!this.supported) return;
+      window.speechSynthesis.cancel();
+      setState(false);
+    },
+    /** Lê em voz alta o conteúdo principal da view corrente. */
+    readMain() {
+      const main = document.querySelector("main#conteudo");
+      if (!main) return false;
+      const clone = main.cloneNode(true);
+      clone.querySelectorAll('button, [aria-hidden="true"], script, style, svg, .sr-only').forEach((el) => el.remove());
+      const text = (clone.innerText || clone.textContent || "").replace(/\n{3,}/g, "\n\n").trim();
+      return this.speak(text.slice(0, 4800));
+    }
+  };
+
+  // js/icons.js
+  var PATHS = {
+    home: "M4 11.5 12 4l8 7.5M6 10v10h12V10",
+    book: "M5 4h9a3 3 0 0 1 3 3v13H8a3 3 0 0 0-3 3ZM5 4v16M17 4h2v13",
+    scroll: "M7 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7m0-16a2 2 0 0 0-2 2v12m2 2a2 2 0 0 0 2-2V6",
+    alpha: "M6 18 12 5l6 13M8.5 13h7",
+    tools: "M14.5 6.5a4 4 0 0 0-5.6 5L4 16.4V20h3.6l4.9-4.9a4 4 0 0 0 5-5.6l-2.7 2.7-2.3-.7-.7-2.3Z",
+    compass: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm3.5 5.5-2 5-5 2 2-5Z",
+    info: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 5v.5m0 3v5",
+    speaker: "M4 9v6h4l5 4V5L8 9H4Zm12.5-.5a4.5 4.5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12",
+    stop: "M7 7h10v10H7z",
+    copy: "M9 9h11v11H9zM5 15V4h11",
+    check: "m5 13 4 4 10-11",
+    person: "M12 4a2.4 2.4 0 1 0 0 4.8A2.4 2.4 0 0 0 12 4Zm-6 16c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M12 8.8v2.2",
+    contrast: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 2v14a7 7 0 0 0 0-14Z",
+    text: "M5 6h14M12 6v13M8 19h8",
+    eye: "M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Zm9.5 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z",
+    reset: "M4 9a8 8 0 1 1-1 6m1-6H1m3 0V4",
+    download: "M12 3v12m0 0 4-4m-4 4-4-4M4 21h16",
+    sparkle: "M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8Zm7 11 1 2.6 2.6 1-2.6 1L19 21l-1-2.4-2.6-1 2.6-1Zm-14 0 .8 2.2L8 17l-2.2.8L5 20l-.8-2.2L2 17l2.2-.8Z",
+    keyboard: "M3 7h18v11H3zM6 11h.01M10 11h.01M14 11h.01M18 11h.01M7 15h10"
+  };
+  function icon(name, cls = "icon") {
+    const d = PATHS[name] || PATHS.info;
+    return `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${d}"/></svg>`;
+  }
+
+  // js/a11y.js
+  var STORAGE_KEY = "autenticsense:prefs:v1";
+  var SCALES = [0.875, 1, 1.125, 1.25, 1.375];
+  var DEFAULTS = () => {
+    var _a;
+    return {
+      theme: ((_a = window.matchMedia) == null ? void 0 : _a.call(window, "(prefers-color-scheme: dark)").matches) ? "dark" : "light",
+      contrast: "normal",
+      font: "padrao",
+      motion: "padrao",
+      scaleIndex: 1
+    };
+  };
+  var prefs = load();
+  function load() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? { ...DEFAULTS(), ...JSON.parse(raw) } : DEFAULTS();
+    } catch (e) {
+      return DEFAULTS();
+    }
+  }
+  function save() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
+    } catch (e) {
+    }
+  }
+  function announce(message, assertive = false) {
+    const region = document.getElementById(assertive ? "liveAlert" : "liveRegion");
+    if (!region) return;
+    region.textContent = "";
+    requestAnimationFrame(() => {
+      region.textContent = message;
+    });
+  }
+  function trapFocus(container, onEscape) {
+    const FOCUSABLE = 'a[href], button:not([disabled]), input, textarea, select, summary, [tabindex]:not([tabindex="-1"])';
+    function onKeydown(e) {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        onEscape == null ? void 0 : onEscape();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const items = [...container.querySelectorAll(FOCUSABLE)].filter((el) => el.offsetParent !== null);
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+    document.addEventListener("keydown", onKeydown);
+    return () => document.removeEventListener("keydown", onKeydown);
+  }
+  function apply() {
+    var _a;
+    const root = document.documentElement;
+    root.dataset.theme = prefs.theme;
+    root.dataset.contrast = prefs.contrast;
+    root.dataset.font = prefs.font;
+    root.dataset.motion = prefs.motion;
+    root.style.setProperty("--osa-fs-scale", (_a = SCALES[prefs.scaleIndex]) != null ? _a : 1);
+    document.querySelectorAll("[data-a11y-pressed]").forEach((btn) => {
+      const key = btn.dataset.a11yPressed;
+      const val = btn.dataset.a11yValue;
+      btn.setAttribute("aria-pressed", String(String(prefs[key]) === val));
+    });
+    const themeBtn = document.getElementById("themeToggle");
+    if (themeBtn) themeBtn.setAttribute("aria-pressed", String(prefs.theme === "dark"));
+    save();
+  }
+  var a11yStore = {
+    get prefs() {
+      return { ...prefs };
+    },
+    set(key, value) {
+      prefs[key] = value;
+      apply();
+    },
+    toggleTheme() {
+      prefs.theme = prefs.theme === "dark" ? "light" : "dark";
+      apply();
+      announce(prefs.theme === "dark" ? "Tema escuro ativado." : "Tema claro ativado.");
+    }
+  };
+  function buildFab() {
+    const host = document.getElementById("a11yRoot");
+    if (!host) return;
+    host.innerHTML = `
+    <button class="fab" id="a11yFab" type="button" aria-expanded="false" aria-controls="a11yPanel"
+            aria-label="Abrir barra de acessibilidade">
+      ${icon("person", "icon")}
+    </button>
+    <section class="fab-panel" id="a11yPanel" role="dialog" aria-modal="false"
+             aria-label="Central de acessibilidade" hidden>
+      <h2>Acessibilidade</h2>
+
+      <div class="a11y-group">
+        <span id="a11y-fs-label">Tamanho do texto</span>
+        <div class="a11y-row" role="group" aria-labelledby="a11y-fs-label">
+          <button class="btn btn-outline btn-sm" data-a11y-action="font-dec" type="button" aria-label="Diminuir tamanho do texto">A−</button>
+          <button class="btn btn-outline btn-sm" data-a11y-action="font-inc" type="button" aria-label="Aumentar tamanho do texto">A+</button>
+          <button class="btn btn-outline btn-sm" data-a11y-action="font-reset" type="button" aria-label="Restaurar tamanho padrão do texto">${icon("reset")}</button>
+        </div>
+      </div>
+
+      <div class="a11y-group">
+        <span id="a11y-visual-label">Aparência</span>
+        <div class="a11y-row" role="group" aria-labelledby="a11y-visual-label">
+          <button class="btn btn-outline btn-sm" data-a11y-action="toggle" data-a11y-key="theme"
+                  data-a11y-value="dark" data-a11y-pressed="theme" aria-pressed="false" type="button">
+            ${icon("contrast")} Tema escuro
+          </button>
+          <button class="btn btn-outline btn-sm" data-a11y-action="toggle" data-a11y-key="contrast"
+                  data-a11y-value="high" data-a11y-pressed="contrast" aria-pressed="false" type="button">
+            ${icon("eye")} Alto contraste
+          </button>
+          <button class="btn btn-outline btn-sm" data-a11y-action="toggle" data-a11y-key="font"
+                  data-a11y-value="dyslexic" data-a11y-pressed="font" aria-pressed="false" type="button">
+            ${icon("text")} Fonte para dislexia
+          </button>
+          <button class="btn btn-outline btn-sm" data-a11y-action="toggle" data-a11y-key="motion"
+                  data-a11y-value="reduce" data-a11y-pressed="motion" aria-pressed="false" type="button">
+            ${icon("stop")} Reduzir animações
+          </button>
+        </div>
+      </div>
+
+      <div class="a11y-group">
+        <span id="a11y-tts-label">Leitura em voz alta</span>
+        <div class="a11y-row" role="group" aria-labelledby="a11y-tts-label">
+          <button class="btn btn-outline btn-sm" data-a11y-action="tts-play" type="button" id="a11yTtsPlay">
+            ${icon("speaker")} Ouvir página
+          </button>
+          <button class="btn btn-outline btn-sm" data-a11y-action="tts-stop" type="button" id="a11yTtsStop" disabled>
+            ${icon("stop")} Parar
+          </button>
+        </div>
+      </div>
+
+      <div class="a11y-group" style="margin-bottom:0">
+        <div class="a11y-row">
+          <button class="btn btn-ghost btn-sm" data-a11y-action="reset-all" type="button">
+            ${icon("reset")} Restaurar tudo
+          </button>
+        </div>
+      </div>
+    </section>`;
+    const fab = host.querySelector("#a11yFab");
+    const panel = host.querySelector("#a11yPanel");
+    let releaseTrap = null;
+    function openPanel() {
+      var _a;
+      panel.hidden = false;
+      requestAnimationFrame(() => panel.classList.add("is-open"));
+      fab.setAttribute("aria-expanded", "true");
+      fab.setAttribute("aria-label", "Fechar barra de acessibilidade");
+      releaseTrap = trapFocus(panel, closePanel);
+      (_a = panel.querySelector("button")) == null ? void 0 : _a.focus();
+    }
+    function closePanel({ restoreFocus = true } = {}) {
+      panel.classList.remove("is-open");
+      fab.setAttribute("aria-expanded", "false");
+      fab.setAttribute("aria-label", "Abrir barra de acessibilidade");
+      releaseTrap == null ? void 0 : releaseTrap();
+      releaseTrap = null;
+      window.setTimeout(() => {
+        panel.hidden = true;
+      }, 200);
+      if (restoreFocus) fab.focus();
+    }
+    fab.addEventListener("click", () => {
+      const isOpen = fab.getAttribute("aria-expanded") === "true";
+      isOpen ? closePanel({ restoreFocus: false }) : openPanel();
+    });
+    document.addEventListener("click", (e) => {
+      if (!host.contains(e.target) && fab.getAttribute("aria-expanded") === "true") {
+        closePanel({ restoreFocus: false });
+      }
+    });
+    panel.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-a11y-action]");
+      if (!btn) return;
+      handleAction(btn.dataset.a11yAction, btn);
+    });
+    tts.onState((speaking) => {
+      const play = panel.querySelector("#a11yTtsPlay");
+      const stop = panel.querySelector("#a11yTtsStop");
+      if (play) play.disabled = speaking;
+      if (stop) stop.disabled = !speaking;
+    });
+    function handleAction(action, btn) {
+      switch (action) {
+        case "font-inc":
+          prefs.scaleIndex = Math.min(prefs.scaleIndex + 1, SCALES.length - 1);
+          apply();
+          announce(`Tamanho do texto: ${Math.round(SCALES[prefs.scaleIndex] * 100)}%.`);
+          break;
+        case "font-dec":
+          prefs.scaleIndex = Math.max(prefs.scaleIndex - 1, 0);
+          apply();
+          announce(`Tamanho do texto: ${Math.round(SCALES[prefs.scaleIndex] * 100)}%.`);
+          break;
+        case "font-reset":
+          prefs.scaleIndex = 1;
+          apply();
+          announce("Tamanho do texto restaurado.");
+          break;
+        case "toggle": {
+          const key = btn.dataset.a11yKey;
+          const on = btn.dataset.a11yValue;
+          const off = key === "contrast" ? "normal" : "padrao";
+          prefs[key] = prefs[key] === on ? off : on;
+          apply();
+          const labels = {
+            theme: `Tema escuro ${prefs.theme === "dark" ? "ativado" : "desativado"}.`,
+            contrast: `Alto contraste ${prefs.contrast === "high" ? "ativado" : "desativado"}.`,
+            font: `Fonte para dislexia ${prefs.font === "dyslexic" ? "ativada" : "desativada"}.`,
+            motion: `Redução de animações ${prefs.motion === "reduce" ? "ativada" : "desativada"}.`
+          };
+          announce(labels[key] || "Preferência atualizada.");
+          break;
+        }
+        case "tts-play":
+          if (tts.supported) {
+            tts.readMain();
+            announce("Leitura da página iniciada.");
+          } else {
+            announce("Seu navegador não oferece suporte à leitura em voz alta.", true);
+          }
+          break;
+        case "tts-stop":
+          tts.stop();
+          announce("Leitura interrompida.");
+          break;
+        case "reset-all":
+          prefs = DEFAULTS();
+          apply();
+          tts.stop();
+          announce("Preferências de acessibilidade restauradas.");
+          break;
+      }
+    }
+  }
+  function initAccessibility() {
+    buildFab();
+    apply();
+  }
+
+  // js/views/home.js
+  var MODULES = [
+    {
+      href: "#/rota",
+      cls: "module--portal",
+      icone: "5×",
+      title: "Rota de Crescimento",
+      text: "Do alefato à fluência em 5 níveis: 60 minutos por dia, repetição espaçada (Anki) e aceleração com IA — custo R$ 0.",
+      link: "Começar a jornada",
+      icon: "compass"
+    },
+    {
+      href: "#/hebraico",
+      cls: "module--hebrew",
+      icone: "א",
+      title: "Hebraico Bíblico",
+      text: "A língua da maior parte do Antigo Testamento: o Aleph-Bet, as vogais (niqud) e leitura guiada de Gênesis 1.1.",
+      link: "Começar pelo Aleph-Bet"
+    },
+    {
+      href: "#/aramaico",
+      cls: "module--aramaic",
+      icone: "מ",
+      title: "Aramaico Bíblico",
+      text: "A língua de Daniel e Esdras — e das palavras originais de Jesus. Entenda onde o aramaico aparece e por que ele importa.",
+      link: "Explorar o aramaico"
+    },
+    {
+      href: "#/grego",
+      cls: "module--greek",
+      icone: "Α",
+      title: "Grego Koiné",
+      text: "A língua do Novo Testamento e da Septuaginta: alfabeto, sinais, casos e a análise palavra a palavra de João 1.1.",
+      link: "Aprender o alfabeto grego"
+    },
+    {
+      href: "#/ferramentas",
+      cls: "module--portal",
+      icone: "⚒",
+      title: "Ferramentas Interativas",
+      text: "Analisador interlinear e transliteradores de hebraico e grego — o parsing diário da sua rota, 100% offline.",
+      link: "Abrir as ferramentas",
+      icon: "tools"
+    },
+    {
+      href: "#/biblioteca",
+      cls: "module--portal",
+      icone: "§",
+      title: "Livros de Referência",
+      text: "A estante curada: Ross (Hebraico), Rega & Bergmann, Mounce e Wallace (Grego), Pinto, Carson e Zuck (Exegese).",
+      link: "Ver a estante",
+      icon: "book"
+    },
+    {
+      href: "#/exegese",
+      cls: "module--portal",
+      icone: "✦",
+      title: "Guia de Exegese",
+      text: "O método integrado em sete passos — da observação do texto original à aplicação — para interpretar com profundidade.",
+      link: "Conhecer o método",
+      icon: "sparkle"
+    }
+  ];
+  var WHY = [
+    { icon: "book", title: "A tradução é uma ponte", text: "Toda tradução é também uma interpretação. Conhecer os originais encurta a distância entre você e o texto sagrado — e revela os detalhes que as versões precisam escolher." },
+    { icon: "compass", title: "Consistência vence intensidade", text: "A regra dos 30–60 minutos diários com repetição espaçada constrói vocabulário permanente. A Rota de Crescimento organiza tudo em 5 níveis claros." },
+    { icon: "sparkle", title: "Profundidade com método", text: "Morfologia, sintaxe e teologia caminham juntas: o ciclo traduzir → parsing → consultar sintaxe transforma leitura em exegese madura." }
+  ];
+  var FAQ = [
+    {
+      q: "Preciso conhecer línguas antigas para usar o portal?",
+      a: "Não. O conteúdo é progressivo: comece pela Rota de Crescimento (Nível 1 — Fundação), passe para os alfabetos e avance até a análise interlinear. Cada termo técnico é explicado em português claro no primeiro uso."
+    },
+    {
+      q: "O AutenticSense funciona sem internet?",
+      a: "Sim. É um PWA (aplicativo web progressivo) offline-first: após a primeira visita, todas as páginas, fontes tipográficas e ferramentas ficam armazenadas no seu dispositivo, e você pode instalá-lo como aplicativo."
+    },
+    {
+      q: "Quais livros devo usar junto com o portal?",
+      a: "A trilha oficial recomenda Ross para o Hebraico; Rega & Bergmann e Mounce para a morfologia do Grego; Wallace para a sintaxe exegética; e Pinto, Carson e Zuck para exegese e hermenêutica. Veja a seção Livros de Referência com foco e nível de cada obra."
+    },
+    {
+      q: "Quais textos originais servem de base aos exemplos?",
+      a: "Para o Antigo Testamento, a tradição massorética (edições BHS/BHQ); para o Novo Testamento, o texto crítico grego (NA28/UBS5). As glosas e notas pedagógicas são produzidas em português pelo projeto."
+    }
+  ];
+  var home_default = {
+    title: "Início",
+    desc: "Portal educacional offline de línguas bíblicas — Hebraico, Aramaico e Grego Koiné — com rota de crescimento, ferramentas interlineares, livros de referência e exegese integrada.",
+    render() {
+      const modules = MODULES.map((m) => `
+      <a class="card ${m.cls}" href="${m.href}">
+        <span class="card-icon" aria-hidden="true">${m.icon ? icon(m.icon) : m.icone}</span>
+        <h3>${m.title}</h3>
+        <p>${m.text}</p>
+        <span class="card-link">${m.link}</span>
+      </a>`).join("");
+      const why = WHY.map((w) => `
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">${icon(w.icon)}</span>
+        <h3>${w.title}</h3>
+        <p>${w.text}</p>
+      </div>`).join("");
+      const faq = FAQ.map((f) => `
+      <details>
+        <summary>${f.q}</summary>
+        <p>${f.a}</p>
+      </details>`).join("");
+      return `
+    <div class="container">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-inner">
+          <p class="eyebrow">Portal educacional · Línguas bíblicas · 100% offline</p>
+          <h1 id="hero-title">Redescubra o <span class="accent">sentido autêntico</span> do texto bíblico</h1>
+          <p class="lede">
+            Um roteiro completo — do primeiro contato com o alefato à exegese madura — para
+            estudar as Escrituras nas línguas originais: <strong>Hebraico</strong>,
+            <strong>Aramaico</strong> e <strong>Grego Koiné</strong>. Com metodologia,
+            ferramentas e a estante certa, gratuito e direto no navegador.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="#/rota">${icon("compass")} Iniciar a Rota de Crescimento</a>
+            <a class="btn btn-outline" href="#/ferramentas">${icon("tools")} Experimentar as ferramentas</a>
+          </div>
+          <div class="hero-script" aria-label="Amostras das escritas originais">
+            <span><span class="hebrew" lang="he" dir="rtl">בְּרֵאשִׁית</span> hebraico</span>
+            <span><span class="aramaic" lang="arc" dir="rtl">מְנֵא</span> aramaico</span>
+            <span><span class="greek" lang="grc">λόγος</span> grego koiné</span>
+          </div>
+        </div>
+        <div class="stat-strip" role="list" aria-label="Números do portal">
+          <div class="stat" role="listitem"><b>3</b><span>línguas originais</span></div>
+          <div class="stat" role="listitem"><b>5</b><span>níveis até a fluência</span></div>
+          <div class="stat" role="listitem"><b>8</b><span>obras de referência mapeadas</span></div>
+          <div class="stat" role="listitem"><b>100%</b><span>offline e privado</span></div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="modulos">
+        <p class="section-kicker">O mapa completo</p>
+        <h2 class="section-title" id="modulos">Escolha por onde começar</h2>
+        <p class="section-sub">O portal espelha a anatomia do estudo bíblico profundo: fundação das línguas, rota metódica, ferramentas diárias, estante de referência e guia exegético.</p>
+        <div class="grid" style="margin-top:1.4rem">${modules}</div>
+      </section>
+
+      <section class="section" aria-labelledby="ecossistema">
+        <p class="section-kicker">Visão panorâmica</p>
+        <h2 class="section-title" id="ecossistema">O ecossistema em uma imagem</h2>
+        <p class="section-sub">Tudo o que o método integra — rota em 3 passos, obras por nível, ciclo de integração diária e IA como co-mentora.</p>
+        <figure class="info-figure" style="max-width:62rem">
+          <img src="assets/img/info/ecossist.jpg" loading="lazy" decoding="async"
+               alt="Infográfico do ecossistema O Sentido Autêntico: rota de crescimento em 3 passos, tabela de obras de referência (Ross, Rega e Bergmann, Mounce e Wallace) por foco e nível, diversidade metodológica da morfologia à sintaxe, ciclo de integração diária, ecossistema digital e inteligência artificial como co-mentora.">
+          <figcaption>O Sentido Autêntico — diversidade metodológica da morfologia à sintaxe, com progressão integrada em 5 níveis.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section" aria-labelledby="porque">
+        <p class="section-kicker">Fundamentos</p>
+        <h2 class="section-title" id="porque">Por que este método funciona?</h2>
+        <div class="grid" style="margin-top:1.4rem">${why}</div>
+      </section>
+
+      <section class="section" aria-labelledby="faq">
+        <p class="section-kicker">Perguntas frequentes</p>
+        <h2 class="section-title" id="faq">Tudo o que você precisa saber</h2>
+        <div style="margin-top:1.4rem;max-width:52rem">${faq}</div>
+      </section>
+
+      <blockquote class="quote-band">
+        “Interpretar é fácil quando não se busca a real mensagem.”
+        <footer>O sentido da interpretação — quando a hermenêutica acompanha as línguas originais: contexto histórico, cultural e figuras de linguagem.</footer>
+      </blockquote>
+
+      <aside class="cta-band" aria-labelledby="cta-title">
+        <h2 id="cta-title">Instale e estude onde estiver</h2>
+        <p>Adicione o AutenticSense à tela inicial do seu celular ou computador e tenha as línguas bíblicas sempre à mão — no avião, na igreja ou no monte. Sem internet, sem anúncios, sem cadastro.</p>
+        <a class="btn btn-gold" href="#/sobre">${icon("download")} Como instalar</a>
+      </aside>
+    </div>`;
+    }
+  };
+
+  // js/views/rota.js
+  var PASSOS = [
+    {
+      t: "Domine a fundação (Nível 1)",
+      d: "Antes de correr para conjugações complexas, foque no alfabeto, nas vogais e na pronúncia — evitando que a memorização vire mera adivinhação. São as 200 palavras mais frequentes primeiro."
+    },
+    {
+      t: "A regra dos 30–60 minutos",
+      d: "A constância diária supera maratonas esporádicas: o segredo está no contato diário com o texto e no uso de repetição espaçada (SRS), não em sessões heroicas de fim de semana."
+    },
+    {
+      t: "Selecione as obras certas",
+      d: "Use gramáticas didáticas brasileiras e internacionais de excelência: Ross para o Hebraico; Rega & Bergmann e Mounce para a morfologia do Grego; Wallace para a sintaxe exegética."
+    }
+  ];
+  var NIVEIS = [
+    {
+      n: "Fundação",
+      dur: "8 semanas",
+      d: "Alefato/alfabeto, reconhecimento de som-grafia, pronúncia e as primeiras 200 palavras mais frequentes das Escrituras. Meta: decodificar qualquer palavra do texto."
+    },
+    {
+      n: "Básico · Morfologia",
+      dur: "12 semanas",
+      d: "Gramática essencial com Rega & Bergmann (grego) e Ross (hebraico): substantivos, adjetivos, declinações e verbos regulares. Início da leitura de textos bíblicos simples."
+    },
+    {
+      n: "Intermediário",
+      dur: "16 semanas",
+      d: "Leitura autônoma de perícopes, morfologia verbal completa (stems, tempos, particípios e infinitivos) e parsing diário de versículos reais."
+    },
+    {
+      n: "Avançado · Sintaxe",
+      dur: "20 semanas",
+      d: "Transição para a exegese técnica com Daniel B. Wallace: a função das palavras no texto, casos teológicos, cláusulas e estruturas discursivas."
+    },
+    {
+      n: "Fluência (contínuo)",
+      dur: "em curso",
+      d: "Leitura fluida do texto completo, inclusão do Aramaico Bíblico, comparação LXX × Texto Massorético e pesquisa acadêmica."
+    }
+  ];
+  var BLOCOS = [
+    {
+      t: "Bloco 1 · Revisão",
+      min: "20 min",
+      icon: "reset",
+      d: "Flashcards no Anki (SRS) para manutenção da memória de longo prazo: vocabulário e paradigmas gramaticais."
+    },
+    {
+      t: "Bloco 2 · Aquisição",
+      min: "20 min",
+      icon: "book",
+      d: "Novo conteúdo gramatical ou expansão de vocabulário, por lições estruturadas nas obras de referência."
+    },
+    {
+      t: "Bloco 3 · Imersão",
+      min: "20 min",
+      icon: "speaker",
+      d: "Prática direta com o texto bíblico: leitura em voz alta ou análise interlinear nas ferramentas do portal."
+    }
+  ];
+  var ESTRATEGIAS_IA = [
+    { nivel: "Nível 1 · Fundação", estr: "Ditados fonéticos interativos", d: "A IA dita palavras para treinar a correlação som-grafia e o reconhecimento rápido de caracteres." },
+    { nivel: "Nível 2 · Básico", estr: "Parsing reverso", d: "A IA fornece a análise morfológica e você reconstrói a forma original no idioma." },
+    { nivel: "Nível 3 · Intermediário", estr: "Análise de desvios", d: "Interrogação automatizada sobre verbos fracos/irregulares, particípios e estruturas complexas (waw consecutivo)." },
+    { nivel: "Nível 4 · Avançado", estr: "Co-mentoria exegética S.O.I.A.", d: "Protocolo Sintaxe, Observação, Interpretação e Aplicação com a IA como parceira de estudo." },
+    { nivel: "Nível 5 · Fluência", estr: "Filologia comparada", d: "Comparação semântica entre a Septuaginta (LXX) e o Texto Massorético (TM) para identificar nuances teológicas." }
+  ];
+  var rota_default = {
+    title: "Rota de Crescimento",
+    desc: "Do alefato à fluência: roteiro em 5 níveis para dominar Hebraico, Aramaico e Grego Koiné — com ritmo diário de 60 minutos, SRS e metodologia de aceleração com IA.",
+    render() {
+      const passos = PASSOS.map((p, i) => `
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">${icon(["scroll", "reset", "book"][i])}</span>
+        <h3>Passo ${i + 1} · ${p.t}</h3>
+        <p>${p.d}</p>
+      </div>`).join("");
+      const niveis = NIVEIS.map((nv) => `
+      <li>
+        <div>
+          <h3>Nível ${NIVEIS.indexOf(nv) + 1} · ${nv.n} <span class="chip chip-gold" style="vertical-align:middle">${nv.dur}</span></h3>
+          <p>${nv.d}</p>
+        </div>
+      </li>`).join("");
+      const blocos = BLOCOS.map((b) => `
+      <div class="plan-card">
+        <span class="plan-ico" aria-hidden="true">${icon(b.icon)}</span>
+        <strong>${b.t}</strong>
+        <span class="plan-min">${b.min}</span>
+        <p>${b.d}</p>
+      </div>`).join("");
+      const estrategias = ESTRATEGIAS_IA.map((e) => `
+      <tr>
+        <td><strong>${e.nivel}</strong></td>
+        <td><span class="chip chip-gold">${e.estr}</span></td>
+        <td>${e.d}</td>
+      </tr>`).join("");
+      return `
+    <div class="container">
+      <header class="page-head">
+        <nav class="breadcrumb" aria-label="Trilha de navegação">
+          <ol><li><a href="#/">Início</a></li><li aria-current="page">Rota de Crescimento</li></ol>
+        </nav>
+        <span class="eyebrow">${icon("compass")} Metodologia híbrida multimodal</span>
+        <h1>Rota de Crescimento</h1>
+        <p class="lede">
+          Um roteiro estruturado e econômico — <strong>custo R$ 0</strong> — para levar você do
+          primeiro contato com o alefato à leitura exegética madura. Ideal para estudantes de
+          teologia, pastores, líderes e autodidatas, baseado em consistência, repetição espaçada
+          e prática diária com o texto original.
+        </p>
+        <p class="chip-row" aria-label="Destaques da rota">
+          <span class="chip chip-gold">5 níveis</span>
+          <span class="chip chip-gold">60 min/dia</span>
+          <span class="chip chip-gold">56 semanas para exegese (hebraico)</span>
+          <span class="chip">retenção ~90% com SRS</span>
+          <span class="chip">R$ 0 de investimento</span>
+        </p>
+      </header>
+
+      <section class="section" aria-labelledby="tres-passos">
+        <p class="section-kicker">O ecossistema</p>
+        <h2 id="tres-passos">Três passos que sustentam tudo</h2>
+        <div class="grid" style="margin-top:1.4rem">${passos}</div>
+      </section>
+
+      <section class="section" aria-labelledby="niveis">
+        <p class="section-kicker">Progressão</p>
+        <h2 id="niveis">Os cinco níveis, da fundação à fluência</h2>
+        <p>As semanas referem-se à trilha de Hebraico e Aramaico. A trilha de Grego Koiné segue
+        a mesma lógica, adaptando a bibliografia (Rega → Mounce → Wallace) e o alvo lexical
+        (as 200 palavras mais frequentes do Novo Testamento).</p>
+        <ol class="steps">${niveis}</ol>
+      </section>
+
+      <section class="section" aria-labelledby="ritmo">
+        <p class="section-kicker">O dia a dia</p>
+        <h2 id="ritmo">O ritmo diário — 60 minutos</h2>
+        <div class="plan-grid" style="margin-top:1.2rem">${blocos}</div>
+        <div class="callout callout--gold" style="margin-top:1.4rem">
+          <span class="callout-title">SRS: o segredo invisível</span>
+          A repetição espaçada (Anki) mantém o vocabulário vivo com apenas 15–20 minutos diários.
+          Sem ela, o esquecimento devora em semanas o que levou meses para construir; com ela,
+          a retenção beira 90%.
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="ia">
+        <p class="section-kicker">Acelerador</p>
+        <h2 id="ia">Metodologia de aceleração com IA</h2>
+        <p>A inteligência artificial atua como <strong>co-mentora 24/7</strong>: feedback imediato,
+        repetição personalizada e exercícios impossíveis de gerar sozinho. Estudos da metodologia
+        indicam leitura autônoma até 3× mais rápida em relação ao método tradicional.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">Nível</th><th scope="col">Estratégia IA</th><th scope="col">Como funciona</th></tr></thead>
+            <tbody>${estrategias}</tbody>
+          </table>
+        </div>
+        <div class="stat-strip" role="list" aria-label="Indicadores da metodologia">
+          <div class="stat" role="listitem"><b>3×</b><span>mais rápido que o método tradicional</span></div>
+          <div class="stat" role="listitem"><b>90%</b><span>retenção de vocabulário (SRS + IA)</span></div>
+          <div class="stat" role="listitem"><b>12–14</b><span>meses até a fluência (vs. 24–36)</span></div>
+          <div class="stat" role="listitem"><b>R$ 0</b><span>recursos web gratuitos + IA</span></div>
+        </div>
+        <div class="callout" style="margin-top:1.4rem">
+          <span class="callout-title">Nota de honestidade acadêmica</span>
+          A co-mentoria com IA acelera o treinamento, mas <strong>sempre valide as análises</strong>
+          nas gramáticas de referência (<a href="#/biblioteca">biblioteca</a>) e nos léxicos.
+          A IA é instrumento de prática, não autoridade final.
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="infograficos">
+        <p class="section-kicker">Material visual</p>
+        <h2 id="infograficos">Os infográficos da jornada</h2>
+        <p>Baixe ou consulte os pôsteres-resumo do método:</p>
+
+        <figure class="info-figure">
+          <img src="assets/img/info/ecossist.jpg" loading="lazy" decoding="async"
+               alt="Infográfico do ecossistema O Sentido Autêntico: rota de crescimento em 3 passos, tabela de obras de referência por nível, diversidade metodológica da morfologia à sintaxe, ciclo de integração diária, ecossistema digital e IA como co-mentora.">
+          <figcaption><strong>O ecossistema em uma página:</strong> a rota em 3 passos, as obras por nível e o ciclo de integração diária.</figcaption>
+        </figure>
+
+        <div class="info-grid">
+          <figure class="info-figure">
+            <img src="assets/img/info/hebraico.jpg" loading="lazy" decoding="async"
+                 alt="Infográfico Domínio das Línguas Bíblicas: o caminho para a fluência em Hebraico e Aramaico, com níveis 1 a 5, ritmo diário de 60 minutos em três blocos, ecossistema de suporte com Anki, Sefaria e Blue Letter Bible, 56 semanas para exegese e investimento zero.">
+            <figcaption><strong>Hebraico e Aramaico:</strong> 56 semanas para exegese, nível a nível.</figcaption>
+          </figure>
+          <figure class="info-figure">
+            <img src="assets/img/info/grego.jpg" loading="lazy" decoding="async"
+                 alt="Infográfico Plano de Estudo do Grego Bíblico Koiné: da fundação à fluência em cinco níveis, com cronograma diário de 60 minutos, bibliografia de referência em Rega e Wallace, e ferramentas Step Bible e Anki.">
+            <figcaption><strong>Grego Koiné:</strong> da fundação à sintaxe exegética.</figcaption>
+          </figure>
+        </div>
+
+        <figure class="info-figure">
+          <img src="assets/img/info/metodologia.jpg" loading="lazy" decoding="async"
+               alt="Infográfico Metodologia de Aceleração: línguas bíblicas com inteligência artificial, mostrando estratégias de IA por nível — ditados fonéticos, parsing reverso, análise de desvios, co-mentoria exegética SOIA e filologia comparada — além do comparativo de eficácia contra o método tradicional.">
+          <figcaption><strong>Metodologia com IA:</strong> estratégias por nível e comparativo de eficácia.</figcaption>
+        </figure>
+      </section>
+
+      <aside class="cta-band" aria-labelledby="cta-rota">
+        <h2 id="cta-rota">Equipe a sua mochila</h2>
+        <p>A rota só funciona com as obras certas no caminho. Conheça as gramáticas e manuais recomendados — do nível 1 ao 5 — na nossa biblioteca de referências.</p>
+        <a class="btn btn-gold" href="#/biblioteca">${icon("book")} Ver livros de referência</a>
+      </aside>
+    </div>`;
+    }
+  };
+
+  // js/data/alphabets.js
+  var hebrewAlphabet = [
+    { g: "א", name: "Álefe", tr: "ʾ", som: "Gutural suave; consoante “muda” que carrega vogal (como a pausa em “uh-oh”)." },
+    { g: "ב", name: "Bete", tr: "b/v", som: "“b” com daguesh (בּ); “v” sem daguesh." },
+    { g: "ג", name: "Guímel", tr: "g", som: "“g” de “gato”." },
+    { g: "ד", name: "Dálete", tr: "d", som: "“d” de “dedo”." },
+    { g: "ה", name: "Hê", tr: "h", som: "“h” aspirado (como em inglês “house”); no fim de palavra costuma ser muda." },
+    { g: "ו", name: "Vav", tr: "v", som: "“v”; antes pronunciado “w”. Também serve como vogal (u/ô)." },
+    { g: "ז", name: "Záin", tr: "z", som: "“z” de “zero”." },
+    { g: "ח", name: "Hete", tr: "ḥ", som: "“h” gutural forte, como o “j” espanhol em “Jamón”." },
+    { g: "ט", name: "Tete", tr: "ṭ", som: "“t” enfático, com a língua no céu da boca." },
+    { g: "י", name: "Iode", tr: "y", som: "“i” de “ioiô”; a menor letra do alfabeto." },
+    { g: "כ", name: "Kafe", tr: "k/kh", sofit: "ך", som: "“k” com daguesh (כּ); “kh” aspirado sem daguesh. Forma final: ך." },
+    { g: "ל", name: "Lâmede", tr: "l", som: "“l” de “lua”. É a letra mais alta." },
+    { g: "מ", name: "Mem", tr: "m", sofit: "ם", som: "“m”. Forma final: ם (caixa fechada)." },
+    { g: "נ", name: "Nune", tr: "n", sofit: "ן", som: "“n”. Forma final: ן (cauda longa)." },
+    { g: "ס", name: "Sâmeque", tr: "s", som: "“s” de “só”." },
+    { g: "ע", name: "Áin", tr: "ʿ", som: "Gutural profunda, contração no fundo da garganta." },
+    { g: "פ", name: "Pê", tr: "p/f", sofit: "ף", som: "“p” com daguesh (פּ); “f” sem daguesh. Forma final: ף." },
+    { g: "צ", name: "Tsade", tr: "ṣ", sofit: "ץ", som: "“ts” enfático, como em “pizza” falado rápido. Forma final: ץ." },
+    { g: "ק", name: "Qofe", tr: "q", som: "“k” gutural, formado no fundo da boca." },
+    { g: "ר", name: "Rexe", tr: "r", som: "“r” vibrante suave (uvular), como no francês." },
+    { g: "ש", name: "Sine", tr: "š/ś", som: "“sh” com ponto à direita (שׁ); “s” com ponto à esquerda (שׂ)." },
+    { g: "ת", name: "Tav", tr: "t", som: "“t” de “tela”." }
+  ];
+  var niqud = [
+    { name: "Pátach", ex: "בַ", tr: "a", som: "“a” curto (pá)." },
+    { name: "Qamats", ex: "בָ", tr: "ā", som: "“a” longo; às vezes “o” (qamats hatuf)." },
+    { name: "Tsêrê", ex: "בֵ", tr: "ē", som: "“ê” fechado (rede)." },
+    { name: "Ségol", ex: "בֶ", tr: "e", som: "“é” aberto (pé)." },
+    { name: "Híriq", ex: "בִ", tr: "i", som: "“i” (vida)." },
+    { name: "Hólam", ex: "בֹ", tr: "ō", som: "“ô” fechado (avô)." },
+    { name: "Qibbuts", ex: "בֻ", tr: "u", som: "“u” curto." },
+    { name: "Shuruq", ex: "בוּ", tr: "ū", som: "“u” longo (vav com daguesh)." },
+    { name: "Sheva", ex: "בְ", tr: "ə", som: "“e” ultrarrápido (naʿ) ou mudo (nach)." },
+    { name: "Hataf Pátach", ex: "חֲ", tr: "a", som: "Meio “a”, sob guturais." },
+    { name: "Hataf Ségol", ex: "חֱ", tr: "e", som: "Meio “e”, sob guturais." },
+    { name: "Hataf Qamats", ex: "חֳ", tr: "o", som: "Meio “o”, sob guturais." }
+  ];
+  var begadkefat = [
+    { g: "בּ", plosiva: "b", fric: "ב", fricTr: "v" },
+    { g: "גּ", plosiva: "g", fric: "ג", fricTr: "gh" },
+    { g: "דּ", plosiva: "d", fric: "ד", fricTr: "dh" },
+    { g: "כּ", plosiva: "k", fric: "כ", fricTr: "kh" },
+    { g: "פּ", plosiva: "p", fric: "פ", fricTr: "f" },
+    { g: "תּ", plosiva: "t", fric: "ת", fricTr: "th" }
+  ];
+  var greekAlphabet = [
+    { uc: "Α", lc: "α", name: "Alfa", tr: "a", som: "“a” (casa)." },
+    { uc: "Β", lc: "β", name: "Beta", tr: "b", som: "“b”; no fim da era koiné, tendia a “v”." },
+    { uc: "Γ", lc: "γ", name: "Gama", tr: "g", som: "“g”; antes de γ, κ, χ, ξ soa “n” (ἄγγελος → ánguélos)." },
+    { uc: "Δ", lc: "δ", name: "Delta", tr: "d", som: "“d”." },
+    { uc: "Ε", lc: "ε", name: "Épsilon", tr: "e", som: "“e” curto (rede)." },
+    { uc: "Ζ", lc: "ζ", name: "Zeta", tr: "z", som: "“dz/zd”; na koiné, “z”." },
+    { uc: "Η", lc: "η", name: "Eta", tr: "ē", som: "“ê” longo." },
+    { uc: "Θ", lc: "θ", name: "Teta", tr: "th", som: "“t” aspirado (como “th” inglês em “thing”)." },
+    { uc: "Ι", lc: "ι", name: "Iota", tr: "i", som: "“i”." },
+    { uc: "Κ", lc: "κ", name: "Capa", tr: "k", som: "“k/c”." },
+    { uc: "Λ", lc: "λ", name: "Lambda", tr: "l", som: "“l”." },
+    { uc: "Μ", lc: "μ", name: "Mi", tr: "m", som: "“m”." },
+    { uc: "Ν", lc: "ν", name: "Ni", tr: "n", som: "“n”." },
+    { uc: "Ξ", lc: "ξ", name: "Xi", tr: "x", som: "“cs/ks” (táxi)." },
+    { uc: "Ο", lc: "ο", name: "Ômicron", tr: "o", som: "“o” curto (nó)." },
+    { uc: "Π", lc: "π", name: "Pi", tr: "p", som: "“p”." },
+    { uc: "Ρ", lc: "ρ", name: "Rô", tr: "r", som: "“r” vibrante; no início de palavra leva espírito rude: “rh”." },
+    { uc: "Σ", lc: "σ/ς", name: "Sigma", tr: "s", som: "“s”; ς é a forma usada no fim da palavra." },
+    { uc: "Τ", lc: "τ", name: "Tau", tr: "t", som: "“t”." },
+    { uc: "Υ", lc: "υ", name: "Ípsilon", tr: "y", som: "“u” fechado (como o “u” francês); translitera-se “y”." },
+    { uc: "Φ", lc: "φ", name: "Fi", tr: "ph", som: "“p” aspirado; hoje “f”." },
+    { uc: "Χ", lc: "χ", name: "Qui", tr: "ch", som: "“kh”, como o “ch” escocês de “loch”." },
+    { uc: "Ψ", lc: "ψ", name: "Psi", tr: "ps", som: "“ps” (salmo)." },
+    { uc: "Ω", lc: "ω", name: "Ômega", tr: "ō", som: "“ô” longo." }
+  ];
+  var greekDiphthongs = [
+    { g: "αι", tr: "ai", som: "“ai” (pai)" },
+    { g: "ει", tr: "ei", som: "“ei” (leite)" },
+    { g: "οι", tr: "oi", som: "“oi” (herói)" },
+    { g: "υι", tr: "ui", som: "“ui” (cuidado)" },
+    { g: "αυ", tr: "au", som: "“au” (causa)" },
+    { g: "ευ", tr: "eu", som: "“eu” (Europa)" },
+    { g: "ου", tr: "ou", som: "“u” longo (coruja)" }
+  ];
+  var aramaicPassages = [
+    { ref: "Dn 2.4b–7.28", descricao: "O bloco central de Daniel: sonhos, fornalha, cova dos leões e visões — o maior trecho aramaico da Bíblia." },
+    { ref: "Ed 4.8–6.18", descricao: "Correspondência oficial do Império Persa sobre a reconstrução de Jerusalém." },
+    { ref: "Ed 7.12–26", descricao: "A carta do rei Artaxerxes autorizando Esdras." },
+    { ref: "Jr 10.11", descricao: "Um único versículo em aramaico, dirigido aos exilados: uma declaração contra os ídolos." },
+    { ref: "Gn 31.47", descricao: "Labão chama o memorial de “Jegar-Saaduta” (“monte de testemunho”, em aramaico)." }
+  ];
+  var aramaicInNT = [
+    { expr: "טליתא קומי · Talita cumi", fonte: "Mc 5.41", sign: "“Menina, eu te digo: levanta-te!” — Jesus ressuscita a filha de Jairo." },
+    { expr: "אלי אלי למא שבקתני · Eli, Eli, lemá sabactâni", fonte: "Mt 27.46", sign: "“Deus meu, Deus meu, por que me desamparaste?” — citação do Sl 22.1." },
+    { expr: "ܡܪܢ ܐܬܐ · Maranatá", fonte: "1Co 16.22", sign: "“Vem, Senhor!” ou “Nosso Senhor veio” — aclamação da igreja primitiva." },
+    { expr: "אבא · Abá", fonte: "Mc 14.36", sign: "“Pai” — o endereço íntimo de Jesus a Deus, preservado no original." },
+    { expr: "כיפא · Cefas", fonte: "Jo 1.42", sign: "“Pedra” — o nome aramaico de Pedro (traduzido como Πέτρος)." }
+  ];
+
+  // js/data/interlinear.js
+  var verses = [
+    {
+      id: "gn11",
+      ref: "Gênesis 1.1",
+      lang: "he",
+      langLabel: "Hebraico Bíblico",
+      dir: "rtl",
+      text: "בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ",
+      traducao: "No princípio, Deus criou os céus e a terra.",
+      nota: "Observe a ordem hebraica: verbos costumam abrir a oração. בְּרֵאשִׁית (bereshit) é a primeira palavra da Bíblia — e dá nome ao livro de Gênesis em hebraico.",
+      words: [
+        { w: "בְּרֵאשִׁית", tr: "bereshít", lemma: "רֵאשִׁית", morph: "Subst. fem. + preposição בְּ (“em”)", gloss: "No princípio" },
+        { w: "בָּרָא", tr: "bará", lemma: "בָּרָא", morph: "Verbo Qal, perfeito, 3.ª masc. sing.", gloss: "criou" },
+        { w: "אֱלֹהִים", tr: "Elohím", lemma: "אֱלֹהִים", morph: "Subst. masc. (plural intensivo)", gloss: "Deus" },
+        { w: "אֵת", tr: "et", lemma: "אֵת", morph: "Partícula do objeto direto (não se traduz)", gloss: "(objeto)" },
+        { w: "הַשָּׁמַיִם", tr: "hashamáim", lemma: "שָׁמַיִם", morph: "Subst. masc. pl. + artigo הַ", gloss: "os céus" },
+        { w: "וְאֵת", tr: "ve·ét", lemma: "וְ + אֵת", morph: "Conjunção “e” + partícula do objeto", gloss: "e" },
+        { w: "הָאָרֶץ", tr: "haárets", lemma: "אֶרֶץ", morph: "Subst. fem. sing. + artigo הַ", gloss: "a terra" }
+      ]
+    },
+    {
+      id: "dn525",
+      ref: "Daniel 5.25",
+      lang: "arc",
+      langLabel: "Aramaico Bíblico",
+      dir: "rtl",
+      text: "מְנֵא מְנֵא תְּקֵל וּפַרְסִין",
+      traducao: "MENE, MENE, TEQUEL e PARSIM — a escrita na parede do palácio de Belsazar.",
+      nota: "Quatro palavras que mudaram um império. פַרְסִין é um jogo de palavras com פָּרַס (Pérsia): o reino seria “dividido” para os persas. Este é um dos textos aramaicos mais famosos da Bíblia.",
+      words: [
+        { w: "מְנֵא", tr: "menê", lemma: "מְנָא", morph: "Partícipio passivo (Peal) de “contar”", gloss: "contado" },
+        { w: "מְנֵא", tr: "menê", lemma: "מְנָא", morph: "Repetição enfática (como em “na verdade, na verdade”)", gloss: "contado" },
+        { w: "תְּקֵל", tr: "teqêl", lemma: "תְּקַל", morph: "Partícipio passivo (Peal) de “pesar”", gloss: "pesado (na balança)" },
+        { w: "וּפַרְסִין", tr: "ufarsín", lemma: "פְּרַס", morph: "Conjunção וּ + “dividir” no plural", gloss: "e dividido (os persas)" }
+      ]
+    },
+    {
+      id: "jo11",
+      ref: "João 1.1",
+      lang: "grc",
+      langLabel: "Grego Koiné",
+      dir: "ltr",
+      text: "Ἐν ἀρχῇ ἦν ὁ λόγος, καὶ ὁ λόγος ἦν πρὸς τὸν θεόν, καὶ θεὸς ἦν ὁ λόγος.",
+      traducao: "No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus.",
+      nota: "João ecoa deliberadamente Gênesis 1.1 (ἐν ἀρχῇ). No último colo, θεός aparece sem artigo (anartro), destacando a qualidade/natureza do Logos — detalhe que só o grego revela.",
+      words: [
+        { w: "Ἐν", tr: "en", lemma: "ἐν", morph: "Preposição + dativo", gloss: "em / no" },
+        { w: "ἀρχῇ", tr: "archē", lemma: "ἀρχή", morph: "Subst. fem., dativo sing.", gloss: "princípio" },
+        { w: "ἦν", tr: "ēn", lemma: "εἰμί", morph: "Verbo “ser”, imperfeito, 3.ª sing.", gloss: "era / existia" },
+        { w: "ὁ", tr: "ho", lemma: "ὁ", morph: "Artigo masc. nominativo", gloss: "o" },
+        { w: "λόγος", tr: "logos", lemma: "λόγος", morph: "Subst. masc. nominativo", gloss: "Verbo / Palavra" },
+        { w: "καί", tr: "kai", lemma: "καί", morph: "Conjunção coordenativa", gloss: "e" },
+        { w: "ὁ", tr: "ho", lemma: "ὁ", morph: "Artigo masc. nominativo", gloss: "o" },
+        { w: "λόγος", tr: "logos", lemma: "λόγος", morph: "Subst. masc. nominativo", gloss: "Verbo" },
+        { w: "ἦν", tr: "ēn", lemma: "εἰμί", morph: "Verbo “ser”, imperfeito, 3.ª sing.", gloss: "estava" },
+        { w: "πρός", tr: "pros", lemma: "πρός", morph: "Preposição + acusativo: direção/relação", gloss: "com / junto de" },
+        { w: "τόν", tr: "ton", lemma: "ὁ", morph: "Artigo masc. acusativo", gloss: "(o)" },
+        { w: "θεόν", tr: "theon", lemma: "θεός", morph: "Subst. masc. acusativo sing.", gloss: "Deus" },
+        { w: "καί", tr: "kai", lemma: "καί", morph: "Conjunção coordenativa", gloss: "e" },
+        { w: "θεός", tr: "theos", lemma: "θεός", morph: "Nominativo anartro (sem artigo): qualidade", gloss: "Deus (era)" },
+        { w: "ἦν", tr: "ēn", lemma: "εἰμί", morph: "Verbo “ser”, imperfeito, 3.ª sing.", gloss: "era" },
+        { w: "ὁ", tr: "ho", lemma: "ὁ", morph: "Artigo masc. nominativo", gloss: "o" },
+        { w: "λόγος", tr: "logos", lemma: "λόγος", morph: "Subst. masc. nominativo", gloss: "Verbo" }
+      ]
+    }
+  ];
+  function verseById(id) {
+    return verses.find((v) => v.id === id) || verses[0];
+  }
+
+  // js/components/interlinear.js
+  var registry = /* @__PURE__ */ new Map();
+  function renderInterlinear(verse, { heading = false } = {}) {
+    const blockId = `il-${verse.id}-${Math.random().toString(36).slice(2, 7)}`;
+    registry.set(blockId, verse);
+    const words = verse.words.map((w, i) => `
+    <button type="button" class="il-word" data-il-index="${i}"
+            aria-expanded="false" aria-haspopup="dialog"
+            aria-label="Palavra ${i + 1}: analisar">
+      <span class="il-w" lang="${verse.lang}">${w.w}</span>
+      <span class="il-tr">${w.tr}</span>
+    </button>`).join("");
+    return `
+    <section class="interlinear-block" id="${blockId}" data-il-block="${blockId}"
+             aria-label="Análise interlinear de ${verse.ref}">
+      <div class="interlinear-head">
+        ${heading ? `<h3 class="ref" style="margin:0;border:none;padding:0">${verse.ref}</h3>` : `<span class="ref">${verse.ref}</span>`}
+        <span class="chip chip-gold">${verse.langLabel}</span>
+        <span class="spacer"></span>
+        <button type="button" class="btn-icon" data-speak="${verse.text}"
+                data-speak-lang="pt-BR" aria-label="Ouvir o verso em ${verse.langLabel} (pronúncia aproximada)">
+          ${icon("speaker")}
+        </button>
+      </div>
+      <div class="interlinear" dir="${verse.dir}">${words}</div>
+      <p class="translit" style="margin-top:1rem" lang="pt-BR">${verse.traducao}</p>
+      <div class="il-detail" role="region" aria-label="Detalhes da palavra selecionada" tabindex="-1"></div>
+      ${verse.nota ? `<p class="il-note"><strong>Nota exegética:</strong> ${verse.nota}</p>` : ""}
+    </section>`;
+  }
+  function mountInterlinear(root) {
+    root.querySelectorAll("[data-il-block]").forEach((block) => {
+      const verse = registry.get(block.dataset.ilBlock);
+      const detail = block.querySelector(".il-detail");
+      if (!verse || !detail) return;
+      block.addEventListener("click", (e) => {
+        const btn = e.target.closest(".il-word");
+        if (!btn) return;
+        select(btn);
+      });
+      block.addEventListener("keydown", (e) => {
+        var _a;
+        if (e.key === "Escape" && detail.classList.contains("is-open")) {
+          clearSelection();
+          (_a = block.querySelector(".il-word")) == null ? void 0 : _a.focus();
+        }
+      });
+      function select(btn) {
+        const word = verse.words[Number(btn.dataset.ilIndex)];
+        if (!word) return;
+        block.querySelectorAll('.il-word[aria-expanded="true"]').forEach((el) => el.setAttribute("aria-expanded", "false"));
+        btn.setAttribute("aria-expanded", "true");
+        const scriptCls = verse.dir === "rtl" ? "hebrew" : "greek";
+        detail.innerHTML = `
+        <div class="il-card">
+          <div class="il-head">
+            <span class="il-lemma ${scriptCls}" lang="${verse.lang}" dir="${verse.dir}">${word.lemma}</span>
+            <span class="translit">${word.tr}</span>
+            <span class="il-gloss">${word.gloss}</span>
+          </div>
+          <p class="il-morph"><strong>Morfologia:</strong> ${word.morph}</p>
+          <p class="il-morph" style="margin:0">
+            <strong>Palavra no texto:</strong>
+            <span class="${scriptCls}" lang="${verse.lang}" dir="${verse.dir}" style="font-size:1.2em">${word.w}</span>
+          </p>
+        </div>`;
+        detail.classList.add("is-open");
+        detail.focus({ preventScroll: true });
+        announce(`Palavra ${word.w}, transliteração ${word.tr}: ${word.gloss}.`);
+      }
+      function clearSelection() {
+        block.querySelectorAll('.il-word[aria-expanded="true"]').forEach((el) => el.setAttribute("aria-expanded", "false"));
+        detail.classList.remove("is-open");
+      }
+    });
+  }
+
+  // js/views/hebraico.js
+  var hebraico_default = {
+    title: "Hebraico Bíblico",
+    desc: "Aprenda o Aleph-Bet hebraico, as vogais (niqud) e a regra Begadkefat, com leitura guiada interlinear de Gênesis 1.1.",
+    render() {
+      const alphaRows = hebrewAlphabet.map((l) => `
+      <tr>
+        <td class="letter">
+          <span class="glyph hebrew" lang="he" dir="rtl">${l.g}</span>
+          ${l.sofit ? `<span class="sub">final: <span class="hebrew" lang="he" dir="rtl">${l.sofit}</span></span>` : ""}
+        </td>
+        <td><strong>${l.name}</strong></td>
+        <td class="tr">${l.tr}</td>
+        <td>${l.som}</td>
+      </tr>`).join("");
+      const niqudRows = niqud.map((v) => `
+      <tr>
+        <td class="letter"><span class="glyph hebrew" lang="he" dir="rtl">${v.ex}</span></td>
+        <td><strong>${v.name}</strong></td>
+        <td class="tr">${v.tr}</td>
+        <td>${v.som}</td>
+      </tr>`).join("");
+      const bgk = begadkefat.map((b) => `
+      <span class="chip"><span class="hebrew" lang="he" dir="rtl">${b.g}</span> = ${b.plosiva} ·
+      <span class="hebrew" lang="he" dir="rtl">${b.fric}</span> = ${b.fricTr}</span>`).join("");
+      return `
+    <div class="container">
+      <header class="page-head">
+        <nav class="breadcrumb" aria-label="Trilha de navegação">
+          <ol><li><a href="#/">Início</a></li><li aria-current="page">Hebraico Bíblico</li></ol>
+        </nav>
+        <span class="eyebrow">${icon("scroll")} Módulo 1 · Antigo Testamento</span>
+        <h1>Hebraico Bíblico</h1>
+        <p class="lede">
+          O hebraico é a língua de quase todo o Antigo Testamento — de Gênesis a Malaquias.
+          Lê-se <strong>da direita para a esquerda</strong>, com 22 consoantes e vogais
+          escritas como sinais ao redor das letras. Nesta trilha você domina o alfabeto
+          e já lê o primeiro verso da Bíblia no original.
+        </p>
+        <p class="chip-row" aria-label="Destaques">
+          <span class="chip chip-gold">22 consoantes</span>
+          <span class="chip chip-gold">5 formas finais (sofit)</span>
+          <span class="chip">leitura da direita para a esquerda</span>
+          <span class="chip">tradição massorética (BHS/BHQ)</span>
+        </p>
+      </header>
+
+      <section class="section" aria-labelledby="alephbet">
+        <p class="section-kicker">Passo 1</p>
+        <h2 id="alephbet">O Aleph-Bet</h2>
+        <p>O alfabeto hebraico é inteiramente consonantal. Cinco letras assumem uma
+        <strong>forma final</strong> (sofit) quando encerram a palavra — repare em Kafe, Mem, Nune, Pê e Tsade.</p>
+        <div class="table-wrap">
+          <table class="alpha-table">
+            <thead><tr><th scope="col" class="letter">Letra</th><th scope="col">Nome</th><th scope="col">Translit.</th><th scope="col">Som</th></tr></thead>
+            <tbody>${alphaRows}</tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="vogais">
+        <p class="section-kicker">Passo 2</p>
+        <h2 id="vogais">As vogais (niqud)</h2>
+        <p>Por volta do séc. VI–X d.C., os masoretas criaram sinais para fixar a pronúncia
+        sem alterar o texto consonantal. Eles ficam <em>embaixo, dentro ou acima</em> das letras.
+        Abaixo, os exemplos usam a letra <span class="hebrew" lang="he" dir="rtl">ב</span> (b) como base.</p>
+        <div class="table-wrap">
+          <table class="alpha-table">
+            <thead><tr><th scope="col" class="letter">Exemplo</th><th scope="col">Nome</th><th scope="col">Translit.</th><th scope="col">Som</th></tr></thead>
+            <tbody>${niqudRows}</tbody>
+          </table>
+        </div>
+        <div class="callout callout--gold">
+          <span class="callout-title">Regra Begadkefat</span>
+          Seis consoantes mudam de som conforme o <strong>daguesh</strong> (o ponto central).
+          Com daguesh, são plosivas; sem daguesh, tornam-se fricativas:
+        </div>
+        <p class="chip-row">${bgk}</p>
+      </section>
+
+      <section class="section" aria-labelledby="leitura">
+        <p class="section-kicker">Passo 3 · Leitura guiada</p>
+        <h2 id="leitura">Gênesis 1.1, palavra por palavra</h2>
+        <p>Toque em cada palavra para ver o lexema, a morfologia e a glosa.
+        Recém-saído do alfabeto, você já consegue reconhecer letras como
+        <span class="hebrew" lang="he" dir="rtl">בּ</span>, <span class="hebrew" lang="he" dir="rtl">ר</span> e
+        <span class="hebrew" lang="he" dir="rtl">א</span> na primeira palavra da Bíblia.</p>
+        ${renderInterlinear(verseById("gn11"))}
+        <div class="callout callout--ok">
+          <span class="callout-title">Pratique agora</span>
+          Você já conhece as 22 letras! Vá até a ferramenta de
+          <a href="#/ferramentas">transliterador</a> para ouvir e escrever cada letra —
+          digite <span class="hebrew" lang="he" dir="rtl">חֶסֶד</span> (<span class="translit">ḥéssed</span>, “misericórdia”) e descubra o total.
+        </div>
+      </section>
+
+        <div class="callout">
+          <span class="callout-title">Quer o plano completo de estudos?</span>
+          A <a href="#/rota">Rota de Crescimento</a> detalha os 5 níveis — do Aleph-Bet à
+          exegese técnica em 56 semanas — com ritmo diário de 60 minutos, flashcards (Anki),
+          aceleração por IA e a gramática de <a href="#/biblioteca">Allen P. Ross</a> na mochila.
+        </div>
+
+      <aside class="cta-band" aria-labelledby="cta-he">
+        <h2 id="cta-he">Continue para o aramaico</h2>
+        <p>O aramaico usa a mesma escrita quadrada do hebraico — quem lê um, lê o outro. Conhecer o aramaico abre as portas de Daniel e Esdras no original.</p>
+        <a class="btn btn-gold" href="#/aramaico">Ir para o Aramaico →</a>
+      </aside>
+    </div>`;
+    },
+    mount(root) {
+      mountInterlinear(root);
+    }
+  };
+
+  // js/views/aramaico.js
+  var aramaico_default = {
+    title: "Aramaico Bíblico",
+    desc: "Descubra onde o aramaico aparece na Bíblia — de Daniel a Esdras e nas palavras de Jesus — com leitura interlinear de Daniel 5.25.",
+    render() {
+      const passages = aramaicPassages.map((p) => `
+      <tr>
+        <td><strong>${p.ref}</strong></td>
+        <td>${p.descricao}</td>
+      </tr>`).join("");
+      const nt = aramaicInNT.map((w) => `
+      <li>
+        <strong><span class="greek" lang="arc">${w.expr}</span></strong>
+        <span class="chip chip-gold">${w.fonte}</span><br>
+        ${w.sign}
+      </li>`).join("");
+      return `
+    <div class="container">
+      <header class="page-head">
+        <nav class="breadcrumb" aria-label="Trilha de navegação">
+          <ol><li><a href="#/">Início</a></li><li aria-current="page">Aramaico Bíblico</li></ol>
+        </nav>
+        <span class="eyebrow">${icon("book")} Módulo 2 · A língua do exílio</span>
+        <h1>Aramaico Bíblico</h1>
+        <p class="lede">
+          O aramaico foi a <strong>língua franca do antigo Oriente Médio</strong> — falada
+          do Império Persa às ruas de Jerusalém no tempo de Jesus. Aparece em blocos
+          inteiros de Daniel e Esdras e nas palavras mais comoventes dos Evangelhos,
+          preservadas exatamente como foram ditas.
+        </p>
+        <p class="chip-row" aria-label="Destaques">
+          <span class="chip chip-gold">~269 versículos no AT</span>
+          <span class="chip chip-gold">palavras originais de Jesus</span>
+          <span class="chip">mesma escrita quadrada do hebraico</span>
+        </p>
+      </header>
+
+      <section class="section" aria-labelledby="onde">
+        <p class="section-kicker">Mapa textual</p>
+        <h2 id="onde">Onde o aramaico aparece na Bíblia</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">Passagem</th><th scope="col">Conteúdo</th></tr></thead>
+            <tbody>${passages}</tbody>
+          </table>
+        </div>
+        <div class="callout callout--gold">
+          <span class="callout-title">Hebraico e aramaico: primos próximos</span>
+          As duas línguas compartilham o mesmo alfabeto de 22 letras (a “escrita quadrada”),
+          léxicos semelhantes e a direção de leitura da direita para a esquerda.
+          Quem aprendeu o Aleph-Bet hebraico já consegue decodificar textos aramaicos —
+          mudam sobretudo a morfologia e algumas raízes.
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="notas">
+        <p class="section-kicker">Gramática essencial</p>
+        <h2 id="notas">Três traços que delatam o aramaico</h2>
+        <ol class="steps">
+          <li>
+            <div>
+              <h3>O estado enfático em <span class="aramaic" lang="arc" dir="rtl">־אָ</span></h3>
+              <p>Onde o hebraico usa o artigo prefixado <span class="hebrew" lang="he" dir="rtl">הַ</span> (“o”),
+              o aramaico marca o substantivo determinado com o sufixo <span class="aramaic" lang="arc" dir="rtl">־אָ</span> (<span class="translit">-á</span>):
+              <span class="aramaic" lang="arc" dir="rtl">מַלְכָּא</span> (<span class="translit">malká</span>) = “<em>o</em> rei”, e não apenas “rei”.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>A conjugação Peal e suas irmãs</h3>
+              <p>Os verbos se organizam em “conjugações” (binyanim) como no hebraico:
+              <strong>Peal</strong> (ação simples), <strong>Pael</strong> (intensiva) e
+              <strong>Afel</strong> (causativa: “fazer fazer”). Os prefixos mudam, mas a lógica é familiar.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Raízes compartilhadas, desvios felizes</h3>
+              <p>Muitas raízes são as mesmas do hebraico — <span class="aramaic" lang="arc" dir="rtl">מלך</span> (reinar),
+              <span class="aramaic" lang="arc" dir="rtl">אמר</span> (dizer), <span class="aramaic" lang="arc" dir="rtl">אלה</span> (Deus).
+              Outras desviam: “ver” é <span class="aramaic" lang="arc" dir="rtl">חזה</span> (<span class="translit">ḥazá</span>),
+              não <span class="hebrew" lang="he" dir="rtl">ראה</span> do hebraico.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section" aria-labelledby="nt">
+        <p class="section-kicker">No Novo Testamento</p>
+        <h2 id="nt">A voz original, congelada no tempo</h2>
+        <p>Os evangelistas escreveram em grego, mas em momentos de máxima emoção preservaram
+        o aramaico que ecoava em seus ouvidos:</p>
+        <ul class="check-list" style="grid-gap:1rem">${nt}</ul>
+      </section>
+
+      <section class="section" aria-labelledby="leitura-arc">
+        <p class="section-kicker">Leitura guiada</p>
+        <h2 id="leitura-arc">Daniel 5.25 — a escrita na parede</h2>
+        <p>A festa de Belsazar é interrompida por uma mão que escreve na parede do palácio.
+        Toque em cada palavra da sentença que só Daniel conseguiu ler:</p>
+        ${renderInterlinear(verseById("dn525"))}
+      </section>
+
+        <div class="callout">
+          <span class="callout-title">O aramaico entra no Nível 5</span>
+          Na <a href="#/rota">Rota de Crescimento</a>, o Aramaico Bíblico é estudado na fase de
+          fluência, aproveitando a base do hebraico — quem lê um, lê o outro.
+        </div>
+
+      <aside class="cta-band" aria-labelledby="cta-arc">
+        <h2 id="cta-arc">Última língua: o grego koiné</h2>
+        <p>Com hebraico e aramaico, você cobre o Antigo Testamento. O grego abre os 27 livros do Novo — e a Septuaginta, a Bíblia dos primeiros cristãos.</p>
+        <a class="btn btn-gold" href="#/grego">Ir para o Grego Koiné →</a>
+      </aside>
+    </div>`;
+    },
+    mount(root) {
+      mountInterlinear(root);
+    }
+  };
+
+  // js/views/grego.js
+  var grego_default = {
+    title: "Grego Koiné",
+    desc: "Aprenda o alfabeto grego, sinais diacríticos e casos gramaticais, com análise interlinear de João 1.1 no original.",
+    render() {
+      const rows = greekAlphabet.map((l) => `
+      <tr>
+        <td class="letter"><span class="glyph greek" lang="grc">${l.uc} ${l.lc}</span></td>
+        <td><strong>${l.name}</strong></td>
+        <td class="tr">${l.tr}</td>
+        <td>${l.som}</td>
+      </tr>`).join("");
+      const diph = greekDiphthongs.map((d) => `<span class="chip"><span class="greek" lang="grc">${d.g}</span> → ${d.tr} (${d.som})</span>`).join("");
+      return `
+    <div class="container">
+      <header class="page-head">
+        <nav class="breadcrumb" aria-label="Trilha de navegação">
+          <ol><li><a href="#/">Início</a></li><li aria-current="page">Grego Koiné</li></ol>
+        </nav>
+        <span class="eyebrow">${icon("alpha")} Módulo 3 · Novo Testamento & Septuaginta</span>
+        <h1>Grego Koiné</h1>
+        <p class="lede">
+          Entre 300 a.C. e 300 d.C., o grego “comum” (<span class="greek" lang="grc">κοινή</span>,
+          <span class="translit">koiné</span>) era a língua internacional do Mediterrâneo.
+          Nele foram escritos os 27 livros do Novo Testamento e a Septuaginta (LXX),
+          a tradução grega do Antigo Testamento citada pelos apóstolos.
+        </p>
+        <p class="chip-row" aria-label="Destaques">
+          <span class="chip chip-gold">24 letras</span>
+          <span class="chip chip-gold">5 casos gramaticais</span>
+          <span class="chip">texto crítico NA28/UBS5</span>
+        </p>
+      </header>
+
+      <section class="section" aria-labelledby="alfa-gr">
+        <p class="section-kicker">Passo 1</p>
+        <h2 id="alfa-gr">O alfabeto grego</h2>
+        <p>Ao contrário do hebraico, o grego escreve <strong>vogais plenas</strong> e da
+        esquerda para a direita. O sigma tem duas formas minúsculas:
+        <span class="greek" lang="grc">σ</span> no meio da palavra e <span class="greek" lang="grc">ς</span> no final.</p>
+        <div class="table-wrap">
+          <table class="alpha-table">
+            <thead><tr><th scope="col" class="letter">Letra</th><th scope="col">Nome</th><th scope="col">Translit.</th><th scope="col">Som</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="sinais">
+        <p class="section-kicker">Passo 2</p>
+        <h2 id="sinais">Sinais que mudam tudo</h2>
+        <div class="grid grid-2" style="margin-top:1rem">
+          <div class="card">
+            <h3>Os “espíritos” (da pneuma)</h3>
+            <p>Toda palavra iniciada por vogal leva um espírito.
+            O <strong>suave</strong> ( <span class="greek" lang="grc">ἀ</span> ) não altera o som.
+            O <strong>rude</strong> ( <span class="greek" lang="grc">ἁ</span> ) adiciona um “h” inicial:
+            <span class="greek" lang="grc">ἁμαρτία</span> = <span class="translit">hamartía</span> (“pecado”).</p>
+          </div>
+          <div class="card">
+            <h3>Acento e entonação</h3>
+            <p><strong>Agudo</strong> ( <span class="greek" lang="grc">ά</span> ), <strong>grave</strong> ( <span class="greek" lang="grc">ὰ</span> )
+            e <strong>circunflexo</strong> ( <span class="greek" lang="grc">ᾶ</span> ) marcam a sílaba tônica.
+            Eles distinguem significados: <span class="greek" lang="grc">θεός</span> (“Deus”), sem acento, nunca é o mesmo contexto.</p>
+          </div>
+        </div>
+        <h3 style="margin-top:1.6rem">Diftongos frequentes</h3>
+        <p class="chip-row">${diph}</p>
+      </section>
+
+      <section class="section" aria-labelledby="casos">
+        <p class="section-kicker">Passo 3</p>
+        <h2 id="casos">Os cinco casos: a engrenagem da frase</h2>
+        <p>O grego “declina” substantivos, artigos e adjetivos conforme a função na oração.
+        Veja a declinação singular de <span class="greek" lang="grc">λόγος</span> (“palavra”) com o artigo:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">Caso</th><th scope="col">Forma</th><th scope="col">Função</th><th scope="col">Exemplo em português</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Nominativo</strong></td><td><span class="greek" lang="grc">ὁ λόγος</span></td><td>sujeito</td><td>“<em>o Verbo</em> era Deus”</td></tr>
+              <tr><td><strong>Genitivo</strong></td><td><span class="greek" lang="grc">τοῦ λόγου</span></td><td>posse, origem</td><td>“a vida <em>do Verbo</em>”</td></tr>
+              <tr><td><strong>Dativo</strong></td><td><span class="greek" lang="grc">τῷ λόγῳ</span></td><td>objeto indireto, meio</td><td>“falamos <em>com o Verbo</em>”</td></tr>
+              <tr><td><strong>Acusativo</strong></td><td><span class="greek" lang="grc">τὸν λόγον</span></td><td>objeto direto</td><td>“ouvimos <em>o Verbo</em>”</td></tr>
+              <tr><td><strong>Vocativo</strong></td><td><span class="greek" lang="grc">λόγε</span></td><td>apelo direto</td><td>“<em>ó Verbo!</em>”</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout callout--gold">
+          <span class="callout-title">Por que isso liberta o intérprete</span>
+          Em português, a ordem das palavras carrega a gramática; em grego, são os
+          <strong>finais das palavras</strong>. Por isso uma frase pode colocar o predicado na frente
+          para dar ênfase — exatamente o que João faz no versículo abaixo.
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="leitura-gr">
+        <p class="section-kicker">Passo 4 · Leitura guiada</p>
+        <h2 id="leitura-gr">João 1.1, palavra por palavra</h2>
+        <p>O prólogo de João espelha Gênesis 1.1 — <span class="greek" lang="grc">ἐν ἀρχῇ</span> traduz
+        exatamente <span class="hebrew" lang="he" dir="rtl">בְּרֵאשִׁית</span>. Toque em cada palavra:</p>
+        ${renderInterlinear(verseById("jo11"))}
+        <div class="callout callout--ok">
+          <span class="callout-title">Ferramenta certa para a hora</span>
+          Teste no <a href="#/ferramentas">Transliterador de Grego</a> palavras como
+          <span class="greek" lang="grc">ἀγάπη</span> (amor), <span class="greek" lang="grc">χάρις</span> (graça) ou
+          <span class="greek" lang="grc">πνεῦμα</span> (espírito).
+        </div>
+      </section>
+
+        <div class="callout">
+          <span class="callout-title">Do alfabeto ao Wallace</span>
+          A trilha do Grego Koiné na <a href="#/rota">Rota de Crescimento</a> usa
+          <a href="#/biblioteca">Rega & Bergmann</a> para a morfologia (método indutivo),
+          <a href="#/biblioteca">Mounce</a> para a leitura e <a href="#/biblioteca">Wallace</a> para a sintaxe exegética — com Step Bible e Anki no dia a dia.
+        </div>
+
+      <aside class="cta-band" aria-labelledby="cta-gr">
+        <h2 id="cta-gr">Agora, coloque tudo em prática</h2>
+        <p>Você conhece as três línguas das Escrituras. É hora de abrir as ferramentas interativas e analisar os textos por conta própria.</p>
+        <a class="btn btn-gold" href="#/ferramentas">Abrir as Ferramentas →</a>
+      </aside>
+    </div>`;
+    },
+    mount(root) {
+      mountInterlinear(root);
+    }
+  };
+
+  // js/tools.js
+  var HE = {
+    "א": ["ʾ", "ʾ"],
+    "ב": ["b", "v"],
+    "ג": ["g", "g"],
+    "ד": ["d", "d"],
+    "ה": ["h", "h"],
+    "ו": ["v", "v"],
+    "ז": ["z", "z"],
+    "ח": ["ḥ", "ḥ"],
+    "ט": ["ṭ", "ṭ"],
+    "י": ["y", "y"],
+    "כ": ["k", "kh"],
+    "ך": ["k", "kh"],
+    "ל": ["l", "l"],
+    "מ": ["m", "m"],
+    "ם": ["m", "m"],
+    "נ": ["n", "n"],
+    "ן": ["n", "n"],
+    "ס": ["s", "s"],
+    "ע": ["ʿ", "ʿ"],
+    "פ": ["p", "f"],
+    "ף": ["p", "f"],
+    "צ": ["ṣ", "ṣ"],
+    "ץ": ["ṣ", "ṣ"],
+    "ק": ["q", "q"],
+    "ר": ["r", "r"],
+    "ש": ["sh", "sh"],
+    "ת": ["t", "t"]
+  };
+  var HE_BGDKPT = "בגדכפת";
+  var HE_VOWELS = {
+    "ֱ": "e",
+    "ֲ": "a",
+    "ֳ": "o",
+    "ִ": "i",
+    "ֵ": "ê",
+    "ֶ": "e",
+    "ַ": "a",
+    "ָ": "â",
+    "ֹ": "ô",
+    "ֻ": "u"
+  };
+  var HE_MAQAF = "־";
+  var HE_SOF = "׃";
+  var HE_DAGESH = "ּ";
+  var HE_SHIN_DOT = "ׁ";
+  var HE_SIN_DOT = "ׂ";
+  var HE_SHEVA = "ְ";
+  function isHeMark(ch) {
+    const c = ch.codePointAt(0);
+    return c >= 1425 && c <= 1469 || c === 1471 || c >= 1473 && c <= 1474;
+  }
+  var VOCALS = "aeêioôâuûā";
+  function transliterateHebrew(text) {
+    const chars = Array.from(String(text || "").replace(/[‎‏]/g, "").trim());
+    let out = "";
+    for (let i = 0; i < chars.length; i++) {
+      const ch = chars[i];
+      if (ch === HE_MAQAF) {
+        out += "-";
+        continue;
+      }
+      if (ch === HE_SOF) {
+        out += ":";
+        continue;
+      }
+      if (HE[ch]) {
+        let dagesh = false, shin = false, sin = false, vow = "", sheva = false;
+        while (i + 1 < chars.length && isHeMark(chars[i + 1])) {
+          const mark = chars[++i];
+          if (mark === HE_DAGESH) dagesh = true;
+          else if (mark === HE_SHIN_DOT) shin = true;
+          else if (mark === HE_SIN_DOT) sin = true;
+          else if (mark === HE_SHEVA) sheva = true;
+          else if (HE_VOWELS[mark] !== void 0) vow += HE_VOWELS[mark];
+        }
+        const nextChar = chars[i + 1];
+        const isWordEnd = nextChar === void 0 || /[\s.,:;!?׃־"“”'()]/.test(nextChar);
+        if (ch === "ו" && dagesh) {
+          out += "û";
+          continue;
+        }
+        if (ch === "ו" && vow === "ô") {
+          out += "ô";
+          continue;
+        }
+        if (ch === "י" && vow === "i") {
+          out += "î";
+          continue;
+        }
+        if (ch === "י" && vow === "" && !sheva) {
+          if (out.endsWith("i")) out = out.slice(0, -1) + "î";
+          else if (out.endsWith("ê") || out.endsWith("e")) {
+          } else if (out.length === 0 || !VOCALS.includes(out[out.length - 1])) out += "y";
+          continue;
+        }
+        let cons = dagesh && HE_BGDKPT.includes(ch) ? HE[ch][0] : HE[ch][1];
+        if (ch === "ש") cons = sin ? "s" : shin ? "sh" : "sh";
+        if (dagesh && !HE_BGDKPT.includes(ch) && !"אהחערו".includes(ch) && ch !== "ר") {
+          cons += cons;
+        }
+        const gutturalFinal = "חע".includes(ch) || ch === "ה" && dagesh;
+        if (gutturalFinal && vow.endsWith("a") && isWordEnd) {
+          out += "a" + cons;
+          continue;
+        }
+        if (sheva && vow === "" && isWordEnd) {
+          out += cons;
+          continue;
+        }
+        out += cons + (sheva ? "e" : "") + vow;
+        continue;
+      }
+      out += ch;
+    }
+    return out.replace(/[ ]{2,}/g, " ").trim();
+  }
+  var GR = {
+    "α": "a",
+    "β": "b",
+    "γ": "g",
+    "δ": "d",
+    "ε": "e",
+    "ζ": "z",
+    "η": "ē",
+    "θ": "th",
+    "ι": "i",
+    "κ": "k",
+    "λ": "l",
+    "μ": "m",
+    "ν": "n",
+    "ξ": "x",
+    "ο": "o",
+    "π": "p",
+    "ρ": "r",
+    "σ": "s",
+    "ς": "s",
+    "τ": "t",
+    "υ": "y",
+    "φ": "ph",
+    "χ": "ch",
+    "ψ": "ps",
+    "ω": "ō"
+  };
+  var GR_VOWELS = "αεηιουω";
+  var GR_DIPHTHONGS = {
+    "αι": "ai",
+    "ει": "ei",
+    "οι": "oi",
+    "υι": "yi",
+    "αυ": "au",
+    "ευ": "eu",
+    "ου": "ou",
+    "ηυ": "ēu",
+    "ωυ": "ōu"
+  };
+  var GR_ROUGH = "̔";
+  var GR_DIAERESIS = "̈";
+  function transliterateGreek(text) {
+    return String(text || "").split(/(\s+)/).map((seg) => /^\s+$/.test(seg) || seg === "" ? seg : grWord(seg)).join("");
+  }
+  function grWord(word) {
+    const clusters = [];
+    for (const ch of Array.from(word.normalize("NFD"))) {
+      if (/\p{Mark}/u.test(ch)) {
+        if (clusters.length) clusters[clusters.length - 1].marks.push(ch);
+      } else {
+        clusters.push({ base: ch, marks: [] });
+      }
+    }
+    let out = "";
+    let started = false;
+    for (let i = 0; i < clusters.length; i++) {
+      const c = clusters[i];
+      const lower = c.base.toLowerCase();
+      if (!(lower in GR)) {
+        out += c.base;
+        continue;
+      }
+      const next = clusters[i + 1];
+      const nextLower = next ? next.base.toLowerCase() : "";
+      let t;
+      if (lower === "γ" && "γκχξ".includes(nextLower)) {
+        t = "n";
+      } else if (GR_VOWELS.includes(lower) && next && nextLower in GR && GR_DIPHTHONGS[lower + nextLower] && !next.marks.includes(GR_DIAERESIS)) {
+        t = GR_DIPHTHONGS[lower + nextLower];
+        i += 1;
+      } else {
+        t = GR[lower];
+      }
+      if (!started) {
+        if (c.marks.includes(GR_ROUGH)) t = lower === "ρ" ? "rh" : "h" + t;
+        if (c.base !== lower && c.base.toUpperCase() === c.base) {
+          t = t.charAt(0).toUpperCase() + t.slice(1);
+        }
+        started = true;
+      }
+      out += t;
+    }
+    return out;
+  }
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (e) {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      let ok = false;
+      try {
+        ok = document.execCommand("copy");
+      } catch (e2) {
+        ok = false;
+      }
+      ta.remove();
+      return ok;
+    }
+  }
+
+  // js/views/ferramentas.js
+  var TABS = [
+    { id: "il", label: "Interlinear" },
+    { id: "he", label: "Transliterador hebraico" },
+    { id: "gr", label: "Transliterador grego" }
+  ];
+  var ferramentas_default = {
+    title: "Ferramentas",
+    desc: "Ferramentas bíblicas offline: analisador interlinear e transliteradores de hebraico e grego.",
+    render() {
+      const tabButtons = TABS.map((t, i) => `
+      <button type="button" role="tab" id="tab-${t.id}" data-tab="${t.id}"
+              aria-selected="${i === 0}" aria-controls="panel-${t.id}" tabindex="${i === 0 ? 0 : -1}">
+        ${t.label}
+      </button>`).join("");
+      const verseButtons = verses.map((v, i) => `
+      <button type="button" class="chip ${i === 0 ? "chip-gold" : ""}" data-verse-btn="${v.id}"
+              aria-pressed="${i === 0}">${v.ref}</button>`).join("");
+      return `
+    <div class="container">
+      <header class="page-head">
+        <nav class="breadcrumb" aria-label="Trilha de navegação">
+          <ol><li><a href="#/">Início</a></li><li aria-current="page">Ferramentas</li></ol>
+        </nav>
+        <span class="eyebrow">${icon("tools")} Laboratório de línguas · offline</span>
+        <h1>Ferramentas Interativas</h1>
+        <p class="lede">
+          Quatro instrumentos de estudo que rodam <strong>inteiramente no seu dispositivo</strong>:
+          nenhum texto digitado sai do navegador. Combine-os para analisar qualquer passagem
+          das Escrituras nos idiomas originais.
+        </p>
+      </header>
+
+      <div class="tablist" role="tablist" aria-label="Ferramentas disponíveis">${tabButtons}</div>
+
+      <!-- Interlinear -->
+      <section role="tabpanel" id="panel-il" aria-labelledby="tab-il" class="tabpanel">
+        <p>Selecione um versículo e toque em cada palavra para revelar lexema, morfologia e glosa:</p>
+        <div class="chip-row" role="group" aria-label="Escolher versículo">${verseButtons}</div>
+        <div id="ilContainer" style="margin-top:1.2rem"></div>
+      </section>
+
+      <!-- Transliterador hebraico -->
+      <section role="tabpanel" id="panel-he" aria-labelledby="tab-he" class="tabpanel" hidden>
+        <div class="tool-panel">
+          <p class="muted">Transliteração acadêmica simplificada. Reconhece niqud (vogais), daguesh
+          lene e forte, begadkefat, shuruq, maqaf e pátach furtivo.</p>
+          <div class="tool-grid">
+            <div class="field">
+              <label for="heIn">Texto em hebraico ou aramaico</label>
+              <textarea id="heIn" class="script" lang="he" dir="rtl" spellcheck="false"
+                        placeholder="כִּי אוֹר בַּחַיִּים…">שָׁלוֹם עָלֵיכֶם</textarea>
+              <p class="hint">Experimente:
+                <button type="button" class="btn btn-ghost btn-sm" data-he-sample="בְּרֵאשִׁית בָּרָא אֱלֹהִים">Gn 1.1</button>
+                <button type="button" class="btn btn-ghost btn-sm" data-he-sample="טַלִּיתָא קוּמִי">Talita cumi</button>
+                <button type="button" class="btn btn-ghost btn-sm" data-he-sample="כִּי־טוֹב יְהוָה לְעוֹלָם חַסְדּוֹ">Sl 100.5</button>
+              </p>
+            </div>
+            <div>
+              <p class="output-legend" id="heOutLegend">Transliteração (pt-BR)</p>
+              <div class="output" id="heOut" aria-live="polite" aria-labelledby="heOutLegend"></div>
+              <div class="a11y-row" style="margin-top:0.6rem">
+                <button type="button" class="btn btn-outline btn-sm" id="heCopy">${icon("copy")} Copiar</button>
+                <button type="button" class="btn btn-outline btn-sm" id="heSpeak">${icon("speaker")} Ouvir guia</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Transliterador grego -->
+      <section role="tabpanel" id="panel-gr" aria-labelledby="tab-gr" class="tabpanel" hidden>
+        <div class="tool-panel">
+          <p class="muted">Estilo acadêmico simplificado: ditongos combinados, gama nasal (γ→n),
+          espírito rude (h), e vogais longas η/ō assinaladas (ē, ō).</p>
+          <div class="tool-grid">
+            <div class="field">
+              <label for="grIn">Texto em grego</label>
+              <textarea id="grIn" class="greek-input" lang="grc" spellcheck="false"
+                        placeholder="γράψτε ἐνθάδε…">ἀγάπη</textarea>
+              <p class="hint">Experimente:
+                <button type="button" class="btn btn-ghost btn-sm" data-gr-sample="λόγος">λόγος</button>
+                <button type="button" class="btn btn-ghost btn-sm" data-gr-sample="ἁμαρτία">ἁμαρτία</button>
+                <button type="button" class="btn btn-ghost btn-sm" data-gr-sample="πνεῦμα ἅγιον">πνεῦμα ἅγιον</button>
+              </p>
+            </div>
+            <div>
+              <p class="output-legend" id="grOutLegend">Transliteração (SBL simplificado)</p>
+              <div class="output" id="grOut" aria-live="polite" aria-labelledby="grOutLegend"></div>
+              <div class="a11y-row" style="margin-top:0.6rem">
+                <button type="button" class="btn btn-outline btn-sm" id="grCopy">${icon("copy")} Copiar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <div class="callout callout--gold" style="margin-top:2rem">
+        <span class="callout-title">Limite honesto das ferramentas</span>
+        A transliteração é um mapa fonético pedagógico, não uma análise morfológica completa:
+        o sheva vocal/silencioso, o qamats-o e os contextos de begadkefat exigem avaliação da
+        palavra inteira — para isso, consulte um léxico (BDB/Strong para o AT; BDAG/Strong para o NT).
+      </div>
+    </div>`;
+    },
+    mount(root) {
+      const tabs = [...root.querySelectorAll('[role="tab"]')];
+      function selectTab(tab) {
+        tabs.forEach((t) => {
+          const on = t === tab;
+          t.setAttribute("aria-selected", String(on));
+          t.tabIndex = on ? 0 : -1;
+          root.querySelector("#" + t.getAttribute("aria-controls")).hidden = !on;
+        });
+        tab.focus();
+      }
+      tabs.forEach((t, i) => {
+        t.addEventListener("click", () => selectTab(t));
+        t.addEventListener("keydown", (e) => {
+          let next = null;
+          if (e.key === "ArrowRight" || e.key === "ArrowDown") next = tabs[(i + 1) % tabs.length];
+          else if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = tabs[(i - 1 + tabs.length) % tabs.length];
+          else if (e.key === "Home") next = tabs[0];
+          else if (e.key === "End") next = tabs[tabs.length - 1];
+          if (next) {
+            e.preventDefault();
+            selectTab(next);
+          }
+        });
+      });
+      const ilContainer = root.querySelector("#ilContainer");
+      function showVerse(id) {
+        ilContainer.innerHTML = renderInterlinear(verseById(id));
+        mountInterlinear(ilContainer);
+        root.querySelectorAll("[data-verse-btn]").forEach((b) => {
+          const on = b.dataset.verseBtn === id;
+          b.setAttribute("aria-pressed", String(on));
+          b.classList.toggle("chip-gold", on);
+        });
+        announce(`Versículo carregado: ${verseById(id).ref}.`);
+      }
+      root.querySelectorAll("[data-verse-btn]").forEach((b) => b.addEventListener("click", () => showVerse(b.dataset.verseBtn)));
+      showVerse("gn11");
+      const heIn = root.querySelector("#heIn");
+      const heOut = root.querySelector("#heOut");
+      const updateHe = () => {
+        heOut.textContent = transliterateHebrew(heIn.value);
+      };
+      heIn.addEventListener("input", updateHe);
+      root.querySelectorAll("[data-he-sample]").forEach((b) => b.addEventListener("click", () => {
+        heIn.value = b.dataset.heSample;
+        updateHe();
+      }));
+      root.querySelector("#heCopy").addEventListener("click", async () => {
+        const ok = await copyText(heOut.textContent);
+        announce(ok ? "Transliteração hebraica copiada." : "Não foi possível copiar.");
+      });
+      root.querySelector("#heSpeak").addEventListener("click", () => {
+        tts.speak(`Transliteração: ${heOut.textContent || "vazio"}`);
+      });
+      updateHe();
+      const grIn = root.querySelector("#grIn");
+      const grOut = root.querySelector("#grOut");
+      const updateGr = () => {
+        grOut.textContent = transliterateGreek(grIn.value);
+      };
+      grIn.addEventListener("input", updateGr);
+      root.querySelectorAll("[data-gr-sample]").forEach((b) => b.addEventListener("click", () => {
+        grIn.value = b.dataset.grSample;
+        updateGr();
+      }));
+      root.querySelector("#grCopy").addEventListener("click", async () => {
+        const ok = await copyText(grOut.textContent);
+        announce(ok ? "Transliteração grega copiada." : "Não foi possível copiar.");
+      });
+      updateGr();
+    }
+  };
+
+  // js/views/biblioteca.js
+  var OBRAS_NIVEL = [
+    { obra: 'Ross <span class="muted">(Hebraico)</span>', foco: "Alefato, niqqud e morfologia filológica", nivel: "1–3" },
+    { obra: 'Rega & Bergmann <span class="muted">(Grego)</span>', foco: "Morfologia nominal e declinações (método indutivo)", nivel: "2–3" },
+    { obra: 'William Mounce <span class="muted">(Grego)</span>', foco: "Morfologia nominal e verbal para leitura", nivel: "4–5" },
+    { obra: 'Daniel Wallace <span class="muted">(Grego)</span>', foco: "Sintaxe exegética e casos teológicos", nivel: "4–5" }
+  ];
+  var LIVROS = [
+    {
+      grupo: "Hebraico Bíblico",
+      modulo: "module--hebrew",
+      itens: [
+        {
+          capa: "ross.jpg",
+          titulo: "Gramática do Hebraico Bíblico",
+          autor: "Allen P. Ross",
+          detalhe: "2.ª edição",
+          foco: "A referência filológica completa: alefato, niqqud, morfologia e sintaxe hebraica com rigor acadêmico.",
+          nivel: "1–3"
+        }
+      ]
+    },
+    {
+      grupo: "Grego Koiné",
+      modulo: "module--greek",
+      itens: [
+        {
+          capa: "rega.jpg",
+          titulo: "Noções do Grego Bíblico",
+          autor: "Lourenço Stelio Rega & Johannes Bergmann",
+          detalhe: "Nova edição revista · Vida Nova",
+          foco: "Morfologia nominal e declinações pelo método indutivo — o melhor ponto de partida em português.",
+          nivel: "2–3"
+        },
+        {
+          capa: "mounce.jpg",
+          titulo: "Fundamentos do Grego Bíblico",
+          autor: "William D. Mounce",
+          detalhe: "2.ª edição · Vida Nova",
+          foco: "Morfologia nominal e verbal orientada à leitura fluente do Novo Testamento.",
+          nivel: "4–5"
+        },
+        {
+          capa: "wallace.jpg",
+          titulo: "Gramática Grega",
+          subtitulo: "Uma Sintaxe Exegética do Novo Testamento",
+          autor: "Daniel B. Wallace",
+          detalhe: "Vida Nova",
+          foco: "A síntese magistral da sintaxe grega: casos teológicos, cláusulas para entrar na exegese séria.",
+          nivel: "4–5"
+        },
+        {
+          capa: "lasor.jpg",
+          titulo: "Gramática Sintática do Grego do Novo Testamento",
+          autor: "William Sanford LaSor",
+          foco: "Sintaxe grega aplicada, ponte sólida entre a morfologia e a análise exegética.",
+          nivel: "3–4"
+        }
+      ]
+    },
+    {
+      grupo: "Exegese & Hermenêutica",
+      modulo: "module--aramaic",
+      itens: [
+        {
+          capa: "pinto.jpg",
+          titulo: "Fundamentos para Exegese do Novo Testamento",
+          subtitulo: "Manual de Sintaxe Grega",
+          autor: "Carlos Oswaldo Cardoso Pinto & Marcelo Dias",
+          detalhe: "2.ª ed. rev. e ampl. · Vida Nova",
+          foco: "O manual brasileiro de sintaxe grega a serviço da exegese — direto, rigoroso e ministerial.",
+          nivel: "3–5"
+        },
+        {
+          capa: "carson.jpg",
+          titulo: "Os Perigos da Interpretação Bíblica",
+          autor: "D. A. Carson",
+          detalhe: "Vida Nova",
+          foco: "O antídoto contra as falácias: erros lexicais, gramaticais e lógicos que arruínam interpretações.",
+          nivel: "2–5"
+        },
+        {
+          capa: "zuck.jpg",
+          titulo: "A Interpretação Bíblica",
+          subtitulo: "Meios de descobrir a verdade da Bíblia",
+          autor: "Roy B. Zuck",
+          detalhe: "Vida Nova",
+          foco: "Hermenêutica completa e acessível: gêneros literários, figuras de linguagem e aplicação.",
+          nivel: "1–4"
+        }
+      ]
+    }
+  ];
+  var CICLO = [
+    { t: "Traduzir", d: "Rega e Mounce no bolso: passe o texto do original ao português.", icon: "book" },
+    { t: "Parsing morfológico", d: "Analise cada forma — caso, tempo, modo, voz — nas ferramentas do portal e apps recomendados.", icon: "tools" },
+    { t: "Consultar a sintaxe", d: "Wallace e Pinto respondem o “porquê” teológico de cada construção.", icon: "compass" }
+  ];
+  function bookCard(l) {
+    return `
+    <article class="book-card">
+      <img class="book-cover" src="assets/img/livros/${l.capa}" loading="lazy" decoding="async"
+           alt="Capa do livro ${l.titulo}, de ${l.autor}">
+      <div class="book-info">
+        <h4>${l.titulo}</h4>
+        ${l.subtitulo ? `<p class="book-sub">${l.subtitulo}</p>` : ""}
+        <p class="book-autor">${l.autor}</p>
+        <p class="book-foco">${l.foco}</p>
+        <p class="chip-row">
+          ${l.detalhe ? `<span class="chip" title="Edição">${l.detalhe}</span>` : ""}
+          <span class="chip chip-gold">Nível ${l.nivel}</span>
+        </p>
+      </div>
+    </article>`;
+  }
+  var biblioteca_default = {
+    title: "Livros de Referência",
+    desc: "As gramáticas e manuais recomendados por língua e nível: Ross (Hebraico), Rega & Bergmann, Mounce, Wallace, LaSor (Grego), Pinto, Carson e Zuck (Exegese).",
+    render() {
+      const tabela = OBRAS_NIVEL.map((o) => `
+      <tr><td><strong>${o.obra}</strong></td><td>${o.foco}</td><td><span class="chip chip-gold">${o.nivel}</span></td></tr>`).join("");
+      const grupos = LIVROS.map((g) => `
+      <section class="section ${g.modulo}" aria-labelledby="grp-${g.grupo.split(" ")[0].toLowerCase()}">
+        <p class="section-kicker" style="color:var(--module-color)">Estante</p>
+        <h2 id="grp-${g.grupo.split(" ")[0].toLowerCase()}" style="border-color:var(--module-color)">${g.grupo}</h2>
+        <div class="book-grid">${g.itens.map(bookCard).join("")}</div>
+      </section>`).join("");
+      const ciclo = CICLO.map((c, i) => `
+      <div class="card">
+        <span class="card-icon" aria-hidden="true">${icon(c.icon)}</span>
+        <h3>${i + 1}. ${c.t}</h3>
+        <p>${c.d}</p>
+      </div>`).join("");
+      return `
+    <div class="container">
+      <header class="page-head">
+        <nav class="breadcrumb" aria-label="Trilha de navegação">
+          <ol><li><a href="#/">Início</a></li><li aria-current="page">Livros de Referência</li></ol>
+        </nav>
+        <span class="eyebrow">${icon("book")} Curadoria acadêmica</span>
+        <h1>Livros de Referência</h1>
+        <p class="lede">
+          As ferramentas aceleram, mas as <strong>gramáticas formam</strong>. Esta é a estante
+          curada da metodologia: obras de excelência didática e filológica organizadas por
+          língua e pelo nível em que entram na <a href="#/rota">sua rota de crescimento</a>.
+        </p>
+      </header>
+
+      <section class="section" aria-labelledby="foco-nivel">
+        <p class="section-kicker">Mapa da estante</p>
+        <h2 id="foco-nivel">Obras por foco didático e nível</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">Obra</th><th scope="col">Foco didático</th><th scope="col">Nível</th></tr></thead>
+            <tbody>${tabela}</tbody>
+          </table>
+        </div>
+        <div class="callout" style="margin-top:1.4rem">
+          <span class="callout-title">Da morfologia à sintaxe</span>
+          Rega e Mounce focam em <em>o que a palavra é</em> (morfologia); Wallace explica
+          <em>por que a construção importa teologicamente</em> (sintaxe). A base morfológica
+          (semanas 1–20) serve de ponte para a análise exegética avançada (semana 21 em diante).
+        </div>
+      </section>
+
+      ${grupos}
+
+      <section class="section" aria-labelledby="ciclo">
+        <p class="section-kicker">Como usar</p>
+        <h2 id="ciclo">O ciclo de integração diária</h2>
+        <div class="grid" style="margin-top:1.4rem">${ciclo}</div>
+        <div class="callout callout--gold" style="margin-top:1.4rem">
+          <span class="callout-title">Nota exegética de 2–3 linhas</span>
+          Feche cada sessão registrando uma breve nota com o que a forma gramatical mudou no
+          seu entendimento do texto. Em poucos meses você terá um caderno exegético próprio.
+        </div>
+      </section>
+
+      <div class="callout callout--danger">
+        <span class="callout-title">Direitos autorais</span>
+        As capas exibidas têm finalidade exclusivamente educacional e identificatória. Todos os
+        direitos pertencem aos autores e editoras (Vida Nova, Thomas Nelson Brasil, entre outras).
+        Adquira os volumes pelos canais oficiais — a formação que eles oferecem vale cada centavo.
+      </div>
+
+      <aside class="cta-band" aria-labelledby="cta-bib">
+        <h2 id="cta-bib">Agora, mãos à obra</h2>
+        <p>Com a estante definida, volte à rota e organize suas próximas 56 semanas de estudo — 60 minutos por dia, um bloco de cada vez.</p>
+        <a class="btn btn-gold" href="#/rota">${icon("compass")} Revisitar a Rota de Crescimento</a>
+      </aside>
+    </div>`;
+    }
+  };
+
+  // js/views/exegese.js
+  var STEPS = [
+    {
+      t: "Delimitação e observação do texto",
+      d: "Escolha a perícope (unidade literária) e leia-a várias vezes em boas traduções — depois no original. Pergunte: quem escreve, a quem, o quê, quando, onde, por quê e como. Nada de conclusões antes da observação."
+    },
+    {
+      t: "Contexto histórico e cultural",
+      d: "Reconstrua o mundo do texto: geopolítica, costumes, economia e religião da época. Um “cinto de ouro”, um “circunciso” ou um “publicano” significam coisas precisas no primeiro século."
+    },
+    {
+      t: "Contexto literário e gênero",
+      d: "Narrativa, poesia, profecia, carta e apocalipse obedecem a regras distintas. Leia o gênero certo do jeito certo, e situe o trecho no arco do livro e do cânone."
+    },
+    {
+      t: "Análise lexical (o sentido das palavras)",
+      d: "Estudo de lexemas nos dicionários (BDB, HALOT, BDAG): campo semântico, frequência de uso e uso no próprio autor. Cuidado com a falácia etimológica — significado é uso, não é raiz “mágica”."
+    },
+    {
+      t: "Análise sintática e estrutural",
+      d: "Relações de cláusulas, tempos verbais, partículas e arquiteturas literárias (paralelismo hebraico, quiasmos, inclusões). A sintaxe revela o que o autor quis enfatizar."
+    },
+    {
+      t: "Síntese teológica e canônica",
+      d: "Como o texto conversa com o restante da Escritura? A analogia da fé — passagens claras iluminando as difíceis — mantém a interpretação dentro do testemunho conjunto da Bíblia."
+    },
+    {
+      t: "Aplicação hermenêutica responsável",
+      d: "Do “o que significou” ao “o que significa”: atravesse a ponte com prudência, distinguindo princípios atemporais de expressões culturais, sempre com humildade e comunidade."
+    }
+  ];
+  var PRINCIPLES = [
+    { k: "O texto tem a palavra final", d: "A exegese serve ao texto — o oposto da eisegese, que o usa para confirmar ideias prévias." },
+    { k: "Contexto acima de tudo", d: "Nenhum versículo significa isolado o que não significaria dentro do seu parágrafo, livro e época." },
+    { k: "O claro interpreta o obscuro", d: "Doutrinas se constroem sobre passagens límpidas; enigmas pontuais não derrubam ensinos explícitos." },
+    { k: "Sem anacronismo", d: "Não leia conceitos modernos em categorias antigas: pergunte primeiro o que o autor podia querer dizer." },
+    { k: "Humildade interpretativa", d: "Intérpretes sérios divergem. Apresente o grau de certeza e ouça a tradição e a comunidade." },
+    { k: "As línguas iluminam, não mandam sozinhas", d: "Conhecer o grego/h e aramaico afina a leitura, mas não substitui contexto, lógica e vida de oração." }
+  ];
+  var GLOSSARY = [
+    { t: "Exegese", d: "Do grego exēgeomai (“conduzir para fora”): extrair do texto o seu sentido original." },
+    { t: "Eisegese", d: "O oposto da exegese: “ler para dentro” do texto ideias que não estão ali. A principal falha interpretativa." },
+    { t: "Hermenêutica", d: "Os princípios e a teoria da interpretação; a exegese é a sua aplicação prática." },
+    { t: "Perícope", d: "Unidade literária completa delimitada para estudo (um parágrafo, um salmo, uma narrativa)." },
+    { t: "Lexema", d: "A forma de dicionário de uma palavra; no hebraico, vinculada à raiz (shoresh) trilítera." },
+    { t: "Texto Massorético", d: "Tradição hebraica do AT fixada pelos masoretas (séc. VI–X d.C.), base das edições BHS/BHQ." },
+    { t: "Septuaginta (LXX)", d: "Tradução grega do Antigo Testamento (séc. III–II a.C.); a Bíblia mais citada no NT." },
+    { t: "Qerê / Ketiv", d: "Notas masoréticas: o que se lê (qerê) vs. o que está escrito (ketiv) na linha do texto." },
+    { t: "Targum", d: "Traduções aramaicas sinagogais do AT, testemunhas de como os judeus liam seus textos." },
+    { t: "Interlinear", d: "Edição com o texto original e glosas alinhadas palavra a palavra — ponte entre tradução e original." },
+    { t: "Quiasmo", d: "Estrutura em espelho (A-B-B′-A′) comum na Bíblia hebraica; o centro costuma ser o ponto de ênfase." }
+  ];
+  var exegese_default = {
+    title: "Exegese Integrada",
+    desc: "Método exegético em 7 passos — da observação do texto original à aplicação — com princípios hermenêuticos e glossário.",
+    render() {
+      const steps = STEPS.map((s) => `
+      <li>
+        <div>
+          <h3>${s.t}</h3>
+          <p>${s.d}</p>
+        </div>
+      </li>`).join("");
+      const principles = PRINCIPLES.map((p) => `
+      <li><span><strong>${p.k}.</strong> ${p.d}</span></li>`).join("");
+      const glossary = GLOSSARY.map((g) => `
+      <div class="g-term">
+        <dt>${g.t}</dt>
+        <dd>${g.d}</dd>
+      </div>`).join("");
+      return `
+    <div class="container">
+      <header class="page-head">
+        <nav class="breadcrumb" aria-label="Trilha de navegação">
+          <ol><li><a href="#/">Início</a></li><li aria-current="page">Exegese Integrada</li></ol>
+        </nav>
+        <span class="eyebrow">${icon("compass")} Método · Do original à aplicação</span>
+        <h1>Exegese Integrada</h1>
+        <p class="lede">
+          Exegese é a arte e a ciência de <strong>deixar o texto falar</strong>. Este método
+          integra línguas originais, contexto, literatura e teologia em sete passos que
+          transformam o estudo bíblico de leitura apressada em escuta profunda.
+        </p>
+      </header>
+
+      <div class="callout">
+        <span class="callout-title">A regra de ouro</span>
+        Observe antes de interpretar; interprete antes de aplicar; aplique antes de ensinar.
+        Quem pula etapas quase sempre encontra no texto apenas o próprio eco.
+      </div>
+
+      <section class="section" aria-labelledby="metodo">
+        <p class="section-kicker">O fluxo de trabalho</p>
+        <h2 id="metodo">Sete passos do texto original ao coração</h2>
+        <ol class="steps">${steps}</ol>
+      </section>
+
+      <section class="section" aria-labelledby="principios">
+        <p class="section-kicker">Guarda-corpos</p>
+        <h2 id="principios">Princípios hermenêuticos</h2>
+        <ul class="check-list" style="margin-top:1.2rem">${principles}</ul>
+      </section>
+
+      <section class="section" aria-labelledby="glossario">
+        <p class="section-kicker">Vocabulário técnico</p>
+        <h2 id="glossario">Glossário do exegeta</h2>
+        <dl class="glossary">${glossary}</dl>
+      </section>
+
+      <blockquote class="quote-band">
+        “Interpretar é fácil quando não se busca a real mensagem.”
+        <footer>O estudo das línguas originais só é válido se acompanhado da hermenêutica — contexto histórico, cultural e figuras de linguagem.</footer>
+      </blockquote>
+
+      <section class="section" aria-labelledby="classicos">
+        <p class="section-kicker">Base bibliográfica</p>
+        <h2 id="classicos">Aprofunde com os clássicos</h2>
+        <p>Os guarda-corpos hermenêuticos que sustentam este método:</p>
+        <div class="book-strip">
+          <a href="#/biblioteca" aria-label="Ver Os Perigos da Interpretação Bíblica na biblioteca">
+            <img src="assets/img/livros/carson.jpg" alt="Capa de Os Perigos da Interpretação Bíblica, de D. A. Carson" loading="lazy" decoding="async">
+            <span><b>Os Perigos da Interpretação Bíblica</b><span>D. A. Carson — falácias que arruínam exegeses</span></span>
+          </a>
+          <a href="#/biblioteca" aria-label="Ver A Interpretação Bíblica na biblioteca">
+            <img src="assets/img/livros/zuck.jpg" alt="Capa de A Interpretação Bíblica, de Roy B. Zuck" loading="lazy" decoding="async">
+            <span><b>A Interpretação Bíblica</b><span>Roy B. Zuck — meios de descobrir a verdade</span></span>
+          </a>
+          <a href="#/biblioteca" aria-label="Ver Fundamentos para Exegese do Novo Testamento na biblioteca">
+            <img src="assets/img/livros/pinto.jpg" alt="Capa de Fundamentos para Exegese do Novo Testamento, de Pinto e Dias" loading="lazy" decoding="async">
+            <span><b>Fundamentos para Exegese do NT</b><span>Pinto & Dias — manual de sintaxe grega</span></span>
+          </a>
+        </div>
+      </section>
+
+      <aside class="cta-band" aria-labelledby="cta-ex">
+        <h2 id="cta-ex">Treine com textos reais</h2>
+        <p>Aplique os sete passos agora mesmo: comece pelo analisador interlinear e observe morfologia, léxico e estrutura em Gênesis 1.1, Daniel 5.25 e João 1.1.</p>
+        <a class="btn btn-gold" href="#/ferramentas">${icon("tools")} Abrir o analisador interlinear</a>
+      </aside>
+    </div>`;
+    }
+  };
+
+  // js/views/sobre.js
+  var PROPOSITOS = [
+    { t: "Porta de entrada para o aprendizado", ok: true, d: "O portal existe para iniciar estudantes no caminho das línguas bíblicas, do zero absoluto à leitura autônoma." },
+    { t: "Recurso imparcial e abrangente", ok: true, d: "Apresentamos a metodologia e as referências acadêmicas reconhecidas, sem viés denominacional na apresentação dos dados linguísticos." },
+    { t: "Feito para o estudo pessoal das Escrituras", ok: true, d: "Cada página, ferramenta e rota foi pensada para o devocional estudioso e para a preparação de ensino ministerial." },
+    { t: "Não substitui formação acadêmica", ok: false, d: "O AutenticSense é guia e caixa de ferramentas — não curso superior. Para formação formal, procure as instituições recomendadas ao final da página." },
+    { t: "Licença Creative Commons", ok: true, d: "O conteúdo educacional é livre para uso com atribuição; o código é aberto (MIT). Nada aqui é vendido ou paywalled." }
+  ];
+  var APPS = [
+    { nome: "Sofia App", tag: "Análise exegética profunda", d: "Anatomia do estudo em camadas: morfologia gramatical completa, domínios Louw-Nida e léxicos Strong e Goodrick-Kohlenberger — com privacidade absoluta e foco acadêmico." },
+    { nome: "Ginoskos", tag: "Leitura contínua", d: "Leitura grega e hebraica com parsing integrado, ideal para o bloco de imersão diária." },
+    { nome: "Global Bible Tools", tag: "Pesquisa morfológica", d: "Pesquisa avançada de formas, morfologias e estruturas — a mesa de trabalho do estudante avançado." },
+    { nome: "Blue Letter Bible", tag: "Análise léxica", d: "Ferramenta indispensável de consulta léxica, dicionários e análise interlinear em português e inglês." },
+    { nome: "Sefaria", tag: "Textos comparados", d: "Biblioteca digital aberta com acesso gratuito a textos originais e traduções comparadas." },
+    { nome: "Anki", tag: "Repetição espaçada (SRS)", d: "O coração do Bloco 1: flashcards de vocabulário e paradigmas com algoritmo de memória de longo prazo." }
+  ];
+  var ESTRATEGIAS_IA2 = [
+    "Ditados fonéticos interativos (som-grafia)",
+    "Parsing reverso com feedback imediato",
+    "Análise de desvios de verbos fracos e estruturas complexas",
+    "Co-mentoria exegética no protocolo S.O.I.A. (Sintaxe, Observação, Interpretação, Aplicação)"
+  ];
+  var INSTITUICOES = [
+    { nome: "Faculdade Batista Logos", uf: "SP", d: "Tradição batista com forte ênfase bíblico-teológica e formação ministerial em São Paulo." },
+    { nome: "Seminário Batista do Cariri", uf: "CE", d: "Formação teológica regional consolidada no interior do Ceará." },
+    { nome: "SBRS — Seminário Teológico Batista do Rio Grande do Sul", uf: "PR", d: "Seminário em Curitiba com currículo completo e corpo docente qualificado." },
+    { nome: "AIBREB", uf: "Nacional", d: "Rede nacional de ensino teológico à distância e presencial, com trilhas em línguas bíblicas." }
+  ];
+  var sobre_default = {
+    title: "Sobre",
+    desc: "Propósitos e isenções, tecnologia e ferramentas recomendadas e instituições parceiras da metodologia AutenticSense.",
+    render() {
+      const propositos = PROPOSITOS.map((p) => `
+      <li><span><strong>${p.t}.</strong> ${p.d}</span></li>`).join("");
+      const apps = APPS.map((a) => `
+      <div class="app-card">
+        <h4>${a.nome}</h4>
+        <p class="app-tag">${a.tag}</p>
+        <p style="margin-top:0.4rem">${a.d}</p>
+      </div>`).join("");
+      const ia = ESTRATEGIAS_IA2.map((e) => `<li><span>${e}</span></li>`).join("");
+      const inst = INSTITUICOES.map((i) => `
+      <div class="app-card">
+        <h4>${i.nome} <span class="chip chip-gold">${i.uf}</span></h4>
+        <p style="margin-top:0.4rem">${i.d}</p>
+      </div>`).join("");
+      return `
+    <div class="container">
+      <header class="page-head">
+        <nav class="breadcrumb" aria-label="Trilha de navegação">
+          <ol><li><a href="#/">Início</a></li><li aria-current="page">Sobre o projeto</li></ol>
+        </nav>
+        <span class="eyebrow">${icon("info")} AutenticSense v2.0</span>
+        <h1>Sobre o AutenticSense</h1>
+        <p class="lede">
+          <strong>AutenticSense — “O Sentido Autêntico”</strong> — nasceu de uma convicção:
+          todo estudante da Bíblia, e não apenas especialistas, merece um mapa claro para
+          as línguas originais, com método, ferramentas e referências de excelência.
+        </p>
+      </header>
+
+      <section class="section" aria-labelledby="propositos">
+        <p class="section-kicker">Nosso termo de uso honesto</p>
+        <h2 id="propositos">Propósitos e isenções</h2>
+        <ul class="check-list" style="margin-top:1.2rem">${propositos}</ul>
+      </section>
+
+      <section class="section" aria-labelledby="tecnologia">
+        <p class="section-kicker">Ecossistema de apoio</p>
+        <h2 id="tecnologia">Tecnologia e ferramentas recomendadas</h2>
+        <p>Beyond this portal, o estudioso moderno conta com um ecossistema gratuito de
+        aplicativos e plataformas para o parsing, a consulta léxica e a memorização:</p>
+        <div class="app-grid">${apps}</div>
+
+        <figure class="info-figure">
+          <img src="assets/img/info/sofia.jpg" loading="lazy" decoding="async"
+               alt="Infográfico Sofia App — Anatomia do Estudo Bíblico Profundo: núcleo de análise exegética com morfologia gramatical, domínios Louw-Nida e léxicos Strong e GK, sobre pilares de avaliação máxima, privacidade de dados absoluta e foco em referência acadêmica.">
+          <figcaption><strong>Sofia App:</strong> a anatomia do estudo bíblico profundo em camadas — da morfologia à semântica Louw-Nida, sobre uma base de privacidade absoluta.</figcaption>
+        </figure>
+
+        <h3 style="margin-top:2rem">A IA como co-mentora</h3>
+        <p>Na metodologia de aceleração, a inteligência artificial (por exemplo, o Notebook
+        Gemini) gera prática personalizada que nenhum livro estático oferece:</p>
+        <ul class="check-list" style="margin-top:0.8rem">${ia}</ul>
+        <p class="small muted" style="margin-top:0.8rem">Detalhes, validação acadêmica e comparativo de eficácia na <a href="#/rota">Rota de Crescimento</a>.</p>
+      </section>
+
+      <section class="section" aria-labelledby="instituicoes">
+        <p class="section-kicker">Para ir além</p>
+        <h2 id="instituicoes">Instituições recomendadas</h2>
+        <p>O portal não substitui a formação teológica formal. Para graduação e
+        pós-graduação em línguas bíblicas e exegese, recomendamos instituições reconhecidas:</p>
+        <div class="app-grid">${inst}</div>
+      </section>
+
+      <section class="section" aria-labelledby="instalar">
+        <p class="section-kicker">Aplicativo instalável</p>
+        <h2 id="instalar">Como instalar no seu dispositivo</h2>
+        <ol class="steps">
+          <li><div><h3>No computador (Chrome/Edge)</h3><p>Clique no botão <strong>Instalar</strong> no topo da página (ou no ícone de instalação da barra de endereço) e confirme. O app abre em janela própria.</p></div></li>
+          <li><div><h3>No Android (Chrome)</h3><p>Toque no menu <strong>⋮</strong> e escolha <strong>“Adicionar à tela inicial”</strong> ou <strong>“Instalar aplicativo”</strong>.</p></div></li>
+          <li><div><h3>No iPhone/iPad (Safari)</h3><p>Toque em <strong>Compartilhar</strong> e depois em <strong>“Adicionar à Tela de Início”</strong>. O ícone do pergaminho dourado aparece entre seus apps.</p></div></li>
+        </ol>
+        <div class="callout callout--ok">
+          <span class="callout-title">Depois de instalado</span>
+          Todo o conteúdo — textos, guias, ferramentas, infográficos e fontes — funciona
+          <strong>sem internet</strong>, ideal para estudo em locais sem conexão.
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="ficha">
+        <p class="section-kicker">Transparência</p>
+        <h2 id="ficha">Ficha técnica</h2>
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><th scope="row">Nome</th><td>AutenticSense — O Sentido Autêntico</td></tr>
+              <tr><th scope="row">Tipo</th><td>Progressive Web App (PWA) educacional, standalone e offline-first</td></tr>
+              <tr><th scope="row">Stack</th><td>HTML5 semântico, CSS3 modular (design tokens) e JavaScript ES6 puro — zero dependências de runtime</td></tr>
+              <tr><th scope="row">Tipografia</th><td>Noto Serif & Noto Serif Hebrew (auto-hospedadas), pilhas nativas do sistema como fallback</td></tr>
+              <tr><th scope="row">Acessibilidade</th><td>WCAG 2.2 AA: TTS, modo dislexia, alto contraste, tema escuro, teclado completo, aria-live</td></tr>
+              <tr><th scope="row">Fontes textuais</th><td>AT: tradição massorética (BHS/BHQ) · NT: texto crítico grego (NA28/UBS5) — glosas pedagógicas originais</td></tr>
+              <tr><th scope="row">Metodologia</th><td>Híbrida multimodal integrada: 5 níveis, ritmo 60 min/dia, SRS (Anki), co-mentoria com IA e obras de referência acadêmica</td></tr>
+              <tr><th scope="row">Conteúdo</th><td>Licença Creative Commons — uso educacional livre com atribuição · Código sob licença MIT</td></tr>
+              <tr><th scope="row">Privacidade</th><td>Nenhum dado pessoal coletado, sem cookies de terceiros, sem servidores de aplicação</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside class="cta-band" aria-labelledby="cta-sobre">
+        <h2 id="cta-sobre">Comece a jornada</h2>
+        <p>Do álefe ao ômega: três línguas, cinco níveis, um só sentido — o sentido autêntico.</p>
+        <a class="btn btn-gold" href="#/rota">Iniciar pelo Nível 1</a>
+      </aside>
+    </div>`;
+    }
+  };
+
+  // js/views/notfound.js
+  var notfound_default = {
+    title: "Página não encontrada",
+    desc: "A página solicitada não existe no AutenticSense.",
+    render() {
+      return `
+    <div class="container section center" style="text-align:center;padding-block:6rem">
+      <p class="eyebrow">Erro 404</p>
+      <h1>Esta página se perdeu no deserto</h1>
+      <p class="lede" style="margin-inline:auto">O caminho que você digitou não leva a nenhum texto —
+      nem em hebraico, nem em aramaico, nem em grego.</p>
+      <p style="margin-top:1.5rem">
+        <a class="btn btn-gold" href="#/">${icon("home")} Voltar ao início</a>
+        <a class="btn btn-outline" href="#/ferramentas">Ir às ferramentas</a>
+      </p>
+    </div>`;
+    }
+  };
+
+  // js/views/routes.js
+  var routes = [
+    { path: "/", view: home_default },
+    { path: "/rota", view: rota_default },
+    { path: "/hebraico", view: hebraico_default },
+    { path: "/aramaico", view: aramaico_default },
+    { path: "/grego", view: grego_default },
+    { path: "/ferramentas", view: ferramentas_default },
+    { path: "/biblioteca", view: biblioteca_default },
+    { path: "/exegese", view: exegese_default },
+    { path: "/sobre", view: sobre_default },
+    { path: "*", view: notfound_default }
+  ];
+  var navItems = [
+    { path: "/", label: "Início", desc: "Visão geral do portal", icon: "home" },
+    { path: "/rota", label: "Rota", desc: "Níveis, metodologia e ritmo diário", icon: "compass" },
+    { path: "/hebraico", label: "Hebraico", desc: "Aleph-Bet, niqud e Gênesis 1.1", icon: "scroll" },
+    { path: "/aramaico", label: "Aramaico", desc: "Daniel, Esdras e a voz de Jesus", icon: "text" },
+    { path: "/grego", label: "Grego Koiné", desc: "Alfabeto, casos e João 1.1", icon: "alpha" },
+    { path: "/ferramentas", label: "Ferramentas", desc: "Interlinear e transliteração", icon: "tools" },
+    { path: "/biblioteca", label: "Livros", desc: "Ross, Rega, Mounce, Wallace e mais", icon: "book" },
+    { path: "/exegese", label: "Exegese", desc: "Método integrado em 7 passos", icon: "sparkle", top: false },
+    { path: "/sobre", label: "Sobre", desc: "Propósitos, tecnologia e instituições", icon: "info", top: false }
+  ];
+
+  // js/app.js
+  var $ = (sel) => document.querySelector(sel);
+  function renderNav() {
+    const top = $("#navTop");
+    const drawer = $("#navDrawerList");
+    if (top) {
+      top.innerHTML = navItems.filter((n) => n.top !== false).map((n) => `<a href="#${n.path}" data-route="${n.path}">${n.label}</a>`).join("");
+    }
+    if (drawer) {
+      drawer.innerHTML = navItems.map((n) => `
+      <li>
+        <a href="#${n.path}" data-route="${n.path}">
+          ${icon(n.icon)}
+          <span>${n.label}<span class="nav-desc">${n.desc}</span></span>
+        </a>
+      </li>`).join("");
+    }
+  }
+  function updateActiveNav(path) {
+    document.querySelectorAll("[data-route]").forEach((a) => {
+      if (a.dataset.route === path) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+  }
+  function initDrawer() {
+    const drawer = $("#drawer");
+    const toggle = $("#navToggle");
+    const backdrop = $("#backdrop");
+    const closeBtn = $("#drawerClose");
+    if (!drawer || !toggle || !backdrop) return;
+    let releaseTrap = null;
+    function openDrawer() {
+      drawer.hidden = false;
+      backdrop.hidden = false;
+      requestAnimationFrame(() => {
+        drawer.classList.add("is-open");
+        backdrop.classList.add("is-open");
+      });
+      toggle.setAttribute("aria-expanded", "true");
+      toggle.setAttribute("aria-label", "Fechar menu de navegação");
+      releaseTrap = trapFocus(drawer, closeDrawer);
+      closeBtn == null ? void 0 : closeBtn.focus();
+      announce("Menu de navegação aberto.");
+    }
+    function closeDrawer({ restoreFocus = true } = {}) {
+      drawer.classList.remove("is-open");
+      backdrop.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Abrir menu de navegação");
+      releaseTrap == null ? void 0 : releaseTrap();
+      releaseTrap = null;
+      window.setTimeout(() => {
+        drawer.hidden = true;
+        backdrop.hidden = true;
+      }, 280);
+      if (restoreFocus) toggle.focus();
+    }
+    toggle.addEventListener("click", () => {
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+      isOpen ? closeDrawer() : openDrawer();
+    });
+    closeBtn == null ? void 0 : closeBtn.addEventListener("click", () => closeDrawer());
+    backdrop.addEventListener("click", () => closeDrawer({ restoreFocus: false }));
+    drawer.addEventListener("click", (e) => {
+      if (e.target.closest("a[data-route]")) closeDrawer({ restoreFocus: false });
+    });
+  }
+  function initThemeToggle() {
+    const btn = $("#themeToggle");
+    if (!btn) return;
+    btn.addEventListener("click", () => a11yStore.toggleTheme());
+  }
+  function initNetBadge() {
+    const badge = $("#netBadge");
+    if (!badge) return;
+    function update() {
+      const online = navigator.onLine;
+      badge.hidden = false;
+      badge.textContent = online ? "online" : "offline";
+      badge.classList.toggle("is-off", !online);
+    }
+    window.addEventListener("online", () => {
+      update();
+      announce("Conexão restabelecida.");
+    });
+    window.addEventListener("offline", () => {
+      update();
+      announce("Você está offline. O conteúdo continua disponível.");
+    });
+    update();
+  }
+  function initInstall() {
+    const btn = $("#installBtn");
+    if (!btn) return;
+    let deferred = null;
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferred = e;
+      btn.hidden = false;
+    });
+    btn.addEventListener("click", async () => {
+      if (!deferred) return;
+      deferred.prompt();
+      const { outcome } = await deferred.userChoice;
+      if (outcome === "accepted") announce("Aplicativo instalado com sucesso.");
+      deferred = null;
+      btn.hidden = true;
+    });
+    window.addEventListener("appinstalled", () => {
+      btn.hidden = true;
+    });
+  }
+  function initSpeakDelegate() {
+    document.addEventListener("click", (e) => {
+      const el = e.target.closest("[data-speak]");
+      if (!el) return;
+      if (tts.speaking) tts.stop();
+      const ok = tts.speak(el.dataset.speak, { lang: el.dataset.speakLang || "pt-BR" });
+      if (!ok) announce("Leitura em voz alta indisponível neste navegador.", true);
+    });
+  }
+  function afterRoute(route, path) {
+    tts.stop();
+    const title = route.view.title;
+    document.title = `${title} · AutenticSense — O Sentido Autêntico`;
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta && route.view.desc) meta.setAttribute("content", route.view.desc);
+    updateActiveNav(path === "/" ? "/" : path);
+    window.scrollTo({ top: 0, behavior: "auto" });
+    const h1 = document.querySelector("#app h1");
+    if (h1) {
+      h1.setAttribute("tabindex", "-1");
+      h1.focus({ preventScroll: true });
+    }
+    announce(`Página carregada: ${title}.`);
+  }
+  function registerSW() {
+    if (!("serviceWorker" in navigator)) return;
+    window.addEventListener("load", async () => {
+      try {
+        await navigator.serviceWorker.register("./sw.js");
+        console.info("[osa] Service Worker registrado — modo offline ativo.");
+      } catch (err) {
+        console.warn("[osa] Falha ao registrar o Service Worker:", err);
+      }
+    });
+  }
+  renderNav();
+  initDrawer();
+  initThemeToggle();
+  initNetBadge();
+  initInstall();
+  initSpeakDelegate();
+  initAccessibility();
+  var yearEl = $("#year");
+  if (yearEl) yearEl.textContent = String((/* @__PURE__ */ new Date()).getFullYear());
+  initRouter({
+    routes,
+    root: document.getElementById("app"),
+    onRoute: afterRoute
+  });
+  registerSW();
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{
+  "name": "AutenticSense — O Sentido Autêntico",
+  "short_name": "AutenticSense",
+  "id": "/",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FBFAF7",
+  "theme_color": "#0F3731",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "description": "Portal educacional offline de línguas bíblicas: Hebraico, Aramaico e Grego Koiné, com ferramentas interlineares e exegese integrada.",
+  "categories": ["education", "books", "reference"],
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Rota de Crescimento",
+      "short_name": "Rota",
+      "description": "5 níveis do alefato à exegese, com ritmo diário de 60 minutos",
+      "url": "./index.html#/rota"
+    },
+    {
+      "name": "Hebraico Bíblico",
+      "short_name": "Hebraico",
+      "description": "Aleph-Bet, niqud e leitura guiada de Gênesis 1.1",
+      "url": "./index.html#/hebraico"
+    },
+    {
+      "name": "Ferramentas",
+      "short_name": "Ferramentas",
+      "description": "Analisador interlinear e transliteradores",
+      "url": "./index.html#/ferramentas"
+    },
+    {
+      "name": "Grego Koiné",
+      "short_name": "Grego",
+      "description": "Alfabeto grego e leitura de João 1.1",
+      "url": "./index.html#/grego"
+    }
+  ]
+}

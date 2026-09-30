@@ -1,0 +1,6 @@
+# AutenticSense — O Sentido Autêntico
+User-agent: *
+Allow: /
+
+# ATENÇÃO: ajuste o domínio ao fazer o deploy
+Sitemap: https://autenticsense.example.com/sitemap.xml
