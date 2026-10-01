@@ -1,4 +1,4 @@
-# AutenticSense · O Sentido Autêntico
+# Sentido Autêntico · by rogerelizar
 
 Portal educacional **offline-first (PWA)** para o estudo das línguas bíblicas originais — **Hebraico**, **Aramaico** e **Grego Koiné** — com ferramentas interativas e exegese integrada. Todo o conteúdo em **português do Brasil (pt-BR)**.
 

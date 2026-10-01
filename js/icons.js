@@ -18,7 +18,13 @@ const PATHS = {
   reset: 'M4 9a8 8 0 1 1-1 6m1-6H1m3 0V4',
   download: 'M12 3v12m0 0 4-4m-4 4-4-4M4 21h16',
   sparkle: 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8Zm7 11 1 2.6 2.6 1-2.6 1L19 21l-1-2.4-2.6-1 2.6-1Zm-14 0 .8 2.2L8 17l-2.2.8L5 20l-.8-2.2L2 17l2.2-.8Z',
-  keyboard: 'M3 7h18v11H3zM6 11h.01M10 11h.01M14 11h.01M18 11h.01M7 15h10'
+  keyboard: 'M3 7h18v11H3zM6 11h.01M10 11h.01M14 11h.01M18 11h.01M7 15h10',
+  external: 'M14 4h6v6M20 4l-8.5 8.5M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5',
+  /* Símbolo internacional de acesso: círculo, cabeça, braços abertos e pernas */
+  accessibility: 'M12 2.6a9.4 9.4 0 1 0 0 18.8 9.4 9.4 0 0 0 0-18.8'
+    + 'M12 5.6a1.45 1.45 0 1 0 0 2.9 1.45 1.45 0 0 0 0-2.9'
+    + 'M6.7 10.3c3.5.95 7.1.95 10.6 0'
+    + 'M12 10.6v3.3m0 0-2.3 4.7m2.3-4.7 2.3 4.7'
 };
 
 export function icon(name, cls = 'icon') {

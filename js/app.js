@@ -8,6 +8,7 @@ import { initAccessibility, a11yStore, announce, trapFocus } from './a11y.js';
 import { tts } from './tts.js';
 import { icon } from './icons.js';
 import { routes, navItems } from './views/routes.js';
+import { initMobile } from './mobile.js';
 
 const $ = (sel) => document.querySelector(sel);
 
@@ -110,31 +111,74 @@ function initNetBadge() {
 function initInstall() {
   const btn = $('#installBtn');
   if (!btn) return;
+
+  /* Já rodando como app instalado? O botão não faz sentido algum. */
+  const instalado = () =>
+    window.matchMedia('(display-mode: standalone)').matches ||
+    window.matchMedia('(display-mode: fullscreen)').matches ||
+    window.matchMedia('(display-mode: minimal-ui)').matches ||
+    window.navigator.standalone === true ||
+    document.referrer.startsWith('android-app://');
+
   let deferred = null;
+
+  const esconder = () => {
+    deferred = null;
+    btn.hidden = true;
+    btn.setAttribute('aria-hidden', 'true');
+    btn.style.display = 'none';
+  };
+
+  const mostrar = () => {
+    if (instalado()) return esconder();
+    btn.hidden = false;
+    btn.removeAttribute('aria-hidden');
+    btn.style.removeProperty('display');
+  };
+
+  if (instalado()) {
+    esconder();
+    return; /* nem registra os ouvintes */
+  }
+
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
+    if (instalado()) return esconder();
     deferred = e;
-    btn.hidden = false;
+    mostrar();
   });
+
   btn.addEventListener('click', async () => {
-    if (!deferred) return;
+    if (!deferred) return esconder();
     deferred.prompt();
     const { outcome } = await deferred.userChoice;
     if (outcome === 'accepted') announce('Aplicativo instalado com sucesso.');
-    deferred = null;
-    btn.hidden = true;
+    esconder();
   });
-  window.addEventListener('appinstalled', () => { btn.hidden = true; });
-}
 
-/* ---------- Leitura sob demanda: botões data-speak nas views ---------- */
-function initSpeakDelegate() {
-  document.addEventListener('click', (e) => {
-    const el = e.target.closest('[data-speak]');
-    if (!el) return;
-    if (tts.speaking) tts.stop();
-    const ok = tts.speak(el.dataset.speak, { lang: el.dataset.speakLang || 'pt-BR' });
-    if (!ok) announce('Leitura em voz alta indisponível neste navegador.', true);
+  window.addEventListener('appinstalled', () => {
+    announce('Aplicativo instalado com sucesso.');
+    esconder();
+  });
+
+  /* O modo de exibição muda ao abrir pelo ícone: reavalia na hora. */
+  ['standalone', 'fullscreen', 'minimal-ui'].forEach((modo) => {
+    const mq = window.matchMedia(`(display-mode: ${modo})`);
+    const onChange = (e) => { if (e.matches) esconder(); };
+    mq.addEventListener ? mq.addEventListener('change', onChange)
+                        : mq.addListener(onChange);
+  });
+
+  /* Chrome/Edge: confirma se o app já está instalado nesta origem. */
+  if (navigator.getInstalledRelatedApps) {
+    navigator.getInstalledRelatedApps()
+      .then((apps) => { if (apps && apps.length) esconder(); })
+      .catch(() => { /* sem suporte, tudo bem */ });
+  }
+
+  /* Ao voltar o foco (ex.: instalou por outro caminho), revalida. */
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && instalado()) esconder();
   });
 }
 
@@ -142,7 +186,7 @@ function initSpeakDelegate() {
 function afterRoute(route, path) {
   tts.stop();
   const title = route.view.title;
-  document.title = `${title} · AutenticSense — O Sentido Autêntico`;
+  document.title = `${title} · Sentido Autêntico`;
   const meta = document.querySelector('meta[name="description"]');
   if (meta && route.view.desc) meta.setAttribute('content', route.view.desc);
 
@@ -177,8 +221,8 @@ initDrawer();
 initThemeToggle();
 initNetBadge();
 initInstall();
-initSpeakDelegate();
 initAccessibility();
+initMobile();
 
 const yearEl = $('#year');
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());

@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sentido Autêntico — Como instalar no celular (Android e iPhone)</title>
+<style>
+  :root{
+    --verde:#0F3731; --verde-esc:#0A2723; --ouro:#C5A059; --ouro-esc:#8A6A2F;
+    --papel:#FBFAF7; --tinta:#1A1A18; --suave:#6B6B63; --borda:#E4E0D6;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--papel); color:var(--tinta);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.65; font-size:17px;
+    padding-left:env(safe-area-inset-left); padding-right:env(safe-area-inset-right);
+  }
+  header{
+    background:var(--verde); color:var(--papel);
+    padding:calc(2.2rem + env(safe-area-inset-top)) 1.25rem 2rem; text-align:center;
+  }
+  header h1{margin:0 0 .35rem; font-size:1.65rem; font-weight:700; letter-spacing:-.01em}
+  header p{margin:0; color:var(--ouro); font-size:1rem}
+  main{max-width:46rem; margin:0 auto; padding:1.5rem 1.25rem 4rem}
+  h2{
+    color:var(--verde); font-size:1.28rem; margin:2.4rem 0 .5rem;
+    padding-bottom:.4rem; border-bottom:2px solid var(--ouro);
+  }
+  h3{color:var(--verde); font-size:1.05rem; margin:1.6rem 0 .4rem}
+  p{margin:.55rem 0}
+  ol,ul{padding-left:1.35rem; margin:.6rem 0}
+  li{margin:.5rem 0}
+  code{background:rgba(15,55,49,.07); padding:.12em .42em; border-radius:5px; font-size:.9em}
+  .cartao{
+    background:#fff; border:1px solid var(--borda); border-left:5px solid var(--ouro);
+    border-radius:14px; padding:1.1rem 1.2rem; margin:1.1rem 0;
+  }
+  .cartao h3{margin-top:0}
+  .aviso{
+    background:#FFF8E8; border:1px solid #E6D3A3; border-left:5px solid var(--ouro-esc);
+    border-radius:12px; padding:.9rem 1.1rem; margin:1.1rem 0; font-size:.95rem;
+  }
+  .ok{background:#EEF6F2; border-color:#BBD9CD; border-left-color:var(--verde)}
+  .rota{
+    display:flex; gap:.85rem; align-items:flex-start;
+    background:#fff; border:1px solid var(--borda); border-radius:14px;
+    padding:1rem 1.1rem; margin:.85rem 0;
+  }
+  .num{
+    flex:0 0 2rem; height:2rem; border-radius:50%; background:var(--verde); color:#fff;
+    display:grid; place-items:center; font-weight:700; font-size:.95rem;
+  }
+  .rota div p:first-child{margin-top:0}
+  table{width:100%; border-collapse:collapse; margin:1rem 0; font-size:.93rem; display:block; overflow-x:auto}
+  th,td{border:1px solid var(--borda); padding:.6rem .7rem; text-align:left; vertical-align:top}
+  th{background:var(--verde); color:#fff; font-weight:600}
+  tr:nth-child(even) td{background:#F6F4EF}
+  .selo{
+    display:inline-block; background:var(--verde); color:#fff; font-size:.76rem;
+    font-weight:700; padding:.18em .6em; border-radius:99px; margin-right:.4rem;
+    text-transform:uppercase; letter-spacing:.03em;
+  }
+  .selo.ios{background:#1d1d1f}
+  .selo.and{background:#3DDC84; color:#04301c}
+  footer{
+    text-align:center; color:var(--suave); font-size:.86rem;
+    padding:2rem 1.25rem calc(2rem + env(safe-area-inset-bottom)); border-top:1px solid var(--borda);
+  }
+  @media(prefers-color-scheme:dark){
+    body{background:#12100E; color:#E9E6DE}
+    .cartao,.rota{background:#1A1816; border-color:#332F28}
+    th{background:var(--verde-esc)}
+    tr:nth-child(even) td{background:#1F1C19}
+    td{border-color:#332F28}
+    .aviso{background:#241F12; border-color:#5C4A22}
+    .ok{background:#13211C; border-color:#2A4A3E}
+    code{background:rgba(255,255,255,.08)}
+    h2,h3{color:var(--ouro)}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Sentido Autêntico no seu celular</h1>
+  <p>Guia de instalação · Android e iPhone</p>
+</header>
+
+<main>
+
+<div class="aviso ok">
+  <strong>Em uma frase:</strong> o Sentido Autêntico é um <em>aplicativo web</em> (PWA). Ele se instala
+  direto pelo navegador do celular — sem Play Store, sem App Store, sem cadastro e sem pagar nada.
+  Depois de instalado, funciona <strong>sem internet</strong>.
+</div>
+
+<h2>Qual caminho é o seu?</h2>
+
+<p>Existem três formas de colocar o Sentido Autêntico no celular. Escolha pela sua situação:</p>
+
+<table>
+  <tr><th>Situação</th><th>Caminho recomendado</th><th>Instala como app?</th></tr>
+  <tr>
+    <td>Quero o jeito mais simples possível, só ver funcionar</td>
+    <td><strong>Caminho 1</strong> — enviar o arquivo único</td>
+    <td>Não, abre como página</td>
+  </tr>
+  <tr>
+    <td>Tenho um computador na mesma casa/Wi-Fi</td>
+    <td><strong>Caminho 2</strong> — servidor com QR Code</td>
+    <td>Android sim · iPhone só atalho</td>
+  </tr>
+  <tr>
+    <td>Quero o app completo, offline de verdade, nos dois sistemas</td>
+    <td><strong>Caminho 3</strong> — publicar em HTTPS (grátis)</td>
+    <td>Sim, nos dois</td>
+  </tr>
+</table>
+
+<h2>Caminho 1 · O arquivo único (mais fácil)</h2>
+
+<div class="rota">
+  <div class="num">1</div>
+  <div>
+    <p>No computador, localize o arquivo <code>abrir-sem-servidor.html</code>, que veio na pasta
+    do Sentido Autêntico.</p>
+  </div>
+</div>
+<div class="rota">
+  <div class="num">2</div>
+  <div>
+    <p>Envie-o para o seu celular do jeito que preferir: WhatsApp (para você mesmo), e-mail,
+    Google Drive, Telegram ou cabo USB.</p>
+  </div>
+</div>
+<div class="rota">
+  <div class="num">3</div>
+  <div>
+    <p>No celular, toque no arquivo recebido. Se o aparelho perguntar com o que abrir,
+    escolha <strong>Chrome</strong> (Android) ou <strong>Safari</strong> (iPhone).</p>
+    <p>Pronto. Todo o portal está ali dentro — um arquivo só, funcionando sem internet.</p>
+  </div>
+</div>
+
+<div class="aviso">
+  <strong>Limite honesto deste caminho:</strong> por ser um arquivo solto, ele não vira ícone
+  na tela de início e o celular pode pedir de novo "abrir com..." toda vez. É ótimo para
+  experimentar; para o uso diário, prefira o Caminho 3.
+</div>
+
+<h2>Caminho 2 · Servidor com QR Code (mesma rede Wi-Fi)</h2>
+
+<div class="rota">
+  <div class="num">1</div>
+  <div>
+    <p>Confirme que o computador e o celular estão na <strong>mesma rede Wi-Fi</strong>.</p>
+  </div>
+</div>
+<div class="rota">
+  <div class="num">2</div>
+  <div>
+    <p>No computador, dê dois cliques em:</p>
+    <ul>
+      <li><strong>Windows:</strong> <code>ABRIR-NO-CELULAR.bat</code></li>
+      <li><strong>Mac / Linux:</strong> <code>ABRIR-NO-CELULAR.command</code></li>
+    </ul>
+    <p>Uma janela preta abrirá com um <strong>QR Code</strong> desenhado na tela.</p>
+  </div>
+</div>
+<div class="rota">
+  <div class="num">3</div>
+  <div>
+    <p>Aponte a <strong>câmera do celular</strong> para o QR Code e toque no aviso que aparece.
+    O Sentido Autêntico abrirá no navegador do aparelho.</p>
+    <p>Se a câmera não ler, digite no navegador o endereço mostrado na janela preta
+    (algo como <code>http://192.168.0.15:8080</code>).</p>
+  </div>
+</div>
+<div class="rota">
+  <div class="num">4</div>
+  <div>
+    <p>Agora instale como aplicativo, seguindo a seção do seu sistema, mais abaixo.</p>
+  </div>
+</div>
+
+<div class="aviso">
+  <strong>Atenção:</strong> enquanto essa janela preta estiver aberta, o app funciona no celular.
+  Ao fechá-la, o endereço para de responder. Além disso, por ser uma conexão local sem cadeado
+  (HTTPS), o <strong>iPhone</strong> criará apenas um atalho — o modo offline completo exige o Caminho 3.
+</div>
+
+<h2>Caminho 3 · Publicar em HTTPS grátis (recomendado)</h2>
+
+<p>Esta é a forma que entrega a experiência completa: ícone próprio, tela cheia, tela de
+abertura, atualização automática e <strong>funcionamento 100% offline</strong> nos dois sistemas.
+Leva cerca de 3 minutos e não custa nada.</p>
+
+<h3>Opção A — Netlify Drop (sem conta, sem termo técnico)</h3>
+<ol>
+  <li>No computador, acesse <code>app.netlify.com/drop</code>.</li>
+  <li><strong>Arraste a pasta <code>Sentido-Autentico</code> inteira</strong> para dentro da área indicada na página.</li>
+  <li>Aguarde alguns segundos. O site receberá um endereço próprio, como
+      <code>https://nome-aleatorio.netlify.app</code>.</li>
+  <li>Abra esse endereço no celular e instale seguindo a seção do seu sistema, abaixo.</li>
+</ol>
+<p>Os arquivos <code>netlify.toml</code> e <code>_headers</code>, já incluídos no pacote, configuram
+tudo automaticamente.</p>
+
+<h3>Opção B — GitHub Pages</h3>
+<ol>
+  <li>Crie uma conta gratuita em <code>github.com</code> e um repositório público.</li>
+  <li>Envie todos os arquivos da pasta <code>Sentido-Autentico</code> para o repositório.</li>
+  <li>Em <em>Settings → Pages</em>, escolha a branch <code>main</code> e a pasta <code>/ (root)</code>.</li>
+  <li>Em poucos minutos o endereço <code>https://seu-usuario.github.io/nome-do-repo/</code> estará no ar.</li>
+</ol>
+<p>O arquivo <code>.nojekyll</code>, já incluído, evita que o GitHub ignore pastas do projeto.</p>
+
+<div class="aviso ok">
+  <strong>Por que o cadeado (HTTPS) importa tanto?</strong> Navegadores só permitem que um site
+  funcione offline e vire aplicativo se a conexão for segura. É uma regra de segurança do
+  próprio Android e do iPhone — não uma limitação do Sentido Autêntico.
+</div>
+
+<h2><span class="selo and">Android</span> Instalar no Android</h2>
+
+<ol>
+  <li>Abra o endereço do Sentido Autêntico no <strong>Chrome</strong>.</li>
+  <li>Aguarde alguns segundos: costuma surgir sozinha uma faixa
+      <strong>"Instalar aplicativo"</strong> ou <strong>"Adicionar à tela inicial"</strong>. Toque nela.</li>
+  <li>Se a faixa não aparecer, toque no menu <strong>⋮</strong> (três pontinhos, canto superior direito)
+      e escolha <strong>Instalar aplicativo</strong>.</li>
+  <li>Confirme em <strong>Instalar</strong>.</li>
+</ol>
+<p>O ícone do Sentido Autêntico aparecerá junto dos seus outros aplicativos, na gaveta de apps.
+Ele abre em tela cheia, sem a barra de endereço, e funciona no modo avião.</p>
+
+<h3>Usa Samsung Internet, Edge ou Opera?</h3>
+<p>Funciona também: procure no menu por <strong>"Adicionar página a" → "Tela inicial"</strong>
+(Samsung) ou <strong>"Adicionar ao telefone"</strong> (Edge).</p>
+
+<h2><span class="selo ios">iPhone</span> Instalar no iPhone e iPad</h2>
+
+<div class="aviso">
+  <strong>Precisa ser o Safari.</strong> No iPhone, apenas o Safari instala aplicativos web.
+  Chrome e Firefox no iOS não oferecem essa opção — é uma restrição da Apple.
+</div>
+
+<ol>
+  <li>Abra o endereço do Sentido Autêntico no <strong>Safari</strong>.</li>
+  <li>Toque no botão <strong>Compartilhar</strong> — o quadrado com uma seta apontando para cima,
+      na barra inferior (ou superior, em iPads).</li>
+  <li>Role a lista de opções para baixo e toque em
+      <strong>Adicionar à Tela de Início</strong>.</li>
+  <li>Se quiser, ajuste o nome. Depois toque em <strong>Adicionar</strong>, no canto superior direito.</li>
+</ol>
+<p>O próprio app mostrará essas instruções na tela quando detectar que você está no Safari
+do iPhone — basta seguir os passos indicados.</p>
+
+<h2>Como saber se deu certo</h2>
+
+<div class="cartao">
+  <h3>Teste dos 20 segundos</h3>
+  <ol>
+    <li>Abra o Sentido Autêntico pelo <strong>ícone</strong> na tela do celular (não pelo navegador).</li>
+    <li>Confira: a barra de endereço do navegador <strong>não deve aparecer</strong>.</li>
+    <li>Ative o <strong>modo avião</strong> do aparelho.</li>
+    <li>Feche o app completamente e abra de novo pelo ícone.</li>
+    <li>Navegue entre Hebraico, Grego e Ferramentas.</li>
+  </ol>
+  <p style="margin-bottom:0"><strong>Se tudo carregar sem internet, a instalação está perfeita.</strong></p>
+</div>
+
+<h2>Recursos que ficam melhores no celular</h2>
+
+<ul>
+  <li><strong>Atalhos rápidos:</strong> pressione e segure o ícone do app para pular direto
+      para Rota de Crescimento, Hebraico, Grego ou Ferramentas.</li>
+  <li><strong>Leitura da página em voz alta:</strong> na central de acessibilidade, toque em
+      <strong>Ouvir página</strong> para o aparelho ler o conteúdo da tela.</li>
+  <li><strong>Central de acessibilidade:</strong> o botão redondo flutuante abre os ajustes de
+      tamanho de letra, alto contraste, fonte para dislexia e tema escuro.</li>
+  <li><strong>Modo escuro automático:</strong> o app acompanha a configuração do seu celular.</li>
+  <li><strong>Gire a tela:</strong> em tabelas de alfabeto e análises interlineares, o modo
+      paisagem mostra mais colunas de uma vez.</li>
+</ul>
+
+<h2>Problemas comuns</h2>
+
+<table>
+  <tr><th>O que acontece</th><th>O que fazer</th></tr>
+  <tr>
+    <td>Não aparece a opção de instalar no Chrome</td>
+    <td>Verifique se o endereço começa com <code>https://</code>. Sem o cadeado, o Android não
+        oferece a instalação. Use o Caminho 3.</td>
+  </tr>
+  <tr>
+    <td>"Adicionar à Tela de Início" não está na lista do iPhone</td>
+    <td>Você provavelmente está no Chrome ou Firefox. Abra o mesmo endereço no
+        <strong>Safari</strong>.</td>
+  </tr>
+  <tr>
+    <td>O QR Code não abre nada</td>
+    <td>Celular e computador precisam estar no mesmo Wi-Fi. Redes de visitante
+        ("guest") costumam bloquear essa comunicação — troque de rede ou digite o
+        endereço à mão.</td>
+  </tr>
+  <tr>
+    <td>Abriu, mas as letras hebraicas ou gregas aparecem como quadradinhos</td>
+    <td>A fonte ainda estava carregando. Puxe a tela para baixo para recarregar, com
+        internet ativa, e aguarde terminar antes de usar offline.</td>
+  </tr>
+  <tr>
+    <td>Instalei, mas não funciona no modo avião</td>
+    <td>Abra o app com internet uma vez e navegue por algumas páginas, para ele terminar de
+        guardar tudo. Depois teste offline novamente.</td>
+  </tr>
+  <tr>
+    <td>Atualizei o site, mas o celular mostra a versão antiga</td>
+    <td>Feche o app por completo (deslize para cima na lista de apps abertos) e abra de novo.
+        Ele se atualiza sozinho na segunda abertura.</td>
+  </tr>
+  <tr>
+    <td>Quero desinstalar</td>
+    <td>Pressione e segure o ícone do app e escolha <strong>Desinstalar</strong> (Android) ou
+        <strong>Remover App</strong> (iPhone). Nada fica para trás.</td>
+  </tr>
+</table>
+
+<h2>Perguntas frequentes</h2>
+
+<p><strong>Ocupa muito espaço no celular?</strong><br>
+Não. O Sentido Autêntico inteiro, com fontes, imagens e todo o conteúdo, fica em torno de 8 MB —
+menos do que uma única foto moderna.</p>
+
+<p><strong>Consome internet enquanto uso?</strong><br>
+Não. Depois da primeira abertura, tudo roda dentro do aparelho. Nenhum dado seu é enviado
+para lugar nenhum.</p>
+
+<p><strong>Precisa de conta, login ou pagamento?</strong><br>
+Nunca. Não há cadastro, cobrança, anúncios ou rastreamento.</p>
+
+<p><strong>Funciona em celular antigo?</strong><br>
+Sim, desde que o navegador esteja atualizado. Android 8 ou superior e iOS 14 ou superior
+dão conta com folga.</p>
+
+<p><strong>Está na Play Store ou App Store?</strong><br>
+Não, e não precisa estar. Aplicativos web se instalam direto pelo navegador, o que evita
+lojas, permissões desnecessárias e atualizações pesadas.</p>
+
+</main>
+
+<footer>
+  Sentido Autêntico — by rogerelizar · Guia de instalação em celulares<br>
+  Uso livre para estudo pessoal, ensino e ministério.
+</footer>
+
+</body>
+</html>

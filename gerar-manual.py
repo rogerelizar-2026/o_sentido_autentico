@@ -65,15 +65,15 @@ def rodape(canvas, doc):
     canvas.saveState()
     canvas.setFont('Helvetica', 8)
     canvas.setFillColor(MUT)
-    canvas.drawString(20 * mm, 12 * mm, 'AutenticSense — O Sentido Autêntico · Manual do Usuário v2.0')
+    canvas.drawString(20 * mm, 12 * mm, 'Sentido Autêntico — by rogerelizar · Manual do Usuário v2.0')
     canvas.drawRightString(190 * mm, 12 * mm, f'Página {doc.page}')
     canvas.restoreState()
 
 el = []
-el.append(P('AutenticSense', st_h1))
+el.append(P('Sentido Autêntico', st_h1))
 el.append(P('Manual do Usuário — O Sentido Autêntico (versão 2.0)', st_sub))
 el.append(box('Resumo de 30 segundos',
-    'O AutenticSense é um programa de estudo das línguas bíblicas (hebraico, aramaico e grego) que funciona '
+    'O Sentido Autêntico é um programa de estudo das línguas bíblicas (hebraico, aramaico e grego) que funciona '
     '<b>sem internet</b>. Para usar, faça uma única vez: descompacte a pasta e clique duas vezes no instalador '
     'do seu sistema. Este manual acompanha cada clique.', GOLDINK))
 el.append(Spacer(1, 6))
@@ -109,7 +109,7 @@ el.append(numeros([
 ]))
 el.append(P('<b>Passo 2 — Descompacte a pasta</b>', st_h3))
 el.append(numeros([
-    'Clique com o botão direito no AutenticSense-v2.0.zip.',
+    'Clique com o botão direito no Sentido-Autentico-v2.1.zip.',
     'Escolha “Extrair Tudo…” e confirme.',
 ]))
 el.append(P('<b>Passo 3 — Inicie o portal</b>', st_h3))
@@ -209,6 +209,45 @@ el.append(P('Conteúdo educacional sob licença Creative Commons (uso livre com 
 doc = SimpleDocTemplate('Manual-do-Usuario.pdf', pagesize=A4,
                         leftMargin=20 * mm, rightMargin=20 * mm,
                         topMargin=18 * mm, bottomMargin=18 * mm,
-                        title='Manual do Usuário — AutenticSense', author='AutenticSense')
+                        title='Manual do Usuário — Sentido Autêntico', author='Sentido Autêntico')
+
+el.append(P('Usar no celular (Android e iPhone)', st_h2))
+el.append(P('O Sentido Autêntico se instala no celular como um aplicativo comum, direto pelo navegador: sem Play Store, sem App Store e sem cadastro. Depois de instalado, funciona sem internet.', st_p))
+
+el.append(P('<b>Os tres caminhos, do mais simples ao mais completo</b>', st_h3))
+el.append(numeros([
+    '<b>Arquivo unico:</b> envie <b>abrir-sem-servidor.html</b> para o celular (WhatsApp, e-mail, cabo USB) e toque nele. Abre na hora, mas nao vira icone na tela.',
+    '<b>QR Code na mesma rede Wi-Fi:</b> no computador, de dois cliques em <b>ABRIR-NO-CELULAR.bat</b> (Windows) ou <b>ABRIR-NO-CELULAR.command</b> (Mac e Linux). Aparecera um QR Code; aponte a camera do celular para ele.',
+    '<b>Publicar em HTTPS (recomendado):</b> arraste a pasta Sentido-Autentico para <b>app.netlify.com/drop</b> e receba um endereco com cadeado. E a unica forma de ter o modo offline completo no iPhone.',
+]))
+el.append(box('Por que o cadeado importa', 'Navegadores so permitem que um site funcione offline e vire aplicativo se a conexao for segura (HTTPS). E uma regra do proprio Android e do iPhone. O passo a passo gratuito esta no arquivo COMO-PUBLICAR-HTTPS.txt.', GOLDINK))
+
+el.append(P('<b>Instalar no Android</b>', st_h3))
+el.append(numeros([
+    'Abra o endereco do Sentido Autêntico no <b>Chrome</b>.',
+    'Aguarde a faixa "Instalar aplicativo" aparecer e toque nela.',
+    'Se a faixa nao surgir, toque no menu de tres pontinhos (canto superior direito) e escolha "Instalar aplicativo".',
+    'Confirme em Instalar. O icone aparecera junto dos seus outros aplicativos.',
+]))
+
+el.append(P('<b>Instalar no iPhone e iPad</b>', st_h3))
+el.append(numeros([
+    'Abra o endereco no <b>Safari</b> — somente ele instala aplicativos web no iPhone.',
+    'Toque no botao <b>Compartilhar</b>: o quadrado com uma seta apontando para cima.',
+    'Role a lista de opcoes e toque em <b>Adicionar a Tela de Inicio</b>.',
+    'Confirme em <b>Adicionar</b>, no canto superior direito.',
+]))
+el.append(P('O proprio aplicativo mostra essas instrucoes na tela quando detecta que voce esta no Safari do iPhone.', st_p))
+
+el.append(P('<b>Como saber se deu certo: o teste dos 20 segundos</b>', st_h3))
+el.append(numeros([
+    'Abra o Sentido Autêntico pelo <b>icone</b> na tela do celular, nao pelo navegador.',
+    'Confira: a barra de endereco nao deve aparecer.',
+    'Ative o <b>modo aviao</b> do aparelho.',
+    'Feche o app por completo e abra de novo pelo icone.',
+    'Navegue entre Hebraico, Grego e Ferramentas. Se tudo carregar, esta perfeito.',
+]))
+el.append(P('O guia ilustrado completo, com solucao de problemas, esta no arquivo <b>INSTALAR-NO-CELULAR.html</b>, que tambem abre no proprio celular.', st_p))
+
 doc.build(el, onFirstPage=rodape, onLaterPages=rodape)
 print('[pdf] Manual-do-Usuario.pdf gerado')

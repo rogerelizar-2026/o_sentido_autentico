@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-AutenticSense — servidor local (zero dependências).
+Sentido Autêntico — servidor local (zero dependências).
 Basta ter o Python 3 instalado.  Uso:  python servidor.py
 O site abre sozinho no navegador. Para encerrar, feche esta janela
 ou pressione Ctrl+C.
@@ -47,7 +47,7 @@ def main():
             continue  # porta ocupada: tenta a próxima
         url = f'http://localhost:{porta}/index.html'
         print('=' * 56)
-        print('   AutenticSense — O Sentido Autêntico')
+        print('   Sentido Autêntico — by rogerelizar')
         print('=' * 56)
         print(f'   Servidor local ATIVO em:  {url}')
         print('   O navegador vai abrir automaticamente.')

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
- * AutenticSense — servidor local (zero dependências, basta o Node.js).
+ * Sentido Autêntico — servidor local (zero dependências, basta o Node.js).
  * Uso:  node servidor.js    →  abre http://localhost:8080 no navegador.
  */
 const http = require('http');
@@ -59,7 +59,7 @@ function iniciar(porta) {
   srv.listen(porta, () => {
     const url = `http://localhost:${porta}/index.html`;
     console.log('='.repeat(56));
-    console.log('   AutenticSense — O Sentido Autêntico');
+    console.log('   Sentido Autêntico — by rogerelizar');
     console.log('='.repeat(56));
     console.log('   Servidor local ATIVO em:  ' + url);
     console.log('   O navegador vai abrir automaticamente.');

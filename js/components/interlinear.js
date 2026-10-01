@@ -9,6 +9,8 @@ import { announce } from '../a11y.js';
 
 const registry = new Map();
 
+
+
 export function renderInterlinear(verse, { heading = false } = {}) {
   const blockId = `il-${verse.id}-${Math.random().toString(36).slice(2, 7)}`;
   registry.set(blockId, verse);
@@ -28,11 +30,6 @@ export function renderInterlinear(verse, { heading = false } = {}) {
         ${heading ? `<h3 class="ref" style="margin:0;border:none;padding:0">${verse.ref}</h3>`
                   : `<span class="ref">${verse.ref}</span>`}
         <span class="chip chip-gold">${verse.langLabel}</span>
-        <span class="spacer"></span>
-        <button type="button" class="btn-icon" data-speak="${verse.text}"
-                data-speak-lang="pt-BR" aria-label="Ouvir o verso em ${verse.langLabel} (pronúncia aproximada)">
-          ${icon('speaker')}
-        </button>
       </div>
       <div class="interlinear" dir="${verse.dir}">${words}</div>
       <p class="translit" style="margin-top:1rem" lang="pt-BR">${verse.traducao}</p>

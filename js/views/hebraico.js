@@ -51,7 +51,7 @@ export default {
           <span class="chip chip-gold">22 consoantes</span>
           <span class="chip chip-gold">5 formas finais (sofit)</span>
           <span class="chip">leitura da direita para a esquerda</span>
-          <span class="chip">tradição massorética (BHS/BHQ)</span>
+          <span class="chip">tradição massorética (BHS (Biblia Hebraica Stuttgartensia)/BHQ (Biblia Hebraica Quinta))</span>
         </p>
       </header>
 
@@ -97,10 +97,31 @@ export default {
         <span class="hebrew" lang="he" dir="rtl">א</span> na primeira palavra da Bíblia.</p>
         ${renderInterlinear(verseById('gn11'))}
         <div class="callout callout--ok">
-          <span class="callout-title">Pratique agora</span>
-          Você já conhece as 22 letras! Vá até a ferramenta de
-          <a href="#/ferramentas">transliterador</a> para ouvir e escrever cada letra —
-          digite <span class="hebrew" lang="he" dir="rtl">חֶסֶד</span> (<span class="translit">ḥéssed</span>, “misericórdia”) e descubra o total.
+          <span class="callout-title">Plano progressivo de memorização</span>
+          <p>Você já conhece as 22 letras. O próximo passo não exige teclado hebraico
+          nem instalar nada: é a <strong>memorização espaçada com flashcards</strong>,
+          alimentada pelas listas de vocabulário da sua gramática de referência.</p>
+          <ol class="plano-memo">
+            <li><strong>Semanas 1–2 · O alefato.</strong> Um cartão por letra: frente com a
+            forma impressa, verso com o nome e o som. Inclua as cinco formas finais.</li>
+            <li><strong>Semanas 3–4 · Vogais.</strong> Um cartão por sinal do niqud, sempre
+            apoiado numa consoante-base, e os pares da regra Begadkefat.</li>
+            <li><strong>Semanas 5–10 · As 100 palavras mais frequentes.</strong> Use as
+            listas de vocabulário da <a href="#/biblioteca">Gramática do Hebraico Bíblico</a>,
+            de Allen P. Ross, na ordem em que o autor as apresenta: ele já as ordenou por
+            frequência e utilidade didática.</li>
+            <li><strong>Semanas 11–20 · Até 200 palavras.</strong> Acrescente 10 palavras
+            novas por semana e revise as antigas. Cobrir as 200 mais frequentes significa
+            reconhecer cerca de <strong>quatro de cada cinco palavras</strong> do Antigo
+            Testamento.</li>
+          </ol>
+          <p><strong>Como revisar:</strong> 15 minutos por dia, todos os dias, valem mais
+          que duas horas no sábado. Um aplicativo gratuito de repetição espaçada como o
+          <strong>Anki</strong> escolhe sozinho o que mostrar e quando — cartões fáceis
+          voltam raramente, os difíceis voltam logo.</p>
+          <p class="small muted" style="margin-bottom:0">Prefere papel? Fichas de cartolina
+          divididas em três caixas (revisar hoje, revisar em três dias, revisar em uma
+          semana) produzem o mesmo efeito, sem nenhuma tecnologia.</p>
         </div>
       </section>
 
@@ -108,7 +129,7 @@ export default {
           <span class="callout-title">Quer o plano completo de estudos?</span>
           A <a href="#/rota">Rota de Crescimento</a> detalha os 5 níveis — do Aleph-Bet à
           exegese técnica em 56 semanas — com ritmo diário de 60 minutos, flashcards (Anki),
-          aceleração por IA e a gramática de <a href="#/biblioteca">Allen P. Ross</a> na mochila.
+          aceleração por inteligência artificial e a gramática de <a href="#/biblioteca">Allen P. Ross</a> na mochila.
         </div>
 
       <aside class="cta-band" aria-labelledby="cta-he">

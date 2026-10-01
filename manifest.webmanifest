@@ -1,46 +1,132 @@
 {
-  "name": "AutenticSense — O Sentido Autêntico",
-  "short_name": "AutenticSense",
+  "name": "Sentido Autêntico — by rogerelizar",
+  "short_name": "Sentido Autêntico",
   "id": "/",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "orientation": "any",
+  "orientation": "portrait-primary",
   "background_color": "#FBFAF7",
   "theme_color": "#0F3731",
   "lang": "pt-BR",
   "dir": "ltr",
   "description": "Portal educacional offline de línguas bíblicas: Hebraico, Aramaico e Grego Koiné, com ferramentas interlineares e exegese integrada.",
-  "categories": ["education", "books", "reference"],
+  "categories": [
+    "education",
+    "books",
+    "reference"
+  ],
   "icons": [
-    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/icons/icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
   ],
   "shortcuts": [
     {
       "name": "Rota de Crescimento",
       "short_name": "Rota",
       "description": "5 níveis do alefato à exegese, com ritmo diário de 60 minutos",
-      "url": "./index.html#/rota"
+      "url": "./index.html#/rota",
+      "icons": [
+        {
+          "src": "assets/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Hebraico Bíblico",
       "short_name": "Hebraico",
       "description": "Aleph-Bet, niqud e leitura guiada de Gênesis 1.1",
-      "url": "./index.html#/hebraico"
+      "url": "./index.html#/hebraico",
+      "icons": [
+        {
+          "src": "assets/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Ferramentas",
       "short_name": "Ferramentas",
       "description": "Analisador interlinear e transliteradores",
-      "url": "./index.html#/ferramentas"
+      "url": "./index.html#/ferramentas",
+      "icons": [
+        {
+          "src": "assets/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Grego Koiné",
       "short_name": "Grego",
       "description": "Alfabeto grego e leitura de João 1.1",
-      "url": "./index.html#/grego"
+      "url": "./index.html#/grego",
+      "icons": [
+        {
+          "src": "assets/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "display_override": [
+    "standalone",
+    "minimal-ui",
+    "browser"
+  ],
+  "prefer_related_applications": false,
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "handle_links": "preferred",
+  "screenshots": [
+    {
+      "src": "assets/icons/screenshot-mobile-1.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Página inicial com os módulos de línguas bíblicas"
+    },
+    {
+      "src": "assets/icons/screenshot-mobile-2.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Ferramentas de estudo offline"
+    },
+    {
+      "src": "assets/icons/screenshot-wide-1.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "AutenticSense no computador"
     }
   ]
 }

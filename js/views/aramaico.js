@@ -38,7 +38,7 @@ export default {
           preservadas exatamente como foram ditas.
         </p>
         <p class="chip-row" aria-label="Destaques">
-          <span class="chip chip-gold">~269 versículos no AT</span>
+          <span class="chip chip-gold">~269 versículos no AT (Antigo Testamento)</span>
           <span class="chip chip-gold">palavras originais de Jesus</span>
           <span class="chip">mesma escrita quadrada do hebraico</span>
         </p>

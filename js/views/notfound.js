@@ -4,7 +4,7 @@ import { icon } from '../icons.js';
 
 export default {
   title: 'Página não encontrada',
-  desc: 'A página solicitada não existe no AutenticSense.',
+  desc: 'A página solicitada não existe no Sentido Autêntico.',
 
   render() {
     return `

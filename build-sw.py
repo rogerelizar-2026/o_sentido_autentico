@@ -4,9 +4,12 @@ e uma versão derivada do hash do conteúdo — cache offline infalível."""
 import os, json, hashlib
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-SKIP_DIRS = {'.git', '__pycache__', 'node_modules'}
+SKIP_DIRS = {'.git', '__pycache__', 'node_modules', 'vendor', 'mobile'}
 SKIP_FILES = {'sw.js', 'build-sw.py', 'fetch-fonts.py', 'icon-src.png',
-              'servidor.js', 'LEIA-ME.txt'}
+              'servidor.js', 'LEIA-ME.txt', 'COMO-PUBLICAR-HTTPS.txt',
+              'netlify.toml', 'vercel.json', '_headers', '.nojekyll',
+              'og.png', 'screenshot-mobile-1.png', 'screenshot-mobile-2.png',
+              'screenshot-wide-1.png'}
 SKIP_EXT = ('.py', '.bat', '.command', '.zip')
 
 def collect():
@@ -15,6 +18,8 @@ def collect():
         dn[:] = [d for d in dn if d not in SKIP_DIRS and not d.startswith('.')]
         for f in sorted(fn):
             if f in SKIP_FILES or f.endswith(SKIP_EXT):
+                continue
+            if f.startswith('splash-'):
                 continue
             rel = os.path.relpath(os.path.join(dp, f), ROOT).replace(os.sep, '/')
             files.append(rel)

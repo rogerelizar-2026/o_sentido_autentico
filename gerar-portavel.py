@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Monta abrir-sem-servidor.html — versão de ARQUIVO ÚNICO do AutenticSense:
+"""Monta abrir-sem-servidor.html — versão de ARQUIVO ÚNICO do Sentido Autêntico:
 funciona com duplo clique, sem servidor (todo CSS/JS embutido).
 Pré-requisito: executar o esbuild antes (gera .build/bundle.js)."""
 import os, re
@@ -32,7 +32,7 @@ def main():
     # Remove o <script type="module"> e injeta o bundle IIFE no fim do body
     html = re.sub(r'\s*<script type="module" src="\./js/app\.js"></script>', '', html)
     bundle = ler(os.path.join('.build', 'bundle.js'))
-    inj = ('\n<script>\n/* ===== AutenticSense · bundle standalone (gerado automaticamente) ===== */\n'
+    inj = ('\n<script>\n/* ===== Sentido Autêntico · bundle standalone (gerado automaticamente) ===== */\n'
            + bundle + '\n</script>\n</body>')
     html = html.replace('</body>', inj)
 

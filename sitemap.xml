@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  AutenticSense — sitemap.xml
+  Sentido Autêntico — sitemap.xml
   ATENÇÃO: substitua o domínio de exemplo pelo domínio real no deploy.
   Como o app usa rotas por hash (SPA offline-first), a indexação principal
   é a página inicial; o conteúdo é lido por buscadores via SSR-free crawl

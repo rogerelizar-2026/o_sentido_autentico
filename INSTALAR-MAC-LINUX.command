@@ -1,10 +1,10 @@
 #!/bin/sh
-# AutenticSense — servidor local para macOS e Linux (duplo clique).
+# Sentido Autentico — servidor local para macOS e Linux (duplo clique).
 # Se o Mac bloquear: clique com o botao direito > "Abrir" > "Abrir".
 cd "$(dirname "$0")" || exit 1
 
 echo "=========================================================="
-echo "   AutenticSense - O Sentido Autentico  (servidor local)"
+echo "   Sentido Autentico - by rogerelizar  (servidor local)"
 echo "=========================================================="
 echo "   Nao feche esta janela enquanto estiver usando o portal."
 echo "   Procurando Python ou Node.js no seu computador..."

@@ -1,7 +1,8 @@
 /* AutenticSense — Service Worker (gerado por build-sw.py) */
-const VERSION = 'osa-vfdc9835dc28e';
+const VERSION = 'osa-v92aa52dc5a61';
 const PRECACHE = [
   "./",
+  "./INSTALAR-NO-CELULAR.html",
   "./Manual-do-Usuario.pdf",
   "./README.md",
   "./abrir-sem-servidor.html",
@@ -33,7 +34,6 @@ const PRECACHE = [
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",
   "./assets/icons/icon-maskable-512.png",
-  "./assets/icons/og.png",
   "./assets/img/info/ecossist.jpg",
   "./assets/img/info/grego.jpg",
   "./assets/img/info/hebraico.jpg",
@@ -52,6 +52,7 @@ const PRECACHE = [
   "./css/content.css",
   "./css/fonts.css",
   "./css/layout.css",
+  "./css/mobile.css",
   "./css/tokens.css",
   "./js/a11y.js",
   "./js/app.js",
@@ -59,6 +60,7 @@ const PRECACHE = [
   "./js/data/alphabets.js",
   "./js/data/interlinear.js",
   "./js/icons.js",
+  "./js/mobile.js",
   "./js/router.js",
   "./js/tools.js",
   "./js/tts.js",

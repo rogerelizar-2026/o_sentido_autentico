@@ -8,8 +8,8 @@ const PROPOSITOS = [
   { t: 'Porta de entrada para o aprendizado', ok: true, d: 'O portal existe para iniciar estudantes no caminho das línguas bíblicas, do zero absoluto à leitura autônoma.' },
   { t: 'Recurso imparcial e abrangente', ok: true, d: 'Apresentamos a metodologia e as referências acadêmicas reconhecidas, sem viés denominacional na apresentação dos dados linguísticos.' },
   { t: 'Feito para o estudo pessoal das Escrituras', ok: true, d: 'Cada página, ferramenta e rota foi pensada para o devocional estudioso e para a preparação de ensino ministerial.' },
-  { t: 'Não substitui formação acadêmica', ok: false, d: 'O AutenticSense é guia e caixa de ferramentas — não curso superior. Para formação formal, procure as instituições recomendadas ao final da página.' },
-  { t: 'Licença Creative Commons', ok: true, d: 'O conteúdo educacional é livre para uso com atribuição; o código é aberto (MIT). Nada aqui é vendido ou paywalled.' }
+  { t: 'Não substitui formação acadêmica', ok: false, d: 'O Sentido Autêntico é guia e caixa de ferramentas — não curso superior. Para formação formal, procure as instituições recomendadas ao final da página.' },
+  { t: 'Licença Creative Commons', ok: true, d: 'O conteúdo educacional é livre para uso com atribuição; o código é aberto (MIT (Instituto de Tecnologia de Massachusetts)). Nada aqui é vendido ou paywalled.' }
 ];
 
 const APPS = [
@@ -18,7 +18,7 @@ const APPS = [
   { nome: 'Global Bible Tools', tag: 'Pesquisa morfológica', d: 'Pesquisa avançada de formas, morfologias e estruturas — a mesa de trabalho do estudante avançado.' },
   { nome: 'Blue Letter Bible', tag: 'Análise léxica', d: 'Ferramenta indispensável de consulta léxica, dicionários e análise interlinear em português e inglês.' },
   { nome: 'Sefaria', tag: 'Textos comparados', d: 'Biblioteca digital aberta com acesso gratuito a textos originais e traduções comparadas.' },
-  { nome: 'Anki', tag: 'Repetição espaçada (SRS)', d: 'O coração do Bloco 1: flashcards de vocabulário e paradigmas com algoritmo de memória de longo prazo.' }
+  { nome: 'Anki', tag: 'Repetição espaçada (SRS (sistema de repetição espaçada))', d: 'O coração do Bloco 1: flashcards de vocabulário e paradigmas com algoritmo de memória de longo prazo.' }
 ];
 
 const ESTRATEGIAS_IA = [
@@ -29,15 +29,23 @@ const ESTRATEGIAS_IA = [
 ];
 
 const INSTITUICOES = [
-  { nome: 'Faculdade Batista Logos', uf: 'SP', d: 'Tradição batista com forte ênfase bíblico-teológica e formação ministerial em São Paulo.' },
-  { nome: 'Seminário Batista do Cariri', uf: 'CE', d: 'Formação teológica regional consolidada no interior do Ceará.' },
-  { nome: 'SBRS — Seminário Teológico Batista do Rio Grande do Sul', uf: 'PR', d: 'Seminário em Curitiba com currículo completo e corpo docente qualificado.' },
-  { nome: 'AIBREB', uf: 'Nacional', d: 'Rede nacional de ensino teológico à distância e presencial, com trilhas em línguas bíblicas.' }
+  {
+    nome: 'Faculdade Batista Logos',
+    uf: 'SP',
+    url: 'https://faculdadelogos.edu.br/',
+    d: 'Tradição batista com forte ênfase bíblico-teológica e formação ministerial em São Paulo.'
+  },
+  {
+    nome: 'AIBREB — Associação das Igrejas Batistas Regulares do Brasil',
+    uf: 'Nacional',
+    url: 'https://aibreb.org.br/',
+    d: 'Rede nacional de ensino teológico à distância e presencial, com trilhas em línguas bíblicas.'
+  }
 ];
 
 export default {
   title: 'Sobre',
-  desc: 'Propósitos e isenções, tecnologia e ferramentas recomendadas e instituições parceiras da metodologia AutenticSense.',
+  desc: 'Propósitos e isenções, tecnologia e ferramentas recomendadas e instituições recomendadas da metodologia Sentido Autêntico.',
 
   render() {
     const propositos = PROPOSITOS.map((p) => `
@@ -56,6 +64,12 @@ export default {
       <div class="app-card">
         <h4>${i.nome} <span class="chip chip-gold">${i.uf}</span></h4>
         <p style="margin-top:0.4rem">${i.d}</p>
+        <p style="margin-top:0.7rem">
+          <a class="btn btn-outline btn-sm" href="${i.url}" target="_blank" rel="noopener noreferrer">
+            ${icon('external')} Acessar o site
+            <span class="sr-only">de ${i.nome} (abre em nova aba)</span>
+          </a>
+        </p>
       </div>`).join('');
 
     return `
@@ -64,10 +78,10 @@ export default {
         <nav class="breadcrumb" aria-label="Trilha de navegação">
           <ol><li><a href="#/">Início</a></li><li aria-current="page">Sobre o projeto</li></ol>
         </nav>
-        <span class="eyebrow">${icon('info')} AutenticSense v2.0</span>
-        <h1>Sobre o AutenticSense</h1>
+        <span class="eyebrow">${icon('info')} Sentido Autêntico v2.1</span>
+        <h1>Sobre o projeto</h1>
         <p class="lede">
-          <strong>AutenticSense — “O Sentido Autêntico”</strong> — nasceu de uma convicção:
+          <strong>Sentido Autêntico</strong>, de <strong>rogerelizar</strong>, nasceu de uma convicção:
           todo estudante da Bíblia, e não apenas especialistas, merece um mapa claro para
           as línguas originais, com método, ferramentas e referências de excelência.
         </p>
@@ -88,11 +102,11 @@ export default {
 
         <figure class="info-figure">
           <img src="assets/img/info/sofia.jpg" loading="lazy" decoding="async"
-               alt="Infográfico Sofia App — Anatomia do Estudo Bíblico Profundo: núcleo de análise exegética com morfologia gramatical, domínios Louw-Nida e léxicos Strong e GK, sobre pilares de avaliação máxima, privacidade de dados absoluta e foco em referência acadêmica.">
+               alt="Infográfico Sofia App — Anatomia do Estudo Bíblico Profundo: núcleo de análise exegética com morfologia gramatical, domínios Louw-Nida e léxicos Strong e GK (Goodrick-Kohlenberger), sobre pilares de avaliação máxima, privacidade de dados absoluta e foco em referência acadêmica.">
           <figcaption><strong>Sofia App:</strong> a anatomia do estudo bíblico profundo em camadas — da morfologia à semântica Louw-Nida, sobre uma base de privacidade absoluta.</figcaption>
         </figure>
 
-        <h3 style="margin-top:2rem">A IA como co-mentora</h3>
+        <h3 style="margin-top:2rem">A inteligência artificial como co-mentora</h3>
         <p>Na metodologia de aceleração, a inteligência artificial (por exemplo, o Notebook
         Gemini) gera prática personalizada que nenhum livro estático oferece:</p>
         <ul class="check-list" style="margin-top:0.8rem">${ia}</ul>
@@ -128,13 +142,14 @@ export default {
         <div class="table-wrap">
           <table>
             <tbody>
-              <tr><th scope="row">Nome</th><td>AutenticSense — O Sentido Autêntico</td></tr>
-              <tr><th scope="row">Tipo</th><td>Progressive Web App (PWA) educacional, standalone e offline-first</td></tr>
-              <tr><th scope="row">Stack</th><td>HTML5 semântico, CSS3 modular (design tokens) e JavaScript ES6 puro — zero dependências de runtime</td></tr>
+              <tr><th scope="row">Nome</th><td>Sentido Autêntico</td></tr>
+              <tr><th scope="row">Autoria</th><td>rogerelizar</td></tr>
+              <tr><th scope="row">Tipo</th><td>Progressive Web App (PWA (aplicativo web progressivo)) educacional, standalone e offline-first</td></tr>
+              <tr><th scope="row">Stack</th><td>HTML5 (linguagem de marcação da web) semântico, CSS3 (folhas de estilo em cascata) modular (design tokens) e JavaScript ES6 (ECMAScript 6, o padrão do JavaScript) puro — zero dependências de runtime</td></tr>
               <tr><th scope="row">Tipografia</th><td>Noto Serif & Noto Serif Hebrew (auto-hospedadas), pilhas nativas do sistema como fallback</td></tr>
-              <tr><th scope="row">Acessibilidade</th><td>WCAG 2.2 AA: TTS, modo dislexia, alto contraste, tema escuro, teclado completo, aria-live</td></tr>
-              <tr><th scope="row">Fontes textuais</th><td>AT: tradição massorética (BHS/BHQ) · NT: texto crítico grego (NA28/UBS5) — glosas pedagógicas originais</td></tr>
-              <tr><th scope="row">Metodologia</th><td>Híbrida multimodal integrada: 5 níveis, ritmo 60 min/dia, SRS (Anki), co-mentoria com IA e obras de referência acadêmica</td></tr>
+              <tr><th scope="row">Acessibilidade</th><td>WCAG (Diretrizes de Acessibilidade para Conteúdo Web) 2.2 nível AA (segundo nível de conformidade): TTS (leitura de texto em voz alta), modo dislexia, alto contraste, tema escuro, teclado completo, aria-live</td></tr>
+              <tr><th scope="row">Fontes textuais</th><td>AT (Antigo Testamento): tradição massorética (BHS (Biblia Hebraica Stuttgartensia)/BHQ (Biblia Hebraica Quinta)) · NT (Novo Testamento): texto crítico grego (NA28 (Nestle-Aland, 28.ª edição)/UBS5 (United Bible Societies, 5.ª edição)) — glosas pedagógicas originais</td></tr>
+              <tr><th scope="row">Metodologia</th><td>Híbrida multimodal integrada: 5 níveis, ritmo 60 min/dia, SRS com o aplicativo Anki, co-mentoria com inteligência artificial e obras de referência acadêmica</td></tr>
               <tr><th scope="row">Conteúdo</th><td>Licença Creative Commons — uso educacional livre com atribuição · Código sob licença MIT</td></tr>
               <tr><th scope="row">Privacidade</th><td>Nenhum dado pessoal coletado, sem cookies de terceiros, sem servidores de aplicação</td></tr>
             </tbody>

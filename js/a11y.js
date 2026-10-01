@@ -95,7 +95,7 @@ function buildFab() {
   host.innerHTML = `
     <button class="fab" id="a11yFab" type="button" aria-expanded="false" aria-controls="a11yPanel"
             aria-label="Abrir barra de acessibilidade">
-      ${icon('person', 'icon')}
+      ${icon('accessibility', 'icon')}
     </button>
     <section class="fab-panel" id="a11yPanel" role="dialog" aria-modal="false"
              aria-label="Central de acessibilidade" hidden>

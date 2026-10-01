@@ -7,11 +7,11 @@ import { icon } from '../icons.js';
 const PASSOS = [
   {
     t: 'Domine a fundação (Nível 1)',
-    d: 'Antes de correr para conjugações complexas, foque no alfabeto, nas vogais e na pronúncia — evitando que a memorização vire mera adivinhação. São as 200 palavras mais frequentes primeiro.'
+    d: 'Antes de correr para conjugações complexas, foque no alfabeto, nas vogais e na pronúncia — evitando que a memorização vire mera adivinhação. Adicione o vocabulário, iniciando com as 200 palavras mais frequentes.'
   },
   {
     t: 'A regra dos 30–60 minutos',
-    d: 'A constância diária supera maratonas esporádicas: o segredo está no contato diário com o texto e no uso de repetição espaçada (SRS), não em sessões heroicas de fim de semana.'
+    d: 'A constância diária supera maratonas esporádicas: o segredo está no contato diário com o texto e no uso de repetição espaçada (SRS (sistema de repetição espaçada)), não em sessões heroicas de fim de semana.'
   },
   {
     t: 'Selecione as obras certas',
@@ -38,7 +38,7 @@ const NIVEIS = [
   },
   {
     n: 'Fluência (contínuo)', dur: 'em curso',
-    d: 'Leitura fluida do texto completo, inclusão do Aramaico Bíblico, comparação LXX × Texto Massorético e pesquisa acadêmica.'
+    d: 'Leitura fluida do texto completo, inclusão do Aramaico Bíblico, comparação LXX (Septuaginta) × TM (Texto Massorético) e pesquisa acadêmica.'
   }
 ];
 
@@ -47,21 +47,21 @@ const BLOCOS = [
     d: 'Flashcards no Anki (SRS) para manutenção da memória de longo prazo: vocabulário e paradigmas gramaticais.' },
   { t: 'Bloco 2 · Aquisição', min: '20 min', icon: 'book',
     d: 'Novo conteúdo gramatical ou expansão de vocabulário, por lições estruturadas nas obras de referência.' },
-  { t: 'Bloco 3 · Imersão', min: '20 min', icon: 'speaker',
-    d: 'Prática direta com o texto bíblico: leitura em voz alta ou análise interlinear nas ferramentas do portal.' }
+  { t: 'Bloco 3 · Imersão', min: '20 min', icon: 'scroll',
+    d: 'Prática direta com o texto bíblico: leitura atenta do original ou análise interlinear nas ferramentas do portal.' }
 ];
 
 const ESTRATEGIAS_IA = [
-  { nivel: 'Nível 1 · Fundação', estr: 'Ditados fonéticos interativos', d: 'A IA dita palavras para treinar a correlação som-grafia e o reconhecimento rápido de caracteres.' },
-  { nivel: 'Nível 2 · Básico', estr: 'Parsing reverso', d: 'A IA fornece a análise morfológica e você reconstrói a forma original no idioma.' },
+  { nivel: 'Nível 1 · Fundação', estr: 'Ditados fonéticos interativos', d: 'A inteligência artificial dita palavras para treinar a correlação som-grafia e o reconhecimento rápido de caracteres.' },
+  { nivel: 'Nível 2 · Básico', estr: 'Parsing reverso', d: 'A inteligência artificial fornece a análise morfológica e você reconstrói a forma original no idioma.' },
   { nivel: 'Nível 3 · Intermediário', estr: 'Análise de desvios', d: 'Interrogação automatizada sobre verbos fracos/irregulares, particípios e estruturas complexas (waw consecutivo).' },
-  { nivel: 'Nível 4 · Avançado', estr: 'Co-mentoria exegética S.O.I.A.', d: 'Protocolo Sintaxe, Observação, Interpretação e Aplicação com a IA como parceira de estudo.' },
+  { nivel: 'Nível 4 · Avançado', estr: 'Co-mentoria exegética S.O.I.A.', d: 'Protocolo Sintaxe, Observação, Interpretação e Aplicação com a inteligência artificial como parceira de estudo.' },
   { nivel: 'Nível 5 · Fluência', estr: 'Filologia comparada', d: 'Comparação semântica entre a Septuaginta (LXX) e o Texto Massorético (TM) para identificar nuances teológicas.' }
 ];
 
 export default {
   title: 'Rota de Crescimento',
-  desc: 'Do alefato à fluência: roteiro em 5 níveis para dominar Hebraico, Aramaico e Grego Koiné — com ritmo diário de 60 minutos, SRS e metodologia de aceleração com IA.',
+  desc: 'Do alefato à fluência: roteiro em 5 níveis para dominar Hebraico, Aramaico e Grego Koiné — com ritmo diário de 60 minutos, SRS e metodologia de aceleração com inteligência artificial.',
 
   render() {
     const passos = PASSOS.map((p, i) => `
@@ -117,6 +117,13 @@ export default {
         </p>
       </header>
 
+      <div class="callout callout--gold" style="margin-top:1.6rem">
+        <span class="callout-title">Nota editorial</span>
+        Adequação de níveis e semanas é uma organização editorial deste portal
+        (vigência: <strong>setembro de 2026</strong>) para o material indicado —
+        não é um cronograma oficial das editoras.
+      </div>
+
       <section class="section" aria-labelledby="tres-passos">
         <p class="section-kicker">O ecossistema</p>
         <h2 id="tres-passos">Três passos que sustentam tudo</h2>
@@ -146,27 +153,30 @@ export default {
 
       <section class="section" aria-labelledby="ia">
         <p class="section-kicker">Acelerador</p>
-        <h2 id="ia">Metodologia de aceleração com IA</h2>
+        <h2 id="ia">Metodologia de aceleração com inteligência artificial</h2>
         <p>A inteligência artificial atua como <strong>co-mentora 24/7</strong>: feedback imediato,
         repetição personalizada e exercícios impossíveis de gerar sozinho. Estudos da metodologia
         indicam leitura autônoma até 3× mais rápida em relação ao método tradicional.</p>
         <div class="table-wrap">
           <table>
-            <thead><tr><th scope="col">Nível</th><th scope="col">Estratégia IA</th><th scope="col">Como funciona</th></tr></thead>
+            <thead><tr><th scope="col">Nível</th><th scope="col">Estratégia com inteligência artificial</th><th scope="col">Como funciona</th></tr></thead>
             <tbody>${estrategias}</tbody>
           </table>
         </div>
         <div class="stat-strip" role="list" aria-label="Indicadores da metodologia">
           <div class="stat" role="listitem"><b>3×</b><span>mais rápido que o método tradicional</span></div>
-          <div class="stat" role="listitem"><b>90%</b><span>retenção de vocabulário (SRS + IA)</span></div>
+          <div class="stat" role="listitem"><b>90%</b><span>retenção de vocabulário (SRS + inteligência artificial)</span></div>
           <div class="stat" role="listitem"><b>12–14</b><span>meses até a fluência (vs. 24–36)</span></div>
-          <div class="stat" role="listitem"><b>R$ 0</b><span>recursos web gratuitos + IA</span></div>
+          <div class="stat" role="listitem"><b>R$ 0</b><span>recursos web gratuitos + inteligência artificial</span></div>
         </div>
         <div class="callout" style="margin-top:1.4rem">
-          <span class="callout-title">Nota de honestidade acadêmica</span>
-          A co-mentoria com IA acelera o treinamento, mas <strong>sempre valide as análises</strong>
-          nas gramáticas de referência (<a href="#/biblioteca">biblioteca</a>) e nos léxicos.
-          A IA é instrumento de prática, não autoridade final.
+          <span class="callout-title">Alerta acadêmico</span>
+          Use a inteligência artificial apenas como um meio de acelerar o treinamento.
+          <strong>Não a use para validar análises e conclusões</strong> que dependem de
+          sensibilidade e direcionamento lógico-espiritual. Busque esclarecimento nas
+          gramáticas e léxicos de referência (<a href="#/biblioteca">biblioteca</a>) e
+          professores de formação acadêmica, certificação ou acompanhamento de mentores.
+          Inteligência artificial não é autoridade, é ferramenta.
         </div>
       </section>
 
@@ -177,7 +187,7 @@ export default {
 
         <figure class="info-figure">
           <img src="assets/img/info/ecossist.jpg" loading="lazy" decoding="async"
-               alt="Infográfico do ecossistema O Sentido Autêntico: rota de crescimento em 3 passos, tabela de obras de referência por nível, diversidade metodológica da morfologia à sintaxe, ciclo de integração diária, ecossistema digital e IA como co-mentora.">
+               alt="Infográfico do ecossistema O Sentido Autêntico: rota de crescimento em 3 passos, tabela de obras de referência por nível, diversidade metodológica da morfologia à sintaxe, ciclo de integração diária, ecossistema digital e inteligência artificial como co-mentora.">
           <figcaption><strong>O ecossistema em uma página:</strong> a rota em 3 passos, as obras por nível e o ciclo de integração diária.</figcaption>
         </figure>
 
@@ -196,8 +206,8 @@ export default {
 
         <figure class="info-figure">
           <img src="assets/img/info/metodologia.jpg" loading="lazy" decoding="async"
-               alt="Infográfico Metodologia de Aceleração: línguas bíblicas com inteligência artificial, mostrando estratégias de IA por nível — ditados fonéticos, parsing reverso, análise de desvios, co-mentoria exegética SOIA e filologia comparada — além do comparativo de eficácia contra o método tradicional.">
-          <figcaption><strong>Metodologia com IA:</strong> estratégias por nível e comparativo de eficácia.</figcaption>
+               alt="Infográfico Metodologia de Aceleração: línguas bíblicas com inteligência artificial, mostrando estratégias de inteligência artificial por nível — ditados fonéticos, parsing reverso, análise de desvios, co-mentoria exegética SOIA e filologia comparada — além do comparativo de eficácia contra o método tradicional.">
+          <figcaption><strong>Metodologia com inteligência artificial:</strong> estratégias por nível e comparativo de eficácia.</figcaption>
         </figure>
       </section>
 

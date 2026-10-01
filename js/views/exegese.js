@@ -17,7 +17,7 @@ const STEPS = [
   },
   {
     t: 'Análise lexical (o sentido das palavras)',
-    d: 'Estudo de lexemas nos dicionários (BDB, HALOT, BDAG): campo semântico, frequência de uso e uso no próprio autor. Cuidado com a falácia etimológica — significado é uso, não é raiz “mágica”.'
+    d: 'Estudo de lexemas nos dicionários (BDB (léxico Brown-Driver-Briggs), HALOT (Hebrew and Aramaic Lexicon of the Old Testament), BDAG (léxico Bauer-Danker-Arndt-Gingrich)): campo semântico, frequência de uso e uso no próprio autor. Cuidado com a falácia etimológica — significado é uso, não é raiz “mágica”.'
   },
   {
     t: 'Análise sintática e estrutural',
@@ -48,10 +48,10 @@ const GLOSSARY = [
   { t: 'Hermenêutica', d: 'Os princípios e a teoria da interpretação; a exegese é a sua aplicação prática.' },
   { t: 'Perícope', d: 'Unidade literária completa delimitada para estudo (um parágrafo, um salmo, uma narrativa).' },
   { t: 'Lexema', d: 'A forma de dicionário de uma palavra; no hebraico, vinculada à raiz (shoresh) trilítera.' },
-  { t: 'Texto Massorético', d: 'Tradição hebraica do AT fixada pelos masoretas (séc. VI–X d.C.), base das edições BHS/BHQ.' },
-  { t: 'Septuaginta (LXX)', d: 'Tradução grega do Antigo Testamento (séc. III–II a.C.); a Bíblia mais citada no NT.' },
+  { t: 'Texto Massorético', d: 'Tradição hebraica do AT (Antigo Testamento) fixada pelos masoretas (séc. VI–X d.C.), base das edições BHS (Biblia Hebraica Stuttgartensia)/BHQ (Biblia Hebraica Quinta).' },
+  { t: 'Septuaginta (LXX)', d: 'Tradução grega do Antigo Testamento (séc. III–II a.C.); a Bíblia mais citada no NT (Novo Testamento).' },
   { t: 'Qerê / Ketiv', d: 'Notas masoréticas: o que se lê (qerê) vs. o que está escrito (ketiv) na linha do texto.' },
-  { t: 'Targum', d: 'Traduções aramaicas sinagogais do AT, testemunhas de como os judeus liam seus textos.' },
+  { t: 'Targum', d: 'Traduções aramaicas sinagogais do Antigo Testamento, testemunhas de como os judeus liam seus textos.' },
   { t: 'Interlinear', d: 'Edição com o texto original e glosas alinhadas palavra a palavra — ponte entre tradução e original.' },
   { t: 'Quiasmo', d: 'Estrutura em espelho (A-B-B′-A′) comum na Bíblia hebraica; o centro costuma ser o ponto de ênfase.' }
 ];

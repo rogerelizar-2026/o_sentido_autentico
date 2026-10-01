@@ -1,4 +1,4 @@
-# AutenticSense — O Sentido Autêntico
+# Sentido Autêntico — by rogerelizar
 User-agent: *
 Allow: /
 

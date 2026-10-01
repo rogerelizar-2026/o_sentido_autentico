@@ -8,7 +8,7 @@ const MODULES = [
   {
     href: '#/rota', cls: 'module--portal', icone: '5×',
     title: 'Rota de Crescimento',
-    text: 'Do alefato à fluência em 5 níveis: 60 minutos por dia, repetição espaçada (Anki) e aceleração com IA — custo R$ 0.',
+    text: 'Do alefato à fluência em 5 níveis: 60 minutos por dia, repetição espaçada (Anki) e aceleração com inteligência artificial — custo R$ 0.',
     link: 'Começar a jornada',
     icon: 'compass'
   },
@@ -65,7 +65,7 @@ const FAQ = [
     a: 'Não. O conteúdo é progressivo: comece pela Rota de Crescimento (Nível 1 — Fundação), passe para os alfabetos e avance até a análise interlinear. Cada termo técnico é explicado em português claro no primeiro uso.'
   },
   {
-    q: 'O AutenticSense funciona sem internet?',
+    q: 'O Sentido Autêntico funciona sem internet?',
     a: 'Sim. É um PWA (aplicativo web progressivo) offline-first: após a primeira visita, todas as páginas, fontes tipográficas e ferramentas ficam armazenadas no seu dispositivo, e você pode instalá-lo como aplicativo.'
   },
   {
@@ -74,7 +74,7 @@ const FAQ = [
   },
   {
     q: 'Quais textos originais servem de base aos exemplos?',
-    a: 'Para o Antigo Testamento, a tradição massorética (edições BHS/BHQ); para o Novo Testamento, o texto crítico grego (NA28/UBS5). As glosas e notas pedagógicas são produzidas em português pelo projeto.'
+    a: 'Para o Antigo Testamento, a tradição massorética (edições BHS (Biblia Hebraica Stuttgartensia)/BHQ (Biblia Hebraica Quinta)); para o Novo Testamento, o texto crítico grego (NA28 (Nestle-Aland, 28.ª edição)/UBS5 (United Bible Societies, 5.ª edição)). As glosas e notas pedagógicas são produzidas em português pelo projeto.'
   }
 ];
 
@@ -111,10 +111,17 @@ export default {
           <p class="eyebrow">Portal educacional · Línguas bíblicas · 100% offline</p>
           <h1 id="hero-title">Redescubra o <span class="accent">sentido autêntico</span> do texto bíblico</h1>
           <p class="lede">
-            Um roteiro completo — do primeiro contato com o alefato à exegese madura — para
+            Um roteiro definido — do primeiro contato com o alefato à exegese — para
             estudar as Escrituras nas línguas originais: <strong>Hebraico</strong>,
             <strong>Aramaico</strong> e <strong>Grego Koiné</strong>. Com metodologia,
             ferramentas e a estante certa, gratuito e direto no navegador.
+          </p>
+          <p class="hero-convite">
+            Iniciar o estudo das línguas bíblicas originais é dar um passo decisivo em
+            direção ao conhecimento de Deus nas Escrituras. Essa caminhada repleta de
+            descobertas e de desafios práticos transformará não apenas sua compreensão do
+            texto sagrado, mas também a forma como você enxerga a vida e como viver melhor
+            através dela.
           </p>
           <div class="hero-actions">
             <a class="btn btn-gold" href="#/rota">${icon('compass')} Iniciar a Rota de Crescimento</a>
@@ -134,6 +141,25 @@ export default {
         </div>
       </section>
 
+      <section class="section" aria-labelledby="antes-comecar">
+        <div class="callout callout--alerta">
+          <span class="callout-title" id="antes-comecar">Antes de começar: o lugar das línguas originais</span>
+          <p>Dentro do processo de estudo de um texto antigo, a análise léxico-sintática
+          (estudo das línguas originais) é um dos passos de grande valor. Entretanto este
+          valor perde sua validade se não for acompanhado dos demais passos do processo
+          para a compreensão exata da mensagem transmitida. Há o sério risco de
+          interpretações erradas se desconsiderar a importância do contexto
+          histórico-cultural da época do escrito, do contexto do livro, das figuras de
+          linguagem, aspectos semânticos e outros passos regidos pela disciplina chamada
+          Hermenêutica.</p>
+          <p>A boa prática do estudante honesto, que deseja ver a verdade do texto, deve
+          ser a de considerar e anotar sua descoberta como provisória até que junte todas
+          as “peças”.</p>
+          <p class="callout-remate">Interpretar é a coisa mais fácil do mundo quando não se
+          deseja saber a real mensagem transmitida!</p>
+        </div>
+      </section>
+
       <section class="section" aria-labelledby="modulos">
         <p class="section-kicker">O mapa completo</p>
         <h2 class="section-title" id="modulos">Escolha por onde começar</h2>
@@ -144,7 +170,7 @@ export default {
       <section class="section" aria-labelledby="ecossistema">
         <p class="section-kicker">Visão panorâmica</p>
         <h2 class="section-title" id="ecossistema">O ecossistema em uma imagem</h2>
-        <p class="section-sub">Tudo o que o método integra — rota em 3 passos, obras por nível, ciclo de integração diária e IA como co-mentora.</p>
+        <p class="section-sub">Tudo o que o método integra — rota em 3 passos, obras por nível, ciclo de integração diária e inteligência artificial como co-mentora.</p>
         <figure class="info-figure" style="max-width:62rem">
           <img src="assets/img/info/ecossist.jpg" loading="lazy" decoding="async"
                alt="Infográfico do ecossistema O Sentido Autêntico: rota de crescimento em 3 passos, tabela de obras de referência (Ross, Rega e Bergmann, Mounce e Wallace) por foco e nível, diversidade metodológica da morfologia à sintaxe, ciclo de integração diária, ecossistema digital e inteligência artificial como co-mentora.">
@@ -171,7 +197,7 @@ export default {
 
       <aside class="cta-band" aria-labelledby="cta-title">
         <h2 id="cta-title">Instale e estude onde estiver</h2>
-        <p>Adicione o AutenticSense à tela inicial do seu celular ou computador e tenha as línguas bíblicas sempre à mão — no avião, na igreja ou no monte. Sem internet, sem anúncios, sem cadastro.</p>
+        <p>Adicione o Sentido Autêntico à tela inicial do seu celular ou computador e tenha as línguas bíblicas sempre à mão — no avião ou nos estudos como os amigos na igreja. Sem internet, sem anúncios, sem cadastro.</p>
         <a class="btn btn-gold" href="#/sobre">${icon('download')} Como instalar</a>
       </aside>
     </div>`;

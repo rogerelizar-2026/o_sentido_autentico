@@ -1,11 +1,11 @@
 @echo off
 chcp 65001 >nul 2>&1
 setlocal
-title AutenticSense - Servidor Local
+title Sentido Autentico - Servidor Local
 cd /d "%~dp0"
 
 echo ==========================================================
-echo   AutenticSense - O Sentido Autentico  (servidor local)
+echo   Sentido Autentico - by rogerelizar  (servidor local)
 echo ==========================================================
 echo   NAO feche esta janela enquanto estiver usando o portal.
 echo   Procurando Python ou Node.js no seu computador...

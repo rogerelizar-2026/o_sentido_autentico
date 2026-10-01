@@ -33,3 +33,18 @@ LICENÇAS
   Conteúdo educacional: Creative Commons (uso livre com atribuição).
   Código-fonte: MIT. Capas de livros: direitos reservados às editoras.
 ###############################################################################
+
+===========================================================
+  NO CELULAR (Android / iPhone)
+===========================================================
+
+Jeito rapido:
+  Dois cliques em ABRIR-NO-CELULAR.bat (Windows)
+                ou ABRIR-NO-CELULAR.command (Mac/Linux).
+  Aponte a camera do celular para o QR Code que aparecer.
+
+Para instalar como APLICATIVO de verdade (offline total):
+  Leia COMO-PUBLICAR-HTTPS.txt  (gratis, 3 minutos)
+
+Guia completo com imagens e solucao de problemas:
+  INSTALAR-NO-CELULAR.html

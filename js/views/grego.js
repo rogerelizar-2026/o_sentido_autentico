@@ -38,7 +38,7 @@ export default {
         <p class="chip-row" aria-label="Destaques">
           <span class="chip chip-gold">24 letras</span>
           <span class="chip chip-gold">5 casos gramaticais</span>
-          <span class="chip">texto crítico NA28/UBS5</span>
+          <span class="chip">texto crítico NA28 (Nestle-Aland, 28.ª edição)/UBS5 (United Bible Societies, 5.ª edição)</span>
         </p>
       </header>
 
@@ -110,10 +110,31 @@ export default {
         exatamente <span class="hebrew" lang="he" dir="rtl">בְּרֵאשִׁית</span>. Toque em cada palavra:</p>
         ${renderInterlinear(verseById('jo11'))}
         <div class="callout callout--ok">
-          <span class="callout-title">Ferramenta certa para a hora</span>
-          Teste no <a href="#/ferramentas">Transliterador de Grego</a> palavras como
-          <span class="greek" lang="grc">ἀγάπη</span> (amor), <span class="greek" lang="grc">χάρις</span> (graça) ou
-          <span class="greek" lang="grc">πνεῦμα</span> (espírito).
+          <span class="callout-title">Plano progressivo de memorização</span>
+          <p>Para fixar o grego não é preciso teclado grego nem fonte instalada: o caminho
+          é a <strong>memorização espaçada com flashcards</strong>, seguindo as listas de
+          vocabulário da sua gramática de referência.</p>
+          <ol class="plano-memo">
+            <li><strong>Semanas 1–2 · O alfabeto.</strong> Um cartão por letra, maiúscula e
+            minúscula, mais os espíritos (brando e rude) e os três acentos.</li>
+            <li><strong>Semanas 3–6 · As 100 primeiras palavras.</strong> Use as listas ao
+            final de cada lição de <a href="#/biblioteca">Fundamentos do Grego Bíblico</a>,
+            de William D. Mounce, ou de
+            <a href="#/biblioteca">Noções do Grego Bíblico</a>, de Rega &amp; Bergmann.
+            Ambos ordenam o vocabulário por frequência no Novo Testamento.</li>
+            <li><strong>Semanas 7–16 · Até 300 palavras.</strong> Toda palavra que aparece
+            50 vezes ou mais no Novo Testamento. Com elas você reconhece cerca de
+            <strong>quatro de cada cinco palavras</strong> de qualquer página do texto grego.</li>
+            <li><strong>Sempre · Artigos e preposições.</strong> Cartões separados para as
+            formas do artigo e para as preposições mais comuns: são o esqueleto da frase
+            grega e retornam em todo versículo.</li>
+          </ol>
+          <p><strong>Como revisar:</strong> 15 minutos diários com um aplicativo gratuito
+          de repetição espaçada, como o <strong>Anki</strong>, que decide sozinho o que
+          mostrar e quando. Fichas de papel em três caixas funcionam igualmente bem.</p>
+          <p class="small muted" style="margin-bottom:0">Dica: no verso do cartão escreva a
+          glosa e <em>uma referência bíblica</em> onde a palavra aparece. Memória apoiada em
+          contexto dura muito mais do que lista solta.</p>
         </div>
       </section>
 

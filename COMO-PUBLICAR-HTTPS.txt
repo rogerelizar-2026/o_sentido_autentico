@@ -1,0 +1,141 @@
+===========================================================
+  Sentido Autentico - Como publicar em HTTPS (gratis, 3 minutos)
+===========================================================
+
+POR QUE FAZER ISSO?
+-------------------
+Para o Sentido Autentico virar um aplicativo de verdade no celular
+(icone proprio, tela cheia, funcionando sem internet), o
+navegador exige que o site tenha "cadeado" - o HTTPS.
+
+Isso e uma regra de seguranca do Android e do iPhone.
+Sem HTTPS:
+  - Android: nao oferece "Instalar aplicativo"
+  - iPhone: cria apenas um atalho, sem modo offline
+
+A boa noticia: publicar e gratuito e nao exige conhecimento
+tecnico. Escolha UMA das opcoes abaixo.
+
+
+-----------------------------------------------------------
+OPCAO A - NETLIFY DROP  (a mais facil, sem criar conta)
+-----------------------------------------------------------
+
+1. No computador, abra o navegador e acesse:
+
+       app.netlify.com/drop
+
+2. Arraste a PASTA "Sentido-Autentico" INTEIRA para dentro da
+   area pontilhada que aparece na pagina.
+
+   (Arraste a pasta, nao os arquivos soltos.)
+
+3. Aguarde de 10 a 60 segundos, conforme sua internet.
+
+4. A propria pagina mostrara o endereco do seu site, algo
+   como:
+
+       https://alegre-newton-a1b2c3.netlify.app
+
+5. Anote esse endereco. Abra-o no celular e siga o guia
+   INSTALAR-NO-CELULAR.html para instalar o aplicativo.
+
+DICA: crie uma conta gratuita no Netlify se quiser guardar o
+site permanentemente e trocar o endereco por um nome melhor.
+Sem conta, o site fica no ar por tempo limitado.
+
+
+-----------------------------------------------------------
+OPCAO B - GITHUB PAGES  (permanente e gratuito)
+-----------------------------------------------------------
+
+1. Crie uma conta gratuita em github.com
+
+2. Clique em "New repository". De um nome, por exemplo:
+   autenticsense
+   Marque a opcao "Public" e confirme.
+
+3. Na pagina do repositorio, clique em "uploading an
+   existing file" e arraste TODOS os arquivos e pastas de
+   dentro da pasta Sentido-Autentico.
+
+   Importante: envie o CONTEUDO da pasta (index.html, css,
+   js, assets...), nao a pasta em si.
+
+4. Clique em "Commit changes".
+
+5. Va em Settings (engrenagem) > Pages, no menu lateral.
+
+6. Em "Branch", escolha "main" e a pasta "/ (root)".
+   Clique em Save.
+
+7. Aguarde de 1 a 3 minutos. O endereco aparecera no topo
+   dessa mesma tela:
+
+       https://seu-usuario.github.io/autenticsense/
+
+8. Abra no celular e instale.
+
+O arquivo .nojekyll incluido no pacote garante que o GitHub
+nao ignore nenhuma pasta.
+
+
+-----------------------------------------------------------
+OPCAO C - CLOUDFLARE PAGES
+-----------------------------------------------------------
+
+1. Crie conta gratuita em pages.cloudflare.com
+2. "Create a project" > "Direct Upload"
+3. Arraste a pasta Sentido-Autentico
+4. Receba o endereco https://nome.pages.dev
+
+
+-----------------------------------------------------------
+ARQUIVOS DE CONFIGURACAO JA INCLUIDOS
+-----------------------------------------------------------
+
+Voce nao precisa mexer em nada. O pacote ja traz:
+
+  netlify.toml  - configuracao para Netlify
+  vercel.json   - configuracao para Vercel
+  _headers      - cabecalhos HTTP (Netlify/Cloudflare)
+  .nojekyll     - compatibilidade com GitHub Pages
+
+Eles garantem que o Service Worker (responsavel pelo modo
+offline) e as fontes hebraicas e gregas sejam entregues
+corretamente.
+
+
+-----------------------------------------------------------
+DEPOIS DE PUBLICAR
+-----------------------------------------------------------
+
+Recomendado: abra o arquivo index.html em um editor de texto
+e localize a linha que comeca com:
+
+    <link rel="canonical" href="https://autenticsense.example.com/">
+
+Troque o endereco pelo endereco real do seu site. Isso ajuda
+os buscadores. Faca o mesmo na linha "og:url", logo abaixo.
+
+Nao e obrigatorio - o app funciona perfeitamente sem essa
+alteracao.
+
+
+-----------------------------------------------------------
+TESTE FINAL
+-----------------------------------------------------------
+
+1. Abra o endereco no celular
+2. Instale o aplicativo (veja INSTALAR-NO-CELULAR.html)
+3. Ative o MODO AVIAO
+4. Feche o app por completo e abra pelo icone
+5. Navegue entre Hebraico, Grego e Ferramentas
+
+Se tudo abrir sem internet, esta funcionando como deveria.
+
+
+===========================================================
+Sentido Autentico - by rogerelizar
+Uso livre para estudo pessoal, ensino e ministerio.
+===========================================================

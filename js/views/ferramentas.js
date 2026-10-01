@@ -5,7 +5,6 @@ import { renderInterlinear, mountInterlinear } from '../components/interlinear.j
 import { transliterateHebrew, transliterateGreek, copyText } from '../tools.js';
 import { icon } from '../icons.js';
 import { announce } from '../a11y.js';
-import { tts } from '../tts.js';
 
 const TABS = [
   { id: 'il', label: 'Interlinear' },
@@ -73,7 +72,6 @@ export default {
               <div class="output" id="heOut" aria-live="polite" aria-labelledby="heOutLegend"></div>
               <div class="a11y-row" style="margin-top:0.6rem">
                 <button type="button" class="btn btn-outline btn-sm" id="heCopy">${icon('copy')} Copiar</button>
-                <button type="button" class="btn btn-outline btn-sm" id="heSpeak">${icon('speaker')} Ouvir guia</button>
               </div>
             </div>
           </div>
@@ -97,7 +95,7 @@ export default {
               </p>
             </div>
             <div>
-              <p class="output-legend" id="grOutLegend">Transliteração (SBL simplificado)</p>
+              <p class="output-legend" id="grOutLegend">Transliteração (SBL (Society of Biblical Literature) simplificado)</p>
               <div class="output" id="grOut" aria-live="polite" aria-labelledby="grOutLegend"></div>
               <div class="a11y-row" style="margin-top:0.6rem">
                 <button type="button" class="btn btn-outline btn-sm" id="grCopy">${icon('copy')} Copiar</button>
@@ -112,7 +110,7 @@ export default {
         <span class="callout-title">Limite honesto das ferramentas</span>
         A transliteração é um mapa fonético pedagógico, não uma análise morfológica completa:
         o sheva vocal/silencioso, o qamats-o e os contextos de begadkefat exigem avaliação da
-        palavra inteira — para isso, consulte um léxico (BDB/Strong para o AT; BDAG/Strong para o NT).
+        palavra inteira — para isso, consulte um léxico (BDB (léxico Brown-Driver-Briggs)/Strong para o AT (Antigo Testamento); BDAG (léxico Bauer-Danker-Arndt-Gingrich)/Strong para o NT (Novo Testamento)).
       </div>
     </div>`;
   },
@@ -167,9 +165,6 @@ export default {
     root.querySelector('#heCopy').addEventListener('click', async () => {
       const ok = await copyText(heOut.textContent);
       announce(ok ? 'Transliteração hebraica copiada.' : 'Não foi possível copiar.');
-    });
-    root.querySelector('#heSpeak').addEventListener('click', () => {
-      tts.speak(`Transliteração: ${heOut.textContent || 'vazio'}`);
     });
     updateHe();
 
