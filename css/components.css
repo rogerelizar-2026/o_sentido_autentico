@@ -118,7 +118,10 @@ a.card:hover .card-link::after { transform: translateX(4px); }
 .interlinear-head .ref { font-weight: 700; font-family: var(--osa-font-serif); }
 .interlinear-head .spacer { flex: 1; }
 .interlinear { display: flex; flex-wrap: wrap; column-gap: 0.45rem; row-gap: 1.4rem; }
-.interlinear[dir="rtl"] { flex-direction: row-reverse; justify-content: flex-end; }
+/* Com dir="rtl" o eixo do flex JÁ corre da direita para a esquerda.
+   Acrescentar row-reverse invertia de novo, devolvendo o texto ao sentido
+   ocidental — as palavras certas, na ordem errada. */
+.interlinear[dir="rtl"] { justify-content: flex-start; text-align: right; }
 .il-word {
   background: none; border: none; cursor: pointer;
   font: inherit; color: inherit; border-radius: 8px;
@@ -252,6 +255,45 @@ a.card:hover .card-link::after { transform: translateX(4px); }
 .callout--ok { border-inline-start-color: var(--osa-ok); background: var(--osa-ok-soft); }
 .callout--danger { border-inline-start-color: var(--osa-danger); background: var(--osa-danger-soft); }
 .callout .callout-title { font-weight: 700; display: block; margin-bottom: 0.25rem; }
+
+/* Alerta de leitura obrigatória (ex.: o lugar das línguas originais) */
+.callout--alerta {
+  border-inline-start-color: var(--osa-gold);
+  background: var(--osa-gold-soft);
+  border: 1px solid var(--osa-gold);
+  border-inline-start-width: 6px;
+}
+.callout--alerta .callout-title {
+  font-family: var(--osa-font-serif);
+  font-size: 1.15rem;
+  color: var(--osa-portal-green);
+  margin-bottom: 0.6rem;
+}
+.callout--alerta p { margin: 0 0 0.7rem; }
+.callout--alerta p:last-child { margin-bottom: 0; }
+.callout--alerta .callout-remate {
+  font-weight: 700;
+  font-family: var(--osa-font-serif);
+  font-size: 1.04rem;
+  color: var(--osa-portal-green);
+  border-top: 1px solid var(--osa-gold);
+  padding-top: 0.75rem;
+  margin-top: 0.9rem;
+}
+[data-theme="dark"] .callout--alerta .callout-title,
+[data-theme="dark"] .callout--alerta .callout-remate { color: var(--osa-gold); }
+
+/* Convite de abertura, logo acima dos botões do hero */
+.hero-convite {
+  max-width: 46rem;
+  margin: 0 0 1.4rem;
+  padding-inline-start: 1rem;
+  border-inline-start: 3px solid var(--osa-gold);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--osa-muted);
+}
+[data-theme="dark"] .hero-convite { color: var(--osa-ink); }
 
 /* ---------- Glossário ---------- */
 .glossary { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); margin: 1.2rem 0; }

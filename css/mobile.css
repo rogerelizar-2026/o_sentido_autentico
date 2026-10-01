@@ -1,0 +1,234 @@
+/* ==========================================================================
+   AutenticSense — Camada mobile / PWA
+   Notch & safe-area, alvos de toque, comportamento standalone e
+   assistente de instalação para iOS.
+   ========================================================================== */
+
+/* ---------- 1. Safe-area (notch, Dynamic Island, barra de gestos) -------- */
+:root {
+  --osa-safe-t: env(safe-area-inset-top, 0px);
+  --osa-safe-r: env(safe-area-inset-right, 0px);
+  --osa-safe-b: env(safe-area-inset-bottom, 0px);
+  --osa-safe-l: env(safe-area-inset-left, 0px);
+}
+
+body {
+  /* impede o "puxar para recarregar" acidental dentro do app instalado */
+  overscroll-behavior-y: contain;
+  /* rolagem com inércia no iOS */
+  -webkit-overflow-scrolling: touch;
+  /* evita que o iOS aumente a fonte ao girar o aparelho */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.site-header,
+.topbar,
+header[role="banner"] {
+  padding-top: max(var(--osa-safe-t), 0px);
+  padding-left: max(var(--osa-safe-l), 0px);
+  padding-right: max(var(--osa-safe-r), 0px);
+}
+
+.site-footer,
+footer[role="contentinfo"] {
+  padding-bottom: max(var(--osa-safe-b), 1rem);
+}
+
+main,
+#app {
+  padding-left: max(var(--osa-safe-l), 0px);
+  padding-right: max(var(--osa-safe-r), 0px);
+}
+
+/* Gaveta de navegação e FAB respeitam a área segura */
+.drawer,
+.nav-drawer {
+  padding-top: max(var(--osa-safe-t), 0px);
+  padding-bottom: max(var(--osa-safe-b), 0px);
+}
+
+.fab,
+.a11y-fab,
+.fab-wrap {
+  bottom: calc(1rem + var(--osa-safe-b)) !important;
+  right: calc(1rem + var(--osa-safe-r)) !important;
+}
+
+/* ---------- 2. Alvos de toque (WCAG 2.2 — 2.5.8 Target Size) ------------- */
+@media (pointer: coarse) {
+  button,
+  .btn,
+  a.btn,
+  [role="tab"],
+  .nav a,
+  .drawer a,
+  summary {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .btn-sm {
+    min-height: 40px;
+    padding-inline: 0.85rem;
+  }
+
+  /* espaçamento entre alvos adjacentes, evita toque errado */
+  .a11y-row > * + *,
+  .hint > button + button {
+    margin-left: 0.4rem;
+  }
+
+  /* campos com 16px impedem o zoom automático do iOS ao focar */
+  input,
+  select,
+  textarea {
+    font-size: max(16px, 1rem);
+  }
+
+  /* remove o realce cinza de toque do Android/iOS */
+  a, button, [role="tab"], summary {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* ---------- 3. Ajustes finos de telas pequenas --------------------------- */
+@media (max-width: 480px) {
+  .tool-grid,
+  .card-grid,
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .tabs,
+  [role="tablist"] {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+  }
+  .tabs::-webkit-scrollbar,
+  [role="tablist"]::-webkit-scrollbar { display: none; }
+  [role="tab"] { scroll-snap-align: start; white-space: nowrap; }
+
+  /* tabelas largas rolam em vez de estourar a tela */
+  table { display: block; overflow-x: auto; white-space: nowrap; }
+
+  /* o texto bíblico nunca deve ser cortado */
+  .interlinear,
+  .verse-original,
+  [lang="he"], [lang="arc"], [lang="grc"] {
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+}
+
+/* ---------- 4. Modo instalado (standalone) ------------------------------- */
+@media (display-mode: standalone), (display-mode: fullscreen), (display-mode: minimal-ui) {
+  /* o topo ganha a cor do tema para fundir com a barra de status */
+  html { background: var(--osa-portal-green, #0F3731); }
+
+  /* nada de "abrir em nova aba" dentro do app instalado */
+  .only-browser { display: none !important; }
+
+  /* botão de instalar é inútil quando já está instalado */
+  #installBtn, .install-hint { display: none !important; }
+}
+
+.only-standalone { display: none; }
+@media (display-mode: standalone), (display-mode: fullscreen) {
+  .only-standalone { display: revert; }
+}
+
+/* ---------- 5. Assistente de instalação no iOS --------------------------- */
+.ios-sheet {
+  position: fixed;
+  left: max(0.75rem, var(--osa-safe-l));
+  right: max(0.75rem, var(--osa-safe-r));
+  bottom: calc(0.75rem + var(--osa-safe-b));
+  z-index: 9999;
+  background: var(--osa-paper, #FBFAF7);
+  color: var(--osa-ink, #1A1A18);
+  border: 1px solid rgba(15, 55, 49, 0.18);
+  border-top: 4px solid var(--osa-gold, #C5A059);
+  border-radius: 18px;
+  box-shadow: 0 18px 48px rgba(10, 39, 35, 0.32);
+  padding: 1.05rem 1.1rem 1.1rem;
+  max-width: 34rem;
+  margin-inline: auto;
+  animation: ios-sheet-up 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes ios-sheet-up {
+  from { transform: translateY(120%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ios-sheet { animation: none; }
+}
+
+.ios-sheet h2 {
+  font-size: 1.02rem;
+  margin: 0 0 0.35rem;
+  color: var(--osa-portal-green, #0F3731);
+  font-family: var(--osa-font-serif, serif);
+}
+
+.ios-sheet p { margin: 0 0 0.6rem; font-size: 0.9rem; line-height: 1.5; }
+
+.ios-sheet ol {
+  margin: 0 0 0.85rem;
+  padding-left: 1.15rem;
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.ios-sheet .ios-glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: -0.35em;
+  margin: 0 0.12em;
+  border-radius: 5px;
+  background: rgba(15, 55, 49, 0.09);
+  color: var(--osa-portal-green, #0F3731);
+}
+
+.ios-sheet-actions { display: flex; gap: 0.5rem; justify-content: flex-end; }
+
+.ios-sheet button {
+  min-height: 44px;
+  padding: 0 1rem;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(15, 55, 49, 0.25);
+  background: transparent;
+  color: var(--osa-ink, #1A1A18);
+}
+
+.ios-sheet button.primary {
+  background: var(--osa-portal-green, #0F3731);
+  border-color: var(--osa-portal-green, #0F3731);
+  color: #FBFAF7;
+}
+
+[data-theme="dark"] .ios-sheet {
+  background: #14201E;
+  color: #E9E6DE;
+  border-color: rgba(197, 160, 89, 0.3);
+}
+[data-theme="dark"] .ios-sheet h2 { color: var(--osa-gold, #C5A059); }
+[data-theme="dark"] .ios-sheet button { color: #E9E6DE; border-color: rgba(233, 230, 222, 0.3); }
+
+/* ---------- 6. Impressão: nada de elementos de app ----------------------- */
+@media print {
+  .ios-sheet, .fab, .a11y-fab, #installBtn { display: none !important; }
+}

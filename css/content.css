@@ -145,3 +145,14 @@
   font-family: var(--osa-font-ui); font-style: normal;
   font-size: 0.82rem; color: var(--osa-ink-muted);
 }
+
+/* Plano progressivo de memorização (flashcards) */
+.plano-memo {
+  margin: 0.9rem 0 1rem;
+  padding-inline-start: 1.3rem;
+  display: grid;
+  gap: 0.6rem;
+}
+.plano-memo li { line-height: 1.65; }
+.plano-memo li strong:first-child { color: var(--osa-portal-green); }
+[data-theme="dark"] .plano-memo li strong:first-child { color: var(--osa-gold); }
