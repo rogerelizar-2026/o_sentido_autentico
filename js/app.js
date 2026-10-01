@@ -4,7 +4,7 @@
    ========================================================================== */
 
 import { initRouter } from './router.js';
-import { initAccessibility, a11yStore, announce, trapFocus } from './a11y.js';
+import { initAccessibility, announce, trapFocus } from './a11y.js';
 import { tts } from './tts.js';
 import { icon } from './icons.js';
 import { routes, navItems } from './views/routes.js';
@@ -85,13 +85,6 @@ function initDrawer() {
   });
 }
 
-/* ---------- Tema claro/escuro (botão do cabeçalho) ---------- */
-function initThemeToggle() {
-  const btn = $('#themeToggle');
-  if (!btn) return;
-  btn.addEventListener('click', () => a11yStore.toggleTheme());
-}
-
 /* ---------- Indicador de conectividade ---------- */
 function initNetBadge() {
   const badge = $('#netBadge');
@@ -100,6 +93,9 @@ function initNetBadge() {
     const online = navigator.onLine;
     badge.hidden = false;
     badge.textContent = online ? 'online' : 'offline';
+    badge.title = online
+      ? 'Conectado à internet'
+      : 'Sem internet — o conteúdo continua disponível';
     badge.classList.toggle('is-off', !online);
   }
   window.addEventListener('online', () => { update(); announce('Conexão restabelecida.'); });
@@ -218,7 +214,6 @@ function registerSW() {
 /* ---------- Boot ---------- */
 renderNav();
 initDrawer();
-initThemeToggle();
 initNetBadge();
 initInstall();
 initAccessibility();

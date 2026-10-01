@@ -34,6 +34,7 @@ export function renderInterlinear(verse, { heading = false } = {}) {
       <div class="interlinear" dir="${verse.dir}">${words}</div>
       <p class="translit" style="margin-top:1rem" lang="pt-BR">${verse.traducao}</p>
       <div class="il-detail" role="region" aria-label="Detalhes da palavra selecionada" tabindex="-1"></div>
+      ${verse.dica ? `<p class="il-dica">${verse.dica}</p>` : ''}
       ${verse.nota ? `<p class="il-note"><strong>Nota exegética:</strong> ${verse.nota}</p>` : ''}
     </section>`;
 }

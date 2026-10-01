@@ -710,7 +710,7 @@ details > *:last-child { margin-bottom: 0.9rem; }
 .brand-mark { width: 42px; height: 42px; flex: none; border-radius: 12px; box-shadow: var(--osa-shadow-1); }
 .brand-text { display: flex; flex-direction: column; line-height: 1.12; }
 .brand-text strong { font-family: var(--osa-font-serif); font-size: 1.08rem; letter-spacing: 0.01em; }
-.brand-text small { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--osa-gold-ink); font-weight: 700; }
+.brand-text small { font-size: 0.72rem; text-transform: lowercase; letter-spacing: 0.06em; color: var(--osa-gold-ink); font-weight: 600; }
 
 .nav-top { display: none; align-items: center; gap: 0.15rem; }
 .nav-top a {
@@ -1431,6 +1431,210 @@ a.card:hover .card-link::after { transform: translateX(4px); }
 .plano-memo li strong:first-child { color: var(--osa-portal-green); }
 [data-theme="dark"] .plano-memo li strong:first-child { color: var(--osa-gold); }
 
+/* ====== Início: botões de ação deslocados para antes do mapa ====== */
+.hero-actions--solo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+  margin: 2.2rem auto 0.5rem;
+}
+
+/* Convite de abertura centralizado em relação ao texto anterior */
+.hero-convite--centro {
+  margin-inline: auto;
+  text-align: center;
+  border-inline-start: none;
+  padding-inline-start: 0;
+  padding-top: 1rem;
+  border-top: 2px solid var(--osa-gold);
+  max-width: 44rem;
+}
+
+/* ====== Bloco "Achou útil? Compartilhe!" (somente no app instalado) ====== */
+.partilha { margin-top: 0.4rem; }
+
+.partilha-chamada {
+  font-family: var(--osa-font-serif);
+  font-size: 1.12rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+}
+
+.partilha-bloco {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+}
+
+.partilha-textos {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.partilha-textos p { margin: 0; }
+
+.partilha-titulo {
+  font-family: var(--osa-font-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.partilha-autor { font-size: 0.95rem; opacity: 0.9; }
+.partilha-email { font-size: 0.9rem; opacity: 0.85; word-break: break-all; }
+
+.partilha-qr {
+  width: 132px;
+  height: 132px;
+  flex: none;
+  background: #fff;
+  padding: 7px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+}
+
+.partilha-url {
+  margin: 1rem 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.partilha-url a { color: inherit; text-underline-offset: 3px; }
+
+@media (max-width: 420px) {
+  .partilha-bloco { flex-direction: column; gap: 0.9rem; }
+  .partilha-textos { text-align: center; }
+}
+
+/* ==========================================================================
+   Trilha de glifos — alfabetos e sinais em cards (substitui as tabelas)
+   No celular, uma tabela de 4 colunas com escrita original fica ilegível;
+   cards lado a lado com rolagem horizontal resolvem sem perder informação.
+   ========================================================================== */
+.glyph-dica {
+  font-size: 0.9rem;
+  color: var(--osa-muted);
+  margin: 0.2rem 0 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.glyph-trilha {
+  list-style: none;
+  margin: 1rem 0 1.4rem;
+  padding: 0.25rem 0.25rem 1rem;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(10.5rem, 1fr);
+  gap: 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--osa-gold) transparent;
+}
+.glyph-trilha::-webkit-scrollbar { height: 9px; }
+.glyph-trilha::-webkit-scrollbar-track { background: var(--osa-gold-soft); border-radius: 99px; }
+.glyph-trilha::-webkit-scrollbar-thumb { background: var(--osa-gold); border-radius: 99px; }
+
+/* O alefato corre da direita para a esquerda, como a leitura hebraica:
+   o Aleph nasce na extremidade direita e o Tav fica na ponta esquerda. */
+.glyph-trilha--rtl { direction: rtl; }
+.glyph-trilha--rtl > .glyph-card { direction: ltr; }
+
+.glyph-card {
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.3rem;
+  padding: 1rem 0.8rem 0.9rem;
+  background: var(--osa-surface);
+  border: 1px solid var(--osa-border);
+  border-top: 3px solid var(--osa-gold);
+  border-radius: var(--osa-radius-lg);
+  box-shadow: var(--osa-shadow-1);
+  min-height: 100%;
+}
+
+.glyph-card-num {
+  position: absolute;
+  top: 0.45rem;
+  inset-inline-start: 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--osa-muted);
+  opacity: 0.75;
+}
+
+.glyph-card-sign {
+  font-size: 2.6rem;
+  line-height: 1.25;
+  color: var(--osa-portal-green);
+}
+.glyph-card-sign.hebrew { font-family: var(--osa-font-hebrew); }
+[data-theme="dark"] .glyph-card-sign { color: var(--osa-gold); }
+
+.glyph-card-final {
+  font-size: 0.75rem;
+  color: var(--osa-muted);
+  margin-top: -0.2rem;
+}
+.glyph-card-final .hebrew { font-family: var(--osa-font-hebrew); font-size: 1.1rem; }
+
+.glyph-card-name { font-weight: 700; font-size: 0.98rem; }
+
+.glyph-card-tr {
+  font-family: var(--osa-font-mono);
+  font-size: 0.88rem;
+  color: var(--osa-gold-ink);
+  background: var(--osa-gold-soft);
+  padding: 0.1rem 0.5rem;
+  border-radius: 99px;
+}
+
+.glyph-card-som {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--osa-ink-secondary);
+}
+
+/* Cards dos casos gregos: a forma declinada é o destaque, não um glifo solto */
+.glyph-card--caso .glyph-card-sign { font-size: 1.6rem; }
+.glyph-trilha--casos { grid-auto-columns: minmax(12rem, 1fr); }
+
+/* Em telas largas, o niqud e os casos acomodam-se em grade, sem rolagem */
+@media (min-width: 900px) {
+  .glyph-trilha:not(.glyph-trilha--rtl) {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    overflow-x: visible;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glyph-trilha { scroll-behavior: auto; }
+}
+
+/* Dica de recurso externo dentro do bloco interlinear */
+.il-dica {
+  margin: 1rem 0 0;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  background: var(--osa-ok-soft);
+  border-inline-start: 4px solid var(--osa-ok);
+  border-radius: 0 var(--osa-radius) var(--osa-radius) 0;
+}
+.il-dica a { font-weight: 600; }
+
 </style>
 </head>
 <body>
@@ -1458,12 +1662,7 @@ a.card:hover .card-link::after { transform: translateX(4px); }
       <nav class="nav-top" id="navTop" aria-label="Navegação principal"></nav>
 
       <div class="header-actions">
-        <span id="netBadge" class="net-badge" role="status" hidden>offline</span>
-        <button id="themeToggle" class="btn-icon" type="button" aria-pressed="false" aria-label="Alternar entre tema claro e escuro">
-          <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M21.5 12h-2.4M4.9 12H2.5M18.7 5.3l-1.7 1.7M7 17l-1.7 1.7M18.7 18.7 17 17M7 7 5.3 5.3"/>
-          </svg>
-        </button>
+        <span id="netBadge" class="net-badge" role="status">offline</span>
         <button id="installBtn" class="btn btn-gold btn-sm" type="button" hidden>
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16"/></svg>
           Instalar
@@ -1893,20 +2092,6 @@ a.card:hover .card-link::after { transform: translateX(4px); }
     if (themeBtn) themeBtn.setAttribute("aria-pressed", String(prefs.theme === "dark"));
     save();
   }
-  var a11yStore = {
-    get prefs() {
-      return { ...prefs };
-    },
-    set(key, value) {
-      prefs[key] = value;
-      apply();
-    },
-    toggleTheme() {
-      prefs.theme = prefs.theme === "dark" ? "light" : "dark";
-      apply();
-      announce(prefs.theme === "dark" ? "Tema escuro ativado." : "Tema claro ativado.");
-    }
-  };
   function buildFab() {
     const host = document.getElementById("a11yRoot");
     if (!host) return;
@@ -2191,17 +2376,13 @@ a.card:hover .card-link::after { transform: translateX(4px); }
             <strong>Aramaico</strong> e <strong>Grego Koiné</strong>. Com metodologia,
             ferramentas e a estante certa, gratuito e direto no navegador.
           </p>
-          <p class="hero-convite">
+          <p class="hero-convite hero-convite--centro">
             Iniciar o estudo das línguas bíblicas originais é dar um passo decisivo em
             direção ao conhecimento de Deus nas Escrituras. Essa caminhada repleta de
             descobertas e de desafios práticos transformará não apenas sua compreensão do
             texto sagrado, mas também a forma como você enxerga a vida e como viver melhor
             através dela.
           </p>
-          <div class="hero-actions">
-            <a class="btn btn-gold" href="#/rota">${icon("compass")} Iniciar a Rota de Crescimento</a>
-            <a class="btn btn-outline" href="#/ferramentas">${icon("tools")} Experimentar as ferramentas</a>
-          </div>
           <div class="hero-script" aria-label="Amostras das escritas originais">
             <span><span class="hebrew" lang="he" dir="rtl">בְּרֵאשִׁית</span> hebraico</span>
             <span><span class="aramaic" lang="arc" dir="rtl">מְנֵא</span> aramaico</span>
@@ -2234,6 +2415,11 @@ a.card:hover .card-link::after { transform: translateX(4px); }
           deseja saber a real mensagem transmitida!</p>
         </div>
       </section>
+
+      <div class="hero-actions hero-actions--solo">
+        <a class="btn btn-gold" href="#/rota">${icon("compass")} Iniciar a Rota de Crescimento</a>
+        <a class="btn btn-outline" href="#/ferramentas">${icon("tools")} Experimentar as ferramentas</a>
+      </div>
 
       <section class="section" aria-labelledby="modulos">
         <p class="section-kicker">O mapa completo</p>
@@ -2272,8 +2458,31 @@ a.card:hover .card-link::after { transform: translateX(4px); }
 
       <aside class="cta-band" aria-labelledby="cta-title">
         <h2 id="cta-title">Instale e estude onde estiver</h2>
-        <p>Adicione o Sentido Autêntico à tela inicial do seu celular ou computador e tenha as línguas bíblicas sempre à mão — no avião ou nos estudos como os amigos na igreja. Sem internet, sem anúncios, sem cadastro.</p>
-        <a class="btn btn-gold" href="#/sobre">${icon("download")} Como instalar</a>
+        <p>Adicione o Sentido Autêntico à tela inicial do seu celular ou computador e
+        tenha as línguas bíblicas sempre à mão — no avião ou nos estudos com os amigos
+        na igreja.</p>
+        <p>Sem internet, sem anúncios, sem cadastro.</p>
+
+        <!-- Visível apenas no navegador: convida a instalar -->
+        <a class="btn btn-gold only-browser" href="#/sobre">${icon("download")} Como instalar</a>
+
+        <!-- Visível apenas no aplicativo já instalado: convida a compartilhar -->
+        <div class="partilha only-standalone">
+          <p class="partilha-chamada">Achou útil? Compartilhe!</p>
+          <div class="partilha-bloco">
+            <div class="partilha-textos">
+              <p class="partilha-titulo">O Sentido Autêntico</p>
+              <p class="partilha-autor">by rogerelizar</p>
+              <p class="partilha-email">rogerelizar@gmail.com</p>
+            </div>
+            <img class="partilha-qr" src="assets/img/qr-portal.svg" width="132" height="132"
+                 alt="QR Code que abre o portal O Sentido Autêntico em tinyurl.com/2xh8tboz"
+                 loading="lazy" decoding="async">
+          </div>
+          <p class="partilha-url">
+            <a href="https://tinyurl.com/2xh8tboz" target="_blank" rel="noopener noreferrer">tinyurl.com/2xh8tboz</a>
+          </p>
+        </div>
       </aside>
     </div>`;
     }
@@ -2388,7 +2597,7 @@ a.card:hover .card-link::after { transform: translateX(4px); }
         <h1>Rota de Crescimento</h1>
         <p class="lede">
           Um roteiro estruturado e econômico — <strong>custo R$ 0</strong> — para levar você do
-          primeiro contato com o alefato à leitura exegética madura. Ideal para estudantes de
+          primeiro contato com o alefato à leitura exegética. Ideal para estudantes de
           teologia, pastores, líderes e autodidatas, baseado em consistência, repetição espaçada
           e prática diária com o texto original.
         </p>
@@ -2594,11 +2803,31 @@ a.card:hover .card-link::after { transform: translateX(4px); }
     { ref: "Gn 31.47", descricao: "Labão chama o memorial de “Jegar-Saaduta” (“monte de testemunho”, em aramaico)." }
   ];
   var aramaicInNT = [
-    { expr: "טליתא קומי · Talita cumi", fonte: "Mc 5.41", sign: "“Menina, eu te digo: levanta-te!” — Jesus ressuscita a filha de Jairo." },
-    { expr: "אלי אלי למא שבקתני · Eli, Eli, lemá sabactâni", fonte: "Mt 27.46", sign: "“Deus meu, Deus meu, por que me desamparaste?” — citação do Sl 22.1." },
-    { expr: "ܡܪܢ ܐܬܐ · Maranatá", fonte: "1Co 16.22", sign: "“Vem, Senhor!” ou “Nosso Senhor veio” — aclamação da igreja primitiva." },
-    { expr: "אבא · Abá", fonte: "Mc 14.36", sign: "“Pai” — o endereço íntimo de Jesus a Deus, preservado no original." },
-    { expr: "כיפא · Cefas", fonte: "Jo 1.42", sign: "“Pedra” — o nome aramaico de Pedro (traduzido como Πέτρος)." }
+    {
+      expr: "טְלִיתָא קוּמִי · Talitá cumi",
+      fonte: "Mc 5.41",
+      sign: "“Menina, eu te digo: levanta-te!” — Jesus ressuscita a filha de Jairo."
+    },
+    {
+      expr: "אֵלִי אֵלִי לְמָא שְׁבַקְתָּנִי · Eli, Eli, lemá sabactâni",
+      fonte: "Mt 27.46",
+      sign: "“Deus meu, Deus meu, por que me desamparaste?” — citação do Sl 22.1."
+    },
+    {
+      expr: "מָרַנָא תָא · Maranatá",
+      fonte: "1Co 16.22",
+      sign: "“Vem, Senhor nosso!” (מָרַנָא תָא) ou “Nosso Senhor veio” (מָרַן אֲתָא) — a divisão das palavras muda o sentido; aclamação da igreja primitiva."
+    },
+    {
+      expr: "אַבָּא · Abá",
+      fonte: "Mc 14.36",
+      sign: "“Pai” — o endereço íntimo de Jesus a Deus, preservado no original."
+    },
+    {
+      expr: "כֵּיפָא · Cefas",
+      fonte: "Jo 1.42",
+      sign: "“Pedra” — o nome aramaico de Pedro (traduzido como Πέτρος)."
+    }
   ];
 
   // js/data/interlinear.js
@@ -2611,6 +2840,7 @@ a.card:hover .card-link::after { transform: translateX(4px); }
       dir: "rtl",
       text: "בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ",
       traducao: "No princípio, Deus criou os céus e a terra.",
+      dica: '<strong>Dica de app em português:</strong> ouça o texto hebraico no <strong>Global Bible Tools (GBT)</strong> — sem propaganda e totalmente gratuito na Google Play (Android). <a href="https://play.google.com/store/apps/details?id=com.globalbibletools.gbt" target="_blank" rel="noopener noreferrer">Abrir na Google Play</a>',
       nota: "Observe a ordem hebraica: verbos costumam abrir a oração. בְּרֵאשִׁית (bereshit) é a primeira palavra da Bíblia — e dá nome ao livro de Gênesis em hebraico.",
       words: [
         { w: "בְּרֵאשִׁית", tr: "bereshít", lemma: "רֵאשִׁית", morph: "Subst. fem. + preposição בְּ (“em”)", gloss: "No princípio" },
@@ -2694,6 +2924,7 @@ a.card:hover .card-link::after { transform: translateX(4px); }
       <div class="interlinear" dir="${verse.dir}">${words}</div>
       <p class="translit" style="margin-top:1rem" lang="pt-BR">${verse.traducao}</p>
       <div class="il-detail" role="region" aria-label="Detalhes da palavra selecionada" tabindex="-1"></div>
+      ${verse.dica ? `<p class="il-dica">${verse.dica}</p>` : ""}
       ${verse.nota ? `<p class="il-note"><strong>Nota exegética:</strong> ${verse.nota}</p>` : ""}
     </section>`;
   }
@@ -2749,23 +2980,23 @@ a.card:hover .card-link::after { transform: translateX(4px); }
     title: "Hebraico Bíblico",
     desc: "Aprenda o Aleph-Bet hebraico, as vogais (niqud) e a regra Begadkefat, com leitura guiada interlinear de Gênesis 1.1.",
     render() {
-      const alphaRows = hebrewAlphabet.map((l) => `
-      <tr>
-        <td class="letter">
-          <span class="glyph hebrew" lang="he" dir="rtl">${l.g}</span>
-          ${l.sofit ? `<span class="sub">final: <span class="hebrew" lang="he" dir="rtl">${l.sofit}</span></span>` : ""}
-        </td>
-        <td><strong>${l.name}</strong></td>
-        <td class="tr">${l.tr}</td>
-        <td>${l.som}</td>
-      </tr>`).join("");
-      const niqudRows = niqud.map((v) => `
-      <tr>
-        <td class="letter"><span class="glyph hebrew" lang="he" dir="rtl">${v.ex}</span></td>
-        <td><strong>${v.name}</strong></td>
-        <td class="tr">${v.tr}</td>
-        <td>${v.som}</td>
-      </tr>`).join("");
+      const alphaCards = hebrewAlphabet.map((l, i) => `
+      <li class="glyph-card">
+        <span class="glyph-card-num" aria-hidden="true">${i + 1}</span>
+        <span class="glyph-card-sign hebrew" lang="he" dir="rtl">${l.g}</span>
+        ${l.sofit ? `<span class="glyph-card-final">final
+          <span class="hebrew" lang="he" dir="rtl">${l.sofit}</span></span>` : ""}
+        <span class="glyph-card-name">${l.name}</span>
+        <span class="glyph-card-tr">${l.tr}</span>
+        <span class="glyph-card-som">${l.som}</span>
+      </li>`).join("");
+      const niqudCards = niqud.map((v) => `
+      <li class="glyph-card">
+        <span class="glyph-card-sign hebrew" lang="he" dir="rtl">${v.ex}</span>
+        <span class="glyph-card-name">${v.name}</span>
+        <span class="glyph-card-tr">${v.tr}</span>
+        <span class="glyph-card-som">${v.som}</span>
+      </li>`).join("");
       const bgk = begadkefat.map((b) => `
       <span class="chip"><span class="hebrew" lang="he" dir="rtl">${b.g}</span> = ${b.plosiva} ·
       <span class="hebrew" lang="he" dir="rtl">${b.fric}</span> = ${b.fricTr}</span>`).join("");
@@ -2796,12 +3027,13 @@ a.card:hover .card-link::after { transform: translateX(4px); }
         <h2 id="alephbet">O Aleph-Bet</h2>
         <p>O alfabeto hebraico é inteiramente consonantal. Cinco letras assumem uma
         <strong>forma final</strong> (sofit) quando encerram a palavra — repare em Kafe, Mem, Nune, Pê e Tsade.</p>
-        <div class="table-wrap">
-          <table class="alpha-table">
-            <thead><tr><th scope="col" class="letter">Letra</th><th scope="col">Nome</th><th scope="col">Translit.</th><th scope="col">Som</th></tr></thead>
-            <tbody>${alphaRows}</tbody>
-          </table>
-        </div>
+        <p class="glyph-dica">
+          <span aria-hidden="true">←</span>
+          Deslize para a esquerda para seguir do <strong>Aleph</strong> até o <strong>Tav</strong>,
+          no sentido da leitura hebraica.
+        </p>
+        <ul class="glyph-trilha glyph-trilha--rtl" dir="rtl"
+            aria-label="As 22 letras do alfabeto hebraico, do Aleph ao Tav">${alphaCards}</ul>
       </section>
 
       <section class="section" aria-labelledby="vogais">
@@ -2810,12 +3042,7 @@ a.card:hover .card-link::after { transform: translateX(4px); }
         <p>Por volta do séc. VI–X d.C., os masoretas criaram sinais para fixar a pronúncia
         sem alterar o texto consonantal. Eles ficam <em>embaixo, dentro ou acima</em> das letras.
         Abaixo, os exemplos usam a letra <span class="hebrew" lang="he" dir="rtl">ב</span> (b) como base.</p>
-        <div class="table-wrap">
-          <table class="alpha-table">
-            <thead><tr><th scope="col" class="letter">Exemplo</th><th scope="col">Nome</th><th scope="col">Translit.</th><th scope="col">Som</th></tr></thead>
-            <tbody>${niqudRows}</tbody>
-          </table>
-        </div>
+        <ul class="glyph-trilha" aria-label="Sinais vocálicos do niqud">${niqudCards}</ul>
         <div class="callout callout--gold">
           <span class="callout-title">Regra Begadkefat</span>
           Seis consoantes mudam de som conforme o <strong>daguesh</strong> (o ponto central).
@@ -3006,13 +3233,28 @@ a.card:hover .card-link::after { transform: translateX(4px); }
     title: "Grego Koiné",
     desc: "Aprenda o alfabeto grego, sinais diacríticos e casos gramaticais, com análise interlinear de João 1.1 no original.",
     render() {
-      const rows = greekAlphabet.map((l) => `
-      <tr>
-        <td class="letter"><span class="glyph greek" lang="grc">${l.uc} ${l.lc}</span></td>
-        <td><strong>${l.name}</strong></td>
-        <td class="tr">${l.tr}</td>
-        <td>${l.som}</td>
-      </tr>`).join("");
+      const alphaCards = greekAlphabet.map((l, i) => `
+      <li class="glyph-card">
+        <span class="glyph-card-num" aria-hidden="true">${i + 1}</span>
+        <span class="glyph-card-sign greek" lang="grc">${l.uc} ${l.lc}</span>
+        <span class="glyph-card-name">${l.name}</span>
+        <span class="glyph-card-tr">${l.tr}</span>
+        <span class="glyph-card-som">${l.som}</span>
+      </li>`).join("");
+      const CASOS = [
+        { caso: "Nominativo", forma: "ὁ λόγος", func: "sujeito", ex: "“<em>o Verbo</em> era Deus”" },
+        { caso: "Genitivo", forma: "τοῦ λόγου", func: "posse, origem", ex: "“a vida <em>do Verbo</em>”" },
+        { caso: "Dativo", forma: "τῷ λόγῳ", func: "objeto indireto, meio", ex: "“falamos <em>com o Verbo</em>”" },
+        { caso: "Acusativo", forma: "τὸν λόγον", func: "objeto direto", ex: "“ouvimos <em>o Verbo</em>”" },
+        { caso: "Vocativo", forma: "λόγε", func: "apelo direto", ex: "“<em>ó Verbo!</em>”" }
+      ];
+      const casoCards = CASOS.map((c) => `
+      <li class="glyph-card glyph-card--caso">
+        <span class="glyph-card-name">${c.caso}</span>
+        <span class="glyph-card-sign greek" lang="grc">${c.forma}</span>
+        <span class="glyph-card-tr">${c.func}</span>
+        <span class="glyph-card-som">${c.ex}</span>
+      </li>`).join("");
       const diph = greekDiphthongs.map((d) => `<span class="chip"><span class="greek" lang="grc">${d.g}</span> → ${d.tr} (${d.som})</span>`).join("");
       return `
     <div class="container">
@@ -3041,12 +3283,7 @@ a.card:hover .card-link::after { transform: translateX(4px); }
         <p>Ao contrário do hebraico, o grego escreve <strong>vogais plenas</strong> e da
         esquerda para a direita. O sigma tem duas formas minúsculas:
         <span class="greek" lang="grc">σ</span> no meio da palavra e <span class="greek" lang="grc">ς</span> no final.</p>
-        <div class="table-wrap">
-          <table class="alpha-table">
-            <thead><tr><th scope="col" class="letter">Letra</th><th scope="col">Nome</th><th scope="col">Translit.</th><th scope="col">Som</th></tr></thead>
-            <tbody>${rows}</tbody>
-          </table>
-        </div>
+        <ul class="glyph-trilha" aria-label="As 24 letras do alfabeto grego">${alphaCards}</ul>
       </section>
 
       <section class="section" aria-labelledby="sinais">
@@ -3076,18 +3313,7 @@ a.card:hover .card-link::after { transform: translateX(4px); }
         <h2 id="casos">Os cinco casos: a engrenagem da frase</h2>
         <p>O grego “declina” substantivos, artigos e adjetivos conforme a função na oração.
         Veja a declinação singular de <span class="greek" lang="grc">λόγος</span> (“palavra”) com o artigo:</p>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th scope="col">Caso</th><th scope="col">Forma</th><th scope="col">Função</th><th scope="col">Exemplo em português</th></tr></thead>
-            <tbody>
-              <tr><td><strong>Nominativo</strong></td><td><span class="greek" lang="grc">ὁ λόγος</span></td><td>sujeito</td><td>“<em>o Verbo</em> era Deus”</td></tr>
-              <tr><td><strong>Genitivo</strong></td><td><span class="greek" lang="grc">τοῦ λόγου</span></td><td>posse, origem</td><td>“a vida <em>do Verbo</em>”</td></tr>
-              <tr><td><strong>Dativo</strong></td><td><span class="greek" lang="grc">τῷ λόγῳ</span></td><td>objeto indireto, meio</td><td>“falamos <em>com o Verbo</em>”</td></tr>
-              <tr><td><strong>Acusativo</strong></td><td><span class="greek" lang="grc">τὸν λόγον</span></td><td>objeto direto</td><td>“ouvimos <em>o Verbo</em>”</td></tr>
-              <tr><td><strong>Vocativo</strong></td><td><span class="greek" lang="grc">λόγε</span></td><td>apelo direto</td><td>“<em>ó Verbo!</em>”</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <ul class="glyph-trilha glyph-trilha--casos" aria-label="Os cinco casos gramaticais do grego">${casoCards}</ul>
         <div class="callout callout--gold">
           <span class="callout-title">Por que isso liberta o intérprete</span>
           Em português, a ordem das palavras carrega a gramática; em grego, são os
@@ -4261,11 +4487,6 @@ a.card:hover .card-link::after { transform: translateX(4px); }
       if (e.target.closest("a[data-route]")) closeDrawer({ restoreFocus: false });
     });
   }
-  function initThemeToggle() {
-    const btn = $("#themeToggle");
-    if (!btn) return;
-    btn.addEventListener("click", () => a11yStore.toggleTheme());
-  }
   function initNetBadge() {
     const badge = $("#netBadge");
     if (!badge) return;
@@ -4273,6 +4494,7 @@ a.card:hover .card-link::after { transform: translateX(4px); }
       const online = navigator.onLine;
       badge.hidden = false;
       badge.textContent = online ? "online" : "offline";
+      badge.title = online ? "Conectado à internet" : "Sem internet — o conteúdo continua disponível";
       badge.classList.toggle("is-off", !online);
     }
     window.addEventListener("online", () => {
@@ -4368,7 +4590,6 @@ a.card:hover .card-link::after { transform: translateX(4px); }
   }
   renderNav();
   initDrawer();
-  initThemeToggle();
   initNetBadge();
   initInstall();
   initAccessibility();

@@ -116,17 +116,13 @@ export default {
             <strong>Aramaico</strong> e <strong>Grego Koiné</strong>. Com metodologia,
             ferramentas e a estante certa, gratuito e direto no navegador.
           </p>
-          <p class="hero-convite">
+          <p class="hero-convite hero-convite--centro">
             Iniciar o estudo das línguas bíblicas originais é dar um passo decisivo em
             direção ao conhecimento de Deus nas Escrituras. Essa caminhada repleta de
             descobertas e de desafios práticos transformará não apenas sua compreensão do
             texto sagrado, mas também a forma como você enxerga a vida e como viver melhor
             através dela.
           </p>
-          <div class="hero-actions">
-            <a class="btn btn-gold" href="#/rota">${icon('compass')} Iniciar a Rota de Crescimento</a>
-            <a class="btn btn-outline" href="#/ferramentas">${icon('tools')} Experimentar as ferramentas</a>
-          </div>
           <div class="hero-script" aria-label="Amostras das escritas originais">
             <span><span class="hebrew" lang="he" dir="rtl">בְּרֵאשִׁית</span> hebraico</span>
             <span><span class="aramaic" lang="arc" dir="rtl">מְנֵא</span> aramaico</span>
@@ -159,6 +155,11 @@ export default {
           deseja saber a real mensagem transmitida!</p>
         </div>
       </section>
+
+      <div class="hero-actions hero-actions--solo">
+        <a class="btn btn-gold" href="#/rota">${icon('compass')} Iniciar a Rota de Crescimento</a>
+        <a class="btn btn-outline" href="#/ferramentas">${icon('tools')} Experimentar as ferramentas</a>
+      </div>
 
       <section class="section" aria-labelledby="modulos">
         <p class="section-kicker">O mapa completo</p>
@@ -197,8 +198,31 @@ export default {
 
       <aside class="cta-band" aria-labelledby="cta-title">
         <h2 id="cta-title">Instale e estude onde estiver</h2>
-        <p>Adicione o Sentido Autêntico à tela inicial do seu celular ou computador e tenha as línguas bíblicas sempre à mão — no avião ou nos estudos como os amigos na igreja. Sem internet, sem anúncios, sem cadastro.</p>
-        <a class="btn btn-gold" href="#/sobre">${icon('download')} Como instalar</a>
+        <p>Adicione o Sentido Autêntico à tela inicial do seu celular ou computador e
+        tenha as línguas bíblicas sempre à mão — no avião ou nos estudos com os amigos
+        na igreja.</p>
+        <p>Sem internet, sem anúncios, sem cadastro.</p>
+
+        <!-- Visível apenas no navegador: convida a instalar -->
+        <a class="btn btn-gold only-browser" href="#/sobre">${icon('download')} Como instalar</a>
+
+        <!-- Visível apenas no aplicativo já instalado: convida a compartilhar -->
+        <div class="partilha only-standalone">
+          <p class="partilha-chamada">Achou útil? Compartilhe!</p>
+          <div class="partilha-bloco">
+            <div class="partilha-textos">
+              <p class="partilha-titulo">O Sentido Autêntico</p>
+              <p class="partilha-autor">by rogerelizar</p>
+              <p class="partilha-email">rogerelizar@gmail.com</p>
+            </div>
+            <img class="partilha-qr" src="assets/img/qr-portal.svg" width="132" height="132"
+                 alt="QR Code que abre o portal O Sentido Autêntico em tinyurl.com/2xh8tboz"
+                 loading="lazy" decoding="async">
+          </div>
+          <p class="partilha-url">
+            <a href="https://tinyurl.com/2xh8tboz" target="_blank" rel="noopener noreferrer">tinyurl.com/2xh8tboz</a>
+          </p>
+        </div>
       </aside>
     </div>`;
   }

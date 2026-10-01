@@ -10,24 +10,24 @@ export default {
   desc: 'Aprenda o Aleph-Bet hebraico, as vogais (niqud) e a regra Begadkefat, com leitura guiada interlinear de Gênesis 1.1.',
 
   render() {
-    const alphaRows = hebrewAlphabet.map((l) => `
-      <tr>
-        <td class="letter">
-          <span class="glyph hebrew" lang="he" dir="rtl">${l.g}</span>
-          ${l.sofit ? `<span class="sub">final: <span class="hebrew" lang="he" dir="rtl">${l.sofit}</span></span>` : ''}
-        </td>
-        <td><strong>${l.name}</strong></td>
-        <td class="tr">${l.tr}</td>
-        <td>${l.som}</td>
-      </tr>`).join('');
+    const alphaCards = hebrewAlphabet.map((l, i) => `
+      <li class="glyph-card">
+        <span class="glyph-card-num" aria-hidden="true">${i + 1}</span>
+        <span class="glyph-card-sign hebrew" lang="he" dir="rtl">${l.g}</span>
+        ${l.sofit ? `<span class="glyph-card-final">final
+          <span class="hebrew" lang="he" dir="rtl">${l.sofit}</span></span>` : ''}
+        <span class="glyph-card-name">${l.name}</span>
+        <span class="glyph-card-tr">${l.tr}</span>
+        <span class="glyph-card-som">${l.som}</span>
+      </li>`).join('');
 
-    const niqudRows = niqud.map((v) => `
-      <tr>
-        <td class="letter"><span class="glyph hebrew" lang="he" dir="rtl">${v.ex}</span></td>
-        <td><strong>${v.name}</strong></td>
-        <td class="tr">${v.tr}</td>
-        <td>${v.som}</td>
-      </tr>`).join('');
+    const niqudCards = niqud.map((v) => `
+      <li class="glyph-card">
+        <span class="glyph-card-sign hebrew" lang="he" dir="rtl">${v.ex}</span>
+        <span class="glyph-card-name">${v.name}</span>
+        <span class="glyph-card-tr">${v.tr}</span>
+        <span class="glyph-card-som">${v.som}</span>
+      </li>`).join('');
 
     const bgk = begadkefat.map((b) => `
       <span class="chip"><span class="hebrew" lang="he" dir="rtl">${b.g}</span> = ${b.plosiva} ·
@@ -60,12 +60,13 @@ export default {
         <h2 id="alephbet">O Aleph-Bet</h2>
         <p>O alfabeto hebraico é inteiramente consonantal. Cinco letras assumem uma
         <strong>forma final</strong> (sofit) quando encerram a palavra — repare em Kafe, Mem, Nune, Pê e Tsade.</p>
-        <div class="table-wrap">
-          <table class="alpha-table">
-            <thead><tr><th scope="col" class="letter">Letra</th><th scope="col">Nome</th><th scope="col">Translit.</th><th scope="col">Som</th></tr></thead>
-            <tbody>${alphaRows}</tbody>
-          </table>
-        </div>
+        <p class="glyph-dica">
+          <span aria-hidden="true">←</span>
+          Deslize para a esquerda para seguir do <strong>Aleph</strong> até o <strong>Tav</strong>,
+          no sentido da leitura hebraica.
+        </p>
+        <ul class="glyph-trilha glyph-trilha--rtl" dir="rtl"
+            aria-label="As 22 letras do alfabeto hebraico, do Aleph ao Tav">${alphaCards}</ul>
       </section>
 
       <section class="section" aria-labelledby="vogais">
@@ -74,12 +75,7 @@ export default {
         <p>Por volta do séc. VI–X d.C., os masoretas criaram sinais para fixar a pronúncia
         sem alterar o texto consonantal. Eles ficam <em>embaixo, dentro ou acima</em> das letras.
         Abaixo, os exemplos usam a letra <span class="hebrew" lang="he" dir="rtl">ב</span> (b) como base.</p>
-        <div class="table-wrap">
-          <table class="alpha-table">
-            <thead><tr><th scope="col" class="letter">Exemplo</th><th scope="col">Nome</th><th scope="col">Translit.</th><th scope="col">Som</th></tr></thead>
-            <tbody>${niqudRows}</tbody>
-          </table>
-        </div>
+        <ul class="glyph-trilha" aria-label="Sinais vocálicos do niqud">${niqudCards}</ul>
         <div class="callout callout--gold">
           <span class="callout-title">Regra Begadkefat</span>
           Seis consoantes mudam de som conforme o <strong>daguesh</strong> (o ponto central).

@@ -10,13 +10,29 @@ export default {
   desc: 'Aprenda o alfabeto grego, sinais diacríticos e casos gramaticais, com análise interlinear de João 1.1 no original.',
 
   render() {
-    const rows = greekAlphabet.map((l) => `
-      <tr>
-        <td class="letter"><span class="glyph greek" lang="grc">${l.uc} ${l.lc}</span></td>
-        <td><strong>${l.name}</strong></td>
-        <td class="tr">${l.tr}</td>
-        <td>${l.som}</td>
-      </tr>`).join('');
+    const alphaCards = greekAlphabet.map((l, i) => `
+      <li class="glyph-card">
+        <span class="glyph-card-num" aria-hidden="true">${i + 1}</span>
+        <span class="glyph-card-sign greek" lang="grc">${l.uc} ${l.lc}</span>
+        <span class="glyph-card-name">${l.name}</span>
+        <span class="glyph-card-tr">${l.tr}</span>
+        <span class="glyph-card-som">${l.som}</span>
+      </li>`).join('');
+
+    const CASOS = [
+      { caso: 'Nominativo', forma: 'ὁ λόγος',  func: 'sujeito',               ex: '“<em>o Verbo</em> era Deus”' },
+      { caso: 'Genitivo',   forma: 'τοῦ λόγου', func: 'posse, origem',         ex: '“a vida <em>do Verbo</em>”' },
+      { caso: 'Dativo',     forma: 'τῷ λόγῳ',  func: 'objeto indireto, meio', ex: '“falamos <em>com o Verbo</em>”' },
+      { caso: 'Acusativo',  forma: 'τὸν λόγον', func: 'objeto direto',         ex: '“ouvimos <em>o Verbo</em>”' },
+      { caso: 'Vocativo',   forma: 'λόγε',     func: 'apelo direto',          ex: '“<em>ó Verbo!</em>”' }
+    ];
+    const casoCards = CASOS.map((c) => `
+      <li class="glyph-card glyph-card--caso">
+        <span class="glyph-card-name">${c.caso}</span>
+        <span class="glyph-card-sign greek" lang="grc">${c.forma}</span>
+        <span class="glyph-card-tr">${c.func}</span>
+        <span class="glyph-card-som">${c.ex}</span>
+      </li>`).join('');
 
     const diph = greekDiphthongs.map((d) =>
       `<span class="chip"><span class="greek" lang="grc">${d.g}</span> → ${d.tr} (${d.som})</span>`).join('');
@@ -48,12 +64,7 @@ export default {
         <p>Ao contrário do hebraico, o grego escreve <strong>vogais plenas</strong> e da
         esquerda para a direita. O sigma tem duas formas minúsculas:
         <span class="greek" lang="grc">σ</span> no meio da palavra e <span class="greek" lang="grc">ς</span> no final.</p>
-        <div class="table-wrap">
-          <table class="alpha-table">
-            <thead><tr><th scope="col" class="letter">Letra</th><th scope="col">Nome</th><th scope="col">Translit.</th><th scope="col">Som</th></tr></thead>
-            <tbody>${rows}</tbody>
-          </table>
-        </div>
+        <ul class="glyph-trilha" aria-label="As 24 letras do alfabeto grego">${alphaCards}</ul>
       </section>
 
       <section class="section" aria-labelledby="sinais">
@@ -83,18 +94,7 @@ export default {
         <h2 id="casos">Os cinco casos: a engrenagem da frase</h2>
         <p>O grego “declina” substantivos, artigos e adjetivos conforme a função na oração.
         Veja a declinação singular de <span class="greek" lang="grc">λόγος</span> (“palavra”) com o artigo:</p>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th scope="col">Caso</th><th scope="col">Forma</th><th scope="col">Função</th><th scope="col">Exemplo em português</th></tr></thead>
-            <tbody>
-              <tr><td><strong>Nominativo</strong></td><td><span class="greek" lang="grc">ὁ λόγος</span></td><td>sujeito</td><td>“<em>o Verbo</em> era Deus”</td></tr>
-              <tr><td><strong>Genitivo</strong></td><td><span class="greek" lang="grc">τοῦ λόγου</span></td><td>posse, origem</td><td>“a vida <em>do Verbo</em>”</td></tr>
-              <tr><td><strong>Dativo</strong></td><td><span class="greek" lang="grc">τῷ λόγῳ</span></td><td>objeto indireto, meio</td><td>“falamos <em>com o Verbo</em>”</td></tr>
-              <tr><td><strong>Acusativo</strong></td><td><span class="greek" lang="grc">τὸν λόγον</span></td><td>objeto direto</td><td>“ouvimos <em>o Verbo</em>”</td></tr>
-              <tr><td><strong>Vocativo</strong></td><td><span class="greek" lang="grc">λόγε</span></td><td>apelo direto</td><td>“<em>ó Verbo!</em>”</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <ul class="glyph-trilha glyph-trilha--casos" aria-label="Os cinco casos gramaticais do grego">${casoCards}</ul>
         <div class="callout callout--gold">
           <span class="callout-title">Por que isso liberta o intérprete</span>
           Em português, a ordem das palavras carrega a gramática; em grego, são os

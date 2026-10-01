@@ -156,3 +156,207 @@
 .plano-memo li { line-height: 1.65; }
 .plano-memo li strong:first-child { color: var(--osa-portal-green); }
 [data-theme="dark"] .plano-memo li strong:first-child { color: var(--osa-gold); }
+
+/* ====== Início: botões de ação deslocados para antes do mapa ====== */
+.hero-actions--solo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+  margin: 2.2rem auto 0.5rem;
+}
+
+/* Convite de abertura centralizado em relação ao texto anterior */
+.hero-convite--centro {
+  margin-inline: auto;
+  text-align: center;
+  border-inline-start: none;
+  padding-inline-start: 0;
+  padding-top: 1rem;
+  border-top: 2px solid var(--osa-gold);
+  max-width: 44rem;
+}
+
+/* ====== Bloco "Achou útil? Compartilhe!" (somente no app instalado) ====== */
+.partilha { margin-top: 0.4rem; }
+
+.partilha-chamada {
+  font-family: var(--osa-font-serif);
+  font-size: 1.12rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+}
+
+.partilha-bloco {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+}
+
+.partilha-textos {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.partilha-textos p { margin: 0; }
+
+.partilha-titulo {
+  font-family: var(--osa-font-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.partilha-autor { font-size: 0.95rem; opacity: 0.9; }
+.partilha-email { font-size: 0.9rem; opacity: 0.85; word-break: break-all; }
+
+.partilha-qr {
+  width: 132px;
+  height: 132px;
+  flex: none;
+  background: #fff;
+  padding: 7px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+}
+
+.partilha-url {
+  margin: 1rem 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.partilha-url a { color: inherit; text-underline-offset: 3px; }
+
+@media (max-width: 420px) {
+  .partilha-bloco { flex-direction: column; gap: 0.9rem; }
+  .partilha-textos { text-align: center; }
+}
+
+/* ==========================================================================
+   Trilha de glifos — alfabetos e sinais em cards (substitui as tabelas)
+   No celular, uma tabela de 4 colunas com escrita original fica ilegível;
+   cards lado a lado com rolagem horizontal resolvem sem perder informação.
+   ========================================================================== */
+.glyph-dica {
+  font-size: 0.9rem;
+  color: var(--osa-muted);
+  margin: 0.2rem 0 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.glyph-trilha {
+  list-style: none;
+  margin: 1rem 0 1.4rem;
+  padding: 0.25rem 0.25rem 1rem;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(10.5rem, 1fr);
+  gap: 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--osa-gold) transparent;
+}
+.glyph-trilha::-webkit-scrollbar { height: 9px; }
+.glyph-trilha::-webkit-scrollbar-track { background: var(--osa-gold-soft); border-radius: 99px; }
+.glyph-trilha::-webkit-scrollbar-thumb { background: var(--osa-gold); border-radius: 99px; }
+
+/* O alefato corre da direita para a esquerda, como a leitura hebraica:
+   o Aleph nasce na extremidade direita e o Tav fica na ponta esquerda. */
+.glyph-trilha--rtl { direction: rtl; }
+.glyph-trilha--rtl > .glyph-card { direction: ltr; }
+
+.glyph-card {
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.3rem;
+  padding: 1rem 0.8rem 0.9rem;
+  background: var(--osa-surface);
+  border: 1px solid var(--osa-border);
+  border-top: 3px solid var(--osa-gold);
+  border-radius: var(--osa-radius-lg);
+  box-shadow: var(--osa-shadow-1);
+  min-height: 100%;
+}
+
+.glyph-card-num {
+  position: absolute;
+  top: 0.45rem;
+  inset-inline-start: 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--osa-muted);
+  opacity: 0.75;
+}
+
+.glyph-card-sign {
+  font-size: 2.6rem;
+  line-height: 1.25;
+  color: var(--osa-portal-green);
+}
+.glyph-card-sign.hebrew { font-family: var(--osa-font-hebrew); }
+[data-theme="dark"] .glyph-card-sign { color: var(--osa-gold); }
+
+.glyph-card-final {
+  font-size: 0.75rem;
+  color: var(--osa-muted);
+  margin-top: -0.2rem;
+}
+.glyph-card-final .hebrew { font-family: var(--osa-font-hebrew); font-size: 1.1rem; }
+
+.glyph-card-name { font-weight: 700; font-size: 0.98rem; }
+
+.glyph-card-tr {
+  font-family: var(--osa-font-mono);
+  font-size: 0.88rem;
+  color: var(--osa-gold-ink);
+  background: var(--osa-gold-soft);
+  padding: 0.1rem 0.5rem;
+  border-radius: 99px;
+}
+
+.glyph-card-som {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--osa-ink-secondary);
+}
+
+/* Cards dos casos gregos: a forma declinada é o destaque, não um glifo solto */
+.glyph-card--caso .glyph-card-sign { font-size: 1.6rem; }
+.glyph-trilha--casos { grid-auto-columns: minmax(12rem, 1fr); }
+
+/* Em telas largas, o niqud e os casos acomodam-se em grade, sem rolagem */
+@media (min-width: 900px) {
+  .glyph-trilha:not(.glyph-trilha--rtl) {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    overflow-x: visible;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glyph-trilha { scroll-behavior: auto; }
+}
+
+/* Dica de recurso externo dentro do bloco interlinear */
+.il-dica {
+  margin: 1rem 0 0;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  background: var(--osa-ok-soft);
+  border-inline-start: 4px solid var(--osa-ok);
+  border-radius: 0 var(--osa-radius) var(--osa-radius) 0;
+}
+.il-dica a { font-weight: 600; }

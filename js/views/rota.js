@@ -104,7 +104,7 @@ export default {
         <h1>Rota de Crescimento</h1>
         <p class="lede">
           Um roteiro estruturado e econômico — <strong>custo R$ 0</strong> — para levar você do
-          primeiro contato com o alefato à leitura exegética madura. Ideal para estudantes de
+          primeiro contato com o alefato à leitura exegética. Ideal para estudantes de
           teologia, pastores, líderes e autodidatas, baseado em consistência, repetição espaçada
           e prática diária com o texto original.
         </p>

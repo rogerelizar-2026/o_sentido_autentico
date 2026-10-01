@@ -13,6 +13,7 @@ export const verses = [
     dir: 'rtl',
     text: 'בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ',
     traducao: 'No princípio, Deus criou os céus e a terra.',
+    dica: '<strong>Dica de app em português:</strong> ouça o texto hebraico no <strong>Global Bible Tools (GBT)</strong> — sem propaganda e totalmente gratuito na Google Play (Android). <a href="https://play.google.com/store/apps/details?id=com.globalbibletools.gbt" target="_blank" rel="noopener noreferrer">Abrir na Google Play</a>',
     nota: 'Observe a ordem hebraica: verbos costumam abrir a oração. בְּרֵאשִׁית (bereshit) é a primeira palavra da Bíblia — e dá nome ao livro de Gênesis em hebraico.',
     words: [
       { w: 'בְּרֵאשִׁית', tr: 'bereshít', lemma: 'רֵאשִׁית', morph: 'Subst. fem. + preposição בְּ (“em”)', gloss: 'No princípio' },

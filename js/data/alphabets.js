@@ -104,9 +104,14 @@ export const aramaicPassages = [
 
 /* Aramaico no Novo Testamento */
 export const aramaicInNT = [
-  { expr: 'טליתא קומי · Talita cumi', fonte: 'Mc 5.41', sign: '“Menina, eu te digo: levanta-te!” — Jesus ressuscita a filha de Jairo.' },
-  { expr: 'אלי אלי למא שבקתני · Eli, Eli, lemá sabactâni', fonte: 'Mt 27.46', sign: '“Deus meu, Deus meu, por que me desamparaste?” — citação do Sl 22.1.' },
-  { expr: 'ܡܪܢ ܐܬܐ · Maranatá', fonte: '1Co 16.22', sign: '“Vem, Senhor!” ou “Nosso Senhor veio” — aclamação da igreja primitiva.' },
-  { expr: 'אבא · Abá', fonte: 'Mc 14.36', sign: '“Pai” — o endereço íntimo de Jesus a Deus, preservado no original.' },
-  { expr: 'כיפא · Cefas', fonte: 'Jo 1.42', sign: '“Pedra” — o nome aramaico de Pedro (traduzido como Πέτρος).' }
+  { expr: 'טְלִיתָא קוּמִי · Talitá cumi', fonte: 'Mc 5.41',
+    sign: '“Menina, eu te digo: levanta-te!” — Jesus ressuscita a filha de Jairo.' },
+  { expr: 'אֵלִי אֵלִי לְמָא שְׁבַקְתָּנִי · Eli, Eli, lemá sabactâni', fonte: 'Mt 27.46',
+    sign: '“Deus meu, Deus meu, por que me desamparaste?” — citação do Sl 22.1.' },
+  { expr: 'מָרַנָא תָא · Maranatá', fonte: '1Co 16.22',
+    sign: '“Vem, Senhor nosso!” (מָרַנָא תָא) ou “Nosso Senhor veio” (מָרַן אֲתָא) — a divisão das palavras muda o sentido; aclamação da igreja primitiva.' },
+  { expr: 'אַבָּא · Abá', fonte: 'Mc 14.36',
+    sign: '“Pai” — o endereço íntimo de Jesus a Deus, preservado no original.' },
+  { expr: 'כֵּיפָא · Cefas', fonte: 'Jo 1.42',
+    sign: '“Pedra” — o nome aramaico de Pedro (traduzido como Πέτρος).' }
 ];

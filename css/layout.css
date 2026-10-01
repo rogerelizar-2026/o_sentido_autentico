@@ -27,7 +27,7 @@
 .brand-mark { width: 42px; height: 42px; flex: none; border-radius: 12px; box-shadow: var(--osa-shadow-1); }
 .brand-text { display: flex; flex-direction: column; line-height: 1.12; }
 .brand-text strong { font-family: var(--osa-font-serif); font-size: 1.08rem; letter-spacing: 0.01em; }
-.brand-text small { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--osa-gold-ink); font-weight: 700; }
+.brand-text small { font-size: 0.72rem; text-transform: lowercase; letter-spacing: 0.06em; color: var(--osa-gold-ink); font-weight: 600; }
 
 .nav-top { display: none; align-items: center; gap: 0.15rem; }
 .nav-top a {
